@@ -81,37 +81,32 @@
 	border: 1px solid #D62323/*{borderColorHeader}*/;
 	background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
 	font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
 }
 .windowContainer>.windowBody.highlight {
 border: 1px solid #A99C1C/*{borderColorHeader}*/;
 background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
 font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
+
  }
 .windowContainer>.windowBody.active {
   border: 1px solid #23AE2F/*{borderColorHeader}*/;
 background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
 font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
  } 
 .windowContainer>.windowBody.warning {
   border: 1px solid #E39531/*{borderColorHeader}*/;
 background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
 font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
  } 
 .windowContainer>.windowBody.default {
   border: 1px solid #aaaaaa/*{borderColorHeader}*/;
 background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
 font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
  } 
 .windowContainer>.windowBody.info {
  border: 1px solid #2288CE/*{borderColorHeader}*/;
 	background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
 	font-family: Verdana,Arial,sans-serif;
-    font-size: 1.1em;
  } 
  
  

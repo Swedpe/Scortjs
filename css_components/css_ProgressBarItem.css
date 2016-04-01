@@ -23,6 +23,9 @@
     background-position: 0 0;
   }
 }
+.toolBar  .progressBox {
+  margin-bottom: 0px;
+}
 .progressBox {
   margin-bottom: 10px;
   overflow: hidden;
