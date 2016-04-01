@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WINDOWS PANEL FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/Slider.js"></script>
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />	
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+
+Components.create('FreeDiv',{
+freeHtml:true,
+html:'<div><div class="row"><div  id="Colorerror" class="col-sm-4"></div><div  id="ColorActive" class="col-sm-4" ></div><div  id="Colorinfo" class="col-sm-4" ></div></div></div>',
+});
+Components.create('Window',{
+container: $('#Colorerror'),
+        behavior:'panel',
+		state:'error',
+		resizable:false,
+		draggable:false,
+		title: "WINDOWS PANEL-SCORTS JS", 
+       items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+			{type: 'InputField',
+			label: {html:'<b>Select Neutral</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			
+			
+			{type: 'InputField',
+			label: {html:'<b>Select info</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'info',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select error</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					state:'error',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select listeners: <I>SELECT</I></b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type:'ComboBox',	  
+					id:"micombo",
+					x:0,
+					y: 50,
+					label: 'ComboBox con Evento',                                        
+					store: {
+						fields: ["Id", "Nivel"],
+						data: [
+							{ Id: -1, Nivel: "Selecciona"},
+							{ Id: 0, Nivel: "Nivel1"},
+							{ Id: 1, Nivel: "Nivel2"},
+							{ Id: 2, Nivel: "Nivel3"},
+							{ Id: 3, Nivel: "Nivel4"}										
+						]
+					},
+					valueField: 'Id',
+					displayField: 'Nivel',
+					mode:'local',
+					readOnly: false	,								
+					listeners: {
+								select: function(combo, record, index){
+									Components.getComponentById('miInput').setValue(JSON.stringify(record));
+								}
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select listeners: select</b>',
+					cols:3},
+			input:{cols:9,
+				id:'miInput',
+				width: '100%',
+				placeholder:'Se llena con la seleccion del combo superior',
+				icon:{
+					type:'fontawesome',
+					class:'fa-times',
+					color:'rgb(85, 85, 95)'
+				},
+			 },
+			},	
+			{
+			type:'FreeDiv',	
+			freeHtml:true,
+			html:'<div class="form-group" id="ButtonsMid"><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
+			},	
+		],
+	}]
+		
+    }).show();
+}); 
+</script>	
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

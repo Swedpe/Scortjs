@@ -1,0 +1,70 @@
+Components.create('Window',{		
+        title: "Menu Container", 
+        height:300, 
+        width:500,
+		html:'<div id="customdiv"><div>',
+        items: [
+			{
+								type: 'ToolBar',
+                                region: 'top',
+                                items: [								
+									{
+										type: 'Button',
+										id: 'RestoreSlices',
+										scale: 'medium',
+										icon: 'images/dolar16.png',
+										tooltip: 'Restaurar Valores Iniciales',
+										listeners: {
+											click: function() {
+												
+											}
+										}									
+									},
+									{
+										type: 'SplitButton',
+										id: 'EscalaTiempo',
+										text : 'Escala de Barras',
+										tooltip: 'Elegir tipo de documento',
+										menu: {
+											items: [
+													{
+													id: 'ninguno',
+													text: '<img src="images/play.jpg">Ninguno',
+													handler: function() {
+														$("#customdiv").html("selecciono ninguno");
+														Components.getComponentById('mitxt').setValue('ninguno');
+													}  
+												},
+												{
+													id: 'semanal',
+													text: '<img src="images/pie2.png">Semanal',
+													handler: function() {
+														$("#customdiv").html("selecciono SEMANAL");
+														Components.getComponentById('mitxt').setValue('semanal');
+													}  
+												},
+												{
+													id: 'mensual',
+													text: '<img src="images/ungroup.png">Mensual',
+													handler: function() {
+														$("#customdiv").html("selecciono MENSUAL");
+														Components.getComponentById('mitxt').setValue('mensual');
+														
+													}  
+												}
+											]
+										}
+									 },                         
+									{
+										type: 'TextField',	
+										id:'mitxt',	
+										readOnly: true,
+										width: 200,
+										value: 'Mensual'
+									}		
+                                    
+                                ]						
+						
+			}            
+        ]
+    }).show();

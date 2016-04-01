@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lectura y escritura de Formulario con Timepicker</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>
+<script src="../functions.js"></script>		
+<script src="../components/functions.js"></script>	
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+<script src="../components/items/TimePicker.js"></script>	
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css"/>
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/colorPicker.css">
+<link rel="stylesheet" href="../css_components/timepicker.css" />
+		
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+	$( document ).ready(function(){
+	Components.create('Window',{
+		id:'prueba', 
+		behavior:'window',
+		title: "Demo Window", 
+		x:713,
+		y:33,
+		height:200, 
+		state:'active', 
+		width:310,
+ }).show();
+Components.create('Window', {
+		title: 'Ejemplo Form Window',
+		height: 340,
+		width: 600,
+		minimizable: false,
+		id: 'window',
+		state:'active',
+		items: [{
+			type: 'Form',
+			id: 'uno',
+			border: false,
+			defaultType: "textfield",																	
+			fieldDefaults: {
+				labelWidth: 60
+			},
+			items: [
+				{type: 'InputField',
+					label: {html:'<b>DatePicker:</b>',
+							cols:4},
+					input:{
+						type:'DatePicker',
+						name:'fecha',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+							},
+					},
+
+				},
+				{type: 'InputField',
+					label: {html:'<b>Timepicker:</b>',
+							cols:4},
+				input:{	 
+						
+						type:'Timepicker',
+						id:'holatime',
+						name:'hora',
+						//value:'10:20',
+						cols:2,
+						state:'error',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+							},
+			},
+
+				},
+				
+				{type: 'InputField',
+					label: {html:'<b>ProgressBar:</b>',
+							cols:4},
+					input:{
+						type:'ProgressBar',
+						cols:8,
+						name:'valorProgress',
+						state:'error',
+						class:'striped',
+						width: '100%',
+						input:true,
+					},	
+				},
+				{type: 'InputField',
+				 label: {html:'<b>Number Field</b>',
+						cols:4},
+				 input:{
+					type:'NumberField',
+					cols:8,
+					name:'edad',
+					state:'error',
+					value:50,
+					input:true,
+				  },	
+				},
+				{type: 'InputField',
+					label: {html:'<b>On-Off:</b>',
+							cols:4
+					},
+					input:{cols:8,
+							type:'onoffswitch',
+							id:'hi',
+							name:'on-off',
+							checked:false,
+							state:'highlight',
+							scale:'mini',
+					},
+					
+					css:{'padding-top': '10px'
+					},
+				  },
+				  {type: 'InputField',
+				label: {html:'<b>Color Picker</b>',
+					cols:2},
+					input:{
+					name:'colorin',
+					cols:10,
+					type:'colorPicker',
+					preferredFormat: "hex",
+					width: '130',
+					listeners: {
+						onValidateSucess: function() {
+						alert("onValidateSucess");
+						}
+					}
+				},
+		 css:{'padding-top': '10px'},
+		},
+				
+				
+			],
+	buttons: [
+		{ 
+			text: 'Show Data',			
+			x: 30,
+			handler: function() {
+			   console.log(Components.getComponentById('uno').getValues());
+				var grid = Components.getComponentById('uno');
+				var infoindow =Components.getComponentById('prueba');
+				var Seleccionados = syntaxHighlight(JSON.stringify(grid.getValues(), undefined, 7));	
+				infoindow.setHtml('los valores ingresados son:<br><pre>'+Seleccionados+'</pre>');
+			}	
+		},
+		{ 
+			text: 'Set Datos' ,
+			x: 190,
+			handler: function() {
+				datos = {'nombre':'William','apellido':'Uria','direccion':'Arequipa','fecha':'1993-02-10','hora':'10:20','valorProgress':80,'edad':30,'on-off':false
+			  }
+				var set1 = Components.getComponentById('uno');
+				var set2 = Components.getComponentById('prueba');
+				set1.setValues(datos);	
+			} 
+		}
+	]
+  }]
+ }).show();
+});  
+</script>	
+</head>
+</html>

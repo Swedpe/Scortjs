@@ -1,0 +1,16 @@
+Components.create('NumberField', { 
+                       x:10,
+					   y:50,
+                        label: 'Numeros',
+                        value: 5,
+						 width:15,
+                      }).show();
+					  
+Components.create('NumberField', { 
+                       x:10,
+					   y:80,
+					    maxValue: 10,
+                        minValue: 1,
+                        label: 'Rango de 1 a 10',
+                        value: 1
+                      }).show();

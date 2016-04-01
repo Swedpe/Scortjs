@@ -1,0 +1,8 @@
+<b>Basic Upload</b><br>
+- Este ejemplo corralo solo con archivos pequeños, no podrá ver ninguna información en el formulario durante el proceso.<br>
+- Se crea un control de upload.<br>
+- Por defecto solo se puede subir un archivo <br>
+- Por defecto el uploader comienza a subir archivos automaticamente <br>
+- Los archivos subidos solo quedaran en la carpeta temporal [esto se controla desde PHP] .<br>
+- Se define el listener fileuploaddone, que se disparara cuando la subida de los archivos esta completa, <br> 
+y solo mostrara el nombre de los archivos subidos como confirmacion<br>

@@ -1,0 +1,5 @@
+- Se rellena la definicion de dos tablas hermanas, para comprobar que los eventos son independientes <br>
+- Se crean datos estaticos para ambas tablas  <br>
+- El modelo de seleccion se define para permitir seleccion multiple <br>
+- Se declara <b>resizable</b> de tal manera que el ancho de las columnas es dinamico.  <br>
+- Se declara <b>verticalScroll</b> de tal manera que la cabecera se mantiene fija mientras puede usar scroll en los datos.

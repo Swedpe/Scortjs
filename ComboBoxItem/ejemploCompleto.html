@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>COMBOBOX FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/Slider.js"></script>
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />	
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('Window', {
+	title: 'CARGANDO DATOS ESTATICOS',
+	 container: $('#ejemplo1'),	
+	state:'highlight',
+	height: 148,
+	width: 460,
+	minimizable: false,
+	id: 'windowModuloTraduccion',
+	items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+			
+			{type: 'InputField',
+			label: {html:'<b>Select listeners</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type:'ComboBox',	  
+					id:"micombo",
+					x:0,
+					y: 50,
+					label: 'ComboBox con Evento',                                        
+					store: {
+						fields: ["Id", "Nivel"],
+						data: [
+							{ Id: -1, Nivel: "Selecciona"},
+							{ Id: 0, Nivel: "Nivel1"},
+							{ Id: 1, Nivel: "Nivel2"},
+							{ Id: 2, Nivel: "Nivel3"},
+							{ Id: 3, Nivel: "Nivel4"}										
+						]
+					},
+					valueField: 'Id',
+					displayField: 'Nivel',
+					mode:'local',
+					readOnly: false	,								
+					listeners: {
+								select: function(combo, record, index){
+									Components.getComponentById('miInput').setValue(JSON.stringify(record));
+								}
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select listeners</b>',
+					cols:3},
+			input:{cols:9,
+				id:'miInput',
+				width: '100%',
+				placeholder:'Se llena con la seleccion del combo superior',
+				icon:{
+					type:'fontawesome',
+					class:'fa-times',
+					color:'rgb(85, 85, 95)'
+				},
+			},
+	
+			},	
+			
+			{
+			type:'Button',	
+			scale: 'medium',
+			state:'active',
+			text:'Leer Valor Seleccionado',
+			icon:{
+				type:'fontawesome',
+				class:'fa-align-left',
+				color:'white',
+				position:'left'
+			},
+			tooltip:'Tamaño Personalizado',	  
+			handler: function() {
+				var valor = Components.getComponentById('micombo').getValue();
+				Components.getComponentById('miInput').setValue(valor);
+				}  
+			},
+			{
+			type:'Button',	
+			scale: 'medium',
+			text:'Leer Todo el combo',
+			state:'info',
+			icon:{
+				type:'fontawesome',
+				class:'fa-database',
+				color:'black',
+				position:'left'
+			},
+			tooltip:'Leer toda la data',	  
+			handler: function() {
+					Components.getComponentById('miInput').setValue(JSON.stringify(Components.getComponentById('micombo').getStore().data ));
+				}   
+			},
+			
+		],
+	}]
+}).show();
+Components.create('Window',{
+        behavior:'panel',
+		container: $('#ejemplo2'),
+		state:'error',
+		resizable:false,
+		draggable:false,
+		title: "COMBOBOX-SCORTS JS", 
+       items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+			{type: 'InputField',
+			label: {html:'<b>Select active</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'active',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select info</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'info',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select error</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					state:'error',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select listeners: <I>SELECT</I></b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type:'ComboBox',	  
+					id:"micombo",
+					x:0,
+					y: 50,
+					label: 'ComboBox con Evento',                                        
+					store: {
+						fields: ["Id", "Nivel"],
+						data: [
+							{ Id: -1, Nivel: "Selecciona"},
+							{ Id: 0, Nivel: "Nivel1"},
+							{ Id: 1, Nivel: "Nivel2"},
+							{ Id: 2, Nivel: "Nivel3"},
+							{ Id: 3, Nivel: "Nivel4"}										
+						]
+					},
+					valueField: 'Id',
+					displayField: 'Nivel',
+					mode:'local',
+					readOnly: false	,								
+					listeners: {
+								select: function(combo, record, index){
+									Components.getComponentById('miInput').setValue(JSON.stringify(record));
+								}
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Select listeners: select</b>',
+					cols:3},
+			input:{cols:9,
+				id:'miInput',
+				width: '100%',
+				placeholder:'Se llena con la seleccion del combo superior',
+				icon:{
+					type:'fontawesome',
+					class:'fa-times',
+					color:'rgb(85, 85, 95)'
+				},
+			 },
+			},	
+			{
+			type:'FreeDiv',	
+			freeHtml:true,
+			html:'<div class="form-group" id="ButtonsMid"><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
+			},
+			
+		],
+	}]
+		
+    }).show();
+	Components.create('Window', {
+	height: 310,
+	width: 311,
+	state:'active',
+	 container: $('#ejemplo3'),	
+	minimizable: false,
+	id: 'windowModuloTraduccion',
+    title: 'COMBOBOX - STATES',
+	items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+			{type: 'InputField',
+			label: {html:'<b>Default</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Highlight</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'highlight',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Active</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'active',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Info</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'info',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Error</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					state:'error',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			},
+			{type: 'InputField',
+			label: {html:'<b>Warning</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					state:'warning',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			},
+			
+		],
+	}]
+}).show();
+
+Components.create('Button',{
+	container:$('.btnAceptar'),		 
+	scale: 'medium',
+	state:'active',
+	text:'Leer Valor Seleccionado',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		color:'white',
+		position:'left'
+	},
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+				var valor = Components.getComponentById('micombo').getValue();
+				Components.getComponentById('miInput').setValue(valor);
+				}  
+}).show();
+
+Components.create('Button',{
+	container:$('.btnCancelar'),		 		
+	scale: 'medium',
+	text:'Leer Todo el combo',
+	state:'info',
+	icon:{
+		type:'fontawesome',
+		class:'fa-database',
+		color:'black',
+		position:'left'
+	},
+	tooltip:'Leer toda la data',	  
+	handler: function() {
+					Components.getComponentById('miInput').setValue(JSON.stringify(Components.getComponentById('micombo').getStore().data ));
+				}  
+}).show();	
+//botones para cargar la data de los combobox
+Components.create('Button',{
+	container:$('.btnData1'),		 
+	scale: 'medium',
+	state:'active',
+	text:'Cargar Data 1',
+	icon:{
+		type:'fontawesome',
+		class:'fa-repeat',
+		color:'white',
+		position:'left'
+	},
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {		
+				var data = ['Ingles','Frances','Sueco','Original']; 
+				console.log('setStore');
+				 Components.getComponentById('micombodata').setStore(data).drawRows();
+				}  
+}).show();
+
+Components.create('Button',{
+	container:$('.btnData2'),		 		
+	scale: 'medium',
+	text:'Cargar Data 2',
+	state:'info',
+	icon:{
+		type:'fontawesome',
+		class:'fa-repeat',
+		color:'black',
+		position:'left'
+	},
+	tooltip:'Leer toda la data',	  
+	handler: function() {
+				var data = ['EEUU','Francia','Suecia','Peru']; 
+				
+				console.log('setStoreA');
+				Components.getComponentById('micombodata').setStore(data).drawRows();
+				}  
+}).show();
+Components.create('Window', {
+	title: 'CARGANDO DATOS DE BD',
+	state:'info',
+	 container: $('#ejemplo4'),	
+	width:640,
+	height:190,
+    x: 13,
+    y: 55,
+	minimizable: false,
+	id: 'windowModuloTraduccion',
+	items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+			
+			{type: 'InputField',
+			label: {html:'<b>Cargar Datos Select</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type:'ComboBox',	  
+					id:"micombodata",
+
+					label: 'ComboBox con Evento',                                        
+					store: {data: ['EEUU','Francia','Suecia','Peru']},
+					readOnly: false	,								
+			},
+			css:{'padding-top': '10px',},
+			},
+		
+			{
+			type:'FreeDiv',	
+			freeHtml:true,
+			html:'<div class="row" id="SelectData">'+'<div class="col-sm-2"></div>'+
+			'<div class="col-sm-4"><h2>Datos1:</h2><br>'+
+			'[Ingles,Frances,Sueco,Original]'+
+			'</h2></div>'+
+			'<div class=" col-sm-4"><h2>Datos2:</h2><br>'+
+			'[EEUU,Francia,Suecia,Peru]'+
+			'</h2></div>'+
+			'<div class="col-sm-2"></div></div>'+
+			'<div class="form-group" id="ButtonsData"><div class="col-sm-2"></div><div class="btnData1 col-sm-4"></div><div class="btnData2 col-sm-4"></div><div class="col-sm-2"></div></div>',
+			},
+			{
+			type:'Button',	
+			scale: 'medium',
+			state:'active',
+			text:'Cargar Data 1',
+			icon:{
+				type:'fontawesome',
+				class:'fa-repeat',
+				color:'white',
+				position:'left'
+			},
+			tooltip:'Tamaño Personalizado',
+			css:{'margin-left': '130px'},	
+			handler: function() {		
+			var data = ['Ingles','Frances','Sueco','Original']; 
+			console.log('setStore');
+			 Components.getComponentById('micombodata').setStore(data).drawRows();
+			  }  
+			},
+			{
+			type:'Button',	
+			scale: 'medium',
+			text:'Cargar Data 2',
+			state:'info',
+			icon:{
+				type:'fontawesome',
+				class:'fa-repeat',
+				color:'black',
+				position:'left'
+			},
+			tooltip:'Leer toda la data',
+			css:{'margin-left': '90px'},			
+			handler: function() {
+			var data = ['EEUU','Francia','Suecia','Peru']; 
+				
+			console.log('setStoreA');
+			Components.getComponentById('micombodata').setStore(data).drawRows();
+			 }    
+		   },
+		],
+	}]
+}).show();
+Components.create('Window', {
+ container: $('#ejemplo5'),	
+title: 'CARGANDO DATOS DESDE AJAX',
+state:'warning',
+width:640,
+height:125,
+minimizable: false,
+id: 'windowModuloTraduccion',
+items: [{
+	type: 'Form',
+	id: 'formModuloTraduccion',
+	border: false,
+	defaultType: "textfield",																	
+	fieldDefaults: {
+		labelWidth: 60
+	},
+	items: [				   
+		
+		{type: 'InputField',
+		label: {html:'<b>Llenar datos AJAX</b>',
+				cols:3
+		},
+		input:{cols:9,
+				type:'ComboBox',	  
+				id:"mycombo",
+				store: {
+					id: 'idStoredata',
+					model: 'MyData',
+					pageSize: 5,
+					fields: [
+						'value', 
+						'label'                               
+					],
+					proxy: {
+						reader:{
+							type: 'POST',
+							url: 'php/dataphp.php',
+							extraParams: {
+							dataset:'sampledata3'									
+							}
+						},
+					}
+				},
+				valueField: 'value',
+				displayField: 'label',
+				mode:'local',
+		},
+		
+		css:{'padding-top': '10px'
+		},			
+		},	
+		{
+		type:'FreeDiv',	
+		freeHtml:true,
+		html:'<div class="form-group" id="ButtonsMid"><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
+		},
+	],
+	}]
+}).show();
+Components.create('Button', {
+		container:$('.btnAceptar'),
+		scale: 'medium',
+		state:'active',
+		text:'Cargar desde AJAX',
+		icon:{
+			type:'fontawesome',
+			class:'fa-align-left',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Tamaño Personalizado',	
+		handler: function() {
+			 Components.getComponentById('mycombo').getStore().loadPage(1);	
+			}  
+		});
+Components.create('Button', {		
+		container:$('.btnCancelar'),
+		scale: 'medium',
+		text:'Leer Todo el combo',
+		state:'info',
+		icon:{
+			type:'fontawesome',
+			class:'fa-database',
+			color:'black',
+			position:'left'
+		},
+		tooltip:'Leer toda la data',
+		handler: function() {
+				 Components.getComponentById('mycombo').getStore().loadPage(2);	
+			}   
+	   });
+
+}); 
+//agregar los 2 botones a el html pre definido
+
+
+
+</script>	
+<body>
+<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 14pt">COMBOBOX-ITEM SCORTS</P></font></strong>
+ <div class="row">
+ <div  id="ejemplo1" class="col-sm-4" ><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">ComboBox Seleccion</P></font></strong> <br><br></div>
+ <div id="ejemplo2" class="col-sm-4"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> ComboBox con datos</P></font></strong> </div>
+ <div id="ejemplo3" class="col-sm-4"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">ComboBoxs con diferentes estados</P></font></strong> </div>
+ </div>
+  <div class="row">
+ <div  id="ejemplo4" class="col-sm-6" ><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">ComboBox con datos de BD</P></font></strong> <br><br></div>
+ <div id="ejemplo5" class="col-sm-6" ><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> ComboBox con datos AJAX</P></font></strong> </div>
+ </div>
+</body>
+</script>
+</head>
+</html>

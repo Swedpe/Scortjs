@@ -1,0 +1,5 @@
+Components.create('Window',{
+		title: "Demo Window", 
+        height:400, 
+        width:610    
+    }).show();

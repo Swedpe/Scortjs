@@ -1,0 +1,61 @@
+	 Components.create('DatePicker',{	
+						x:0,
+						y:50,	
+						label: '<b> Fecha :</b>',										
+						width: 150,	
+						id: 'DatePicker1',
+						alignLabel: "left",
+						value: ""
+    }).show();	
+
+    
+    Components.create('Button',{		
+       
+                                        x:250,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Cambiar Fecha a 12/08/1987',                                     
+                                        tooltip:'formatos admitidos en: http://api.jqueryui.com/datepicker/#utility-formatDate',	  
+                                        handler: function() {
+														 Components.getComponentById('DatePicker1').setValue('12/08/1987');														
+													}  
+    }).show();
+	
+	Components.create('Button',{		
+       
+                                        x:500,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Leer Valor',                                     
+                                        tooltip:'Leer Valor',	  
+                                        handler: function() {
+														 alert(Components.getComponentById('DatePicker1').getValue().toString());														
+													}  
+    }).show();
+    
+   	Components.create('DatePicker',{	 	
+										id:"DatePicker2",	
+										x:0,		
+										y:100,
+										labelWidth:0,										
+										width: 150									
+    }).show();
+	
+
+    Components.create('DatePicker',{	
+										id:"DatePicker3",	
+										x:0,		
+										y:150,
+										readOnly:true,		
+										width: 150,										
+										label:'<b>Solo Lectura:</b>'
+    }).show();
+	Components.create('Label',{
+			x:250,
+			y: 100,
+			text: 'Sin Etiqueta',			
+			width: 350
+	}).show();	
+	   
+Components.getComponentById('DatePicker3').setValue('12/08/1987');
+Components.getComponentById('DatePicker1').setValue(new Date().toString('yyyy-MM-dd'))

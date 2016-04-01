@@ -1,0 +1,96 @@
+Components.create('FileUploader',{  	
+    x:0,
+										y:23,
+										id: 'SubirFotobt',
+										icon: 'images/Warehouse-icon16.png',
+										tooltip:'Subir Foto',
+										text:'Subir Foto',
+										filesize: 5000000,//5mb
+										numberfiles:1,							
+										DivPreview:'#ImagenTarjetaPersonal',
+										script:'php/uploadhandlerfp.php',	
+										progressInterval: 100,	
+										formdata:[												
+												{	name  :'folder', value: 'upload' },
+												{	name  :'UploadType', value: '' }
+										],							
+										listeners: {
+											add: function(e, data) {
+												$(e.data.OBJ.config.DivPreview).find("div").remove();									
+												$(e.data.OBJ.config.DivPreview).find('img').hide();	
+												data.context = $('<div/>').appendTo(e.data.OBJ.config.DivPreview);									
+												$.each(data.files, function (index, file) {										
+													var node = $('<p/>')
+															.append($('<span/>').text(file.name));
+													if (!index) {
+														node
+															.append('<br>')
+															.append(uploadButton.clone(true).data(data))												
+															.append(canceluploadButton.clone(true).data(data));
+															
+
+													}
+													node.appendTo(data.context);
+												});									
+											},								
+											fileuploadprocessalways: function (e, data) {
+												var index = data.index,
+													file = data.files[index],
+													node = $(data.context.children()[index]);
+												
+												if (file.error) {
+													node
+														.append('<br>')
+														.append($('<span class="text-danger"/>').text(file.error));
+														alert(file.error);
+														node.remove();
+														$(e.data.OBJ.config.DivPreview).find('img').show();	
+												}
+												if (index + 1 === data.files.length) {
+													data.context.find('.btn-primary')
+														.text('Upload');
+													data.context.find('button')	
+														.prop('disabled', !!data.files.error);
+														
+												}
+											},
+											fileuploadprogressall: function (e, data) {									
+												console.log(data.bitrate);
+											},
+											progress: function (e, data) {												
+												console.log(data.bitrate);
+											},
+											fileuploaddone: function (e, data) {
+												$.each(data.result.files, function (index, file) {
+													if (file.url) {											
+														$(data.context.children()[index]).find('.btn-warning').remove();
+											
+														
+													} else if (file.error) {
+														var error = $('<span class="text-danger"/>').text(file.error);
+														$(data.context.children()[index])
+															.append('<br>')
+															.append(error);
+													}
+												});
+											},
+											fail: function (e, data) {
+												$.each(data.files, function (index) {
+													var error = $('<span class="text-danger"/>').text('File upload failed.');
+													$(data.context.children()[index])
+														.append('<br>')
+														.append(error);
+												});
+											}
+										}
+}).show();
+Components.create('Image',{  
+
+											x:200,
+											y:0 ,
+											text: '',
+											image:'images/535106-user_512x512.png',
+											id: 'ImagenTarjetaPersonal',
+											width: '',
+											height:100
+}).show();

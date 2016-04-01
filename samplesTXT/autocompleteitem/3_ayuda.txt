@@ -1,0 +1,7 @@
+Crea un AutoCompleteInputField con etiqueta,con un largo de 128px y con una fuente de datos estatica. 
+Ademas se ha usado el evento select para mostrar un mensaje cuando se selecciona un valor de la lista.
+Se crea ademas un boton que permite mostrar el valor seleccionado.
+
+
+
+ 

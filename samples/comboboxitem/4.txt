@@ -1,0 +1,63 @@
+Components.create('ComboBox',{	  
+										id:"micombo",
+                                       	x:0,
+								        y: 50,
+                                        label: 'ComboBox con Evento',                                        
+										store: {
+											fields: ["Id", "Nivel"],
+											data: [
+												{ Id: -1, Nivel: "Selecciona"},
+												{ Id: 0, Nivel: "Nivel1"},
+												{ Id: 1, Nivel: "Nivel2"},
+												{ Id: 2, Nivel: "Nivel3"},
+												{ Id: 3, Nivel: "Nivel4"}										
+											]
+										},
+								valueField: 'Id',
+								displayField: 'Nivel',
+								mode:'local',
+								readOnly: false	,								
+								listeners: {
+											select: function(combo, record, index){
+												$("#EventoResultado").html(JSON.stringify(record));
+											}
+								}								
+}).show();
+
+ Components.create('Button',{		
+										id:"leertodo",
+                                        x:225,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Leer Datos',                                     
+                                        tooltip:'Leer Datos',									
+                                        handler: function() {                                               
+                                                   $("#EventoResultado").html(JSON.stringify(Components.getComponentById('micombo').getStore().data ));
+                                        }    										
+                                        
+ }).show();
+ 
+  Components.create('Button',{		
+										id:"leerseleccionado",
+                                        x:350,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Leer Valor Seleccionado',                                     
+                                        tooltip:'Leer Datos',									
+                                        handler: function() {                                               
+                                                    $("#EventoResultado").html(Components.getComponentById('micombo').getValue());
+                                        }    										
+                                        
+ }).show();
+ 
+ Components.create('FreeDiv',{																		
+	id:"EventoResultado",
+	x: 10,
+	y: 150,
+	height: 100,
+	width: 400,
+	html: '',
+	css:[
+			{border: "2px solid"}						
+	]	
+}).show();

@@ -1,0 +1,494 @@
+/* 
+    Document   : css_fieldItem mio solo mio
+    Created on : 26-feb-2014, 17:45:51
+    Description:
+        Estilos para los inputField en general
+*/
+hr{
+margin-top:20px;
+margin-bottom:20px;
+border:0;
+border-top:1px solid #eee
+}
+input[type="text"]{
+padding: 1px 4px 1px;
+  height: 27px;
+}
+.inputField,.InputRow {
+	padding-bottom: 10px;
+    line-height: 24px;
+}
+.inputSpan{
+    line-height: 24px;
+	
+}
+.inputSpan.input-group{
+    line-height: 24px;
+	
+}
+
+.labelField {
+    overflow: hidden;
+    white-space: nowrap;
+}
+.inputSpan select {
+  font-weight: bolder;
+}
+.checkboxField  input[type="checkbox"].error{
+outline-color: red;
+	border-color: red;
+}
+/*full colores de lieas de borde segun */
+.inputField input[type="text"],.inputSpan input[type="text"],.inputSpan select {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #aaa;
+	height: 27px;
+}
+.inputField input[type="text"].error, .inputSpan input[type="text"].error,.inputSpan select.error {
+	outline-color: red;
+	border-color: red;
+}
+
+.inputSpan select.error {
+background-color: rgb(252, 221, 221);
+}
+
+.inputField input[type="text"].active, .inputSpan input[type="text"].active,.inputSpan select.active {
+	outline-color: #449d44;
+	border-color: #449d44;
+}
+.inputSpan select.active {
+background-color: rgb(223, 252, 221);
+}
+.inputField input[type="text"].highlight, .inputSpan input[type="text"].highlight,.inputSpan select.highlight { 
+	outline-color: #E3EC1F;
+	border-color: #E3EC1F;
+}
+.inputSpan select.highlight {
+background-color: rgb(252, 251, 221);
+}
+.inputField input[type="text"].default, .inputSpan input[type="text"].default,.inputSpan select.default{
+	outline-color: rgba(195,193,193,1);
+}
+
+.inputField input[type="text"].info, .inputSpan input[type="text"].info,.inputSpan select.info{
+	outline-color: #003DFE;
+	border-color: #003DFE;
+}
+.inputSpan select.info{
+background-color: rgb(221, 225, 252);
+}
+.inputField input[type="text"].warning, .inputSpan input[type="text"].warning,.inputSpan select.warning {
+	outline-color: #FF3E00;
+	border-color: #FF3E00;
+}
+.inputSpan select.warning {
+	BACKGROUND-COLOR: rgba(248, 209, 180, 0.57);
+}
+/*Estilos para el Icono dentro de un Input */
+.inputField .inputFieldInput .Iconright>.scort-icon, .inputSpan.input-icon.Iconright>.scort-icon {
+  left: auto;
+  right: 3px;
+}
+.inputField .input-icon>.scort-icon,.inputSpan.input-icon>.scort-icon  {
+  padding: 0 3px;
+  z-index: 1;
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: 3px;
+  line-height: 28px;
+  display: inline-block;
+  font-size: 16px;
+}
+/**/
+.inputField .input-icon>.scort-icon.info {
+  color: rgb(13, 13, 249);
+}
+.inputField .input-icon>.scort-icon.error {
+  color: rgb(224, 29, 29);
+}
+.inputField .input-icon>.scort-icon.active {
+  color: rgb(17, 176, 25);
+}
+.inputField .input-icon>.scort-icon.highlight {
+  color: rgb(188, 192, 21);
+}
+.inputField .input-icon>.scort-icon.warning {
+  color: rgb(253, 102, 9);
+}
+.inputField .input-icon>.scort-icon.default {
+  	color:rgb(85, 85, 95);
+}
+
+.input-addon{
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 6px 10px 4px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  display: table-cell;
+  border-radius: 0!important;
+}
+.formContainer .input-addon-button .buttonItem {
+float:none;
+}
+.input-addon-button{
+	width: 1%;
+	font-size: 14px;
+   display: table-cell;
+  vertical-align: middle;
+}
+.input-addon-button .buttonItem{
+	border-radius: 0!important;   
+}
+.input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+.input-addon.addonright{
+border-left: 0!important;
+}
+
+.input-addon.addonleft{
+border-right: 0!important;
+}
+.input-addon.error{
+ border-color: rgb(250, 7, 7);
+ background-color: rgb(219, 68, 68);
+  color: white;
+}
+.input-addon.highlight{
+background-color: rgb(236, 218, 37);
+ border-color: rgb(245, 197, 9);
+color: white;
+}
+.input-addon.active{
+  background-color: rgb(57, 210, 95);
+  color: white;
+  border-color: rgb(30, 148, 63);
+}
+.input-addon.warning{
+  background-color: rgb(237, 137, 65);
+  color: white;
+  border-color: rgb(255, 101, 6);
+}
+.input-addon.info{
+  background-color: rgb(37, 108, 236);
+  color: white;
+  border-color: rgb(20, 14, 249);
+}
+
+.input-addon>.scort-icon {
+width:12px;
+}
+
+span.input-icon {
+  display: inline-block;
+}
+.input-icon {
+  width: 100%;
+  position: relative;
+}
+.input-icon>input {
+  padding-left: 24px;
+  padding-right: 6px;
+}
+
+.inputField .inputFieldInput .Iconright>input, .inputSpan.input-icon.Iconright>input {
+  padding-left: 6px;
+  padding-right: 24px;
+}
+
+
+/*
+.textField-enabled, .numberField-enabled, dateField-enabled {
+    background-color: #fff;
+}*/
+
+.textField-disabled input[type="text"], .numberField-disabled input[type="text"], .dateField-disabled input[type="text"]{
+    background-color: rgb(240, 247, 253);
+    border: 1px solid #B4B2B2;
+}
+
+/*------------------- NumberField -------------------*/
+.numberField .triggerWrap {
+    width: 17px;
+    float: left;
+}
+
+.spinner-up, .spinner-down {
+    background-image: url(images/spinner.gif);
+    background-color: white;
+    width: 17px;
+    height: 11px;
+    cursor: pointer;
+}
+
+.numberField-enabled .triggerWrap .spinner-down {
+    background-position: 51px -11px;
+}
+.numberField-enabled .triggerWrap .spinner-up {
+    background-position: 51px 0;
+}
+
+.numberField-enabled .triggerWrap .spinner-down.clicked {
+    background-position: 17px -11px;
+}
+.numberField-enabled .triggerWrap .spinner-up.clicked {
+    background-position: 17px 0;
+}
+
+.numberField-disabled .triggerWrap .spinner-down {
+    background-position: 0 -11px;
+    cursor: default;
+}
+.numberField-disabled .triggerWrap .spinner-up {
+    background-position: 0 0;
+    cursor: default;
+}
+
+/*-------------------- Date Field --------------------*/
+.dateField .buttonCalendar {
+    background-image: url(images/buttonCalendar.png);
+    background-color: white;
+    width: 17px;
+    height: 22px;
+    cursor: pointer;
+    float: left;
+}
+.ui-datepicker-header {
+  border: 1px solid #FC0806;
+  background: red;
+  color: #eaf5f7;
+  font-weight: bold;
+}
+/*---ERROR----*/
+.ui-datepicker.error,.ui-datepicker.error .ui-datepicker-buttonpane{
+  border: 1px solid #D5442A;
+}
+.ui-datepicker.error .ui-datepicker-header, .ui-timepicker.error .ui-timepicker-title{
+  border: 1px solid #F7140B;
+  background: rgb(226, 86, 74);
+  color: #eaf5f7;
+  font-weight: bold;
+}
+.ui-timepicker.error  .ui-timepicker-hours td a, .ui-timepicker.error  .ui-timepicker-minutes td a, .ui-datepicker.error  .ui-datepicker-calendar td[data-handler="selectDay"] a{
+  border: 1px solid #D58A8A;
+  background: rgba(249, 219, 219, 0.5);
+  color: black;
+}
+.ui-timepicker.error  .ui-timepicker-hours  .ui-state-active, .ui-timepicker.error  .ui-timepicker-minutes .ui-state-active,.ui-datepicker.error  .ui-datepicker-calendar   td[data-handler="selectDay"] .ui-state-active{
+	  border: 1px solid #D58A8A;
+	  background: rgba(226, 86, 74, 0.5 );
+	  color: black;	
+}
+.ui-timepicker.error  .ui-timepicker-hours td a:hover, .ui-timepicker.error  .ui-timepicker-minutes td a:hover, .ui-datepicker.error  .ui-datepicker-calendar td[data-handler="selectDay"] a:hover{
+  border: 1px solid #D58A8A;
+  background: rgba(243, 63, 0, 0.54);
+  color: black;
+}
+
+.ui-datepicker.error .ui-datepicker-buttonpane .ui-datepicker-current,
+.ui-datepicker.error .ui-datepicker-buttonpane .ui-datepicker-close {
+  border: 1px solid #9D2929;
+  background: rgba(213, 86, 86, 1);
+  color: rgb(239, 222, 222);
+}
+/*---HIGHLIGHT----*/
+.ui-datepicker.highlight,.ui-datepicker.highlight .ui-datepicker-buttonpane{
+   border: 1px solid #DACD44;
+}
+.ui-datepicker.highlight .ui-datepicker-header,.ui-timepicker.highlight .ui-timepicker-title{
+  border: 1px solid #D5B61B;
+  background: rgb(218, 205, 68);
+  color: #eaf5f7;
+  font-weight: bold;
+}
+.ui-timepicker.highlight  .ui-timepicker-hours td a, .ui-timepicker.highlight  .ui-timepicker-minutes td a, .ui-datepicker.highlight  .ui-datepicker-calendar td[data-handler="selectDay"] a{
+  border: 1px solid #D5B61B;
+  background: rgba(236, 228, 145, 0.5);
+  color: black;
+}
+.ui-timepicker.highlight  .ui-timepicker-hours  .ui-state-active, .ui-timepicker.highlight  .ui-timepicker-minutes .ui-state-active,.ui-datepicker.highlight  .ui-datepicker-calendar   td[data-handler="selectDay"] .ui-state-active{
+	 border: 1px solid #D5B61B;
+	background:  rgba(218, 205, 68, 0.75);
+	color: black;	
+}
+.ui-timepicker.highlight  .ui-timepicker-hours td a:hover, .ui-timepicker.highlight  .ui-timepicker-minutes td a:hover, .ui-datepicker.highlight  .ui-datepicker-calendar td[data-handler="selectDay"] a:hover{
+  border: 1px solid #D58A8A;
+  background: rgba(248, 218, 62, 0.54);
+  color: black;
+}
+
+.ui-datepicker.highlight .ui-datepicker-buttonpane .ui-datepicker-current,
+.ui-datepicker.highlight .ui-datepicker-buttonpane .ui-datepicker-close {
+  border: 1px solid #AD8A1E;
+  background: rgba(218, 205, 68, 1);
+  color: black;
+}
+/*---ACTIVE----*/
+.ui-datepicker.active,.ui-datepicker.active .ui-datepicker-buttonpane{
+  border: 1px solid #52B630;
+}
+.ui-datepicker.active .ui-datepicker-header,.ui-timepicker.active .ui-timepicker-title{
+  border: 1px solid #329122;
+  background: rgb(82, 182, 48);
+  color: #eaf5f7;
+  font-weight: bold;
+}
+.ui-timepicker.active  .ui-timepicker-hours td a , .ui-timepicker.active  .ui-timepicker-minutes td a, .ui-datepicker.active  .ui-datepicker-calendar td[data-handler="selectDay"] a{
+  border: 1px solid #3E6E36;
+  background: rgba(195, 228, 195, 0.5);
+  color: black;
+}
+.ui-timepicker.active  .ui-timepicker-hours td a.ui-state-active, .ui-timepicker.active  .ui-timepicker-minutes td a.ui-state-active,.ui-datepicker.active  .ui-datepicker-calendar   td[data-handler="selectDay"] .ui-state-active{
+	border: 1px solid #3E6E36;
+	background:  rgba(82, 182, 48, 0.5);
+	color: black;
+}
+.ui-timepicker.active  .ui-timepicker-hours td a:hover, .ui-timepicker.active  .ui-timepicker-minutes td a:hover, .ui-datepicker.active  .ui-datepicker-calendar td[data-handler="selectDay"] a:hover{    
+	border: 1px solid #acdd4a;
+    background: #6eac2c;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.ui-datepicker.active .ui-datepicker-buttonpane .ui-datepicker-current,
+.ui-datepicker.active .ui-datepicker-buttonpane .ui-datepicker-close {
+  border: 1px solid #3E6E36;
+  background: rgba(82, 182, 48, 1);
+  color: black;
+}
+/*---WARNING----*/
+.ui-datepicker.warning,.ui-datepicker.warning .ui-datepicker-buttonpane{
+  border: 1px solid #E47A2F;
+}
+.ui-datepicker.warning .ui-datepicker-header,.ui-timepicker.warning .ui-timepicker-title{
+  border: 1px solid #C85519;
+  background: rgb(228, 122, 47);
+  color: #eaf5f7;
+  font-weight: bold;
+}
+.ui-datepicker.warning  .ui-datepicker-calendar td[data-handler="selectDay"] a{
+border: 1px solid #E25F1B;
+background: rgba(226, 192, 148, 0.5);
+color: black;
+}
+
+.ui-timepicker.warning  .ui-timepicker-hours td a,.ui-timepicker.warning  .ui-timepicker-minutes td a{
+	border: 1px solid #E25F1B;
+	background: rgba(226, 192, 148, 0.5);
+	color: black;
+}
+.ui-timepicker.warning  .ui-timepicker-hours td a:hover, .ui-timepicker.warning  .ui-timepicker-minutes td a:hover, .ui-datepicker.warning  .ui-datepicker-calendar td[data-handler="selectDay"] a:hover{
+    border: 1px solid #eea236;
+    background: #f0ad4e;
+    color: #ffffff;
+}
+.ui-timepicker.warning  .ui-timepicker-hours  .ui-state-active, .ui-timepicker.warning  .ui-timepicker-minutes .ui-state-active,.ui-datepicker.warning  .ui-datepicker-calendar   td[data-handler="selectDay"] .ui-state-active{
+	border: 1px solid #E25F1B;
+	background:  rgba(228, 122, 47, 0.75);
+	color: black;
+}
+
+.ui-datepicker.warning .ui-datepicker-buttonpane .ui-datepicker-current,
+.ui-datepicker.warning .ui-datepicker-buttonpane .ui-datepicker-close {
+  border: 1px solid #E25F1B;
+  background: rgba(228, 122, 47, 1);
+  color: black;
+}
+/*---INFO----*/
+.ui-datepicker.info,.ui-datepicker.info .ui-datepicker-buttonpane{
+  border: 1px solid #4A8BE2;
+}
+.ui-datepicker.info .ui-datepicker-header,.ui-timepicker.info .ui-timepicker-title{
+border: 1px solid #2841EC;
+  background: rgb(74, 139, 226);
+  color: #eaf5f7;
+  font-weight: bold;
+}
+.ui-timepicker.info  .ui-timepicker-hours td a, .ui-timepicker.info  .ui-timepicker-minutes td a, .ui-datepicker.info  .ui-datepicker-calendar td[data-handler="selectDay"] a{
+  border: 1px solid #1B71E2;
+  background: rgba(229, 237, 240, 1);
+  color: black;
+}
+.ui-timepicker.info  .ui-timepicker-hours td a:hover, .ui-timepicker.info  .ui-timepicker-minutes td a:hover, .ui-datepicker.info  .ui-datepicker-calendar td[data-handler="selectDay"] a:hover{
+	border: 1px solid #46b8da;
+    background: #5bc0de;
+    color: #ffffff;
+}
+
+.ui-timepicker.info  .ui-timepicker-hours  .ui-state-active, .ui-timepicker.info  .ui-timepicker-minutes .ui-state-active,.ui-datepicker.info  .ui-datepicker-calendar   td[data-handler="selectDay"] .ui-state-active{
+	border: 1px solid #1B71E2;
+	background:  rgba(74, 139, 226, 0.75);
+	color: black;
+}
+
+.ui-datepicker.info .ui-datepicker-buttonpane .ui-datepicker-current,
+.ui-datepicker.info .ui-datepicker-buttonpane .ui-datepicker-close {
+  border: 1px solid #1B71E2;
+  background: rgba(74, 139, 226, 1);
+  color: black;
+}
+/*---DEFAULT----*/
+.ui-datepicker.default,.ui-datepicker.default .ui-datepicker-buttonpane{
+  border: 1px solid #B8B2AD;
+}
+.ui-datepicker.default .ui-datepicker-header,.ui-timepicker.default .ui-timepicker-title{
+  border: 1px solid #565453;
+  background: rgb(184, 178, 173);
+  color: #eaf5f7;
+  font-weight: bold;
+}
+.ui-timepicker.default  .ui-timepicker-hours td a, .ui-timepicker.default  .ui-timepicker-minutes td a, .ui-datepicker.default  .ui-datepicker-calendar td[data-handler="selectDay"] a{
+  border: 1px solid #777272;
+  background: rgba(195,193,193,0.5);
+  color: #000000;
+}
+.ui-timepicker.default  .ui-timepicker-hours  .ui-state-active, .ui-timepicker.default  .ui-timepicker-minutes .ui-state-active,.ui-datepicker.default  .ui-datepicker-calendar   td[data-handler="selectDay"] .ui-state-active{
+	border: 1px solid #777272;
+	background:  rgba(184, 178, 173,1);
+}
+.ui-timepicker.default  .ui-timepicker-hours td a:hover, .ui-timepicker.default  .ui-timepicker-minutes td a:hover, .ui-datepicker.default  .ui-datepicker-calendar td[data-handler="selectDay"] a:hover{
+  border: 1px solid #777272;
+  background: rgba(100, 100, 100,0.75);
+  color: #eeeeee;
+}
+.dateField-enabled .buttonCalendar {
+    background-position: 51px 0;
+}
+
+.dateField-enabled .buttonCalendar.clicked {
+    background-position: 17px 0;
+}
+th {
+    
+	}
+.dateField-disabled .buttonCalendar {
+    background-position: 0 0;
+    cursor: default;
+}
+/*--------------- estilos para imagenes -----------------*/
+.imageItem {
+    padding: 0px 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    position: absolute;
+}
+/*--------------- estilos para FreeDiv -----------------*/
+.FreeDiv {	
+	overflow: overlay;
+	white-space: nowrap;
+	text-align: center;
+	position: absolute;
+}

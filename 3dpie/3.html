@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ejemplo 3dpie_aberracion</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+
+<!--mis scripts-->
+<script src="../jqfu/JquerySVG/jquery.svgfilter.js"></script>
+<!---->
+
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/WindowContainer.js"></script>
+<!--anterior comentado -->
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+
+<!---->
+<script src="../components/svg/3dpie/3dpie_aberracion.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css_components/colorPicker.css">
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+* [title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+</style>	
+
+<script id="customscript">
+
+$( document ).ready(function(){
+ Components.create('Window', {
+            height: 350,
+            width: 480,
+            resizable: true,
+            minimizable: false,
+            closeAction:'destroy',
+            constrain: true,
+            modal: true,
+            title:'PC_Desempeño_00401',
+            id:'WindowDesempeno',
+            html:'<div Id="FormWindowDesempeno" style="background-color: white;padding: 1px; height:100%; " class=""></div>'
+        });
+    $('#FormWindowDesempeno').html('');
+    Components.getComponentById('WindowDesempeno').show();
+    var tipoEvaluacion =0;
+    var tipo = 'orden';
+	contenedor = $('#FormWindowDesempeno');
+	contenedor.svg();
+    contenedor.append('<div id="EscalaFactorDesempeno"style="margin-top: -39px;"></div>');
+    var svg = contenedor.svg('get');	
+	var ExternalConfig = {};
+	
+	ExternalConfig.data=[
+		{label:"Arequipa", color:"#3366FF", value:50},
+		{label:"Cusco", color:"#DC39FF", value:15},
+		{label:"Puno", color:"#FF99FF", value:23},
+		{label:"Madre de dios", color:"#1096FF", value:5},
+		{label:"Lima", color:"#9900FF", value:65},
+		{label:"Tacna", color:"#9999FF", value:25},
+		{label:"Huanuco", color:"#3366CC", value:33.5},
+		{label:"Ucayali", color:"#DC3912", value:15},
+		{label:"Tumbes", color:"#FF9900", value:23},
+		{label:"Ayacucho", color:"#109618", value:25},
+		{label:"Cajamarca", color:"#990099", value:35},
+		{label:"Apurimac", color:"#999999", value:15},
+	];
+	ExternalConfig.rx=130;
+	ExternalConfig.ry=100;
+	ExternalConfig.ir=0.4;
+	ExternalConfig.h = 30;
+	ExternalConfig.textFormat ='percentage';
+	ExternalConfig.svg = svg;
+    var pie1 = new pie3D(ExternalConfig);
+	//pie1.drawRadialLegend= 'true';		
+    pie1.draw();
+    pie1.setControls();
+
+});  
+
+</script>	
+</head>
+
+</html>

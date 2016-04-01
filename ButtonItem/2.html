@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ButtonItem ejemplo2</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../JquerySVG/jquery.svg.js"></script>
+<script src="../JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<style type="text/css">
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+//screengrid engloba todo el ancho en 12 columnas, imitando bootstrap.
+Components.create('HtmlScreenGrid',{		
+text:'Tamaño Personalizado',
+ColsDef:[                       
+{
+	ancho: 4,
+	ClassId: 'Col1-1',	
+},
+{
+	ancho: 4,
+},
+{
+	ancho: 4,
+	ClassId: 'Col1-3',	
+},
+]
+});
+Components.create('HtmlScreenGrid',{
+   container:$('#S-2'),	
+	text:'Tamaño Personalizado',
+	ColsDef:[                       
+	  { 	
+			ancho: 15,
+			//ClassId: 'Col2-1',
+			html:'<p class="lead">Tamaño 2</p>'
+	  },
+	  { 	
+			ancho: 15,
+			//ClassId: 'Col2-2',
+			html:'<p class="lead">Tamaño 8</p>'
+	  },
+	  { 	
+			ancho: 15,
+			//ClassId: 'Col2-3',
+			html:'<p class="lead">Tamaño 2</p>'
+	  },
+	]
+    });
+Components.create('Button',{		
+	container:$('.Col1-1'),
+	scale: 'small',
+	state:'error',
+	text:'Tamaño pequeño',
+	tooltip:'Tamaño pequeño',	  
+	handler: function() {
+					alert('bt1');
+				}  
+}).show();
+Components.create('Button',{		
+	container:$('.Col1-1'),
+	scale: 'medium',
+	state:'warning',
+	text:'Tamaño normal',
+	tooltip:'Tamaño normal',	  
+	handler: function() {
+					alert('bt1');
+				}  
+}).show();
+Components.create('Button',{		
+	container:$('.Col1-1'),
+	scale: 'large',
+	state:'active',
+	text:'Tamaño grande',
+	tooltip:'Tamaño grande',	  
+	handler: function() {
+					alert('bt1');
+				}  
+}).show();
+Components.create('Button',{		
+	container:$('.Col1-1'),
+	scale: 'block',
+	state:'info',
+	text:'Tamaño bloque',
+	tooltip:'Tamaño bloque',	  
+	handler: function() {
+					alert('bt1');
+				}  
+}).show();
+//////////////////////////OTRO BLOQUE///////////////////////////
+Components.create('Button',{
+	container: $('.Col1-3'),
+   
+	
+	scale: 'minier',
+	state:'error',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		//color:'#ffb752'
+	},
+	text:'minier',
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+					alert('minier');
+				}  
+}).show();
+
+Components.create('Button',{
+		container: $('.Col1-3'),
+		scale: 'mini',
+		text:'mini',
+		state:'highlight',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			//color:'#ffb752'
+		},
+		tooltip:'boton mini',	  
+		handler: function() {
+					alert('mini');
+				}  
+	}).show();
+
+		
+Components.create('Button',{	
+container: $('.Col1-3'),
+	state:'active',
+	scale: 'medium',
+	text:'Estado active',
+	tooltip:'Medium button',	  
+	handler: function() {
+		alert('active');
+}  
+}).show();
+				
+
+Components.create('Button',{
+       container: $('.Col1-3'),		
+		scale: 'medium',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cc-visa',
+			//color:'#ffb752',
+			position:'right'
+		},
+		text:'medium',
+		tooltip:'Boton Warning',	
+    }).show();
+	
+Components.create('Button',{
+      container: $('.Col1-3'),
+		state:'info',	
+		scale: 'large',
+		text:'Large',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			//color:'#ffb752',
+			position:'right'
+		},
+		tooltip:'large Info',	  
+		handler: function() {
+			alert('large');
+		}  
+    }).show();
+
+Components.create('Button',{
+	     container: $('.Col1-3'),
+		state:'warning',
+		scale: 'medium',
+		text:'medium',
+		shape:'circle',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			//color:'#ffb752',
+			position:'left'
+		},
+		tooltip:'medium active',	  
+		handler: function() {
+			alert('medium');
+		}  
+    }).show();
+
+Components.create('Button',{
+		container: $('.Col1-3'), 
+		scale: 'minier',
+		text:'minier',
+		state:'error',
+		shape:'circle',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+		//	color:'#ffb752',
+		},
+		tooltip:'boton mini',	  
+		handler: function() {
+			alert('mini');
+		}  
+	}).show();
+});  
+</script>	
+</head>
+<body>
+<div class="row">
+	<div  id="S-1" class="col-sm-4" >
+	<FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Tamaños Responsivos</P></font>
+	</div>
+	<div  id="S-2" class="col-sm-4" >
+	<FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Tamaño Auto BootStrap</P></font>
+	</div>
+	<div  id="S-3" class="col-sm-4" >
+	<FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Tamaño Varios BootStrap</P></font>
+	</div>
+	<br><br>
+	</div>
+</body>
+</html>

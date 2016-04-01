@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 13</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/extra/jspdf/jspdf.min.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+title: "WBS Eventos",	
+state:'active',	
+height:500, 
+width:780,
+items:[
+	{
+	 type: 'SvgContainer', 
+	 region: 'center',
+	 id:'mysvg',
+	 items:[
+		{
+			type: 'WBSTree',						
+			id:'Okno',
+			items:[
+				{	
+					 type: 'WBSNode', 
+					 id:0,
+					 idp:null,
+					 Descripcion:'Padre',
+					 tipoObjeto:'Cabecera',
+					 childsId:[1,2,3]
+	
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:1,
+					 idp:0,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:show',
+					 listeners: {
+						show: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+					
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:2,
+					 idp:0,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:hide',
+					 listeners: {
+						hide: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:3,
+					 idp:0,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener: Arnold Schwarzenegger',
+					 childsId:[4,5,6],
+					  listeners: {
+						maximize: function(obj){
+							alert(obj.Descripcion);
+						},
+						minimize: function(obj){
+							alert("Minimizar");
+						}
+					  }
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:4,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:select',
+					 listeners: {
+						select: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:5,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:deselect,hola soy germanwwwwwwwwwwwwwwwwwww',
+					 listeners: {
+						deselect: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:6,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'This article presents a JavaScript component which renders a tree on the screen using VML (Vector Markup Language) in Internet Explorer 6+ or the canvas element in Firefox 1.5+.',
+				}
+			]
+	    }
+	  ]
+	
+	}
+  ]      
+}).show();
+
+Components.create('Window',{
+	id:'GridInfoWindow',
+	x:800,
+	y:5,
+	width:430,
+	height:800,
+	state:'info',
+	title: "Store-Data-Actual", 
+	html:'<div><h2>Ejemplo WBS item XML JSON y PDF</h2><br><b>Notese en el codigo:</b>'+
+	'Use los botones superiores para probar las funciones</div>',
+	items:[{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+			{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-database',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Ver info ',
+				listeners: {
+					click: function() {
+						
+						//var treeItem = Components.getComponentById('Okno');
+						var treeItem = Components.getComponentById('Okno').prepareForSave('JSON');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						infoindow.setHtml('Los datos relevantes de <b>WBSTree.nodos</b> actuales en la ventana son: <pre>'+treeItem+'</pre><br>Notese que <b>position</b> se calcula segun la poscicion que ocupa el Id del nodo en la vista actual');
+						
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'download',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-download',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'download json',
+				listeners: {
+					click: function() {
+						var datostr = Components.getComponentById('Okno').prepareForSave('JSON');
+						download('texto.json',datostr);
+				}
+				}
+			},
+			// falta el boton q solo imprime los datos leidos
+			{
+				type: 'Button',
+				id : 'upload',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-upload',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'upload json',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').LimpiarLienzo();
+						Components.getComponentById('Okno').LimpiarCalculosPrevios();
+						Components.getComponentById('Okno').borrarNodos();
+						$.getJSON( "texto.json", function( data ) {
+								var infoindow = Components.getComponentById('GridInfoWindow');
+								infoindow.setHtml('Los datos relevantes cargados <b>WBSTree.nodos</b>: <pre>'+data+'</pre><br>Notese que <b>position</b> se calcula segun la poscicion que ocupa el Id del nodo en la vista actual');
+								 for (i in data)
+								 {	
+									console.log(data[i])
+									Components.getComponentById('Okno').addNodo(data[i]);
+								 }
+								 Components.getComponentById('Okno').Dibujado = true; //  ¡¡¡¡¡FORZADO!!!!!
+								 Components.getComponentById('Okno').drawTree();
+						});		
+				}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'generate_xml',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'image',
+					image:'images/xml2.png',  
+					position:'left',
+				},
+				tooltip:'download xml',
+				listeners: {
+				//falta  imprima en la pantalla
+					click: function() {
+						var Xmlgenerado = Components.getComponentById('Okno').prepareForSave('XML');
+						download('WBSTree.xml',Xmlgenerado);
+				}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'upload_xml',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'image',
+					image:'images/xml3.png',  
+					position:'left',
+				},
+				tooltip:'upload xml',
+				listeners: {
+				//falta  imprima en la pantalla
+					click: function() {
+						Components.getComponentById('Okno').LimpiarLienzo();
+						Components.getComponentById('Okno').LimpiarCalculosPrevios();
+						Components.getComponentById('Okno').borrarNodos();
+						$.ajax({
+							type: "GET",
+							url: "WBSTree.xml",
+							dataType: "xml",
+							success: function(xml) {
+								console.log(xml);
+								var data=new Array();
+
+							$(xml).find("nodo").each(function () {
+								indice=$(this).find("id").text();
+								data[indice]=new Array();
+								data[indice].id= parseInt($(this).find("id").text());
+								data[indice].type=$(this).find("type").text();
+								data[indice].Descripcion=$(this).find("descripcion").text();
+								data[indice].background=$(this).find("background").text();
+								data[indice].stroke=$(this).find("stroke").text();
+								data[indice].idp=$(this).find("idp").text();
+								data[indice].childsId=new Array();
+
+								$(this).find("childsid").each(function () {
+									data[indice].childsId.push( parseInt($(this).text()));
+									});
+							  });
+							console.log(data);
+							for (i in data)
+								 {	
+									//console.log(data[i])
+									Components.getComponentById('Okno').addNodo(data[i]);
+									//console.log(Components.getComponentById('Okno'));
+								 }
+							console.log(Components.getComponentById('Okno'));
+								 Components.getComponentById('Okno').Dibujado = true; //  ¡¡¡¡¡FORZADO!!!!!
+								 Components.getComponentById('Okno').drawTree();
+							}
+						  });
+				}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'pdf',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-file-pdf-o',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'pdf',
+				listeners: {
+					click: function() {						
+						Components.getComponentById('Okno').downloadPdf('test.pdf');
+				}
+				}
+			},
+		]
+	}]
+}).show();	
+	 
+});  
+</script>	
+</head>
+
+</html>

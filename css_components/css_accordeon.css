@@ -1,0 +1,117 @@
+/* 
+    Document   : css_sliderItem
+    Created on : 05-mar-2014, 20:54:50
+    Author     : usuario
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.ui-widget {
+    font-family: sans-serif;
+    font-size: 1.2em;
+    /* color: white; */
+}
+.ui-accordion .ui-accordion-header {
+	display: block;
+    cursor: pointer;
+    position: relative;
+    margin: 4px 0 0 0;
+    padding: .5em .5em .5em .7em;
+    min-height: 0;
+    /* support: IE7; */
+    font-size: 87%;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon:hover{
+color:black;
+}
+.ui-state-active .ui-icon {
+    /* background-image: url("images/ui-icons_f5e175_256x240.png"); */
+}
+.ui-icon-circle-plus {
+    background-position: 0 -192px;
+}
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url("images/ui-icons_0078ae_256x240.png");
+}
+.ui-accordion .ui-accordion-icons {
+    padding-left: 2.2em;
+}
+.ui-icon {
+    width: 16px;
+    height: 16px;
+}
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url("images/ui-icons_0078ae_256x240.png");
+}
+.AccordeonContainer.error h3{
+    border: 1px solid #721C1D/*{borderColorHeader}*/;
+    background: #BF292B/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#822223 0,#EC5657 100%);
+	color:white;
+}
+.AccordeonContainer.error .accordeonitem {
+    border: 1px solid #CB3A2B;
+    background: rgba(224, 203, 203, 0.38);
+}
+.AccordeonContainer.highlight h3{
+    color: #222222;
+    border: 1px solid #CBAF29/*{borderColorHeader}*/;
+    background: #BBBE28/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#D8D682 0,#CBAF29 100%);
+}
+.AccordeonContainer.highlight .accordeonitem {
+    border: 1px solid #D5D758;
+    background: #E7E8CD;
+}
+
+.AccordeonContainer.active h3{
+    border: 1px solid #23AE2F/*{borderColorHeader}*/;
+    background: #258E3A/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#3E9B4C 0,#97E27C 100%);
+	color:white;
+}
+.AccordeonContainer.active .accordeonitem {
+    border: 1px solid #75BB38;
+    background: #D3EACA;
+}
+.AccordeonContainer.warning h3{
+    border: 1px solid #E39531/*{borderColorHeader}*/;
+      background: #BD591D/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#A68039 0,#CA871F 100%);
+	color:white;
+}
+.AccordeonContainer.warning .accordeonitem {
+    border: 1px solid #DE8847;
+    background: #E8DFD6;
+}
+.AccordeonContainer.info h3{
+    border: 1px solid #2288CE/*{borderColorHeader}*/;
+    background: #105B75/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#383C86 0,#4590A2 100%);
+	color:white;
+}
+.AccordeonContainer.info .accordeonitem {
+    border: 1px solid #467FC1;
+    background: #D5E1F5;
+}
+.AccordeonContainer.default h3{
+    color: #222222;
+    border: 1px solid #aaaaaa/*{borderColorHeader}*/;
+    background: #BBB3B3/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#797676 0,#DCD7D7 100%);
+}
+.AccordeonContainer.default .accordeonitem {
+    border: 1px solid #A5A0A0;
+    background: rgba(218, 219, 222, 0.37);
+}

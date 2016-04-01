@@ -1,0 +1,13 @@
+Components.create('ProgressBar',{  	
+                                        x:0,
+										y:50,
+									  text: "",
+        align: "left",
+        width: 250,
+        height: 10,
+		value:50,
+      
+		color:'#123456',
+		textcolorstart:'#0000',
+		textcolorend:'#FFF',
+}).show();

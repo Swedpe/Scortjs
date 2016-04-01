@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 1</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+		<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/Slider.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/AcordeonContainer.js"></script> 	
+<script src="../components/items/AccordeonItem.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TextArea.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
+
+
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_accordeon.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<script src="../components/items/MenuItem.js"></script>	
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+
+
+<!--------------------------------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+console.log("no work");
+Components.create('Window',{
+		title: "Scortjs WBS Pert Component SWEDPE",		
+        state:'active',
+		height:313, 
+        width:557,
+		x:19,
+		y:30,
+        items:[
+			{
+                type: 'ToolBar',
+                id: 'ChartProyectoWindowsToolBar',
+                state:'active',
+				region: 'top',
+                items: [
+                   {
+                        type: 'Button',
+                        id : 'BtnCritical',
+                        scale:'minier',
+                        shape:'box',                      
+						icon:{
+							type:'fontawesome',
+							class:'fa-sitemap',		
+						},
+                        tooltip:'Critical',
+                        listeners: {
+                            click: function() {
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        id : 'BtnRefresh',        
+                        scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-refresh',	
+						},	
+                        tooltip:'Refresh',
+                        listeners: {
+                            click: function() {
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        id : 'BtnArrastre',
+						enabled:false,								
+						scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-toggle-off',	
+						},
+                        tooltip:'Enable Drag',
+                        listeners: {
+                            click: function(e) {
+							if((Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].DragStatus==false)){
+									Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].enableDrag();
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].disableDrag();
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+                               
+							   
+                            }
+                        }
+                    },
+					 {  type: 'MenuScort',						//el menu principal
+                        id : 'MenuBotonesShape',        
+						menuType:'ButtonDropDown',
+						 items:[
+							{
+							type: 'MenuItem',						
+							id:'MenuSup',
+							enabled:false,
+							submenu:{
+									VisibleOnHover:true,
+									VisibleOnClick:false,		
+							},
+								items:[
+								{					
+									type: 'Button',				//el boton que estara visible en el toolbar
+									id : 'BotonMenuShapes',
+									enabled:false,				//inicialmente disabled		
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-connectdevelop',	
+									},	
+									tooltip:'Refresh',
+									listeners: {
+										click: function() {
+										}
+									}					
+								},
+								{type: 'MenuScort',			//el sub menu
+								id : 'SubMenuBotones',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-toggle-off',	
+								},
+								items:[											
+								{
+								type: 'MenuItem',						
+								id:'Circleshape',
+									items:[
+									{													
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaCirculo', 
+									enabled:false,									
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-genderless',	
+									},	
+									tooltip:'Circular',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('circulo');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'BoxShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParacuadrado',        
+									scale:'minier',
+									enabled:false,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-square-o',	
+									},	
+									tooltip:'Rectangular',
+									listeners: {
+										click: function() {
+										var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('cuadrado');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'PoligonShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaHexagono',        
+									scale:'minier',
+									enabled:false,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-codepen',	
+									},	
+									tooltip:'Hexagon',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('hexagono');
+										}
+									}
+									}
+									],
+								}
+								],					
+								tooltip:'Hexagon',
+								}
+								]
+							}
+							]
+					},
+                    {
+                        type: 'Button',
+                        id : 'BtnZoom',        
+                        scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-search',	
+						},
+                        tooltip:'Zoom',
+                        listeners: {
+                            click: function() {
+                                BarraAbajoTareaSVG();
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'PertSVG',
+				 items:[
+						{
+						type: 'Pert',						
+						id:'PertTree',
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParaHexagono').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						
+						items:[
+								{
+								 PertId:1,
+								 type: 'GrafoNodo', 
+								 X:15,
+								 Y:36,
+								 shape:'hexagono',
+								 internalData:{
+									descripcion:'Swedpe ScortJs',
+									duracion:'10h',
+									holgura:'8d',
+									visibleId:'100'
+									},
+								},
+								{
+								 		
+								 type: 'GrafoNodo',
+								 PertId:2,								 
+								 X:15,
+								 Y:14,						 
+								 Sucesoras:[3],
+								 internalData:{
+									descripcion:'Framework',
+									duracion:'58h',
+									holgura:'6d',
+									visibleId:'101'
+									},
+								},
+								{
+								 type: 'GrafoNodo', 
+								 X:45,
+								 Y:25,
+								 Predecesoras:[2],
+								 Sucesoras:[4],
+								 PertId:3,	
+								 internalData:{						
+									descripcion:'Pre Finish',
+									duracion:'87h',
+									holgura:'1d',
+									visibleId:'102'
+									},
+								},
+								{
+								 type: 'GrafoNodo', 
+								 X:85,
+								 Y:25,
+								 Predecesoras:[3],
+								 PertId:4,
+								 internalData:{
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'103'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'descripcion',
+									3:'descripcion',
+									6:'duracion',
+									7:'holgura',
+									8:'holgura',
+									},
+								},
+							]
+						}
+						]
+			
+			}
+            ]
+        
+    }).show();
+  
+});  
+</script>	
+</head>
+
+</html>

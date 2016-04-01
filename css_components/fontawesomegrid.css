@@ -1,0 +1,19 @@
+/* 
+    Document   : css_window
+    Created on : 15-abril-2015, 18:14:26
+    Linked in  : BPT/top.php
+    Description:
+        En este archivo estaran los estilos para los componentes propios del
+        objeto WindowContainer
+*/
+/*pirateado desde Boton Builder http://bootsnipp.com/buttons*/
+.fontawesomegrid-icons{
+  list-style: none;
+}
+.fontawesomegrid-icons li {
+  float: left;
+  line-height: 20px;
+}
+.fontawesomeButton {
+background-color: #fff; border-color: #ccc;
+}

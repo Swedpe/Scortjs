@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BOTONES ANIMADOS</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+	<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontawesome">
+    <link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	
+		<script src="../../jqfu/vendor/jquery.ui.widget.js"></script>
+			<script src="../../JquerySVG/jquery.svg.js"></script>
+			<script src="../../JquerySVG/jquery.svganim.js"></script>
+			
+		<script src="../../components/Components.js"></script>	
+        <script src="../../functions.js"></script>		
+        <script src="../../components/containers/WindowContainer.js"></script>
+		
+		<script src="../../components/items/Image.js"></script>
+		<script src="../../components/items/ButtonItem.js"></script>
+		
+		<link rel="stylesheet" href="../../css_components/css_window.css" />
+		<script src="../../components/items/fontawesomegrid.js"></script>
+		<script src="../../components/items/HtmlScreenGrid.js"></script>
+		<script src="../../components/items/Image.js"></script>
+		<script src="../../components/svg/ClipBoardSVG.js"></script>
+		<script src="../../components/svg/ControlBox.js"></script>
+		<script src="../../components/svg/ScreenGrid.js"></script>
+		<script src="../../components/svg/TextCajita.js"></script>
+		<script src="../../components/svg/TextProcesor.js"></script>
+		<script src="../../components/containers/SvgContainer.js"></script>
+		
+		<link rel="stylesheet" href="../../css_components/css_window.css" />
+		<link rel="stylesheet" href="../../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../../css_components/fontawesomegrid.css" />
+		<link rel="stylesheet" href="../../css_components/glipgrid.css" />
+		
+       
+	   <link rel="stylesheet" href="../../css_components/css_principal.css" />
+		<link rel="stylesheet" href="../../css_components/css_buttonItem.css" />
+		<style type="text/css">
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			
+
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+	    Components.create('Button',{		
+		id:"botontoggle",
+		state:'error',		//estado 1 
+		State2:'info',		//estado 2 
+		scale: 'medium',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-refresh',
+			color:'white',
+			position:'left',
+			animate:true
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-refresh',
+			color:'white',
+			position:'left'
+			
+		},
+		tooltip:'medium info Toggle',
+		text:'fontawe',
+		enableToggle:true,
+		handler: function() {
+				// console.log("medium togle");
+				
+		}                                     
+     }).show();
+
+	
+
+	 Components.create('Button',{		
+		id:"botontoggle",
+		state:'warning',		//estado 1 
+		State2:'error',		//estado 2 
+		shape:'box',
+		scale: 'medium',
+		icon:{
+			type:'fontawesome',
+			class:'fa-circle-o-notch',
+			color:'white',
+			position:'left',
+			animate:true
+		
+		},
+		icon2:{
+			type:'fontawesome',
+			class:'fa-circle-o-notch',
+			color:'white',
+			position:'left',
+			//animate:true
+		
+		},
+		tooltip:'medium info Toggle',
+		text:'fontawe',
+		enableToggle:true,
+		handler: function() {
+				// console.log("medium togle");
+				
+		}    
+                                        
+     }).show();
+
+
+	 
+	 Components.create('Button',{		
+		id:"mediumT",
+		state:'default',		//estado 1 
+		State2:'error',		//estado 2 
+		shape:'box',
+		scale: 'medium',
+		icon:{
+			type:'glipicon',
+			class:'glyphicon-repeat',
+			position:'left',
+			animate:true
+		},
+		icon2:{					//icono para el segundo estado
+			type:'glipicon',
+			class:'glyphicon-envelope',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'medium info Toggle',
+		text:'glipicon',
+		enableToggle:true,
+		handler: function() {
+				// console.log("medium togle");
+				
+		}    
+                                        
+     }).show();
+	 
+	
+	 
+	 Components.create('Button',{		
+		id:"mediumT",
+			//estado 1 
+		state:'active',		//estado 2 
+		shape:'box',
+		scale: 'medium',
+		icon:{
+			type:'image',
+			image:'images/cancel.png',  
+			position:'left',
+			animate:true
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'left',
+			animate:true
+		},
+		tooltip:'medium info Toggle',
+		text:'image',
+		enableToggle:true,
+		handler: function() {
+				// console.log("medium togle");
+				
+		}    
+                                        
+     }).show();
+	
+	 
+	 Components.create('Button',{		
+		id:"mediumT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		shape:'box',
+		scale: 'medium',
+		icon:{
+			type:'fontawesome',
+			class:'fa-spinner',
+			position:'left',
+			animate:true
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cog',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'medium info Toggle',
+		text:'fontawe',
+		enableToggle:true,
+		handler: function() {
+				// console.log("medium togle");
+				
+		}    
+                                        
+     }).show();
+	 
+	}); 
+	</script>	
+   
+  </script>
+</head>
+<body>
+</body>
+</html>

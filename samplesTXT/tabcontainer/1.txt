@@ -1,0 +1,48 @@
+Components.create('Window',{		
+        title: "TabsPrueba", 
+        height:300, 
+        width:500, 
+        items: [
+            {
+              type: "TabPanel",
+			  id:"EjemploTabs",
+              region: 'center',
+              activeTab: 0,
+              items: [					
+                  {
+                      type: "Tab",
+                      title: "Nested Tab",
+					  items: [
+                          {
+                                type: "TabPanel",
+                                items: [
+                                    {
+                                        type: "Tab",
+                                        title: "Tab010"
+                                    },
+                                    {
+                                        type: "Tab",
+                                        title: "Tab020",
+                                        
+                                    },
+                                    {
+                                        type: "Tab",
+                                        title: "Tab030"                                       
+                                    }
+                                ]
+                              }
+                      ]
+                  },
+  		  {
+			
+                      type: "Tab",
+                      title: "Tab Simple"
+                      
+                  }                  
+				  
+              ]
+            }
+        ]
+    }).show();
+
+	

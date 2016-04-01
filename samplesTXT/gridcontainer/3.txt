@@ -1,0 +1,91 @@
+Components.create('Window',{
+        title: "GridPrueba1", 
+        height:400, 
+        width:1000,
+        items: [
+            {
+                type: "GridContainer",
+                region: "center",
+                id: "GridPrueba",
+				 selModel: {
+                                type: "checkboxmodel",
+                                checkOnly: false,
+                               
+                },	
+				 columns: [
+                    {
+						type: "GridColumn",
+                        text: "ID",
+                        dataIndex: "id"
+                    },	
+					{
+						type: "GridColumn",
+                        text: "Valor",
+                        dataIndex: "value"
+                    },
+					{
+						type: "GridColumn",
+                        text: "Rand",
+                        dataIndex: "number"
+                    }
+				],
+				store: {
+                            id: 'idStoredata',
+                            model: 'MyData',
+                            idProperty: 'keyword',
+                            pageSize: 15,
+                            fields: [
+                                'id', 
+                                'value', 
+                                'number'                               
+                            ],
+                            proxy: {
+								reader:{
+									type: 'POST',
+									url: 'php/dataphp.php',
+									extraParams: {
+										dataset:'sampledata1'									
+									},
+									readerinternalconfig: {
+										type: 'json',
+										totalProperty: 'conteo',
+										root:'Items'
+									}
+								}
+                            }
+                        },
+                 bbar: {
+                            displayInfo: true,
+                            displayMsg: 'Mostrando  {0} - {1} de {2}',
+                            emptyMsg: "No hay temas a mostrar"
+                        }
+			}
+		],//Fin Windows Items
+		listeners: {
+                    activate: function(e1){		
+                       
+                    }
+        }
+}).show();					
+ Components.getComponentById('GridPrueba').getStore().loadPage(1);		
+
+ Components.create('Button',{		
+	x:350,
+	y:5,
+	scale: 'medium',
+	text:'getSelection',
+	width: 150,
+	tooltip:'Leer Columna Seleccionada',	  
+	handler: function() {
+					var res = '';
+					var Sel = Components.getComponentById('GridPrueba').getSelection()
+					for (i in Sel){				
+						if(Sel[i]) res+=Sel[i].id+",";
+					}
+					alert(res);
+				}  
+    }).show(); 
+
+
+
+

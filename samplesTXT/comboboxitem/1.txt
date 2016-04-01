@@ -1,0 +1,21 @@
+Components.create('ComboBox',{	  
+                                       
+                                       	x:0,
+								        y: 50,
+                                        label: 'Combo Box',                                        
+										store: {
+											fields: ["Id", "Nivel"],
+											data: [
+												{ Id: -1, Nivel: "Selecciona"},
+												{ Id: 0, Nivel: "Nivel1"},
+												{ Id: 1, Nivel: "Nivel2"},
+												{ Id: 2, Nivel: "Nivel3"},
+												{ Id: 3, Nivel: "Nivel4"}										
+											]
+										},
+								valueField: 'Id',
+								displayField: 'Nivel',
+								mode:'local',
+								readOnly: false	,
+								labelWidth:80	
+}).show();

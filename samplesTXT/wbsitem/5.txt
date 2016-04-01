@@ -1,0 +1,152 @@
+Components.create('Window',{
+		title: "WBS Eventos",		
+        height:400, 
+        width:810,
+        items:[
+			{
+                type: 'ToolBar',
+                id: 'ChartProyectoWindowsToolBar',
+                region: 'top',
+                items: [
+                   {
+                        type: 'Button',
+                        id : 'PropBtn',
+                        scale:'medium',
+                        height: 24,
+                        width: 24,
+                        icon:'images/editar16.png',
+                        tooltip:'PC_Editar_00161',
+                        listeners: {
+                            click: function() {
+                                Components.getComponentById("windowEdicionNodos").show();
+								//Dar Formato para los datos de un FormContainer
+									var WinData = {Descripcion:Components.getComponentById("Tree1").nodoSeleccionado.Descripcion,
+												   NodoId:Components.getComponentById("Tree1").nodoSeleccionado.id	
+													};
+								//colocar los datos en el FormContainer
+								Components.getComponentById("formNodos").setValues(WinData);
+                            }
+                        }
+                    }      	  
+                ]
+            },
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'mysvg',
+				 items:[
+					{
+						type: 'WBSTree',						
+						id:'Tree1',
+						items:[
+							{	
+								 type: 'WBSNode', 
+								 id:0,
+								 idp:null,
+								 Descripcion:'Nodo Editable Raiz',
+								 tipoObjeto:'Tarea',
+								 childsId:[1,2,3]
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:1,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Nodo Editable B'
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:2,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Nodo Editable C'	
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:3,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Nodo Editable D',
+								 childsId:[4,5,6]
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:4,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Nodo Editable E'	 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:5,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Nodo Editable F'
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:6,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Nodo Editable G'
+							}
+						]
+				}
+				]
+			
+			}
+            ]
+        
+    }).show();
+//definiremos una ventana donde se realizara la edicion
+Components.create('Window', {
+			title: 'Edicion de nodos',
+			height: 150,
+			width: 465,
+			closeAction:'hide',
+			minimizable: false,
+			id: 'windowEdicionNodos',
+			items: [{
+				type: 'Form',
+				id: 'formNodos',
+				border: false,
+				defaultType: "textfield",																	
+				fieldDefaults: {
+					labelWidth: 60
+				},
+				items: [
+						    {
+								type: 'TextField',
+								label: 'Id',
+								labelWidth: 250,
+								readOnly:true,
+								name: 'NodoId'
+							},
+							{
+								type: 'TextField',
+								label: 'Descripcion',
+								labelWidth: 250,
+								name: 'Descripcion'
+							}
+						],
+				buttons: [
+					{ 
+						text: 'Aceptar Cambio',			
+						x: 30,
+						handler: function(e) {
+						var formData = Components.getComponentById("formNodos").getValues();				
+						Components.getComponentById("Tree1").nodos[formData.NodoId].Edicion(formData);	 
+						}
+					},
+					{ 
+						text: 'Cancelar Cambio' ,
+						x: 190,
+						handler: function(e) {
+							
+						} 
+					}
+				]
+			}]
+		});
+                        
+	

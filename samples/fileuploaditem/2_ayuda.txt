@@ -1,0 +1,6 @@
+<b>Basic multiple Upload</b><br>
+- Se crea un control de upload.<br>
+- Se define multiple Upload <br>
+- Por defecto el uploader comienza a subir archivos automaticamente <br>
+- Los archivos subidos solo quedaran en la carpeta temporal [esto se controla desde PHP] .<br>
+- Se define el listener fileuploaddone, que se disparara cuando la subida de los archivos esta completa, <br> y mostrara el nombre de los archivos subidos como confirmacion<br>

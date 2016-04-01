@@ -1,0 +1,214 @@
+/*------------------------------------------CSS-PROGRESS BAR-------------------------------------------------------------------------------*/  
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@-o-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+.progressBox {
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+.progress-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: #fff;
+  text-align: center;
+  background-color: #7990A5;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+}
+.progressBox>.progress-bar.left {
+  float: left;
+}
+.progressBox>.progress-bar.right {
+  float: right;
+ } 
+ .progress-bar-minier {
+line-height: 10px;
+}
+.progress-bar-mini {
+line-height: 15px;
+}  
+.progress-bar-small {
+line-height: 20px;
+}
+.progress-bar-medium{
+line-height: 25px;
+}
+.progress-bar-large {
+line-height: 30px;
+}
+ 
+.progress-striped .progress-bar,
+.progress-bar-striped {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  -webkit-background-size: 40px 40px;
+          background-size: 40px 40px;
+}
+.progress.active .progress-bar,
+.progress-bar.active {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+       -o-animation: progress-bar-stripes 2s linear infinite;
+          animation: progress-bar-stripes 2s linear infinite;
+}
+/*------------------------------------Error-----------------------------------------------*/
+.progress-bar-error {
+  background-color: #d9534f;  	   /*color de relleno de la barra*/
+}
+.bar-error {
+  border: 1px solid #d9534f;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*------------------------------------highlight-----------------------------------------------*/
+.progress-bar-highlight {
+  background-color: #CDCB38;      /*color de relleno de la barra*/
+}
+.bar-highlight {
+  border: 1px solid #CDCB38;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*------------------------------------active-----------------------------------------------*/
+.progress-bar-active {
+  background-color: #5cb85c;      /*color de relleno de la barra*/
+ }
+ .bar-active {
+  border: 1px solid #5cb85c;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*------------------------------------info-----------------------------------------------*/
+.progress-bar-info {
+  background-color: #5bc0de;      /*color de relleno de la barra*/
+}
+.bar-info {
+  border: 1px solid #5bc0de;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*------------------------------------warning-----------------------------------------------*/
+.progress-bar-warning {
+  background-color: #f0ad4e;     /*color de relleno de la barra*/
+}
+.bar-warning {
+  border: 1px solid #f0ad4e;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*------------------------------------default-----------------------------------------------*/
+.bar-default {
+  border: 1px solid #7990A5;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*------------------------------------disable-----------------------------------------------*/
+.progress-bar-disable {
+  background-color: #597085;     /*color de relleno de la barra*/
+}
+.bar-disable {
+  border: 1px solid #7990A5;
+  background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+}
+/*-----------------------------------------------------------------------------------*/
+.ProgressBar-circular {
+  position: relative;
+display: inline-block;
+}
+.ProgressBar-circular canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/*--------------SCALES CIRCULARES---------*/
+
+.ProgressBar-circular-minier span {
+margin-left: 12px;
+}
+.ProgressBar-circular-minier { 
+width:50px;
+height:50px;
+line-height:50px;
+font-size: 10px;
+font-weight: 700; 
+}
+.ProgressBar-circular-mini span {
+margin-left: 17px;
+}
+.ProgressBar-circular-mini {
+width:70px;
+height:70px;
+line-height:70px;
+font-size: 15px;
+font-weight: 700;
+} 
+.ProgressBar-circular-small span {
+margin-left: 20px;
+} 
+.ProgressBar-circular-small {
+width:90px;
+height:90px;
+line-height:90px;
+font-size: 20px;
+font-weight: 700;
+}
+.ProgressBar-circular-medium span {
+margin-left: 22px;
+}
+.ProgressBar-circular-medium{
+  width:110px;
+  height:110px;
+  line-height:110px;
+  font-size: 25px;
+  font-weight: 700;
+}
+.ProgressBar-circular-large span {
+margin-left: 30px;
+}
+.ProgressBar-circular-large {
+  width:150px;
+  height:150px;
+  line-height:150px;
+ font-size: 35px;
+  font-weight: 700;
+}
+/*-------STATES CIRCULARES------------*/
+.ProgressBar-circular-default { 
+color:#869FA6;
+}
+.ProgressBar-circular-error { 
+color:#d9534f;
+}
+.ProgressBar-circular-highlight {
+color:#CDCB38;
+}  
+.ProgressBar-circular-active {
+color:#5cb85c;
+}
+.ProgressBar-circular-info{
+color:#5bc0de;
+}
+.ProgressBar-circular-warning {
+color:#f0ad4e;
+}

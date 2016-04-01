@@ -1,0 +1,6 @@
+<h2>Edición de Árbol en Vivo</h2>
+1)Se crea un contenedor de graficos SVG <br>
+2)Se crea un Árbol WBS.    <br>
+3)Se crean 8 nodos para el Arbol WBS. <br>
+3)Se crean un toolbar con las 4 operaciones básicas de edición dinámica
+

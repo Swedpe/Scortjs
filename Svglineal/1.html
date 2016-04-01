@@ -1,0 +1,1606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lineal SVG example</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+
+<!--mis scripts-->
+<script src="../jqfu/JquerySVG/jquery.svgfilter.js"></script>
+<!---->
+
+<script src="../components/Components.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<!--anterior comentado -->
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/lineal/DiagramaCurvaSSvg.js"></script>
+
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/containers/MenuContainer.js"></script>
+
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="date.js"></script>
+
+<!---->
+<script src="../components/svg/3dpie/3dpieSvg.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/svgGraphs.css" />
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+* [title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+</style>
+
+<script id="customscript">
+$( document ).ready(function(){
+datamacho = {
+    "2014": {
+        "1": {
+            "6": {
+                "Dataset0": 68,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 63,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 80,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "9": {
+                "Dataset0": 52,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "10": {
+                "Dataset0": 38,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "11": {
+                "Dataset0": 23,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "12": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "13": {
+                "Dataset0": 42,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "14": {
+                "Dataset0": 36,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "15": {
+                "Dataset0": 34,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "16": {
+                "Dataset0": 34,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "17": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "18": {
+                "Dataset0": 11,
+                "Dataset1": 0,
+                "Dataset2": 280
+            },
+            "19": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "20": {
+                "Dataset0": 21,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "21": {
+                "Dataset0": 28,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "22": {
+                "Dataset0": 28,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "23": {
+                "Dataset0": 20,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 22,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "25": {
+                "Dataset0": 11,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "26": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "27": {
+                "Dataset0": 21,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "28": {
+                "Dataset0": 19,
+                "Dataset1": 80,
+                "Dataset2": 0
+            },
+            "29": {
+                "Dataset0": 20,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "30": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "31": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            }
+        },
+        "2": {
+            "1": {
+                "Dataset0": 5,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "2": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "3": {
+                "Dataset0": 11,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "4": {
+                "Dataset0": 11,
+                "Dataset1": 80,
+                "Dataset2": 0
+            },
+            "5": {
+                "Dataset0": 10,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "6": {
+                "Dataset0": 10,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 10,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 5,
+                "Dataset1": 0,
+                "Dataset2": 200
+            },
+            "9": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "10": {
+                "Dataset0": 9,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "11": {
+                "Dataset0": 9,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "12": {
+                "Dataset0": 5,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "13": {
+                "Dataset0": 5,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "14": {
+                "Dataset0": 5,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "15": {
+                "Dataset0": 28,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "16": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "17": {
+                "Dataset0": 5,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "18": {
+                "Dataset0": 56,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "19": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "20": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "21": {
+                "Dataset0": 48,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "22": {
+                "Dataset0": 2,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "23": {
+                "Dataset0": 0,
+                "Dataset1": 80,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "25": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "26": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "27": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "28": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 100
+            }
+        },
+        "3": {
+            "1": {
+                "Dataset0": 20,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "2": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "3": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "4": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "5": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "6": {
+                "Dataset0": 40,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 20,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "9": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "10": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "11": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "12": {
+                "Dataset0": 40,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "13": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "14": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "15": {
+                "Dataset0": 20,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "16": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "17": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "18": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "19": {
+                "Dataset0": 40,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "20": {
+                "Dataset0": 40,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "21": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "22": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "23": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "25": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "26": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "27": {
+                "Dataset0": 32,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "28": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "29": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "30": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "31": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            }
+        },
+        "4": {
+            "1": {
+                "Dataset0": 24,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "2": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "3": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "4": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "5": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "6": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 24,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "9": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "10": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "11": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "12": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "13": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "14": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "15": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "16": {
+                "Dataset0": 24,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "17": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "18": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "19": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "20": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "21": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "22": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "23": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "25": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "26": {
+                "Dataset0": 12,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "27": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "28": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "29": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "30": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 100
+            }
+        },
+        "5": {
+            "1": {
+                "Dataset0": 8,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "2": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "3": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "4": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "5": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "6": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 16,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "9": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "10": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "11": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "12": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "13": {
+                "Dataset0": 32,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "14": {
+                "Dataset0": 32,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "15": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "16": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "17": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "18": {
+                "Dataset0": 50,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "19": {
+                "Dataset0": 50,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "20": {
+                "Dataset0": 50,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "21": {
+                "Dataset0": 50,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "22": {
+                "Dataset0": 50,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "23": {
+                "Dataset0": 50,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 50,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "25": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "26": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "27": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "28": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "29": {
+                "Dataset0": 24,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "30": {
+                "Dataset0": 24,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "31": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            }
+        },
+        "6": {
+            "1": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 100
+            },
+            "2": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "3": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "4": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "5": {
+                "Dataset0": 12,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "6": {
+                "Dataset0": 16,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "9": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "10": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "11": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "12": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "13": {
+                "Dataset0": 16,
+                "Dataset1": 0,
+                "Dataset2": 10
+            },
+            "14": {
+                "Dataset0": 8,
+                "Dataset1": 10,
+                "Dataset2": 0
+            },
+            "15": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "16": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "17": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "18": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "19": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "20": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "21": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 4
+            },
+            "22": {
+                "Dataset0": 0,
+                "Dataset1": 10,
+                "Dataset2": 800
+            },
+            "23": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 10
+            },
+            "25": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 10
+            },
+            "26": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 10
+            },
+            "27": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 10
+            },
+            "28": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 14
+            },
+            "29": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "30": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            }
+        },
+        "7": {
+            "1": {
+                "Dataset0": 8,
+                "Dataset1": 10,
+                "Dataset2": 10
+            },
+            "2": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "3": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "4": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "5": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 14
+            },
+            "6": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0,
+            },
+            "7": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 800
+            },
+            "9": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "10": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "11": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "12": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 4
+            },
+            "13": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "14": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "15": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "16": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "17": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "18": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "19": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 4
+            },
+            "20": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "21": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 8
+            },
+            "22": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "23": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "24": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "25": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "26": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "27": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "28": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "29": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "30": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "31": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            }
+        },
+        "8": {
+            "1": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "2": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "3": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "4": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 80
+            },
+            "5": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "6": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "7": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "8": {
+                "Dataset0": 8,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "9": {
+                "Dataset0": 4,
+                "Dataset1": 0,
+                "Dataset2": 0
+            },
+            "10": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 50
+            },
+            "11": {
+                "Dataset0": 0,
+                "Dataset1": 0,
+                "Dataset2": 0
+            }
+        }
+    }
+}
+ Components.create('Window', {
+                id: 'idWindow',
+                autoScroll: false,
+                collapsible: true,
+                maximizable: true,
+                height: 650,
+                width: 800,
+                closeAction:'destroy',
+                html: '<div id="DivDiagramaCurvaCext" style="overflow:auto; background-color:white; padding:1px; height:100%; width:100%;"><div id="yeye" ></div></div>',
+                listeners: {
+                    activate: function(e1) {
+                        //Components.getComponentById(idWindow).setTitle("CurvaS de "+data["tipo"]+" : "+DataTareas[data["padre"]].Descripcion);
+                    },
+                    beforeClose:function(win) {
+                        current.miniView = null;
+                    }
+                },
+                title: 'Diagrama de CurvaS',
+                items: [
+                    {	
+                        type: 'ToolBar',
+                        region: 'top',
+                        items: [
+                            {
+                                type: 'Button',
+                                id: 'showHitos',
+                                scale: 'medium',
+								icon: 
+								{type:'image',
+									image:'images/rombo1.png',  
+									position:'left'
+									
+								},
+                                tooltip: 'Mostrar Hitos',
+                                enableToggle : true,
+                                listeners: {
+                                    click: function() {
+                                        if (Components.getComponentById('showHitos'+ext).pressed) {
+                                            current.diagrama.showHitos = true;
+                                            current.diagrama.showAllHitos();
+                                        }
+                                        else {
+                                            current.diagrama.showHitos = false;
+                                            current.diagrama.hideAllHitos();
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                type: 'Button',
+                                id: 'showResaltador',
+                                scale: 'medium',
+                                icon: {type:'image',
+									image:'images/icon_green1.png',  
+									position:'left'
+									
+								},
+                                tooltip: 'Mostrar Resaltador',
+                                enableToggle : true,
+                                enabled: false,
+                                listeners: {
+                                    click: function() {
+                                        if (Components.getComponentById('showResaltador').pressed) {
+                                            current.diagrama.OkPermanente();
+                                        }
+                                        else
+                                            current.diagrama.OffPermanente();
+                                    }
+                                }
+                            },
+                            {
+                                type: 'Button',
+                                id: 'incZoomY',
+                                scale: 'medium',
+                                icon: {type:'image',
+									image:'images/abajo16.png',  
+									position:'left'
+									
+								},
+                                tooltip: 'ZoomY +',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.IncZoomY();
+                                        current.RecalcularAlto();
+                                    }
+                                }
+                            },
+                            {
+                                type: 'Button',
+                                id: 'decZoomY',
+                                scale: 'medium',
+								icon: {type:'image',
+									image:'images/arriba16.png',  
+									position:'left'
+									
+								},                             
+                                tooltip: 'ZoomY -',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.DecZoomY();
+                                        current.RecalcularAlto();
+                                    }
+                                }
+                            },
+                            {
+                                type: 'Button',
+                                id: 'decZoomX',
+                                scale: 'medium',
+								icon: {type:'image',
+									image:'images/izquierda16.png',  
+									position:'left'
+									
+								},  
+                                tooltip: 'ZoomX -',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.DecZoomX();
+                                        current.RecalcularAncho();
+                                    }
+                                }
+                            },
+                            {
+                                type: 'Button',
+                                id: 'incZoomX',
+                                scale: 'medium',
+                                icon: {type:'image',
+									image:'images/derecha16.png',  
+									position:'left'
+									
+								},  
+                                tooltip: 'ZoomX +',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.IncZoomX();
+                                        current.RecalcularAncho();
+                                    }
+                                }
+                            },
+
+                            {
+                                type: 'Button',
+                                id: 'zoomEspecifico',
+                                scale: 'medium',
+								icon: {type:'image',
+									image:'images/zoom.png',  
+									position:'left'
+									
+								},  
+                                tooltip: 'Zoom',
+                                enableToggle : true,
+                                listeners: {
+                                    click: function() {
+                                        if (Components.getComponentById('zoomEspecifico').pressed) {
+                                            current.diagrama.ActivarZoom();
+                                        }
+                                        else
+                                            current.diagrama.DesactivarZoom();
+                                    }
+                                }									
+                            },
+                            {
+                                type: 'Button',
+                                id: 'comprimir',
+                                scale: 'medium',
+								icon: {type:'image',
+									image:'images/comprimir16.png',  
+									position:'left'
+									
+								},  
+                                tooltip: 'Restaurar imagen',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.resetScale();
+                                    }
+                                }									
+                            },
+                            {
+                                type: 'Button',
+                                id: 'svg',
+                                scale: 'medium',
+                                icon: {type:'image',
+									image:'images/comprimir16.png',  
+									position:'left'
+									
+								},  
+								tooltip: 'Show SVG',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.showSvg();
+                                    }
+                                }									
+                            },                         																							
+                            {
+                                type: 'Button',
+                                id: 'RestoreSlices',
+                                scale: 'medium',
+								icon: {type:'image',
+									image:'images/dolar16.png',  
+									position:'left'
+									
+								},  
+                                tooltip: 'Restaurar Valores Iniciales',
+                                listeners: {
+                                    click: function() {
+                                        current.diagrama.ValoresIniciales();
+                                    }
+                                }									
+                            },															
+                            {
+                                type: 'Button',
+                                id: 'FechaLineaHoy',
+                                scale: 'medium',
+								icon: {type:'image',
+									image:'images/xdateok.png',  
+									position:'left'
+									
+								},  
+                                tooltip: 'Fecha hoy',
+                                enableToggle : true,
+                                listeners: {
+                                    click: function() {
+                                        if (Components.getComponentById('FechaLineaHoy').pressed) {
+                                            current.diagrama.Showfechahoy();
+                                        }else{
+                                            current.diagrama.Hidefechahoy();
+                                        }
+                                    }
+                                }									
+                            },
+                            {
+                                type: 'Button',
+                                id : 'MiniViewProyecto',
+                                scale:'medium',
+                               icon: {type:'image',
+									image:'images/buscadoresPlus.png',  
+									position:'left'
+									
+								},  
+							   
+                                tooltip:'Mostrar Miniatura',
+                                enableToggle : true,
+                                listeners: {
+                                    click: function (event) {
+                                        if(event.data.OBJ.pressed){
+                                            current.miniView = new MiniViewWindow($('svg', current.scrollingWindow), $('#DivDiagramaCurvaC'+ext), Components.getComponentById(idWindow), 0, 'grupocontenedor', 0);
+                                            current.miniView.btnMiniView = event.data.OBJ;
+                                            current.miniView.crearWindow();
+                                            current.miniView.open();
+                                        }
+                                        else{
+                                            current.miniView.close();
+                                            current.miniView = null;
+                                        }
+                                }
+                            }
+                        },
+                         {
+                                type: 'Button',
+                                id : 'IgnoreWeekendsBT',
+                                scale:'medium',
+								icon: {type:'image',
+									image:'images/calendar.png',  
+									position:'left'
+									
+								},  
+                                tooltip:'Ignorar Fines de Semana',
+                                enableToggle : true,
+                                hidden: true,
+                                listeners: {
+                                click: function (event) {
+                                       
+                                       var svg = $('#'+$win.idDiagrama).svg('get');
+                                        svg.clear();
+                                       if(event.data.OBJ.pressed){ 
+                                             Components.getComponentById('IgnoreWeekendsBT'+ext).setIcon('images/calendar.png');
+                                             $win.diagrama.draw("nofines");
+                                       }else{
+                                             Components.getComponentById('IgnoreWeekendsBT'+ext).setIcon('images/calendarsundays.png');
+                                             $win.diagrama.draw();
+                                            
+                                       }
+                                        
+                                        
+                                       
+                                }
+                            }
+                        },                        
+                         {
+                                type: 'Button',
+                                id : 'ShowPeakBT',
+                                scale:'medium',
+								icon: {type:'image',
+									image:'images/peak.png',  
+									position:'left'
+									
+								},  
+                                tooltip:'Ver punto mas alto',
+                                hidden: true,
+                                enableToggle : true,
+                                listeners: {
+                                    click: function (event) {
+                                       if(event.data.OBJ.pressed){ 
+                                            current.diagrama.showHitos = true;
+                                            current.diagrama.showAllHitos();
+                                        }
+                                        else {
+                                            current.diagrama.showHitos = false;
+                                            current.diagrama.hideAllHitos();
+                                        }
+                                    }
+                                }
+                         },                         
+                         {
+                            type: 'SplitButton',
+                            id: 'EscalaTiempo',
+                            text : 'Escala de Barras',
+                            tooltip: 'Elegir tipo de documento',
+                            menu: {
+                                items: [
+                                    {
+                                        id: 'ninguno',
+                                        text: 'Ninguno',
+                                        handler: function() {
+                                            $(".periodosemanal").hide();
+                                            $(".periodomensual").hide();
+                                            $(".periododiario").show();
+                                            Components.getComponentById('EscalaTiempoSelected').setValue('Ninguno');
+                                        }  
+                                    },
+                                    {
+                                        id: 'semanal',
+                                        text: 'Semanal',
+                                        handler: function() {
+                                            $(".periododiario").hide();
+                                            $(".periodosemanal").show();
+                                            $(".periodomensual").hide();
+                                            Components.getComponentById('EscalaTiempoSelected').setValue('Semanal');
+                                        }  
+                                    },
+                                    {
+                                        id: 'mensual',
+                                        text: 'Mensual',
+                                        handler: function() {
+                                            $(".periododiario").hide();
+                                            $(".periodosemanal").hide();
+                                            $(".periodomensual").show();
+                                            Components.getComponentById('EscalaTiempoSelected').setValue('Mensual');
+                                        }  
+                                    }
+                                ]
+                            }
+                         },                         
+                        {
+                            type: 'TextField',
+                            id: 'EscalaTiempoSelected',
+                            readOnly: true,
+                            width: 200,
+                            value: 'Mensual'
+                        }
+                    ]
+                }
+            ]
+        }).show();
+		 $('#yeye').css('height','600px').svg();
+		 var svg = $('#yeye').svg('get');
+		 var data =  new Array();
+			data["tipo"]="duraciontestacumulado";
+			data["padre"]=0;
+			data["svg"] = svg;
+			
+			DataProyectos = {
+				"Descripcion": "Sistema de Gestion de Proyectos SWEDPE",
+				"FechaCalculoFinal": "2014-08-11",
+				"FechaCalculoInicio": "2014-01-06",   
+			}	
+			
+			var INNN = DataProyectos.FechaCalculoInicio.split("-");
+			var FINN = DataProyectos.FechaCalculoFinal.split("-")
+			var i = new Date(INNN[2], INNN[1] - 1, INNN[0]);
+			var f = new Date(FINN[2], FINN[1] - 1, FINN[0]);
+			data['iniFec'] = i.getTime() / 1000;
+			data['finFec'] = f.getTime() / 1000; 
+			
+			Diagrama = new DiagramaCurvaSSvg(data);
+			current = [];
+			current.diagrama = Diagrama;
+			Diagrama.draw();	
+		 
+		  
+		});
+
+</script>
+</head>
+
+</html>

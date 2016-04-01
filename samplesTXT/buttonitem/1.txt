@@ -1,0 +1,109 @@
+Components.create('Button',{		
+       
+                                        x:10,
+                                        y:40,
+                                        scale: 'medium',
+                                        text:'Tamaño Personalizado',
+                                        width: 150,
+                                        tooltip:'Tamaño Personalizado',	  
+                                        handler: function() {
+														alert('bt1');
+													}  
+    }).show();
+    
+    Components.create('Button',{		
+       
+                                        x:10,
+                                        y:80,
+                                        scale: 'medium',
+                                        text:'texto + icono',
+                                        icon:
+										{
+															type:'image',
+															image:'images/plussymbol.png',  
+															position:'left'
+														
+										},
+                                        tooltip:'texto + icono',	  
+                                        handler: function() {
+														
+														alert('bt2');
+													}  
+    }).show();
+    
+    Components.create('Button',{		
+       
+                                        x:10,
+                                        y:120,
+                                        scale: 'small',
+                                        icon: 'images/plussymbol.png',
+                                        tooltip:'Small button',	  
+                                        handler: function() {
+														
+														alert('bt3');
+													}  
+    }).show();
+     Components.create('Button',{		
+       
+                                        x:10,
+                                        y:160,
+                                        scale: 'medium',
+                                        icon: 
+										{
+															type:'image',
+															image:'images/plussymbol.png',  
+															position:'left'
+														
+										},
+                                        tooltip:'Medium button',	  
+                                        handler: function() {
+														
+														alert('bt3');
+													}  
+    }).show();
+     Components.create('Button',{		
+       
+                                        x:10,
+                                        y:200,
+                                        scale: 'large',
+                                        icon: 'images/plussymbol.png',
+                                        tooltip:'Large Button',	  
+                                        handler: function() {
+														
+														alert('bt3');
+													}  
+    }).show();
+
+     Components.create('Button',{		
+       
+                                        x:10,
+                                        y:240,
+                                        scale: 'medium',
+                                        icon: 'images/plussymbol.png',
+                                        tooltip:'Disabled Button',
+                                        enabled:false
+                                        
+    }).show();
+    
+     Components.create('Button',{		
+       
+                                        x:10,
+                                        y:280,
+                                        id:"botontoggle",
+                                        scale: 'medium',
+                                        icon: 'images/ok.png',
+                                        tooltip:'Toggle Button',
+                                        text:'Soy un boton',
+                                        enableToggle:true,
+                                        handler: function() {
+                                                 if (Components.getComponentById('botontoggle').pressed){
+                                                     Components.getComponentById('botontoggle').setIcon('images/ok.png');
+                                                     Components.getComponentById('botontoggle').setText('presionado');
+                                                 }
+                                                else{
+                                                        Components.getComponentById('botontoggle').setIcon('images/cancel.png');
+                                                        Components.getComponentById('botontoggle').setText('no presionado');
+                                                    }
+                                        }    
+                                        
+     }).show();

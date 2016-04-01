@@ -1,0 +1,5 @@
+Crea un AutoCompleteInputField con etiqueta,con un largo de 128px y con una fuente de datos estatica. 
+Ademas se ha usado el evento select para mostrar un imagen con un numero cuando se selecciona un valor de la lista.
+Tambien se ha usado el evento render para personalizar cada elemento de lista agregado una imagen y un texto.
+
+ 

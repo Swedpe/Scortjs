@@ -1,0 +1,42 @@
+Components.create('FreeDiv',{																		
+	x: 0,
+	y: 50,
+	height: 50,
+	width: 200,
+	html:'<p>Escriba "Nombre" o "Direccion"</p>'																		
+}).show();
+Components.create('Image',{
+	x:250,
+	y:100 ,
+	text: '',
+	image:'',
+	id: 'ImagenSeleccion',
+	width: '',
+	height:16
+}).show();
+
+Components.create('AutoCompleteInputField',{
+							
+								x:0,
+								y: 100,
+								id:'MiAutocomplete',	
+								imputoptions:{									
+										label: '<b>&nbsp;Select List :</b>',
+										id: 'AutocompleteInput',
+										width: 128,
+										readOnly: false,
+										source:[{"value":"Direccion1","label":"Direccion1","id":1},{"value":"Nombre2","label":"Nombre2","id":2},{"value":"Direccion3","label":"Direccion3","id":3},{"value":"Direccion4","label":"Direccion4","id":4}]								
+								},	
+								listeners: {
+										select: function(event, ui)
+										{
+											Components.getComponentById('ImagenSeleccion').setImage('images/'+ui.item.id+'.png');
+										},
+										render:	function(ul, item) {												
+											return $( '<li>' )
+											.append( '<a><img src="images/flag_blue.png">' + item.label+'<br><font size="1"><i>'+item.label+'</i></font></a>')
+											.css('text-align','left')
+											.appendTo(ul);			
+										}
+								}
+}).show();

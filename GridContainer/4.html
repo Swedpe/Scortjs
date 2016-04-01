@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridContainer Ejemplo 4</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../functions.js"></script>
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/extra/jspdf/jspdf.min.js"></script>
+<script src="../components/extra/jspdf/jspdf.plugin.autotable.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+title: "GridPrueba2", 
+height:260, 
+state:'active',
+width:600,
+items: [
+	{
+		type: "GridContainer",
+		region: "center",
+		id: "GridPrueba",
+		state:'active',
+		cellEditing: {clicksToEdit: 2},
+		autoScroll: true,
+		selModel: {
+						type: "checkboxmodel",
+						checkOnly: false,
+					   
+		},	
+		columns: [
+			{
+				type: "GridColumn",
+				text: "NOMBRE",
+				dataIndex: "pos1",
+				width: "26%",
+				editor: {
+									type: 'TextField',
+									allowBlank: false
+				}
+			},
+			{
+				type: "GridColumn",
+				text: "EDAD",
+				dataIndex: "pos4",
+			   // typeData: "number",
+			   // sortable: true,
+				//filter: true,
+				 width: "26%",
+				 editor: {
+									type: 'TextField',
+									allowBlank: false
+								}
+			},					
+			{
+					type: 'GridColumn',                            
+					text: 'NICKNAME',							
+					width: "26%",
+					  editor: {
+									type: 'TextField',
+									allowBlank: false
+								},
+					renderer: function(value, metaData, record, row, col, store, gridView){                               
+						return record.pos1+record.pos4;
+					}
+			 },
+		   
+		
+		 
+		],
+		store: {
+			pageSize:5,
+			fields: ["pos1", "pos2", "pos4"],
+			data: [
+				{ pos1: "Cesar", pos2: true, pos4:21},
+				{ pos1: "abelardo", pos2: false, pos4:19},
+				{ pos1: "geanfranco", pos2: true, pos4:10},
+				{ pos1: "ernesto", pos2: false,  pos4:40},
+				{ pos1: "roberto", pos2: true, pos4:50},
+				
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "jose", pos2: true,pos4:50},
+				{ pos1: "daniel", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "Cesar", pos2: true, pos4:21},
+				
+				{ pos1: "abelardo", pos2: false, pos4:19},
+				{ pos1: "geanfranco", pos2: true, pos4:10},
+				{ pos1: "ernesto", pos2: false,  pos4:40},
+				{ pos1: "roberto", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				
+				{ pos1: "jose", pos2: true,pos4:50},
+				{ pos1: "daniel", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "Cesar", pos2: true, pos4:21},
+				{ pos1: "abelardo", pos2: false, pos4:19},
+				
+				{ pos1: "geanfranco", pos2: true, pos4:10},
+				{ pos1: "ernesto", pos2: false,  pos4:40},
+				{ pos1: "roberto", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "jose", pos2: true,pos4:50},
+				
+				{ pos1: "daniel", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "Cesar", pos2: true, pos4:21},
+				{ pos1: "abelardo", pos2: false, pos4:19},
+				{ pos1: "geanfranco", pos2: true, pos4:10},
+				
+				{ pos1: "ernesto", pos2: false,  pos4:40},
+				{ pos1: "roberto", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "jose", pos2: true,pos4:50},
+				{ pos1: "daniel", pos2: true, pos4:50},
+				
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "Cesar", pos2: true, pos4:21},
+				{ pos1: "abelardo", pos2: false, pos4:19},
+				{ pos1: "geanfranco", pos2: true, pos4:10},
+				{ pos1: "ernesto", pos2: false,  pos4:40},
+				
+				{ pos1: "roberto", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+				{ pos1: "jose", pos2: true,pos4:50},
+				{ pos1: "daniel", pos2: true, pos4:50},
+				{ pos1: "luis", pos2: true, pos4:50},
+			]
+		},
+		bbar: { //determina la barra de paginaciion
+					displayInfo: true,
+					displayMsg: 'Mostrando  {0} - {1} de {2}',
+					emptyMsg: "No hay temas a mostrar"
+				},
+				
+	}
+]
+}).show();
+Components.create('Button',{		
+	x:130,
+	y:440,
+	scale: 'medium',
+	text:'Generar PDF 1-9',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-file-pdf-o',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Generar PDF 1-9',
+	handler: function() {
+		Components.getComponentById('GridPrueba').downloadPdf('ejemplo4_pag1-9.pdf',1,9)
+	}
+ }).show();
+ Components.create('Button',{		
+	x:140,
+	y:440,
+	scale: 'medium',
+	text:'Generar PDF 5',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-file-pdf-o',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Generar PDF',
+	handler: function() {
+		Components.getComponentById('GridPrueba').downloadPdf('ejemplo4_pag5.pdf',5,5)      // siempre se tiene q poner pag_inicial y pag_final asi se imprima 1 pagina
+	}
+ }).show();
+ Components.create('Button',{		
+	x:150,
+	y:440,
+	scale: 'medium',
+	text:'Generar PDF 3-50',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-file-pdf-o',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Generar PDF',
+	handler: function() {
+		Components.getComponentById('GridPrueba').downloadPdf('ejemplo4_pag3-50.pdf',3,50)
+	}
+ }).show();
+ Components.create('Button',{		
+	x:160,
+	y:440,
+	scale: 'medium',
+	text:'Generar PDF 4-7',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-file-pdf-o',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Generar PDF',
+	handler: function() {
+		Components.getComponentById('GridPrueba').downloadPdf('ejemplo4_pag4-7.pdf',4,7)
+	}
+ }).show();
+ Components.create('Button',{		
+	x:0,
+	y:540,
+	scale: 'medium',
+	text:'Generar XML 1-9',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-download',
+				position:'left',
+		},
+	state:'active',
+	
+	tooltip:'Generar Xml',	  
+	handler: function() {
+		var Xmlgenerado = Components.getComponentById('GridPrueba').generateXml('ejemplo4.xml',1,9);
+		//var Xmlgenerado = generateXml();
+		//download('ejemplo4.xml',Xmlgenerado);
+ 	}
+}).show();
+Components.create('Button',{		
+	x:0,
+	y:540,
+	scale: 'medium',
+	text:'Generar XML 5',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-download',
+				position:'left',
+		},
+	state:'active',
+	
+	tooltip:'Generar Xml',	  
+	handler: function() {
+		var Xmlgenerado = Components.getComponentById('GridPrueba').generateXml('ejemplo4.xml',5,5);
+		//var Xmlgenerado = generateXml();
+		//download('ejemplo4.xml',Xmlgenerado);
+ 	}
+}).show();
+Components.create('Button',{		
+	x:0,
+	y:540,
+	scale: 'medium',
+	text:'Generar XML 3-50',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-download',
+				position:'left',
+		},
+	state:'active',
+	
+	tooltip:'Generar Xml',	  
+	handler: function() {
+		var Xmlgenerado = Components.getComponentById('GridPrueba').generateXml('ejemplo4.xml',3,50);
+		//var Xmlgenerado = generateXml();
+		//download('ejemplo4.xml',Xmlgenerado);
+ 	}
+}).show();
+Components.create('Button',{		
+	x:0,
+	y:540,
+	scale: 'medium',
+	text:'Generar XML 4-7',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-download',
+				position:'left',
+		},
+	state:'active',
+	
+	tooltip:'Generar Xml',	  
+	handler: function() {
+		var Xmlgenerado = Components.getComponentById('GridPrueba').generateXml('ejemplo4.xml',4,7);
+		//var Xmlgenerado = generateXml();
+		//download('ejemplo4.xml',Xmlgenerado);
+ 	}
+}).show();
+	});  
+	</script>	
+   
+</head>
+<body>
+</body>
+</html>

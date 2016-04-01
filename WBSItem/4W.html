@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 4</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<script src="../components/items/MenuItem.js"></script>	
+
+
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />	
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+		
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+	title: "WBS Eventos",		
+	height:450, 
+	width:750,
+	state:'active',
+	items:[
+	{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+		   {
+				type: 'Button',
+				id : 'izquierdaBtn',
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-arrow-left',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Agregar_Hermano_a_la_Izquierda_00359',
+				listeners: {
+					click: function() {							
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(1,0);
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'derechaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-arrow-right',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Agregar_Hermano_a_la_Derecha_00358',
+				listeners: {
+					click: function() {
+					   if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(0,0);
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-arrow-up',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Agregar_Nuevo_Padre_00357',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+								Components.getComponentById("Okno").nodoSeleccionado.AgregarPadre(null);
+							else
+								alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-arrow-down',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Agregar_Hijo_00356',
+				listeners: {
+					click: function() {
+						 if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+							Components.getComponentById("Okno").nodoSeleccionado.AddChild(null);
+						else
+							alert("Debe seleccionar un Nodo");
+						
+					  
+					}
+				}
+			}
+		]
+	},
+	{
+		 type: 'SvgContainer', 
+		 region: 'center',
+		 id:'mysvg',
+		 items:[
+			{
+				type: 'WBSTree',						
+				id:'Okno',
+				algorithm:'basicWilliam',
+				items:[
+					{	
+						 type: 'WBSNode', 
+						 id:0,
+						 idp:null,
+						 Descripcion:'Nodo 0 Padre',
+						 tipoObjeto:'Cabecera',
+						 childsId:[1,2,3]
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:1,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Nada'
+						
+						
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:2,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Nada',
+						 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:3,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'No Puedo Tener mas hijos',
+						 childsId:[4,5,6],
+						 listeners: {
+							onrequestaddchild: function(obj){								       
+								  alert("no mas hijos");
+								  return false;
+							}
+						 }
+						  
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:4,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'No mas Hermanos',
+						 listeners: {
+							onrequestaddbrother: function(obj){								       
+								  alert("No mas Hermanos");
+								  return false;
+							}
+						 }
+						 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:5,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'onaddbrother propio del Nodo',
+						listeners: {
+							onaddbrother: function(obj,Lado){								       
+								  alert("Hermano dibujado");
+							}
+						 }
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:6,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Evento Luego de Crear Hijo',
+						 listeners: {
+							onaddchild: function(obj,Lado){								       
+								  alert("Hijo Dibujado");
+							}
+						 }
+					}
+				]
+		    }
+	    ]
+	
+	}
+  ]
+}).show();
+Components.create('Window',{
+	id:'GridInfoWindow',
+	x:850,
+	y:5,
+	width:430,
+	height:800,
+	state:'info',
+	title: "Store-Data-Actual", 
+	html:'<div><h2>Ejemplo WBS item para agregar nodos</h2><br>'+
+	'Use los botones superiores para probar las funciones<br>Primero un nodo debe estar seleccionado'+
+	'<br><br>Agrega un hermano a la izquierda</div>'+
+	'<br><br>Agrega un hermano a la derecha</div>'+
+	'<br><br><br>Agrega un padre</div>'+
+	'<br><br><br>Agrega un hijo</div>',
+	items:[
+	{
+			type: 'Button',
+			x:140,
+			y:260,
+			id : 'asd',        
+			shape:'box',
+			scale:'minier',
+			icon:{
+						type:'fontawesome',
+						class:'fa-arrow-down',
+						color:'#000099',
+						//position:'left',
+			},
+	},
+	{
+			type: 'Button',
+			x:150,
+			y:220,
+			id : 'asd',        
+			shape:'box',
+			scale:'minier',
+			icon:{
+						type:'fontawesome',
+						class:'fa-arrow-up',
+						color:'#000099',
+						//position:'left',
+			},
+	},
+	{
+			type: 'Button',
+			x:160,
+			y:180,
+			id : 'asd',        
+			shape:'box',
+			scale:'minier',
+			icon:{
+						type:'fontawesome',
+						class:'fa-arrow-right',
+						color:'#000099',
+						//position:'left',
+			},
+	},
+	{
+			type: 'Button',
+			x:170,
+			y:140,
+			id : 'asd',        
+			shape:'box',
+			scale:'minier',
+			icon:{
+						type:'fontawesome',
+						class:'fa-arrow-left',
+						color:'#000099',
+						//position:'left',
+			},
+	}
+	]
+}).show();
+
+});  
+</script>	
+</head>
+
+</html>

@@ -1,0 +1,6 @@
+- Se rellena la definicion de la tabla, para mostrar la edicion en diferentes tipos de datos y la inclusion de eventos en celdas<br>
+- Se crean datos estaticos para ambas tablas  <br>
+- El modelo de seleccion se define para permitir seleccion multiple <br>
+- Se declara <b>resizable</b> de tal manera que el ancho de las columnas es dinamico.  <br>
+- Se declara <b>verticalScroll</b> de tal manera que la cabecera se mantiene fija mientras puede usar scroll en los datos.
+- Al hacer doble click en alguna celda, esta entra en modo de edicion. Dependiendo del tipo de datos numerico, cadena, opcion o evento.

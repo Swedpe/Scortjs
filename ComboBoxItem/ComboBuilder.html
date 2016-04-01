@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PROGRESS BUILDER FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+  <script src="../components/containers/WindowContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />	
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+container: $('#S2-2'),
+Components.create('Window',{
+       container: $('#S2-2'),
+	   x:10,
+        y:240,
+       height:150, 
+        width:200, 
+		state:'active',
+		title: "active", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		listeners: {
+                            click: function() {
+								Components.getComponentById('window').changeState('active'); 
+                            }
+                        } 
+		
+    }).show();
+Components.create('Window',{
+container: $('#S2-2'),
+x:450,
+y:60,
+        height:150, 
+        width:200 ,
+		state:'info',
+		title: "info", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		listeners: {
+                            click: function() {
+								Components.getComponentById('window').changeState('info'); 
+                            }
+                        }
+    }).show();
+Components.create('Window',{
+container: $('#S2-2'),
+x:10,
+y:60,
+      height:150, 
+        width:200, 
+		state:'error',
+		title: "error", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		listeners: {
+                            click: function() {
+								Components.getComponentById('window').changeState('error'); 
+                            }
+                        }
+    }).show();	
+Components.create('Window',{
+container: $('#S2-2'),
+x:230,
+y:60,
+ height:150, 
+        width:200,
+		state:'highlight',
+		title: "highlight", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		listeners: {
+                            click: function() {
+								Components.getComponentById('window').changeState('highlight'); 
+                            }
+                        }
+    }).show();
+Components.create('Window',{
+container: $('#S2-2'),
+x:230,
+y:240,
+ height:150, 
+        width:200,
+		state:'warning',
+		title: "warning", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		listeners: {
+                            click: function() {
+								Components.getComponentById('window').changeState('warning'); 
+                            }
+                        }
+    }).show();
+Components.create('Window',{
+container: $('#S2-2'),
+x:450,
+y:240,
+ height:150, 
+        width:200,
+		title: "Default", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		listeners: {
+                            click: function() {
+								Components.getComponentById('window').changeState('default'); 
+                            }
+                        }
+    }).show();
+///////////////////SOLO-TAMAÑOS///////////////////	
+Components.create('Button',{
+    id:'hola',	
+    container: $('#S2-3'),	
+	scale: 'minier',
+	State:'active',	
+	shape:'box',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		color:'white'
+	},
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+		button={scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-align-left',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		  }
+	};
+   Components.getComponentById('window').createHeaderButton(button);
+	}  
+}).show();
+
+Components.create('Button',{		
+		container: $('#S2-3'),
+		scale: 'minier',
+		State:'active',	
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			color:'white'
+		},
+		tooltip:'boton mini',	  
+		handler: function() {
+		
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('window').createHeaderButton(button);
+	}  
+	}).show();
+
+Components.create('Button',{		
+		container: $('#S2-3'),
+		scale: 'minier',
+		State:'active',	
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cubes',
+			color:'white'
+		},
+		tooltip:'Small button',	  
+		handler: function() {
+		
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cubes',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('window').createHeaderButton(button);
+	}  
+}).show();
+		
+Components.create('Button',{		
+		container: $('#S2-3'),
+		State:'active',
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			color:'white',
+		},
+		tooltip:'medium active',	  
+		handler: function() {
+		
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('window').createHeaderButton(button);
+		}  
+    }).show();
+
+Components.create('Button',{
+		container: $('#S2-3'),
+		State:'active',	
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			color:'white',
+		},
+		tooltip:'large Info',	  
+		handler: function() {
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('window').createHeaderButton(button);
+		}  
+    }).show();
+
+Components.create('Button',{
+		container: $('#S2-3'),
+		State:'active',		
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cc-visa',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Boton Warning',
+        handler: function() {
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cc-visa',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('window').createHeaderButton(button);
+	}  		
+ }).show();
+//Progress principal--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+Components.create('Form',{
+        behavior:'panel',
+		container: $('#S1-B'),
+		state:'error',
+		resizable:false,
+		draggable:false,
+		title: "COMBOBOX-SCORTS JS", 
+       items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'active',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+		],
+	}]
+		
+    }).show();
+
+ Components.create('Image',{ 
+		id:"myimage",
+       container: $('#S1-A'),
+	   tooltip: "Imagen2",		
+        image:'images/logo.png',  
+		width:150,
+												
+}).show();
+}); 
+</script>	
+</script>
+</head>
+
+<body>
+
+<div class="row">
+	<div  id="S1-1" class="col-sm-6" style="height: inherit;">
+		<div class="row">
+			<div  id="S1-A" class="col-sm-12" style="height: inherit">
+			
+			</div>
+			
+		<br><br>
+		</div>
+	</div>
+
+	<div  id="S1-2" class="col-sm-6" style="height: inherit">
+		<div class="row">
+		<div  id="S2-1" class="col-sm-12" style="height: inherit"></div>
+		<br><br>
+		</div>
+	</div>
+<br><br>
+</div>
+
+<div class="row">
+	<div  id="S1-B" class="col-sm-6" style="height: inherit">
+	<strong><FONT FACE="arial"> <p style="color: #BD133D; margin: 10px 0 5px 165px; font-size: 14pt">COMBOBOX BUILDER-EJEMPLO</P></font></strong> 
+	<strong><FONT FACE="arial"> <p style="color: #black;margin: 10px 0 80px 165px; font-size: 16pt">ComboBox Builder for Scorts JS</P></font></strong> 
+	</div>
+	
+	<div  class="col-sm-6" style="height: inherit">
+
+		<div class="row">
+			<div  id="S2-2" class="col-sm-12" style="height: 440px">
+			<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">CAMBIO DE COLORES:</P></font></strong> 
+			</div>
+			<div  id="S2-3" class="col-sm-12" style="height: inherit">
+			<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">Agregar Header Buttons:</P></font></strong> 
+			</div>
+			
+		</div>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

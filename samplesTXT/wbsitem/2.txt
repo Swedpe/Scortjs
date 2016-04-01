@@ -1,0 +1,115 @@
+Components.create('Window',{
+		title: "WBS Eventos",		
+        height:400, 
+        width:810,
+        items:[
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'mysvg',
+				 items:[
+					{
+						type: 'WBSTree',						
+						id:'Okno',
+						items:[
+							{	
+								 type: 'WBSNode', 
+								 id:0,
+								 idp:null,
+								 Descripcion:'Nodo 0 Padre',
+								 tipoObjeto:'Cabecera',
+								 childsId:[1,2,3]
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:1,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Listener:show',
+								 listeners: {
+									show: function(obj){
+										alert(obj.Descripcion);
+									}
+								  }
+								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:2,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Listener:hide',
+								 listeners: {
+									hide: function(obj){
+										alert(obj.Descripcion);
+									}
+								  }
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:3,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Listener:maximize,minimize',
+								 childsId:[4,5,6],
+								  listeners: {
+									maximize: function(obj){
+										alert(obj.Descripcion);
+									},
+									minimize: function(obj){
+										alert("Minimizar");
+									}
+								  }
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:4,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Listener:select',
+								 listeners: {
+									select: function(obj){
+										alert(obj.Descripcion);
+									}
+								  }
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:5,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Listener:deselect',
+								 listeners: {
+									deselect: function(obj){
+										alert(obj.Descripcion);
+									}
+								  }
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:6,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Listener:null'
+							}
+						]
+				}
+				]
+			
+			}
+            ]
+        
+    }).show();
+	
+	Components.create('Button',{		
+	x:350,
+	y:5,
+	scale: 'medium',
+	text:'Seleccion Elemento',
+	width: 150,
+	tooltip:'Seleccion Elemento',	  
+	handler: function() {					
+					Components.getComponentById('0').Seleccionar();
+					alert("seleccionado el elemento 0")
+				}  
+    }).show(); 

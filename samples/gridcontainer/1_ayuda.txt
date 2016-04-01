@@ -1,0 +1,4 @@
+- Se define una tabla con tipos caracteristicos.<br>
+- Se llena la tabla con datos estaticos <br>
+- Se Define Autoscroll true para permitir scroll en la tabla <br>
+- Se define selModel con chekboxmodel para permitir seleccion de multiples columnas

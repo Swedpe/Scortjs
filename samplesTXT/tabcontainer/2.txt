@@ -1,0 +1,31 @@
+Components.create('Window',{		
+        title: "TabsPrueba", 
+        height:300, 
+        width:500, 
+        items: [
+            {
+              type: "TabPanel",
+			  id:"EjemploTabs",
+              region: 'center',
+              activeTab: 0,
+              items: [                 
+		   {
+                      type: "Tab",
+                      title: "Tab Simple",
+                      
+                  },
+		 {
+                      type: "Tab",
+                      title: "Tab Evento",
+                      listeners: {
+                          activate: function() {
+                             alert("Tab 2 se activo");
+                          }
+                      }
+                  }
+				 
+				  
+              ]
+            }
+        ]
+    }).show();

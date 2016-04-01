@@ -1,0 +1,1343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Form Container</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>
+<script src="../functions.js"></script>		
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/inputRow.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/items/TextArea.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../components/SimpleDateTime/jquery.simple-dtpicker.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/colorPicker.css">
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+	$( document ).ready(function(){
+Components.create('Window',{
+	title: "demo_proyecto",
+	//x:1,
+	//y:9,
+	state:'active',	
+	height:750, 
+	width:650,													
+	items:[
+	{type: 'ToolBar',
+			id: 'Demo_ProyectoWindowsToolBar',
+			region: 'top',
+			items: [
+				{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-database',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Ver info ',
+				listeners: {
+					click: function() {
+					}
+				}
+				},
+			]
+			},
+	{
+		type: "TabPanel",
+		id:"EjemploTabs",
+		//region: 'center',
+		state:'info',
+		//activeTab: 0,
+		items:[
+		{
+		///////////////////////////////////////////////////////tab 1/////////////////////////////////////////////////
+		type: "Tab",
+		title: "Formulario Disabled",  
+		state:'info',
+		icon: {
+				type:'fa',		
+				class:'fa-info',
+				},
+		
+		items: [
+			{type: 'ToolBar',
+			id: 'Demo_ProyectoWindowsToolBar',
+			region: 'top',
+			items: [
+				{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-database',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Ver info ',
+				listeners: {
+					click: function() {
+					}
+				}
+				},
+			]
+			},
+			{type:'Form',
+			id: 'TestForm0',
+			defaultType: "textfield",
+			enabled:false,			
+			fieldDefaults: {
+			labelWidth: 60
+				},
+			items:[
+				{type: 'InputField',
+					id:'HtmlNewTab',
+					label: {html:'<b>Ejemplo de TextArea</b>',
+							cols:12},
+					input:{cols:12,
+						name:'HtmlNewTab',
+						type: 'TextArea',
+						value:'Contenido Html prueba para este contenedor',
+						tinymce:true,
+					},		
+				},
+				{type: 'InputField',
+					id:'colorea',
+					label: {html:'<b>Color Picker</b>',
+					cols:4},
+					input:{
+					name:'colorin',
+					color:'#00FF00',
+					cols:8,
+					type:'colorPicker',
+					preferredFormat: "hex",
+					width: '130',
+					listeners: {
+						onValidateSucess: function() {
+						alert("onValidateSucess");
+							}
+						}
+					},
+					css:{'padding-top': '10px'},
+				},
+				{type: 'InputField',
+					label: {html:'<b>On-Off:</b>',
+							cols:4
+					},
+					input:{cols:8,
+							type:'onoffswitch',
+							id:'hi',
+							name:'on-off',
+							checked:false,
+							state:'highlight',
+							scale:'mini',
+					},
+					
+					css:{'padding-top': '10px'
+					},
+				},
+				{type: 'InputField',
+				 label: {html:'<b>Number Field</b>',
+						cols:4},
+				 input:{
+					type:'NumberField',
+					cols:8,
+					state:'error',
+					value:50,
+					//input:true,
+					name:'edad'
+				  },	
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Descripcion_00128 :</b>',
+						cols:4,
+						},
+				id: 'infoNombreText',
+				input:{cols:5,
+					name: 'infoNombreText',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				
+				},
+				{type: 'InputField',
+				label: {html:'<b># PC_Tareas_00272 :</b>',
+						cols:4},
+				id: 'infoNroTareas',
+				input:{cols:3,
+					name: 'infoNroTareas',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_CodigoContratista_00273 :</b>',
+						cols:4},
+				id: 'infoCodContratista',
+				input:{cols:3,
+					name: 'infoCodContratista',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_CodContratante_00274 :</b>',
+						cols:4},
+				id: 'infoCodContratante',
+				input:{cols:3,
+					name: 'infoCodContratante',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{		
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_TipoCalendario_002 :</b>',
+						cols:4},
+				id: 'infoTipoCalendario',
+				input:{cols:4,
+					name: 'infoTipoCalendario',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_AvanceProyecto_002 :</b>',
+						cols:4},
+				id: 'infoAvanceProyecto',
+				input:{cols:2,
+					name: 'infoAvanceProyecto',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Avance_Documentos_00261 :</b>',
+						cols:4},
+				id: 'infoAvanceDocumentos',
+				input:{cols:2,
+					name: 'infoAvanceDocumentos',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Avance_Comisionado_00312 :</b>',
+						cols:4},
+				id: 'infoAvanceComisionado',
+				input:{cols:2,
+					name: 'infoAvanceComisionado',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{
+				type: 'InputField',
+				label: {html:'<b>PC_Fecha_de_Inicio_00367 :</b>',
+						cols:4},
+					id: 'infoFechaProyecto',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaProyecto',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+						},
+					}, // falta la hora
+				},
+				{
+				type: 'InputField',
+				label: {html:'<b>PC_Fecha_Reporte_00368 :</b>',
+						cols:4},
+					id: 'infoFechaReporte',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaReporte',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+							},
+					},
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Fecha_Entrega_Pactada_00369 :</b>',
+						cols:4},
+					id: 'infoFechaEntrega',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaEntrega',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+						},
+					},
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Programarapartir_00263 :</b>',
+						cols:4},
+					id: 'infoProyectoProgramacion',
+				input:{cols:4,
+					type:'ComboBox',
+					name:'infoProyectoProgramacion',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputRow',
+				items: [{type:'Label',
+						text:'<b>PC_FechaCreacion_00262 :</b>',
+						cols:4,
+						id: 'infoFechaCreacion',
+						},
+						{	type:'DatePicker',
+							name:'infoFechaCreacion',
+							cols:3,
+							state:'info',
+							width: '130',
+							buttonPosition:'rigth',
+						},
+						{	type:'DatePicker',
+							name:'HoraCreacion',
+							cols:5,
+							state:'info',
+							width: '130',
+							buttonPosition:'rigth',
+						}
+					],
+				},
+				{type: 'Label',
+				text: '<b>PC_CreadoPor_00261 :</b>',
+						cols:4,
+				//alignLabel: "right",
+				height:25, // fata alinear bien
+				},
+				
+				{type: 'InputField',
+				label: {html:'<b>PC_Color_00168 :</b>',
+						cols:4,
+						//alignLabel: "right",
+						},
+				id: 'infoColorProy',
+				input:{cols:2,
+					name: 'infoColorProy',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Moneda_00370 :</b>',
+						cols:4},
+				id: 'infoMoneda',
+				input:{cols:3,
+					name: 'infoMoneda',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Costo_Pactado_00371 :</b>',
+						cols:4},
+				id: 'infoCosto',
+				input:{cols:2,
+					name: 'infoCosto',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Centro_de_Costo_00372 :</b>',
+						cols:4},
+				id: 'infoCentroCosto',
+				input:{cols:2,
+					name: 'infoCentroCosto',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Contratista_Responsable_00373 :</b>',
+						cols:4},
+				id: 'infoContratistaRespon',
+				input:{cols:4,
+					name: 'infoContratistaRespon',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Contratante_Responsable_00374 :</b>',
+						cols:4},
+				id: 'infoContratanteRespon',
+				input:{cols:4,
+					name: 'infoContratanteRespon',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>Unidad de Tiempo :</b>',
+						cols:4},
+				id: 'infoUniTime',
+				input:{cols:3,
+					name: 'infoUniTime',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>ProgressBar</b>',
+						cols:4},
+				input:{
+					type:'ProgressBar',
+					cols:8,
+					state:'info',
+					class:'striped',
+					width: '100%',
+					input:true,
+					name:'workComplete'
+				  },	
+				},
+			]
+			},]
+		},
+		/////////////////////////////////////////////////////////////////tab 2////////////////////////////////////////////////////
+		{
+		  type: "Tab",
+		  title: "Formulario Enabled",  
+		 state:'info',
+		 /*html:'<div><h2>Ejemplo de Tab02 con HTML</h2><br>-Este es un texto HTML correspondiente a Tab02<br>'+
+						'-Este texto HTML puede ser agregado a cualquier tab.</div>',*/
+		 icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+			},
+			items:[
+			{type: 'ToolBar',
+			id: 'Demo_ProyectoWindowsToolBar',
+			region: 'top',
+			items: [
+				{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-database',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Ver info ',
+				listeners: {
+					click: function() {
+					}
+				}
+				},
+			]
+			},
+			{type:'Form',
+			id: 'TestForm',
+			defaultType: "textfield",													
+			fieldDefaults: {
+			labelWidth: 60
+				},
+			items:[
+				{type: 'InputField',
+				label: {html:'<b>PC_Descripcion_00128 :</b>',
+						cols:4,
+						},
+				id: 'infoNombreText',
+				input:{cols:5,
+					name: 'infoNombreText',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				//aca el input
+				},
+				{type: 'InputField',
+				label: {html:'<b># PC_Tareas_00272 :</b>',
+						cols:4},
+				id: 'infoNroTareas',
+				input:{cols:3,
+					name: 'infoNroTareas',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_CodigoContratista_00273 :</b>',
+						cols:4},
+				id: 'infoCodContratista',
+				input:{cols:3,
+					name: 'infoCodContratista',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_CodContratante_00274 :</b>',
+						cols:4},
+				id: 'infoCodContratante',
+				input:{cols:3,
+					name: 'infoCodContratante',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{		
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_TipoCalendario_002 :</b>',
+						cols:4},
+				id: 'infoTipoCalendario',
+				input:{cols:4,
+					name: 'infoTipoCalendario',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_AvanceProyecto_002 :</b>',
+						cols:4},
+				id: 'infoAvanceProyecto',
+				input:{cols:2,
+					name: 'infoAvanceProyecto',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Avance_Documentos_00261 :</b>',
+						cols:4},
+				id: 'infoAvanceDocumentos',
+				input:{cols:2,
+					name: 'infoAvanceDocumentos',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Avance_Comisionado_00312 :</b>',
+						cols:4},
+				id: 'infoAvanceComisionado',
+				input:{cols:2,
+					name: 'infoAvanceComisionado',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{
+				type: 'InputField',
+				label: {html:'<b>PC_Fecha_de_Inicio_00367 :</b>',
+						cols:4},
+					id: 'infoFechaProyecto',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaProyecto',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+						},
+					}, // falta la hora
+				},
+				{
+				type: 'InputField',
+				label: {html:'<b>PC_Fecha_Reporte_00368 :</b>',
+						cols:4},
+					id: 'infoFechaReporte',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaReporte',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+							},
+					},
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Fecha_Entrega_Pactada_00369 :</b>',
+						cols:4},
+					id: 'infoFechaEntrega',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaEntrega',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+						},
+					},
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Programarapartir_00263 :</b>',
+						cols:4},
+					id: 'infoProyectoProgramacion',
+				input:{cols:4,
+					type:'ComboBox',
+					name:'infoProyectoProgramacion',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_FechaCreacion_00262 :</b>',
+						cols:4},
+					id: 'infoFechaCreacion',
+					input:{
+						type:'DatePicker',
+						name:'infoFechaCreacion',
+						cols:8,
+						state:'info',
+						width: '130',
+						buttonPosition:'rigth',
+						icon:{
+							type:'fontawesome',
+							class:'fa-key',
+							color:'rgb(85, 85, 95)',
+							},
+					},
+				},
+				{type: 'Label',
+				text: '<b>PC_CreadoPor_00261 :</b>',
+						cols:4,
+				//alignLabel: "right",
+				height:25, // fata alinear bien
+				},
+				
+				{type: 'InputField',
+				label: {html:'<b>PC_Color_00168 :</b>',
+						cols:4,
+						//alignLabel: "right",
+						},
+				id: 'infoColorProy',
+				input:{cols:2,
+					name: 'infoColorProy',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Moneda_00370 :</b>',
+						cols:4},
+				id: 'infoMoneda',
+				input:{cols:3,
+					name: 'infoMoneda',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Costo_Pactado_00371 :</b>',
+						cols:4},
+				id: 'infoCosto',
+				input:{cols:2,
+					name: 'infoCosto',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{											
+						'longitud':{
+						'min':6		
+						},
+						'texto' : true				   
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Centro_de_Costo_00372 :</b>',
+						cols:4},
+				id: 'infoCentroCosto',
+				input:{cols:2,
+					name: 'infoCentroCosto',
+					width: '100%',
+					placeholder:'',
+					listeners: {
+						onValidateSucess: function(event) {
+						console.log('validate state OK');
+						event.data.OBJ.changeInputState('active');
+						},
+						onValidateFail: function(event) {
+						console.log('validate state Fail');
+						event.data.OBJ.changeInputState('error');
+						}
+					},
+					validar:{
+						'longitud':{
+						'min':6
+						},
+						'texto' : true
+					},
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Contratista_Responsable_00373 :</b>',
+						cols:4},
+				id: 'infoContratistaRespon',
+				input:{cols:4,
+					name: 'infoContratistaRespon',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>PC_Contratante_Responsable_00374 :</b>',
+						cols:4},
+				id: 'infoContratanteRespon',
+				input:{cols:4,
+					name: 'infoContratanteRespon',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>Unidad de Tiempo :</b>',
+						cols:4},
+				id: 'infoUniTime',
+				input:{cols:3,
+					name: 'infoUniTime',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>Unidad de Tiempo :</b>',
+						cols:4},
+				id: 'infoUniTime',
+				input:{cols:3,
+					name: 'infoUniTime',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>Unidad de Tiempo :</b>',
+						cols:4},
+				id: 'infoUniTime',
+				input:{cols:3,
+					name: 'infoUniTime',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				{type: 'InputField',
+				label: {html:'<b>Unidad de Tiempo :</b>',
+						cols:4},
+				id: 'infoUniTime',
+				input:{cols:3,
+					name: 'infoUniTime',
+					type:'ComboBox',
+					label: 'ComboBox con Evento',
+					store: {data: ['seleccione']},
+					readOnly: false	,
+				  },
+				},
+				//aca los demas forms
+			]
+			},
+			]
+		},
+	]
+	},
+	]
+}).show();
+Components.create('Window',{
+	id:'GridInfoWindow',
+	x:660,
+	y:5,
+	width:430,
+	height:800,
+	state:'info',
+	title: "Info Del ejemplo de Formulario", 
+	html:'<div><h2>Ejemplo de formulario enable/disable de todos los inputs desde el formulario</h2><br><b>Notese en el codigo:</b> El valor de configuracion enabled de el formulario puede actuar sobre todos los controles si estos no tienen configuracion personalizada<br><br>'+
+	'Use los botones superiores para ejecutar cambios sobre el formulario</div>',
+	items:[{						
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+		{
+				type: 'Button',
+				id : 'EnableForm',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-flag-o',
+					color:'green',
+					position:'left',
+				},
+				tooltip:'activar el formulario',
+				listeners: {
+					click: function() {
+					var Formulario =Components.getComponentById('TestForm0');
+					Formulario.enable();
+					}
+				}
+			},
+		   {
+				type: 'Button',
+				id : 'DisableForm',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-flag-checkered',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Desactivar Formulario',
+				listeners: {
+					click: function() {
+						var Formulario =Components.getComponentById('TestForm0');
+						Formulario.disable();
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'addFromCode',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-plus',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Agregar Registro por Codigo',
+				listeners: {
+					click: function() {
+					var grid = Components.getComponentById('GridPrueba');
+					var infoindow =Components.getComponentById('GridInfoWindow');
+					datos = {pos1: "Paola",pos4: "30"};
+					var datostr = syntaxHighlight(JSON.stringify(datos, undefined, 4));
+					infoindow.setHtml('Se agrego un registro a la tabla mediante codigo los datos son: <pre>'+datostr+'</pre><br><b>grid.store.add(datos)</b>');
+					grid.store.add(datos);
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-check-square-o',
+					color:'black',
+					position:'left',
+				},
+				tooltip:'Leer la lista de filas seleccionadas',
+				listeners: {
+					click: function() {
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');	
+						var Seleccionados = syntaxHighlight(JSON.stringify(grid.getSelection(), undefined, 4));											
+						infoindow.setHtml('los registros seleccionados son: <b>grid.getSelection();</b><br><pre>'+Seleccionados+'</pre>');
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-md',
+					color:'Green',
+					
+					position:'left',
+				},
+				tooltip:'Editar un Registro',
+				listeners: {
+					click: function() {
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						seleccion = grid.getSelection();
+						if(seleccion.length ==0 || seleccion.length >1){
+							infoindow.setHtml('Selecciona 1 registro, la comprovacion:<br><br><b>if(seleccion.length ==0 || seleccion.length >1)</b><br><br>No fue superada');
+							return;
+						}else{
+							datos = {pos1: "Paola",pos4: "30"};
+							grid.store.updaterecord(datos,seleccion[0].position);
+							var datostr = syntaxHighlight(JSON.stringify(datos, undefined, 4));
+							infoindow.setHtml('El registro Seleccionado fue reemplazado por : <br><pre>'+datostr+'</pre><br><b>grid.store.updaterecord(datos,seleccion[0].position)</b>');
+						}
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-times',
+					color:'blue',
+					position:'left',
+				},
+				tooltip:'Eliminar Registro',
+				listeners: {
+					click: function() { 
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						seleccion = grid.getSelection();
+						if(seleccion.length ==0 || seleccion.length >1){
+							infoindow.setHtml('Selecciona 1 registro, la comprovacion:<br><br><b>if(seleccion.length ==0 || seleccion.length >1)</b><br><br>No fue superada');
+							return;
+						}else{												
+							grid.store.deleterecord(seleccion[0],seleccion[0].position);
+							var datostr = syntaxHighlight(JSON.stringify(seleccion, undefined, 4));
+							infoindow.setHtml('El registro <b>seleccion = grid.getSelection();</b><br> <br><pre>'+datostr+'</pre><br> Fue Eliminado<br><b>grid.store.deleterecord(seleccion[0],seleccion[0].position);</b>');
+						}
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-times',
+					color:'red',
+					position:'left',
+				},
+				tooltip:'Eliminar Multiple Registros',
+				listeners: {
+					click: function() { 
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						seleccion = grid.getSelection();
+						if(seleccion.length ==0 || seleccion.length <1){
+							infoindow.setHtml('Selecciona mas de un registro, la comprovacion:<br><br><b>if(seleccion.length ==0 || seleccion.length <1)</b><br><br>No fue superada');
+							return;
+						}else{												
+							grid.store.deletemultiplerecord(seleccion,false);
+							var datostr = syntaxHighlight(JSON.stringify(seleccion, undefined, 4));
+							infoindow.setHtml('los registros <b>seleccion = grid.getSelection();</b><br> <br><pre>'+datostr+'</pre><br> fueron eliminados<br><b>grid.store.deletemultiplerecord(seleccion,false);</b>');
+						}
+					}
+				}
+			}
+		]
+	}]
+}).show();
+});  
+</script>	
+</head>
+<body>
+</body>
+</html>

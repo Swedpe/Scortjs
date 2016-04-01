@@ -1,0 +1,40 @@
+var vertical =30;
+Components.create('Button',{
+
+										x:0,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Agregar',                                     
+                                        tooltip:'Leer Valor Seleccionado',	  
+                                        handler: function() {
+											vertical+=30;
+											Components.getComponentById('padrefreediv').add(CrearBoton());												
+										}
+}).show();										
+										
+Components.create('FreeDiv',{																		
+	x: 100,
+	y: 50,
+	height: 400,
+	width: 400,
+	id:"padrefreediv",
+	html:'<p>Soy un <i>FreeDiv</i></p>',	
+	css:[
+			{border: "2px solid"}						
+	]
+}).show();
+
+function CrearBoton(){
+ var boton = {		
+										type:'Button',
+                                        x:0,
+                                        y:vertical,
+                                        scale: 'medium',
+                                        text:'boton',                                     
+                                        tooltip:"Soy un boton creado en tiempo de ejecucion",	  
+                                        handler: function() {
+														 alert("Soy un boton creado en tiempo de ejecucion");														
+										}  
+    }
+	return  boton;
+}

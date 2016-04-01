@@ -1,0 +1,9 @@
+<h2>Eventos en edición de estructura del Árbol</h2>
+1)Se crea un arbol WBS <br>
+2)Se crean un toolbar con las 4 operaciones básicas de edición dinámica <br>
+3)Evento: El nodo 3 no puede tener mas hijos <br>
+4)Evento: El nodo 4 no puede crear mas hermanos <br>
+5)Evento: El nodo 5 Dispara evento luego de crear un hermano. <br>
+6)Evento: El nodo 6 Dispara evento luego de crear un hijo. <br>
+
+

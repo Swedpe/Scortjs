@@ -1,0 +1,53 @@
+Components.create('Window',{		
+        title: "Agregar Tab en Tiempo de Ejecución", 
+        height:300, 
+        width:500,		
+		html: '<div id="mydiv" ><div id="loadGif"></div></div>',		
+        items: [
+			{
+								type: 'ToolBar',
+                                region: 'top',
+                                items: [
+									{
+                                        type: 'Button',
+                                        scale: 'medium',
+                                        icon: 'images/plussymbol.png',
+                                        tooltip:'Agregar Tab',	  
+                                        listeners: {
+                                            click: function(){ 
+												var TabContainer = Components.getComponentById('tabpanelexample4');
+												TabContainer.add(CreateTab());
+                                            }
+                                        }
+                                    }
+                                    
+                                ]						
+						
+			},
+            {
+              type: "TabPanel",
+			  id:"EjemploTabs",
+              region: 'center',
+			  id:"tabpanelexample4",
+              activeTab: 0,
+              items: [                 
+				  {
+                      type: "Tab",
+                      title: "Tab Simple",
+                      
+                  }
+              ]
+            }
+        ]
+    }).show();
+
+function CreateTab(){
+var mytab = {
+                        type: 'Tab',
+                        title: 'User defined tab',                      
+                        autoScroll: true,
+						html: '<div id="mydiv" >Soy un tab agregado en tiempo de ejecucion</div>',
+						autoScroll: true
+					}
+	return mytab;				
+}

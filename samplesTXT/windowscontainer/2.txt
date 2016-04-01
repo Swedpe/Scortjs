@@ -1,0 +1,42 @@
+Components.create('Window',{
+		title: "No Minimisable", 
+        html:'<div><i>hola</i> <b>mundo</b></div>',
+		minimizable:false,
+		height: 350,
+		width: 200,
+		x: 40,
+		y: 90	
+		  
+    }).show();
+    Components.create('Window',{
+		title: "No Resizable", 
+         html:'<div><i>hola</i> <b>mundo</b></div>',
+		  resizable: false,
+		  x:350,
+		  y:300,
+		  items:[
+		        {
+					type: 'FreeDiv',
+					x: 0,
+					y: 220,
+					height: '62%',
+					width: '100%',
+					id:'BusquedaFrmDiv'						
+				}  
+		  ]
+		  
+    }).show();
+    Components.create('Window',{
+		title: " Eventos Cabecera ", 
+         html:'<div><i>hola</i> <b>mundo</b></div>',
+		help: true,
+		info: true,
+	    x:630,
+		y:90,
+	    oninfo: function(event) {
+			alert("funcion info")
+		},
+		onhelp: function(event) {
+			alert("function ayuda")
+		}
+    }).show();

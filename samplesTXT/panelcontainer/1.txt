@@ -1,0 +1,31 @@
+Components.create('Window',{
+        title: "Padre", 
+        height:400, 
+        width: 600,
+         split: true,
+		  layout: 'border',
+                    defaults: {
+                            split: true
+                    },
+        html: '<input type="text" size="20" style="width:100px;">',
+      
+           items: [			
+           {
+                            type: 'Panel',
+                            region: 'left',
+                            id: 'proyectosTareacontent',
+                            width: 360,
+                            autoScroll: true,
+                            split: true,
+                            html: '<div >Panel Izquierda</div>'
+                        },
+                        {
+                            type: 'Panel',
+                            region: 'center',                            
+                            autoScroll: true,
+                            html: '<div >Panel Centro</div>'
+                        }
+                        
+        
+        ]
+    }).show();

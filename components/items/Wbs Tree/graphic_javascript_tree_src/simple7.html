@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>ECOTree Simple Tree 7</title>
+		<script type="text/javascript" src="ECOTree.js"></script>
+		<link type="text/css" rel="stylesheet" href="ECOTree.css" />
+		<xml:namespace ns="urn:schemas-microsoft-com:vml" prefix="v"/>
+		<style>v\:*{ behavior:url(#default#VML);}</style> 
+		<style>
+			.copy {
+				font-family : "Verdana";				
+				font-size : 10px;
+				color : #CCCCCC;
+			}
+		</style>
+			
+		<script>
+			var myTree = null;
+			
+			function CreateTree() {
+				myTree = new ECOTree('myTree','myTreeContainer');	
+				myTree.config.colorStyle = ECOTree.CS_LEVEL;
+				myTree.config.nodeFill = ECOTree.NF_FLAT;
+				myTree.config.useTarget = false;
+				myTree.config.selectMode = ECOTree.SL_NONE;
+				myTree.config.defaultNodeWidth = 80;
+				myTree.config.defaultNodeHeight = 40;
+				myTree.config.iSubtreeSeparation = 20;
+				myTree.config.iSiblingSeparation = 15;
+				myTree.config.iLevelSeparation = 50;				
+				myTree.add(0,-1,"soy tu papi");
+				myTree.add(1,0,"cain");
+				myTree.add(2,0,"abel");	
+				myTree.add(3,0,'leonel');
+				myTree.add(4,3,'raquel');
+				myTree.add(5,3,'Isabel');
+				myTree.add(6,3,'emminem');
+				myTree.add(7,3,'Ezequiel');
+				myTree.add(8,3,'rambo');
+				myTree.add(9,8,'batman');
+				myTree.add(10,8,'Super Man');
+				myTree.add(11,2,'goku');								
+				myTree.UpdateTree();
+			}			
+		</script>			
+	</head>
+	<body onload="CreateTree();">
+		<h4>ECOTree Simple Tree 7&nbsp;<span class="copy">&copy;2015 Emilio Cortegoso Lobato</span></h4>
+		<div id="myTreeContainer">
+		</div>
+	</body>
+</html>

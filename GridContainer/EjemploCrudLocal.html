@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridContainer Ejemplo Crud Local</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../functions.js"></script>
+<script src="../components/functions.js"></script>	
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+	id:'GridInfoWindow',
+	x:620,
+	y:5,
+	width:430,
+	height:800,
+	state:'info',
+	title: "Store-Data-Actual", 
+	html:'<div><h2>Ejemplo CRUD trabajando con datos locales</h2><br><b>Notese en el codigo:</b> La columna NICKNAME es una columna Calculada, no tiene dataIndex, se calcula en base a el valor de las otras 2 columnas.<br><br>'+
+	'Use los botones superiores para aprender mas detalles de GridContainer</div>',
+	items:[{						
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+		{
+				type: 'Button',
+				id : 'addFromCode',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-info',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Informacion de la tabla',
+				listeners: {
+					click: function() {
+					var infoindow =Components.getComponentById('GridInfoWindow');
+					infoindow.setHtml('<h2>Ejemplo CRUD trabajando con datos locales</h2><br><b>Notese en el codigo:</b> La columna NICKNAME es una columna Calculada, no tiene dataIndex, se calcula en base a el valor de las otras 2 columnas.<br><br>'+
+										'Use los botones superiores para aprender mas detalles de GridContainer<br><br>');				
+					}
+				}
+			},
+		   {
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-database',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Ver Array Data',
+				listeners: {
+					click: function() {
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						var datostr = JSON.stringify(grid.store.data, undefined, 4);
+						infoindow.setHtml('Los datos <b>grid.store.data</b> Actuales en GridContainer son: <pre>'+datostr+'</pre><br>Notese que <b>position</b> se calcula segun la poscicion que ocupa el registro en la vista actual');
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'addFromCode',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-plus',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Agregar Registro por Codigo',
+				listeners: {
+					click: function() {
+					var grid = Components.getComponentById('GridPrueba');
+					var infoindow =Components.getComponentById('GridInfoWindow');
+					datos = {pos1: "Paola",pos4: "30"};
+					var datostr = syntaxHighlight(JSON.stringify(datos, undefined, 4));
+					infoindow.setHtml('Se agrego un registro a la tabla mediante codigo los datos son: <pre>'+datostr+'</pre><br><b>grid.store.add(datos)</b>');
+					grid.store.add(datos);
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-check-square-o',
+					color:'black',
+					position:'left',
+				},
+				tooltip:'Leer la lista de filas seleccionadas',
+				listeners: {
+					click: function() {
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');	
+						var Seleccionados = syntaxHighlight(JSON.stringify(grid.getSelection(), undefined, 4));											
+						infoindow.setHtml('los registros seleccionados son: <b>grid.getSelection();</b><br><pre>'+Seleccionados+'</pre>');
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-md',
+					color:'Green',
+					
+					position:'left',
+				},
+				tooltip:'Editar un Registro',
+				listeners: {
+					click: function() {
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						seleccion = grid.getSelection();
+						if(seleccion.length ==0 || seleccion.length >1){
+							infoindow.setHtml('Selecciona 1 registro, la comprovacion:<br><br><b>if(seleccion.length ==0 || seleccion.length >1)</b><br><br>No fue superada');
+							return;
+						}else{
+							datos = {pos1: "Paola",pos4: "30"};
+							grid.store.updaterecord(datos,seleccion[0].position);
+							var datostr = syntaxHighlight(JSON.stringify(datos, undefined, 4));
+							infoindow.setHtml('El registro Seleccionado fue reemplazado por : <br><pre>'+datostr+'</pre><br><b>grid.store.updaterecord(datos,seleccion[0].position)</b>');
+						}
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-times',
+					color:'blue',
+					position:'left',
+				},
+				tooltip:'Eliminar Registro',
+				listeners: {
+					click: function() { 
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						seleccion = grid.getSelection();
+						if(seleccion.length ==0 || seleccion.length >1){
+							infoindow.setHtml('Selecciona 1 registro, la comprovacion:<br><br><b>if(seleccion.length ==0 || seleccion.length >1)</b><br><br>No fue superada');
+							return;
+						}else{												
+							grid.store.deleterecord(seleccion[0],seleccion[0].position);
+							var datostr = syntaxHighlight(JSON.stringify(seleccion, undefined, 4));
+							infoindow.setHtml('El registro <b>seleccion = grid.getSelection();</b><br> <br><pre>'+datostr+'</pre><br> Fue Eliminado<br><b>grid.store.deleterecord(seleccion[0],seleccion[0].position);</b>');
+						}
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-user-times',
+					color:'red',
+					position:'left',
+				},
+				tooltip:'Eliminar Multiple Registros',
+				listeners: {
+					click: function() { 
+						var grid = Components.getComponentById('GridPrueba');
+						var infoindow =Components.getComponentById('GridInfoWindow');
+						seleccion = grid.getSelection();
+						if(seleccion.length ==0 || seleccion.length <1){
+							infoindow.setHtml('Selecciona mas de un registro, la comprovacion:<br><br><b>if(seleccion.length ==0 || seleccion.length <1)</b><br><br>No fue superada');
+							return;
+						}else{												
+							grid.store.deletemultiplerecord(seleccion,false);
+							var datostr = syntaxHighlight(JSON.stringify(seleccion, undefined, 4));
+							infoindow.setHtml('los registros <b>seleccion = grid.getSelection();</b><br> <br><pre>'+datostr+'</pre><br> fueron eliminados<br><b>grid.store.deletemultiplerecord(seleccion,false);</b>');
+						}
+					}
+				}
+			}
+		]
+	}]
+}).show();	
+
+	Components.create('Window',{
+	title: "GridPrueba2 Trabajando con Datos Locales", 
+	height:460, 
+	state:'active',
+	width:600,
+	items: [
+		{
+			type: "GridContainer",
+			region: "center",
+			id: "GridPrueba",
+			state:'active',
+			cellEditing: {clicksToEdit: 2},
+			autoScroll: true,
+			selModel: {
+							type: "checkboxmodel",
+							checkOnly: false,
+						   
+			},	
+			columns: [
+				{
+					type: "GridColumn",
+					text: "NOMBRE",
+					dataIndex: "pos1",
+					width: "26%",
+					editor: {
+										type: 'TextField',
+										allowBlank: false
+					}
+				},
+				{
+					type: "GridColumn",
+					text: "EDAD",
+					dataIndex: "pos4",
+				   // typeData: "number",
+				   // sortable: true,
+					//filter: true,
+					 width: "26%",
+					 editor: {
+										type: 'TextField',
+										allowBlank: false
+									}
+				},					
+				{
+						type: 'GridColumn',                            
+						text: 'NICKNAME',
+						width: "26%",
+						renderer: function(value, metaData, record, row, col, store, gridView){                               
+							return record.pos1+record.pos4;
+						}
+				 },
+			
+			],
+			store: {
+				pageSize:5,
+				fields: ["pos1", "pos2", "pos4"],
+				data: [
+					{ pos1: "Cesar", pos4:21},
+					{ pos1: "abelardo", pos4:19},
+					{ pos1: "geanfranco",  pos4:10},
+					{ pos1: "ernesto",   pos4:40},
+					{ pos1: "roberto",  pos4:50},
+					{ pos1: "luis",  pos4:50},
+					{ pos1: "jose", pos4:50},
+					{ pos1: "daniel", pos4:50},
+					{ pos1: "diego", pos4:50}
+					
+				]
+			},
+			resizable: {													//este se considera plugin, ya que puede o no ser incluido, permite cambiar el ancho de las filas
+						liveDrag:true,   
+					},
+			bbar: { //determina la barra de paginacion														//barra de paginacion,  los parametros [1,2,3] -> [Elemento de inicio de grupo,Elemento Final de grupo, Total de elementos]
+						displayInfo: true,
+						displayMsg: 'Mostrando  {0} - {1} de {2}',
+						emptyMsg: "No hay temas a mostrar"
+					},
+					
+		}
+	]
+}).show();
+});  
+</script>	
+
+</head>
+<body>
+</body>
+</html>

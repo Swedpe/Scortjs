@@ -1,0 +1,6 @@
+- Se define una tabla con tres columnas.<br>
+- Se llena la definicion de Store para permitir que se traigan datos desde servidor <br>
+- Se llena la propiedad pageSize(15) para obtener datos de 15 en 15 <br>
+- Se Define bbar para que se construya un paginador <br>
+- El modelo de seleccion se define para permitir seleccion multiple <br>
+- Se crea un boton para ejemplificar la lectura de las columnas seleccionadas. <br>

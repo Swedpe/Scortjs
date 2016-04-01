@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<title>ECOTree Simple Tree 10</title>
+		<script type="text/javascript" src="ECOTree.js"></script>
+		<link type="text/css" rel="stylesheet" href="ECOTree.css" />
+		<xml:namespace ns="urn:schemas-microsoft-com:vml" prefix="v"/>
+		<style>v\:*{ behavior:url(#default#VML);}</style> 
+		<style>
+			.copy {
+				font-family : "Verdana";				
+				font-size : 10px;
+				color : #CCCCCC;
+			}
+		</style>
+			
+		<script>
+			var myTree = null;
+			
+			function CreateTree() {
+				myTree = new ECOTree('myTree','myTreeContainer');	
+				myTree.config.colorStyle = ECOTree.CS_LEVEL;
+				myTree.config.nodeFill = ECOTree.NF_FLAT;
+				myTree.config.useTarget = false;
+				myTree.config.selectMode = ECOTree.SL_NONE;
+				myTree.config.defaultNodeWidth = 80;
+				myTree.config.defaultNodeHeight = 40;
+				myTree.config.iSubtreeSeparation = 20;
+				myTree.config.iSiblingSeparation = 15;
+				myTree.config.iLevelSeparation = 50;				
+				myTree.add(0,-1,"Directorio");
+				myTree.add(1,0,"D. Auditoría J. Espósito");
+				myTree.add(2,0,"A. Cumplimiento B. Falero");	
+				myTree.add(3,0,'Gerencia General W. Bayly');
+				myTree.add(4,3,'raquel');
+				myTree.add(5,3,'Isabel');
+				myTree.add(6,3,'Ezequiel');
+				myTree.add(7,3,'Ezequiel');
+				myTree.add(8,3,'Ezequiel');
+				myTree.add(9,5,'Ezequiel');
+				myTree.add(10,5,'Ezequiel');
+				myTree.add(11,6,'Ezequiel');
+				myTree.add(12,6,'Ezequiel');
+				myTree.add(13,6,'Ezequiel');
+				myTree.add(14,6,'Ezequiel');
+				myTree.add(15,7,'Ezequiel');
+				myTree.add(16,7,' ');
+				myTree.add(17,7,' ');
+				myTree.add(18,17,' ');
+				myTree.add(19,17,' ');
+				myTree.add(20,17,' ');
+				myTree.add(21,7,' ');
+				myTree.add(22,17,' ');
+				myTree.add(23,17,' ');
+				myTree.add(24,3,' ');
+				myTree.add(25,3,' ');
+				myTree.add(26,3,' ');
+				myTree.add(27,3,' ');
+				myTree.add(28,24,' ');
+				myTree.add(29,24,' ');
+				myTree.add(30,24,' ');
+				myTree.add(31,24,' ');
+				myTree.add(32,24,' ');
+				myTree.add(33,25,' ');
+				myTree.add(34,25,' ');
+				myTree.add(35,25,' ');
+				myTree.add(36,25,' ');
+				myTree.add(37,25,' ');
+				myTree.add(38,33,' ');
+				myTree.add(39,33,' ');
+				myTree.add(40,33,' ');
+				myTree.add(41,33,' ');
+				myTree.add(42,34,' ');
+				myTree.add(43,34,' ');
+				myTree.add(44,26,' ');
+				myTree.add(45,26,' ');
+				myTree.add(46,26,' ');
+				myTree.add(47,26,' ');
+				myTree.add(48,26,' ');
+				myTree.add(49,26,' ');
+				myTree.add(50,26,' ');
+				myTree.add(51,27,' ');
+				myTree.add(52,27,' ');
+				myTree.add(53,27,' ');
+				myTree.add(54,27,' ');
+				myTree.add(55,51,' ');
+				myTree.add(56,51,' ');
+				myTree.add(57,51,' ');
+				myTree.add(58,51,' ');
+				myTree.add(59,51,' ');
+				myTree.add(60,51,' ');
+				myTree.add(61,51,' ');
+				myTree.add(62,52,' ');
+				myTree.add(63,52,' ');
+				myTree.add(64,52,' ');
+				myTree.add(65,52,' ');
+				myTree.add(66,52,' ');
+				myTree.add(67,53,' ');
+				myTree.add(68,53,' ');
+				myTree.add(69,53,' ');
+				myTree.add(70,53,' ');
+				myTree.add(71,53,' ');
+				myTree.add(72,53,' ');
+				myTree.add(73,54,' ');
+				myTree.add(74,54,' ');
+				myTree.add(75,54,' ');
+				myTree.add(76,54,' ');
+				myTree.add(77,54,' ');
+				myTree.add(78,54,' ');
+				myTree.add(79,54,' ');
+				myTree.UpdateTree();
+			}			
+		</script>			
+	</head>
+	<body onload="CreateTree();">
+		<h4>ECOTree Simple Tree 10&nbsp;<span class="copy">&copy;2015 Emilio Cortegoso Lobato</span></h4>
+		<div id="myTreeContainer">
+		</div>
+	</body>
+</html>

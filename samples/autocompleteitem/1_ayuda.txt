@@ -1,0 +1,9 @@
+Crea un AutoCompleteInputField con etiqueta,con un largo de 128px y con una fuente de datos estatica. 
+
+{"value":"Direccion1","label":"Direccion1","id":1},
+{"value":"Nombre2","label":"Nombre2","id":2},
+{"value":"Direccion3","label":"Direccion3","id":3},
+{"value":"Direccion4","label":"Direccion4","id":4}
+
+
+ 

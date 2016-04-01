@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AccordeonContainer Ejemplo 1</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+       <link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	   <link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+		
+	
+		<script src="../functions.js"></script>
+		<script src="../components/extra/Validacion.js"></script>
+		<script src="../components/Components.js"></script>		
+		<script src="../components/items/SplitButtonItem.js"></script>
+		<script src="../components/items/ComboBoxItem.js"></script>
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+		<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+		<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+		<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		<script src="../components/items/TextFieldItem.js"></script>
+		<script src="../components/items/InputFieldItem.js"></script>
+		<script src="../components/items/NumberFieldItem.js"></script>
+		<script src="../components/items/DateFieldItem.js"></script>
+		<script src="../components/items/DatePickerItem.js"></script>
+		<script src="../components/containers/PanelContainer.js"></script>
+		<script src="../components/containers/FormContainer.js"></script>
+		<script src="../components/items/LabelItem.js"></script>
+		<script src="../components/items/FreeDivItem.js"></script>
+		<script src="../components/containers/AcordeonContainer.js"></script> 	
+		<script src="../components/items/AccordeonItem.js"></script>
+		<script src="../components/items/Separator.js"></script>
+		<script src="../components/items/ToolBarItem.js"></script>	
+		<link rel="stylesheet" href="../css_components/css_panel.css" />		
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_form.css" />
+		<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+		<link rel="stylesheet" href="../components/SimpleDateTime/jquery.simple-dtpicker.css" />
+		
+		<script src="../components/items/ProgressBarItem.js"></script>
+		<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+		<link rel="stylesheet" href="../css_components/css_principal.css" />
+		<link rel="stylesheet" href="../css_components/css_accordeon.css" />
+		<script src="../components/items/On-Off.js"></script>
+		<link rel="stylesheet" href="../css_components/OnOff.css" />
+		<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+		<script src="../components/items/NumberFieldItem.js"></script>
+		<script src="../components/items/ComboBoxItem.js"></script>
+		<script src="../components/data/StoreContainer.js"></script>
+		<script src="../components/items/fontawesomegrid.js"></script>
+		<script src="../components/items/HtmlScreenGrid.js"></script>
+		
+		<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+		<script src="../components/items/Slider.js"></script>
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+	Components.create('Window', {
+		//autoShow: true,
+		height: 210,
+		width: 550,
+		container: $('#S1'),
+		//resizable: true,
+		//minimizable: false,
+		closeAction:'destroy',
+		state:'info',
+		//constrain: true,
+	    behavior :'panel',
+		title: 'Accordeon Container',				
+		items: [
+		{
+		  
+			type: 'Form', 
+				items: [
+		        {
+						 type: "AccordeonContainer",
+							region: 'center',
+							state:'info',
+							id:'miacordeon',													
+							icons: {
+								'header': "fa-ra",
+								'activeHeader': "fa-ra"
+								},
+							collapsible:true,
+							active:false,
+							listeners: {
+								activate: function(event, ui){
+											console.log("cargando "+ ui.newPanel.attr("id"));
+								}
+							},
+							heightStyle:'fill',	
+							items: [
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 1',													   
+										   height:'inherit',
+										   items: [
+												{type: 'InputField',
+												x:0,
+												y:150,
+												label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+												input:{name:'apellido',width: 100,cols:8},
+												alignLabel: "left"
+											},
+											
+											{type: 'InputField',
+												x:100,
+												y:200,
+												label: {html:'<b>&nbsp;Direccion:</b>',cols:4},
+												input:{name:'direccion',width: 100,cols:8},
+												alignLabel: "left"
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'info',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'Button',
+												state:'error',	
+												scale: 'medium',
+												text:'medium',
+												shape:'box',
+												icon:{
+													type:'fontawesome',
+													class:'fa-floppy-o',
+													//color:'#ffb752',
+													position:'right'
+												},
+												tooltip:'medium',	  
+												handler: function() {
+													alert('medium');
+												}  
+											},
+											{type: 'Button',
+												state:'active',	
+												scale: 'medium',
+												text:'medium',
+												shape:'box',
+												icon:{
+													type:'fontawesome',
+													class:'fa-floppy-o',
+													//color:'#ffb752',
+													position:'right'
+												},
+												tooltip:'medium Info',	  
+												handler: function() {
+													alert('medium');
+												}  
+											},
+											{type: 'Button',
+												state:'warning',	
+												scale: 'medium',
+												text:'medium',
+												shape:'box',
+												icon:{
+													type:'fontawesome',
+													class:'fa-floppy-o',
+													//color:'#ffb752',
+													position:'right'
+												},
+												tooltip:'medium Info',	  
+												handler: function() {
+													alert('medium');
+												}  
+											},
+											{type: 'Button',
+												state:'info',	
+												scale: 'medium',
+												text:'medium',
+												shape:'box',
+												icon:{
+													type:'fontawesome',
+													class:'fa-floppy-o',
+													//color:'#ffb752',
+													position:'right'
+												},
+												tooltip:'medium Info',	  
+												handler: function() {
+													alert('medium');
+												}  
+											},
+											
+											
+											]
+									  },												  
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 2',													  
+										   height:'inherit',
+										   items: [														
+									     {type: 'InputField',
+												label: {html:'<b>ProgressBar:</b>',
+													cols:4},
+												input:{
+													type:'ProgressBar',
+													cols:8,
+													name:'valorProgress',
+													state:'error',
+													class:'striped',
+													width: '70%',
+													input:true,
+												},	
+									        },
+											{type: 'InputField',
+											 label: {html:'<b>Number Field</b>',
+													cols:4},
+											 input:{
+												type:'NumberField',
+												cols:8,
+												state:'error',
+												value:50,
+												input:true,
+												name:'edad'
+											  },	
+											},
+											{type: 'InputField',
+												label: {html:'<b>On-Off:</b>',
+														cols:4
+												},
+												input:{cols:8,
+														type:'onoffswitch',
+														id:'hi',
+														name:'on-off',
+														checked:false,
+														state:'highlight',
+														scale:'mini',
+												},
+												
+												css:{'padding-top': '10px'
+												},
+											  }
+										]
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 3',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',cols:4},
+													input:{
+													name:'nombre',
+													width: 150,cols:8,},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+													input:{name:'apellido',width: 100,cols:8},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'Slider',
+												x:10,
+												y:150,		
+												width: 150,
+												value: 50,
+												increment: 25,
+												minValue: 0,
+												maxValue: 100,
+												state:'active',
+												tooltip:'Con etiqueta',
+												listeners: {
+													change: function( event, ui ) {			  
+														}
+												}
+											},
+	
+										]						
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 4',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',cols:4},
+													input:{
+													name:'nombre',
+													width: 150,cols:8,},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+													input:{name:'apellido',width: 100,cols:8},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'Slider',
+												x:10,
+												y:150,		
+												width: 150,
+												value: 50,
+												increment: 25,
+												minValue: 0,
+												maxValue: 100,
+												state:'active',
+												tooltip:'Con etiqueta',
+												listeners: {
+													change: function( event, ui ) {			  
+														}
+												}
+											},
+	
+										]						
+									}
+									
+							]
+						}
+					]	
+						
+				}
+		]
+}).show();		
+Components.create('Window', {
+		//autoShow: true,
+		height: 210,
+		width: 550,
+		container: $('#S2'),
+		state:'error',
+		//resizable: true,
+		//minimizable: false,
+		closeAction:'destroy',
+		//constrain: true,
+	    behavior :'panel',
+		title: 'Accordeon Container',				
+		items: [
+		{
+		  type: 'Form', 
+				items: [
+		        {
+							type: "AccordeonContainer",
+							region: 'center',
+							state:'error',
+							id:'miacordeon',													
+							icons: {
+								'header': "ui-icon-circle-minus",
+								'activeHeader': "ui-icon-circle-plus"
+								},
+							collapsible:true,
+							active:false,
+							listeners: {
+								activate: function(event, ui){
+											console.log("cargando "+ ui.newPanel.attr("id"));
+								}
+							},
+							heightStyle:'fill',	
+							items: [
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 1',													   
+										   height:'inherit',
+										   items: [
+												{type: 'InputField',
+												x:0,
+												y:150,
+												label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+												input:{name:'apellido',width: 100,cols:8},
+												alignLabel: "left"
+											},
+											
+											{type: 'InputField',
+												x:100,
+												y:200,
+												label: {html:'<b>&nbsp;Direccion:</b>',cols:4},
+												input:{name:'direccion',width: 100,cols:8},
+												alignLabel: "left"
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'info',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											]
+									  },												  
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 2',													  
+										   height:'inherit',
+										   items: [														
+									     {type: 'InputField',
+												label: {html:'<b>ProgressBar:</b>',
+													cols:4},
+												input:{
+													type:'ProgressBar',
+													cols:8,
+													name:'valorProgress',
+													state:'error',
+													class:'striped',
+													width: '70%',
+													input:true,
+												},	
+									        },
+											{type: 'InputField',
+											 label: {html:'<b>Number Field</b>',
+													cols:4},
+											 input:{
+												type:'NumberField',
+												cols:8,
+												state:'error',
+												value:50,
+												input:true,
+												name:'edad'
+											  },	
+											},
+											{type: 'InputField',
+												label: {html:'<b>On-Off:</b>',
+														cols:4
+												},
+												input:{cols:8,
+														type:'onoffswitch',
+														id:'hi',
+														name:'on-off',
+														checked:false,
+														state:'highlight',
+														scale:'mini',
+												},
+												
+												css:{'padding-top': '10px'
+												},
+											  }
+										]
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 3',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',cols:4},
+													input:{
+													name:'nombre',
+													width: 150,cols:8},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+													input:{name:'apellido',width: 100,cols:8},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>Select active</b>',
+														cols:4
+												},
+												input:{cols:8,
+														type: 'ComboBox',
+														label: 'Tipo Variable',
+														width:150,
+														state:'active',
+														name:'ComboNumber',
+														displayField: 'TipoVariable',
+														valueField: 'TipoVariable',
+														store: {
+															id: 'DataTypes',
+															fields: ['IdTipoVariable','TipoVariable'],
+															data: [
+																{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+																{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+																{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+																{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+															]
+														}
+
+												},
+												
+												css:{'padding-top': '10px'
+												},
+												
+												
+												},
+												{type: 'InputField',
+											label: {html:'<b>Select info</b>',
+													cols:4
+											},
+											input:{cols:8,
+													type: 'ComboBox',
+													label: 'Tipo Variable',
+													width:150,
+													state:'info',
+													name:'ComboNumber',
+													displayField: 'TipoVariable',
+													valueField: 'TipoVariable',
+													store: {
+														id: 'DataTypes',
+														fields: ['IdTipoVariable','TipoVariable'],
+														data: [
+															{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+															{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+															{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+															{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+														]
+													}
+
+											},
+											
+											css:{'padding-top': '10px'
+											},
+											
+											
+											},	
+											]						
+									}
+							]
+						}
+					]
+				}	
+		]
+}).show();	
+Components.create('Window', {
+		//autoShow: true,
+		height: 210,
+		width: 550,
+		container: $('#S3'),
+		state:'highlight',
+		//resizable: true,
+		//minimizable: false,
+		closeAction:'destroy',
+		//constrain: true,
+	    behavior :'panel',
+		title: 'Accordeon Container',				
+		items: [
+		{
+		   type: 'Form', 
+				items: [
+		        {
+							type: "AccordeonContainer",
+							region: 'center',
+							state:'highlight',
+							id:'miacordeon',													
+							icons: {
+								'header': "ui-icon-circle-minus",
+								'activeHeader': "ui-icon-circle-plus"
+								},
+							collapsible:true,
+							active:false,
+							listeners: {
+								activate: function(event, ui){
+											console.log("cargando "+ ui.newPanel.attr("id"));
+								}
+							},
+							heightStyle:'fill',	
+							items: [
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 1',													   
+										   height:'inherit',
+										   items: [
+												{type: 'InputField',
+												x:0,
+												y:150,
+												label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+												input:{name:'apellido',width: 100,cols:8},
+												alignLabel: "left"
+											},
+											
+											{type: 'InputField',
+												x:100,
+												y:200,
+												label: {html:'<b>&nbsp;Direccion:</b>',cols:4},
+												input:{name:'direccion',width: 100,cols:8},
+												alignLabel: "left"
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'info',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											]
+									  },												  
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 2',													  
+										   height:'inherit',
+										   items: [														
+									     {type: 'InputField',
+												label: {html:'<b>ProgressBar:</b>',
+													cols:4},
+												input:{
+													type:'ProgressBar',
+													cols:8,
+													name:'valorProgress',
+													state:'error',
+													class:'striped',
+													width: '70%',
+													input:true,
+												},	
+									        },
+											{type: 'InputField',
+											 label: {html:'<b>Number Field</b>',
+													cols:4},
+											 input:{
+												type:'NumberField',
+												cols:8,
+												state:'error',
+												value:50,
+												input:true,
+												name:'edad'
+											  },	
+											},
+											{type: 'InputField',
+												label: {html:'<b>On-Off:</b>',
+														cols:4
+												},
+												input:{cols:8,
+														type:'onoffswitch',
+														id:'hi',
+														name:'on-off',
+														checked:false,
+														state:'highlight',
+														scale:'mini',
+												},
+												
+												css:{'padding-top': '10px'
+												},
+											  }
+										]
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 3',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',cols:4},
+													input:{
+													name:'nombre',
+													width: 150,cols:8},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',cols:4},
+													input:{name:'apellido',width: 100,cols:8},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:4},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:8,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											
+												
+											]						
+									}
+							]
+						}
+					 ]
+						
+				}
+		]
+}).show();	
+Components.create('Window', {
+		//autoShow: true,
+		height: 210,
+		width: 550,
+		container: $('#S4'),
+		//resizable: true,
+		//minimizable: false,
+		closeAction:'destroy',
+		//constrain: true,
+	    state:'active',
+		behavior :'panel',
+		title: 'Accordeon Container',				
+		items: [
+		{
+							type: "AccordeonContainer",
+							region: 'center',
+							state:'active',
+							id:'miacordeon',													
+							icons: {
+								'header': "ui-icon-circle-minus",
+								'activeHeader': "ui-icon-circle-plus"
+								},
+							collapsible:true,
+							active:false,
+							listeners: {
+								activate: function(event, ui){
+											console.log("cargando "+ ui.newPanel.attr("id"));
+								}
+							},
+							heightStyle:'fill',	
+							items: [
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 1',													   
+										   height:'inherit',
+										   items: [
+												{type: 'InputField',
+												x:0,
+												y:150,
+												label: {html:'<b>&nbsp; Apellidos :</b>',},
+												input:{name:'apellido',width: 100,},
+												alignLabel: "left"
+											},
+											
+											{type: 'InputField',
+												x:100,
+												y:200,
+												label: {html:'<b>&nbsp;Direccion:</b>',},
+												input:{name:'direccion',width: 100,},
+												alignLabel: "left"
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'info',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											]
+									  },												  
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 2',													  
+										   height:'inherit',
+										   items: [														
+									     {type: 'InputField',
+												label: {html:'<b>ProgressBar:</b>',
+													cols:3},
+												input:{
+													type:'ProgressBar',
+													cols:9,
+													name:'valorProgress',
+													state:'error',
+													class:'striped',
+													width: '70%',
+													input:true,
+												},	
+									        },
+											{type: 'InputField',
+											 label: {html:'<b>Number Field</b>',
+													cols:3},
+											 input:{
+												type:'NumberField',
+												cols:9,
+												state:'error',
+												value:50,
+												input:true,
+												name:'edad'
+											  },	
+											},
+											{type: 'InputField',
+												label: {html:'<b>On-Off:</b>',
+														cols:3
+												},
+												input:{cols:9,
+														type:'onoffswitch',
+														id:'hi',
+														name:'on-off',
+														checked:false,
+														state:'highlight',
+														scale:'mini',
+												},
+												
+												css:{'padding-top': '10px'
+												},
+											  }
+										]
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 3',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',},
+													input:{
+													name:'nombre',
+													width: 150,},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',},
+													input:{name:'apellido',width: 100,},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											
+												
+											]						
+									}
+							]
+						}
+		]
+}).show();	
+Components.create('Window', {
+		//autoShow: true,
+		height: 210,
+		width: 550,
+		container: $('#S5'),
+		state:'warning',
+		//resizable: true,
+		//minimizable: false,
+		closeAction:'destroy',
+		//constrain: true,
+	    behavior :'panel',
+		title: 'Accordeon Container',				
+		items: [
+		{
+							type: "AccordeonContainer",
+							region: 'center',
+							state:'warning',
+							id:'miacordeon',													
+							icons: {
+								'header': "ui-icon-circle-minus",
+								'activeHeader': "ui-icon-circle-plus"
+								},
+							collapsible:true,
+							active:false,
+							listeners: {
+								activate: function(event, ui){
+											console.log("cargando "+ ui.newPanel.attr("id"));
+								}
+							},
+							heightStyle:'fill',	
+							items: [
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 1',													   
+										   height:'inherit',
+										   items: [
+												{type: 'InputField',
+												x:0,
+												y:150,
+												label: {html:'<b>&nbsp; Apellidos :</b>',},
+												input:{name:'apellido',width: 100,},
+												alignLabel: "left"
+											},
+											
+											{type: 'InputField',
+												x:100,
+												y:200,
+												label: {html:'<b>&nbsp;Direccion:</b>',},
+												input:{name:'direccion',width: 100,},
+												alignLabel: "left"
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'info',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											]
+									  },												  
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 2',													  
+										   height:'inherit',
+										   items: [														
+									     {type: 'InputField',
+												label: {html:'<b>ProgressBar:</b>',
+													cols:3},
+												input:{
+													type:'ProgressBar',
+													cols:9,
+													name:'valorProgress',
+													state:'error',
+													class:'striped',
+													width: '70%',
+													input:true,
+												},	
+									        },
+											{type: 'InputField',
+											 label: {html:'<b>Number Field</b>',
+													cols:3},
+											 input:{
+												type:'NumberField',
+												cols:9,
+												state:'error',
+												value:50,
+												input:true,
+												name:'edad'
+											  },	
+											},
+											{type: 'InputField',
+												label: {html:'<b>On-Off:</b>',
+														cols:3
+												},
+												input:{cols:9,
+														type:'onoffswitch',
+														id:'hi',
+														name:'on-off',
+														checked:false,
+														state:'highlight',
+														scale:'mini',
+												},
+												
+												css:{'padding-top': '10px'
+												},
+											  }
+										]
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 3',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',},
+													input:{
+													name:'nombre',
+													width: 150,},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',},
+													input:{name:'apellido',width: 100,},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											
+												
+											]						
+									}
+							]
+						}
+		]
+}).show();	
+Components.create('Window', {
+		//autoShow: true,
+		height: 210,
+		width: 550,
+		container: $('#S6'),
+		//resizable: true,
+		//minimizable: false,
+		behavior:'panel',
+		closeAction:'destroy',
+		//constrain: true,
+		title: 'Accordeon Container',				
+		items: [
+		{
+							type: "AccordeonContainer",
+							region: 'center',
+							id:'miacordeon',													
+							icons: {
+								'header': "ui-icon-circle-minus",
+								'activeHeader': "ui-icon-circle-plus"
+								},
+							collapsible:true,
+							active:false,
+							listeners: {
+								activate: function(event, ui){
+											console.log("cargando "+ ui.newPanel.attr("id"));
+								}
+							},
+							heightStyle:'fill',	
+							items: [
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 1',													   
+										   height:'inherit',
+										   items: [
+												{type: 'InputField',
+												x:0,
+												y:150,
+												label: {html:'<b>&nbsp; Apellidos :</b>',},
+												input:{name:'apellido',width: 100,},
+												alignLabel: "left"
+											},
+											
+											{type: 'InputField',
+												x:100,
+												y:200,
+												label: {html:'<b>&nbsp;Direccion:</b>',},
+												input:{name:'direccion',width: 100,},
+												alignLabel: "left"
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'info',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											]
+									  },												  
+									  {
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 2',													  
+										   height:'inherit',
+										   items: [														
+									     {type: 'InputField',
+												label: {html:'<b>ProgressBar:</b>',
+													cols:3},
+												input:{
+													type:'ProgressBar',
+													cols:9,
+													name:'valorProgress',
+													state:'error',
+													class:'striped',
+													width: '70%',
+													input:true,
+												},	
+									        },
+											{type: 'InputField',
+											 label: {html:'<b>Number Field</b>',
+													cols:3},
+											 input:{
+												type:'NumberField',
+												cols:9,
+												state:'error',
+												value:50,
+												input:true,
+												name:'edad'
+											  },	
+											},
+											{type: 'InputField',
+												label: {html:'<b>On-Off:</b>',
+														cols:3
+												},
+												input:{cols:9,
+														type:'onoffswitch',
+														id:'hi',
+														name:'on-off',
+														checked:false,
+														state:'highlight',
+														scale:'mini',
+												},
+												
+												css:{'padding-top': '10px'
+												},
+											  }
+										]
+									},
+									{
+										   type: 'AccordeonItem',                                                    
+										   title: 'Accordeon 3',													 
+										   items: [													   
+												{type: 'InputField',
+													x:10,
+													y:100,
+													label: {html:'<b>&nbsp; Nombre :</b>',},
+													input:{
+													name:'nombre',
+													width: 150,},
+													alignLabel: "left"
+												},	
+												{type: 'InputField',
+													x:0,
+													y:150,
+													label: {html:'<b>&nbsp; Apellidos :</b>',},
+													input:{name:'apellido',width: 100,},
+													alignLabel: "left"
+												},
+												
+												//Components.create('Separator');
+												{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'error',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											{type: 'InputField',
+												label: {html:'<b>DatePicker:</b>',
+														cols:2},
+												input:{
+													type:'DatePicker',
+													name:'fecha',
+													cols:10,
+													state:'highlight',
+													width: '130',
+													buttonPosition:'left',
+													icon:{
+														type:'fontawesome',
+														class:'fa-key',
+														color:'rgb(85, 85, 95)',
+														},
+												},
+
+											},
+											
+												
+											]						
+									}
+							]
+						}
+		]
+}).show();	
+		
+	});  
+	</script>	
+</head>
+<body>
+<div class="row">
+   <div  class="col-sm-12" style="height: inherit">
+   
+	<div  id="S1" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt"></P></font></strong> 
+	</div>
+	<div  id="S2" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt"></P></font></strong> 
+	</div>
+	<div  id="S3" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt"></P></font></strong> 
+	</div>
+	</div>
+</div>
+<div class="row">
+   <div  class="col-sm-12" style="height: inherit">
+   
+	<div  id="S4" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt"></P></font></strong> 
+	</div>
+	<div  id="S5" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt"></P></font></strong> 
+	</div>
+	<div  id="S6" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt"></P></font></strong> 
+	</div>
+	</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FileUploaderItem  ejemplo1</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="../components/items/fontawesomegrid.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+   
+		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../jqfu/jquery.fileupload.js"></script>
+		<script src="../jqfu/jquery.iframe-transport.js"></script>
+
+		<script src="../components/Components.js"></script>	
+        <script src="../functions.js"></script>		
+       <script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+		<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/Slider.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/AcordeonContainer.js"></script> 	
+<script src="../components/items/AccordeonItem.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TextArea.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<script src="../components/items/SplitterItem.js"></script>
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_accordeon.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<script src="../components/items/MenuItem.js"></script>	
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+
+
+<!--------------------------------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+<script src="../components/items/FileUploaderItem.js"></script>
+<script src="../jqfu/jquery.fileupload.js"></script>
+<script src="../jqfu/jquery.iframe-transport.js"></script>
+<script src="jqfu/jquery.fileupload-process.js"></script>			
+		
+		<style type="text/css">
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+	Components.create('Label',{
+				text: "SUBIENDO ARCHIVOS EN COLA...",
+				alignLabel: "left",
+				css:{position:'relative'},
+				width: 350,
+				height:25,
+				x:0,
+				y:0
+}).show();
+Components.create('FileUploader',{  	
+    x:220,
+	y:5,
+	id: 'SubirFotobt',
+	icon: 'images/Warehouse-icon16.png',
+	tooltip:'Escoger Archivos',
+	acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+	text:'Subir archivos',
+	filesize: 5000000,//5mb
+	multiple:false,
+	ValidationScript:true,	
+	autoUpload:false,
+	script:'php/uploadhandlerfp.php',	
+	formdata:[												
+			{	name  :'folder', value: 'upload' },
+			{	name  :'UploadType', value: '' }
+	],
+	listeners: {
+		fileuploaddone: function(e, data) {
+			console.log("Trigger FileuploadDone");
+				$.each(data.result.files, function (index, file) {
+                $('<p/>').html('Archivo Enviado '+ file.name).appendTo(document.body);
+            })	
+		},
+		fileuploadadd: function(e, data) {
+		console.log("Trigger fileuploadadd");
+			//Se pasa por esta zona por cada archivo agregado a la cola
+			$.each(data.files, function (index, file) {
+			$('<p/>').html('<b>Archivo Agregado a la Cola:</b>  ' +file.name + '<div id="'+file.lastModified+'"></div>').appendTo(document.body);
+			//Para comenzar a subir archivos basta con lanzar  data.submit();, esto lo realizara un boton asociado a cada archivo	
+			Components.create('Button',{
+				id:"BTUP"+file.lastModified,			
+				container:$('#'+file.lastModified),
+				scale: 'small',
+			    state:'info',
+				text:'Subir: '+file.name,
+				icon: 
+				{
+					type:'glyphicon',
+					class:'glyphicon-cloud-upload',  
+					position:'left'
+														
+				},
+				tooltip:'texto + icono',
+				CodeHelper:data,
+				css:{position:'relative'},				
+				handler: function(e) {
+					var $thisButton = e.data.OBJ;
+					var $data = $thisButton.config.CodeHelper;
+					//se lanza el proceso final.
+					$data.submit();
+					$thisButton.destroy();
+				}  
+			}).show();
+			});
+		},
+		fileuploadprogressall: function(e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			Components.getComponentById('progress').setValue(progress);
+		},
+		fileuploadprocessstart: function(e,data) {
+			Components.getComponentById('progress').setValue(0);
+			console.log("fileuploadprocessstart");
+		},
+		fileuploadprocessalways: function(e,data) {
+			var index = data.index;
+            file = data.files[index];
+			if(file.error) {
+				Components.getComponentById("BTUP"+file.lastModified).disable();
+				$('#'+file.lastModified).append('<br>')
+                .append($('<span class="text-danger"/>').text(file.error));
+			}
+		}
+		
+	}
+}).show();
+Components.create('ProgressBar',{  	
+        id:"progress",
+        x:325,
+		y:2,
+        state:'info',
+        animate:true,
+        class:'striped',
+        text: "",
+        align: "left",
+        width: 250,
+        height: 10,
+		value:0,
+      	color:'#123456',
+		textcolorstart:'#0000',
+		textcolorend:'#FFF',
+}).show();
+
+	});
+  </script>
+</head>
+<body>
+</body>
+</html>

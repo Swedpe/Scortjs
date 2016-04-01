@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>COMBOBOX FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/Slider.js"></script>
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />	
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('Window', {
+title: 'CARGANDO DATOS DESDE AJAX',
+state:'active',
+width:640,
+height:125,
+minimizable: false,
+id: 'windowModuloTraduccion',
+items: [{
+	type: 'Form',
+	id: 'formModuloTraduccion',
+	border: false,
+	defaultType: "textfield",																	
+	fieldDefaults: {
+		labelWidth: 60
+	},
+	items: [				   
+		
+		{type: 'InputField',
+		label: {html:'<b>Llenar datos AJAX</b>',
+				cols:3
+		},
+		input:{cols:9,
+				type:'ComboBox',	  
+				id:"mycombo",
+				store: {
+					id: 'idStoredata',
+					model: 'MyData',
+					pageSize: 5,
+					fields: [
+						'value', 
+						'label'                               
+					],
+					proxy: {
+						reader:{
+							type: 'POST',
+							url: 'php/dataphp.php',
+							extraParams: {
+							dataset:'sampledata3'									
+							}
+						},
+					}
+				},
+				valueField: 'value',
+				displayField: 'label',
+				mode:'local',
+		},
+		
+		css:{'padding-top': '10px'
+		},			
+		},	
+		{
+		type:'FreeDiv',	
+		freeHtml:true,
+		html:'<div class="form-group" id="ButtonsMid"><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
+		},
+	],
+	}]
+}).show();
+Components.create('Button', {
+		container:$('.btnAceptar'),
+		scale: 'medium',
+		state:'active',
+		text:'Cargar desde AJAX',
+		icon:{
+			type:'fontawesome',
+			class:'fa-align-left',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Tamaño Personalizado',	
+		handler: function() {
+			 Components.getComponentById('mycombo').getStore().loadPage(1);	
+			}  
+		});
+Components.create('Button', {		
+		container:$('.btnCancelar'),
+		scale: 'medium',
+		text:'Leer Todo el combo',
+		state:'info',
+		icon:{
+			type:'fontawesome',
+			class:'fa-database',
+			color:'black',
+			position:'left'
+		},
+		tooltip:'Leer toda la data',
+		handler: function() {
+				 Components.getComponentById('mycombo').getStore().loadPage(2);	
+			}   
+	   });
+}); 
+//agregar los 2 botones a el html pre definido
+
+
+
+</script>	
+<body>
+<div class="row">
+   <div  class="col-sm-12" style="height: inherit">
+   
+	<div  id="window" class="col-sm-4">
+	</div>
+	<div  id="posit1" class="col-sm-4" >
+	</div>
+	<div  id="posit2" class="col-sm-4" >
+	</div>
+</div>
+</div>
+</body>
+</script>
+</head>
+</html>

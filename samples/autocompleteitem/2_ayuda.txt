@@ -1,0 +1,7 @@
+<p>
+Crea un AutoCompleteInputField con etiqueta,con un largo de 128px y con una fuente de datos dinamica. 
+<br>Mediante el uso de la opcion sourcefunction se puede solicitar datos ajax de una fuente php, 
+<br>en este caso php/dataphp.php</p>
+
+
+ 

@@ -1,0 +1,101 @@
+/* 
+    Document   : css_toolbar
+    Created on : 25-feb-2014, 18:59:34
+    Linked in  : BPT/top.php
+    Description:
+        Estilos para el toolbar
+*/
+
+.toolBar {
+	width:100%;
+    letter-spacing: .01em;
+    background: rgb(212, 223, 240);
+    border: 1px solid #AAA;
+    display: inline-block;
+    font-family: tahoma,arial,verdana,sans-serif;
+    font-size: 11px;
+    position: relative;
+    padding: 2px;
+}
+
+.titleToolbar {
+    display: none;
+    text-align: left;
+    font-weight: bold;
+    font-size: 9px;
+    color: #FFF;
+    background-color: #125EB1;
+    position: relative;
+    padding-left: 3px;
+    height: 12px;
+}
+
+.toolBar-floating {
+    border-color: #125EB1;
+    position: absolute;
+    margin: 2px;
+}
+
+.toolBar-floating .titleToolbar {
+    display: block;
+}
+
+.toolBar-floating .btnClose {
+    background-image: url("../../images/close8.png");
+    background-position: 50% 50%;
+    border: thin solid #125EB1;
+    height: 10px;
+    width: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+/* ----- components inside toolbar ----- */
+.toolBar .labelItem {
+    top: calc(50% - 7px);
+}
+
+.toolBar .inputField {
+    top: calc(50% - 11px);
+}
+
+.toolBar .splitButtonItem button {
+    background: transparent;
+}
+
+.toolBar .inputField, .toolBar .buttonItem, .toolBar .labelItem, .buttonItem .sliderItem, .toolBar .splitButtonItem {
+    float: left;
+    position: relative;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.toolBar.error,.toolBar.error .buttonItem{
+  background:rgb(173, 59, 60);
+  color: #fff;
+}
+
+.toolBar.highlight,.toolBar.highlight .buttonItem{
+background: rgb(207, 186, 67);
+border: 1px solid rgb(156, 135, 14);
+color: black;
+}
+.toolBar.active,.toolBar.active .buttonItem {
+  background: rgb(90, 183, 83);
+  border: 1px solid #267D1F;
+  color: #fff;
+}
+.toolBar.warning,.toolBar.warning .buttonItem{
+ background: rgb(190, 133, 40);
+border: 1px solid rgb(144, 102, 33);
+  color: #fff;
+}
+.toolBar.info,.toolBar.info .buttonItem{
+  background: rgba(47, 98, 139, 1);
+  border: 1px solid rgb(15, 55, 88);
+  color: #fff;
+}
+.toolBar.default,.toolBar.default .buttonItem{
+   background: rgb(213, 206, 206);
+  color: black;
+}

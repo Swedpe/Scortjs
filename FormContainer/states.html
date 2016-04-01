@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Form Container states</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>
+<script src="../functions.js"></script>		
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>   
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../components/SimpleDateTime/jquery.simple-dtpicker.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/colorPicker.css">
+
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Form',{
+    id: 'TestForm',
+	state:'error',
+	container: $('#ejemplo1'),
+	width:400,
+	border: false,														
+	items:[
+		{type: 'InputField',
+		id:'colorincolorado',
+		label: {html:'<b>Color Picker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'colorPicker',
+		preferredFormat: "hex",
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>DatePicker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'DatePicker',
+		state:'error',
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>Input</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			icon:{
+				type:'fontawesome',
+				class:'fa-envelope',
+				color:'rgb(85, 85, 95)'
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log('validate state OK');
+				event.data.OBJ.changeInputState('active');
+				},
+				onValidateFail: function(event) {
+				console.log('validate state Fail');
+				event.data.OBJ.changeInputState('error');
+				}
+			},
+			validar:{											
+				'longitud':{
+				'min':6		
+				},
+				'texto' : true				   
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>validar url</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'http://www.google.com.pe',
+			icon:{
+				type:'fontawesome',
+				class:'fa-refresh',
+				color:'rgb(85, 85, 95)'
+			},
+			validar:{		
+				'url':true,				   
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log("OK");
+				iconX = {class:'fa-check',type:'fa',color:'green',
+						};
+				event.data.OBJ.changeIcon(iconX);
+				},
+				onValidateFail: function(event) {
+				console.log("fail");
+				iconY = {class:'fa-times',type:'fa',color:'red'};
+				event.data.OBJ.changeIcon(iconY);
+				}
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>ProgressBar</b>',
+				cols:2},
+		input:{
+			type:'ProgressBar',
+			cols:10,
+			state:'error',
+			class:'striped',
+			width: '100%',
+			input:true,
+			name:'workComplete'
+		  },	
+		},
+		{type: 'InputField',
+		label: {html:'<b>Number</b>',
+				cols:2},
+		input:{
+			type:'NumberField',
+			cols:10,
+			state:'error',
+			value:50,
+			input:true,
+			name:'YearsOld'
+		  },	
+		}
+   ]	
+}).show();
+Components.create('Form',{
+    id: 'TestForm',
+	state:'highlight',
+	container: $('#ejemplo2'),
+	width:400,
+	border: false,														
+	items:[
+		{type: 'InputField',
+		label: {html:'<b>DatePicker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'DatePicker',
+		state:'highlight',
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>Input</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			icon:{
+				type:'fontawesome',
+				class:'fa-envelope',
+				color:'rgb(85, 85, 95)'
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log('validate state OK');
+				event.data.OBJ.changeInputState('active');
+				},
+				onValidateFail: function(event) {
+				console.log('validate state Fail');
+				event.data.OBJ.changeInputState('error');
+				}
+			},
+			validar:{											
+				'longitud':{
+				'min':6		
+				},
+				'texto' : true				   
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>validar url</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'http://www.google.com.pe',
+			icon:{
+				type:'fontawesome',
+				class:'fa-refresh',
+				color:'rgb(85, 85, 95)'
+			},
+			validar:{		
+				'url':true,				   
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log("OK");
+				iconX = {class:'fa-check',type:'fa',color:'green',
+						};
+				event.data.OBJ.changeIcon(iconX);
+				},
+				onValidateFail: function(event) {
+				console.log("fail");
+				iconY = {class:'fa-times',type:'fa',color:'red'};
+				event.data.OBJ.changeIcon(iconY);
+				}
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>ProgressBar</b>',
+				cols:2},
+		input:{
+			type:'ProgressBar',
+			cols:10,
+			state:'highlight',
+			class:'striped',
+			width: '100%',
+			input:true,
+			name:'workComplete'
+		  },	
+		},
+		{type: 'InputField',
+		label: {html:'<b>Number</b>',
+				cols:2},
+		input:{
+			type:'NumberField',
+			cols:10,
+			state:'highlight',
+			value:50,
+			input:true,
+			name:'YearsOld'
+		  },	
+		}
+   ]	
+}).show();
+Components.create('Form',{
+    id: 'TestForm',
+	state:'active',
+	container: $('#ejemplo3'),
+	width:400,
+	border: false,														
+	items:[
+		{type: 'InputField',
+		label: {html:'<b>DatePicker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'DatePicker',
+		state:'active',
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>Input</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			icon:{
+				type:'fontawesome',
+				class:'fa-envelope',
+				color:'rgb(85, 85, 95)'
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log('validate state OK');
+				event.data.OBJ.changeInputState('active');
+				},
+				onValidateFail: function(event) {
+				console.log('validate state Fail');
+				event.data.OBJ.changeInputState('error');
+				}
+			},
+			validar:{											
+				'longitud':{
+				'min':6		
+				},
+				'texto' : true				   
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>validar url</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'http://www.google.com.pe',
+			icon:{
+				type:'fontawesome',
+				class:'fa-refresh',
+				color:'rgb(85, 85, 95)'
+			},
+			validar:{		
+				'url':true,				   
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log("OK");
+				iconX = {class:'fa-check',type:'fa',color:'green',
+						};
+				event.data.OBJ.changeIcon(iconX);
+				},
+				onValidateFail: function(event) {
+				console.log("fail");
+				iconY = {class:'fa-times',type:'fa',color:'red'};
+				event.data.OBJ.changeIcon(iconY);
+				}
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>ProgressBar</b>',
+				cols:2},
+		input:{
+			type:'ProgressBar',
+			cols:10,
+			state:'active',
+			class:'striped',
+			width: '100%',
+			input:true,
+			name:'workComplete'
+		  },	
+		},
+		{type: 'InputField',
+		label: {html:'<b>Number</b>',
+				cols:2},
+		input:{
+			type:'NumberField',
+			cols:10,
+			state:'active',
+			value:50,
+			input:true,
+			name:'YearsOld'
+		  },	
+		}
+   ]	
+}).show();
+Components.create('Form',{
+    id: 'TestForm',
+	state:'warning',
+	container: $('#ejemplo4'),
+	width:400,
+	border: false,														
+	items:[
+		{type: 'InputField',
+		label: {html:'<b>DatePicker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'DatePicker',
+		state:'warning',
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>Input</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			icon:{
+				type:'fontawesome',
+				class:'fa-envelope',
+				color:'rgb(85, 85, 95)'
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log('validate state OK');
+				event.data.OBJ.changeInputState('active');
+				},
+				onValidateFail: function(event) {
+				console.log('validate state Fail');
+				event.data.OBJ.changeInputState('error');
+				}
+			},
+			validar:{											
+				'longitud':{
+				'min':6		
+				},
+				'texto' : true				   
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>validar url</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'http://www.google.com.pe',
+			icon:{
+				type:'fontawesome',
+				class:'fa-refresh',
+				color:'rgb(85, 85, 95)'
+			},
+			validar:{		
+				'url':true,				   
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log("OK");
+				iconX = {class:'fa-check',type:'fa',color:'green',
+						};
+				event.data.OBJ.changeIcon(iconX);
+				},
+				onValidateFail: function(event) {
+				console.log("fail");
+				iconY = {class:'fa-times',type:'fa',color:'red'};
+				event.data.OBJ.changeIcon(iconY);
+				}
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>ProgressBar</b>',
+				cols:2},
+		input:{
+			type:'ProgressBar',
+			cols:10,
+			state:'warning',
+			class:'striped',
+			width: '100%',
+			input:true,
+			name:'workComplete'
+		  },	
+		},
+		{type: 'InputField',
+		label: {html:'<b>Number</b>',
+				cols:2},
+		input:{
+			type:'NumberField',
+			cols:10,
+			state:'warning',
+			value:50,
+			input:true,
+			name:'YearsOld'
+		  },	
+		}
+   ]	
+}).show();
+Components.create('Form',{
+    id: 'TestForm',
+	state:'info',
+	container: $('#ejemplo5'),
+	width:400,
+	border: false,														
+	items:[
+		{type: 'InputField',
+		label: {html:'<b>DatePicker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'DatePicker',
+		state:'info',
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>Input</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			icon:{
+				type:'fontawesome',
+				class:'fa-envelope',
+				color:'rgb(85, 85, 95)'
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log('validate state OK');
+				event.data.OBJ.changeInputState('active');
+				},
+				onValidateFail: function(event) {
+				console.log('validate state Fail');
+				event.data.OBJ.changeInputState('error');
+				}
+			},
+			validar:{											
+				'longitud':{
+				'min':6		
+				},
+				'texto' : true				   
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>validar url</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'http://www.google.com.pe',
+			icon:{
+				type:'fontawesome',
+				class:'fa-refresh',
+				color:'rgb(85, 85, 95)'
+			},
+			validar:{		
+				'url':true,				   
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log("OK");
+				iconX = {class:'fa-check',type:'fa',color:'green',
+						};
+				event.data.OBJ.changeIcon(iconX);
+				},
+				onValidateFail: function(event) {
+				console.log("fail");
+				iconY = {class:'fa-times',type:'fa',color:'red'};
+				event.data.OBJ.changeIcon(iconY);
+				}
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>ProgressBar</b>',
+				cols:2},
+		input:{
+			type:'ProgressBar',
+			cols:10,
+			state:'info',
+			class:'striped',
+			width: '100%',
+			input:true,
+			name:'workComplete'
+		  },	
+		},
+		{type: 'InputField',
+		label: {html:'<b>Number</b>',
+				cols:2},
+		input:{
+			type:'NumberField',
+			cols:10,
+			state:'info',
+			value:50,
+			input:true,
+			name:'YearsOld'
+		  },	
+		}
+   ]	
+}).show();
+Components.create('Form',{
+    id: 'TestForm',
+	//state:'error',
+	container: $('#ejemplo6'),
+	width:400,
+	border: false,														
+	items:[
+		{type: 'InputField',
+		label: {html:'<b>DatePicker</b>',
+				cols:2},
+		input:{cols:10,
+		type:'DatePicker',
+		//state:'error',
+		width: '130',
+		 listeners: {
+			onValidateSucess: function() {
+			alert("onValidateSucess");
+			}
+		  }
+		},
+		 css:{'padding-top': '10px'},
+		},
+		
+		{type: 'InputField',
+		label: {html:'<b>Input</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			icon:{
+				type:'fontawesome',
+				class:'fa-envelope',
+				color:'rgb(85, 85, 95)'
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log('validate state OK');
+				event.data.OBJ.changeInputState('active');
+				},
+				onValidateFail: function(event) {
+				console.log('validate state Fail');
+				event.data.OBJ.changeInputState('error');
+				}
+			},
+			validar:{											
+				'longitud':{
+				'min':6		
+				},
+				'texto' : true				   
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>validar url</b>',
+				cols:2},
+		input:{cols:10,
+			width: '100%',
+			placeholder:'http://www.google.com.pe',
+			icon:{
+				type:'fontawesome',
+				class:'fa-refresh',
+				color:'rgb(85, 85, 95)'
+			},
+			validar:{		
+				'url':true,				   
+			},
+			listeners: {
+				onValidateSucess: function(event) {
+				console.log("OK");
+				iconX = {class:'fa-check',type:'fa',color:'green',
+						};
+				event.data.OBJ.changeIcon(iconX);
+				},
+				onValidateFail: function(event) {
+				console.log("fail");
+				iconY = {class:'fa-times',type:'fa',color:'red'};
+				event.data.OBJ.changeIcon(iconY);
+				}
+			},
+		  },
+		},
+		{type: 'InputField',
+		label: {html:'<b>ProgressBar</b>',
+				cols:2},
+		input:{
+			type:'ProgressBar',
+			cols:10,
+			//state:'error',
+			class:'striped',
+			width: '100%',
+			input:true,
+			name:'workComplete'
+		  },	
+		},
+		{type: 'InputField',
+		label: {html:'<b>Number</b>',
+				cols:2},
+		input:{
+			type:'NumberField',
+			cols:10,
+			//state:'error',
+			value:50,
+			input:true,
+			name:'YearsOld'
+		  },	
+		}
+   ]	
+}).show();
+});  
+</script>	
+</head>
+<body>
+<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 14pt">FORM STATES</P></font></strong>
+ <div class="row">
+ <div  id="ejemplo1" class="col-sm-4" style="height:300px" ><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORM - ERROR</P></font></strong></div>
+ <div id="ejemplo2" class="col-sm-4" style="height: 300px"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORM - HIGHLIGHT</P></font></strong> </div>
+ <div id="ejemplo3" class="col-sm-4" style="height: 300px"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORM - ACTIVE</P></font></strong> </div>
+ </div>
+ <div>
+   <div id="ejemplo4" class="col-sm-4" style="height: 300px"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORM - WARNING</P></font></strong> </div>
+  <div id="ejemplo5" class="col-sm-4" style="height: 300px"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORM - INFO</P></font></strong> </div>
+  <div id="ejemplo6" class="col-sm-4" style="height: 300px"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORM - DEFAULT</P></font></strong> </div>
+ </div>
+
+</body>
+</html>

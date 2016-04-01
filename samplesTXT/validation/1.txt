@@ -1,0 +1,61 @@
+Components.create('TextField',{						
+						x:0,
+						y:60,	
+						label: '<b>&nbsp;Validacion Email :</b>',
+						width: 150,
+						alignLabel: "left",
+						validar:{
+								'email':true
+						}		
+}).show();
+
+Components.create('TextField',{	
+								x:0,
+								y: 90,
+								label: '<b>&nbsp;Validacion Longitud :</b> min 3 - max 4',								
+								width: 128,
+								alignLabel: "left",																											
+								validar:{											
+										'longitud':{
+														'min':3,
+														'max':4			
+												   }				   
+								}
+}).show();
+
+Components.create('TextField',{	
+								x:0,
+								y: 120,
+								label: '<b>&nbsp;Validacion Requerido :</b>',								
+								width: 128,
+								alignLabel: "left",
+								labelWidth: 186,																				
+								validar:{											
+										'requerido': true,				   
+								}
+}).show();
+Components.create('TextField',{	
+								x:0,
+								y: 150,
+								label: '<b>&nbsp;Validacion Entero :</b>',								
+								width: 128,
+								alignLabel: "left",
+								labelWidth: 186,																				
+								validar:{											
+										'numero' : {
+														'tipo':'entero'																												
+												   }				   
+								}
+}).show();
+
+Components.create('TextField',{	
+								x:0,
+								y: 180,
+								label: '<b>&nbsp;Validacion Texto :</b>',								
+								width: 128,
+								alignLabel: "left",
+								labelWidth: 186,																				
+								validar:{											
+										'texto' : true				   
+								}
+}).show();

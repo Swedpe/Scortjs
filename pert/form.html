@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 1</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+		<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/Slider.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/AcordeonContainer.js"></script> 	
+<script src="../components/items/AccordeonItem.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TextArea.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_accordeon.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<script src="../components/items/MenuItem.js"></script>	
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+
+
+<!--------------------------------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+console.log("no work");
+Components.create('SvgContainer',{
+container: $('#ejemplo1'),
+region: 'center',
+id:'hola',
+height:150,
+items:[
+	{
+	type: 'Pert',						
+	id:'PertTree',
+	 listeners: {
+		onNodeSelect: function(e) {
+			//activar los controles de un nodo. este listener afecta a todos los nodos.
+			Components.getComponentById('MenuSup').enable();
+			Components.getComponentById('BotonMenuShapes').enable();
+			Components.getComponentById('BotonParaCirculo').enable();
+			Components.getComponentById('BotonParaHexagono').enable();
+			Components.getComponentById('BotonParacuadrado').enable();
+			//el botón que habilita el arrastre
+			Components.getComponentById('BtnArrastre').enable();
+			console.log()
+			if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+				Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+				Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+			}
+			else{
+				$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+				Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+			}
+			
+			
+		}
+	},
+			
+	items:[
+	{
+			 PertId:1,
+			 type: 'GrafoNodo', 
+			 X:15,
+			 Y:14,
+			 shape:'hexagono',
+			 internalData:{
+				descripcion:'Hexagono',
+				duracion:'10h',
+				holgura:'8d',
+				visibleId:'01'
+				},
+			},
+			{
+					
+			 type: 'GrafoNodo',
+			 PertId:2,								 
+			 X:45,
+			 Y:14,						 
+			 //Sucesoras:[3],
+			 internalData:{
+				descripcion:'Circular',
+				duracion:'1h',
+				holgura:'1d',
+				visibleId:'02'
+				},
+			},
+			{
+					
+			 type: 'GrafoNodo',
+			 PertId:2,								 
+			 X:80,
+			 Y:14,						 
+			 shape:'cuadrado',
+			 internalData:{
+				descripcion:'Cuadrado',
+				duracion:'1h',
+				holgura:'1d',
+				visibleId:'03'
+				},
+			},
+			
+		]
+	}
+	]
+}).show();
+Components.create('SvgContainer',{
+		 container: $('#ejemplo2'),
+		 region: 'center',
+		 id:'PertSVG1',
+        items:[
+						{
+						type: 'Pert',						
+						id:'PertTree2',
+						 container: $('#ejemplo2'),
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParaHexagono').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						
+						items:[
+								{	
+								 type: 'GrafoNodo', 
+								 X:15,
+								 Y:25,
+								// Predecesoras:[3],
+								 PertId:1,	
+								 template:{
+									zones: [1,1,1],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'N1'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'visibleId',
+									3:'descripcion',													
+									6:'duracion'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:45,
+								 Y:25,
+								 PertId:2,	
+								 template:{
+									zones: [1,1,2],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'N2'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'descripcion',
+									3:'descripcion',													
+									6:'visibleId',
+									7:'holgura'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:75,
+								 Y:25,
+								 PertId:3,	
+								 template:{
+									zones: [1,2,1],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'N3'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'descripcion',
+									3:'visibleId',													
+									6:'duracion',
+									4:'holgura'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:105,
+								 Y:25,
+								 PertId:4,	
+								 template:{
+									zones: [2,3,2],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'N4'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'descripcion',
+									1:'holgura',
+									3:'descripcion',													
+									6:'duracion',
+									7:'visibleId',
+									4:'holgura',
+									5:'holgura'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:135,
+								 Y:25,
+								 PertId:5,	
+								 template:{
+									zones: [3,2,1],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'N5'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'holgura',
+									1:'visibleId',
+									2:'duracion',
+									3:'descripcion',													
+									6:'duracion',
+									4:'holgura'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:165,
+								 Y:25,
+								 PertId:6,	
+								 template:{
+									zones: [3,1,1],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'N6'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'holgura',
+									1:'visibleId',
+									2:'duracion',
+									3:'duracion',													
+									6:'visibleId'
+									},
+								},		
+							]
+						}
+						]
+        
+    }).show();
+  Components.create('SvgContainer',{ 
+				 container: $('#ejemplo3'),
+				 region: 'center',
+				 id:'PertSVG3',
+				 items:[
+						{
+						type: 'Pert',						
+						id:'PertTree3',
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParaHexagono').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						
+						items:[
+								{
+								 PertId:1,
+								 type: 'GrafoNodo', 
+								 X:15,
+								 Y:36,
+								 shape:'hexagono',
+								 internalData:{
+									descripcion:'Swedpe ScortJs',
+									duracion:'10h',
+									holgura:'8d',
+									visibleId:'100'
+									},
+								},
+								{
+								 		
+								 type: 'GrafoNodo',
+								 PertId:2,								 
+								 X:15,
+								 Y:14,						 
+								 Sucesoras:[3],
+								 internalData:{
+									descripcion:'Framework',
+									duracion:'58h',
+									holgura:'6d',
+									visibleId:'101'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:45,
+								 Y:25,
+								 Predecesoras:[2],
+								 Sucesoras:[4],
+								 PertId:3,	
+								 internalData:{						
+									descripcion:'Pre Finish',
+									duracion:'87h',
+									holgura:'1d',
+									visibleId:'102'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:85,
+								 Y:25,
+								 Predecesoras:[3],
+								 PertId:4,	
+								 template:{
+									zones: [1,1,1],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
+								},
+								 internalData:{						
+									descripcion:'Finish',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'103'
+									},
+									DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
+									0:'descripcion',
+									3:'descripcion',													
+									6:'duracion'
+									},
+								},								
+							]
+						}
+						]
+			
+			
+        
+    }).show();
+Components.create('SvgContainer',{ 
+				 region: 'center',
+				 container: $('#ejemplo4'),
+				 id:'PertSVG4',
+				 width:1054,
+				 items:[
+						{
+						type: 'Pert',						
+						id:'PertTree4',
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParaHexagono').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						
+						items:[
+								{
+								 		
+								 type: 'GrafoNodo',
+								 PertId:2,								 
+								 X:15,
+								 Y:14,						 
+								 Sucesoras:[3],
+								 internalData:{
+									descripcion:'Nodo Inicial',
+									duracion:'58h',
+									holgura:'6d',
+									visibleId:'101'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:45,
+								 Y:25,
+								 Predecesoras:[2],
+								 Sucesoras:[4],
+								 PertId:3,	
+								 internalData:{						
+									descripcion:'Nodo 2',
+									duracion:'87h',
+									holgura:'1d',
+									visibleId:'102'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:75,
+								 Y:35,
+								 Predecesoras:[3],
+								 Sucesoras:[5],
+								 PertId:4,	
+								 internalData:{						
+									descripcion:'Nodo 3',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'103'
+									},
+								},
+                                {	
+								 type: 'GrafoNodo', 
+								 X:105,
+								 Y:35,
+								 Predecesoras:[4],
+								 Sucesoras:[6],
+								 PertId:5,	
+								 internalData:{						
+									descripcion:'Nodo 4',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'104'
+									},
+								},
+                                {	
+								 type: 'GrafoNodo', 
+								 X:135,
+								 Y:35,
+								 Predecesoras:[5],
+								 PertId:6,	
+								 internalData:{						
+									descripcion:'Nodo 5',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'105'
+									},
+								},						  
+							]
+						}
+						]
+			
+			}).show();
+Components.create('SvgContainer',{
+				 container: $('#ejemplo5'),
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'PertSVG',
+				 items:[
+						{
+						type: 'Pert',						
+						id:'PertTree',
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParaHexagono').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						
+						items:[
+								{
+								 		
+								 type: 'GrafoNodo',
+								 PertId:1,								 
+								 X:15,
+								 Y:30,						 
+								 Sucesoras:[2],
+								 internalData:{
+									descripcion:'Inicial',
+									//duracion:'58h',
+									holgura:'6d',
+									visibleId:'01'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:45,
+								 Y:30,
+								shape:'cuadrado',
+								Predecesoras:[1],
+								 Sucesoras:[3,4],
+								 PertId:2,	
+								 internalData:{						
+									descripcion:'Nodo A',
+									duracion:'87h',
+									holgura:'1d',
+									visibleId:'A'
+									},
+								},
+								{	
+								 type: 'GrafoNodo', 
+								 X:85,
+								 Y:12,
+								shape:'cuadrado',
+								Predecesoras:[2],
+								 PertId:3,	
+								 Sucesoras:[5,6],
+								 internalData:{						
+									descripcion:'Nodo B',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'B'
+									},
+								},
+	                            {
+								 type: 'GrafoNodo', 
+								 X:85,
+								 Y:45,
+								 shape:'cuadrado',
+								 Predecesoras:[2],
+								 PertId:4,	
+								 Sucesoras:[6,7,9],
+								 internalData:{						
+									descripcion:'Nodo C',
+									duracion:'1h',
+									holgura:'1d',
+									visibleId:'C'
+									},
+								},
+		{
+		 type: 'GrafoNodo', 
+		 X:130,
+		 Y:12,
+		 shape:'cuadrado',
+		 Predecesoras:[3],
+		 PertId:5,	
+		 Sucesoras:[8],
+		 internalData:{						
+			descripcion:'Nodo D',
+			duracion:'1h',
+			holgura:'1d',
+			visibleId:'D'
+			},
+		},
+		{
+		 type: 'GrafoNodo', 
+		 X:130,
+		 Y:35,
+		 shape:'cuadrado',
+		 Predecesoras:[3,4],
+		 PertId:6,	
+		 Sucesoras:[10],
+		 internalData:{						
+			descripcion:'Nodo E',
+			duracion:'1h',
+			holgura:'1d',
+			visibleId:'E'
+			},
+		},
+		{
+		 type: 'GrafoNodo', 
+		 X:145,
+		 Y:58,
+		 shape:'cuadrado',
+		 Predecesoras:[4],
+		 PertId:7,	
+		 Sucesoras:[8],
+		 internalData:{						
+			descripcion:'Nodo F',
+			duracion:'1h',
+			holgura:'1d',
+			visibleId:'F'
+			},
+		},
+		{
+		 type: 'GrafoNodo', 
+		 X:205,
+		 Y:12,
+		 shape:'cuadrado',
+		 Predecesoras:[5,7],
+		 PertId:8,
+		 Sucesoras:[10],
+		 internalData:{						
+			descripcion:'Nodo G',
+			duracion:'1h',
+			holgura:'1d',
+			visibleId:'G'
+			},
+		},
+		{
+		 type: 'GrafoNodo', 
+		 X:165,
+		 Y:82,
+		 shape:'cuadrado',
+		 Predecesoras:[4],
+		 PertId:9,	
+		 Sucesoras:[10],	
+		 internalData:{						
+			descripcion:'Nodo H',
+			duracion:'1h',
+			holgura:'1d',
+			visibleId:'H'
+			},
+		},
+						{
+						 type: 'GrafoNodo', 
+						 X:245,
+						 Y:35,
+						 Predecesoras:[6,8,9],
+						 PertId:10,	
+						 internalData:{						
+							descripcion:'Final',
+							duracion:'1h',
+							holgura:'1d',
+							visibleId:'10'
+							},
+						}
+							]
+						}
+						]
+			
+			}).show();
+});  
+</script>	
+</head>
+<body>
+<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 14pt">NODOS PERT</P></font></strong>
+ <div class="row">
+ <div  id="ejemplo1" class="col-sm-4" ><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">FORMA - NODOS</P></font></strong> <br><br></div>
+ <div id="ejemplo2" class="col-sm-8" ><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> DIVISION INTERNA</P></font></strong> </div>
+ </div>
+ <div class="row">
+ <div  id="ejemplo3" class="col-sm-6"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">AUTOCOMPLETE TEXT</P></font></strong> <br><br></div>
+ <div id="ejemplo4" class="col-sm-6"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">VALIDACIONES TEXT</P></font></strong> </div>
+ </div>
+  <div class="row">
+  <div id="ejemplo5" class="col-sm-12"><strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">VALIDACIONES TEXT</P></font></strong> </div>
+  </div>
+</body>
+</html>

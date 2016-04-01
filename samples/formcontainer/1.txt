@@ -1,0 +1,77 @@
+Components.create('Window', {
+                                        title: 'Ejemplo Form Window',
+                                        height: 220,
+                                        width: 465,
+                                        minimizable: false,
+                                        id: 'windowModuloTraduccion',
+                                        items: [{
+                                            type: 'Form',
+                                            id: 'formModuloTraduccion',
+                                            border: false,
+                                            defaultType: "textfield",																	
+                                            fieldDefaults: {
+                                                labelWidth: 60
+                                            },
+                                            items: [
+                                                       
+                                                        {
+                                                            type: 'TextField',
+                                                            label: 'Nombre',
+                                                            labelWidth: 150,
+                                                            name: 'Nombre'
+                                                        },
+                                                        {
+                                                            type: 'TextField',
+                                                            label: ' Apellidos',
+                                                            labelWidth: 150,
+                                                            name: 'Apellido'
+                                                        },
+                                                        {
+                                                            type: 'TextField',
+                                                            label: 'Direccion de destino',
+                                                            labelWidth: 150,
+                                                            name: 'DirDestino'
+                                                        },
+                                                        {
+                                                            type: 'NumberField',
+                                                             label: 'Edad',
+                                                            labelWidth: 150,
+                                                            name: 'DirEdad'
+                                                        },
+														{
+																type: 'ComboBox',
+																label: 'Tipo Variable',
+																labelWidth: 150,
+																displayField: 'TipoVariable',
+																valueField: 'TipoVariable',
+																store: {
+																	id: 'DataTypes',
+																	fields: ['IdTipoVariable','TipoVariable'],
+																	data: [
+																		{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+																		{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+																		{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+																		{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+																	]
+																}
+													 }
+                                                    ],
+                                            buttons: [
+                                                { 
+                                                    text: 'show form data',			
+                                                    x: 30,
+                                                    handler: function() {
+                                                        console.log(Components.getComponentById('formModuloTraduccion').getValues());
+                                                    }
+                                                },
+                                                { 
+                                                    text: 'PC_Cancelar_00154' ,
+                                                    x: 190,
+                                                    handler: function() {
+                                                        
+                                                    } 
+                                                }
+                                            ]
+                                        }]
+                                    }).show();
+                                 

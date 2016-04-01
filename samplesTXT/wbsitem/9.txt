@@ -1,0 +1,213 @@
+Components.create('Window',{
+		title: "WBS Copiar Pegar",		
+        height:400, 
+        width:810,
+        items:[
+			{
+                type: 'ToolBar',
+                id: 'ChartProyectoWindowsToolBar',
+                region: 'top',
+                items: [                  
+                    {
+                        type: 'Button',
+                        height: 24,
+                        width: 24,
+                        id : 'WBSManodeArrastre',
+                        scale:'medium',
+                        icon:'images/cursor_drag_hand.png',
+                        tooltip:'PC_Mover_Ventana_00342',
+                        enableToggle: true,
+                        listeners: {
+                            click: function(event) {
+                                if (Components.getComponentById('WBSManodeArrastre').pressed) 
+                                   Components.getComponentById('mysvg').AllowDrag();                                
+                                else
+                                     Components.getComponentById('mysvg').DisallowDrag();
+                            }
+                        }
+                    },
+					{
+                        type: 'Button',
+                        height: 24,
+                        width: 24,
+                        id : 'MiniViewProyecto_SvgMainWindow',
+                        scale:'medium',
+                        icon:'images/buscadoresPlus.png',
+                        tooltip:'Mostrar Miniatura',
+                        enableToggle : true,
+                        listeners: {
+                            click: function (event) {
+                                if(event.data.OBJ.pressed){
+                                   /* $this.miniView = new MiniViewWindow($this.svgContend, $this.scrollingWindow, $this.window, ArrayTareas, $this.grupo, 0);
+                                    $this.miniView.btnMiniView = Components.getComponentById('MiniViewProyecto_SvgMainWindow');
+                                    $this.miniView.crearWindow();
+                                    $this.miniView.open();*/
+									Components.getComponentById('mysvg').CreateMiniview(event.data.OBJ);
+                                }
+                                else{
+                                    /*$this.miniView.close();
+                                    $this.miniView = null;*/
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'mysvg',
+				 items:[
+					{
+						type: 'WBSTree',						
+						id:'Okno',
+						group:'tareas',
+						clipboard:true,
+						 listeners: {
+                            onNodeSelectForCopy: function() {
+                                Components.getComponentById('copyBtnWBS').setIcon('images/redcopy24.png');
+								Components.getComponentById('pasteBtnWBS').enable();
+                            },
+							onNodeSelectForCut: function() {
+                                Components.getComponentById('pasteBtnWBS').enable();
+                            },							
+                            onCancelClipoard: function() {
+								Components.getComponentById('copyBtnWBS').setIcon('images/copy16.png');	
+								Components.getComponentById('cutBtnWBS').setIcon('images/cut16.png');
+								Components.getComponentById('pasteBtnWBS').disable();
+							}
+                        },
+						items:[
+							{	
+								 type: 'WBSNode', 
+								 id:0,
+								 idp:null,
+								 Descripcion:'Gerente general',
+								 tipoObjeto:'Cabecera',
+								 childsId:[1,2,3,7,11]
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:1,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de recursos humanos',
+								
+								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:2,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de logística',
+								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:3,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de Desarrollo',
+								 childsId:[4,5,6]								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:4,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Líder de proyecto',								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:5,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Planeamiento'								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:6,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Calidad'
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:7,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de Desarrollo',
+								 childsId:[8,9,10]								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:8,
+								 idp:7,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Líder de proyecto',								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:9,
+								 idp:7,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Planeamiento'								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:10,
+								 idp:7,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Calidad'
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:11,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de Desarrollo',
+								 childsId:[12,13,14]								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:12,
+								 idp:11,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Líder de proyecto',								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:13,
+								 idp:11,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Planeamiento'								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:14,
+								 idp:11,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Calidad'
+							}
+						]
+				}
+				]
+			
+			}
+            ]
+        
+    }).show();
+	
+	Components.create('Button',{		
+	x:350,
+	y:5,
+	scale: 'medium',
+	text:'Seleccion Elemento',
+	width: 150,
+	tooltip:'Seleccion Elemento',	  
+	handler: function() {					
+					Components.getComponentById('0').Seleccionar();
+					alert("seleccionado el elemento 0")
+				}  
+    }).show(); 

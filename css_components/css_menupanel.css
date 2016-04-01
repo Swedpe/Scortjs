@@ -1,0 +1,19 @@
+/* 
+    Document   : css_menupanel
+    Created on : 14-abr-2014, 13:28:50
+    Linked in  : BPT/top.php
+    Description:
+        Estilos del menu container
+*/
+
+.menuContainer {
+    background: rgb(214, 224, 247);
+    border: 1px solid #B7CEF7;
+    box-shadow: 1px 1px 5px #DAD5D5;
+    z-index: 10;
+}
+.splitButtonItem{
+	position: absolute;
+	display: block;
+	text-decoration: none;
+}

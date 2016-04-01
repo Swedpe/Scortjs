@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 8</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<script src="../components/items/MenuItem.js"></script>	
+
+
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSActividad.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/extra/FontLoader.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />	
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+	
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+		
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+/*var fontLoader = new FontLoader(["Lato"], {
+            "fontLoaded": function(font) {
+                // One of the fonts was loaded
+                console.log("font loaded: " + font.family);
+            },
+            "complete": function(error) {
+                if (error !== null) {
+                    // Reached the timeout but not all fonts were loaded
+                    console.log(error.message);
+                    console.log(error.notLoadedFonts);
+                } else {
+                    // All fonts were loaded
+                    console.log("all fonts were loaded");
+					dibujaejemplo();
+                }
+			}
+        }, 3000);
+		fontLoader.loadFonts();
+function dibujaejemplo(){*/
+actividadesTree=[
+			{	id:20,
+			type: 'WBSActividad',
+			idp: 1,
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:21,
+			type: 'WBSActividad',
+			idp: 1,
+					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:22,
+			type: 'WBSActividad',
+			idp: 1,
+					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:23,
+			type: 'WBSActividad',
+			idp: 1,
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+
+	
+			{	id:4,
+			type: 'WBSActividad',
+			idp: 4,
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha",
+					},
+			{	id:5,
+			type: 'WBSActividad',
+			idp: 4,
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la lunaTarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Limpiar los pisos de manera que brillen a la luz de la luna",
+					//"descripcion": "L",
+					"inicio":"fecha",
+					"fin":"fecha",
+					},
+			{	id:6,
+			type: 'WBSActividad',
+			idp: 4,
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la lunaTarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Barrer como la vieja chancluda del 44",
+					//"descripcion": "B",
+					"inicio":"fecha",
+					"fin":"fecha",
+					},
+			{	id:7,
+			type: 'WBSActividad',
+			idp: 4,
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la lunaTarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Pintar como pinturillo al estilo Miguel Angel con la capilla sixtina",
+					"inicio":"fecha",
+					"fin":"fecha",
+					},
+		];
+Components.create('Window',{
+	title: "WBS Copiar Pegar",		
+	height:750, 
+	width:1100,
+	state:'active',
+	items:[
+	{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+			{
+				type: 'Button',
+				id : 'copyBtnWBS',    
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-files-o',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'Copiar',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Prepare("Copy");                               
+					}
+				}
+			},
+			{
+				type: 'Button',
+				 id : 'cutBtnWBS', 
+				 shape:'box',
+				 scale:'minier',
+				 
+				icon:{
+							type:'fontawesome',
+							class:'fa-cut',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Cortar_00349',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Prepare("Cortar");
+					}
+				}
+			},					
+			{
+				type: 'Button',
+				id : 'CancelCBtnWBS',  
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-times-circle',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Cancelar_Operaciones_00339',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Clear();
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'pasteBtnWBS',
+				shape:'box',
+				scale:'minier',
+				enabled: false,
+			   icon:{
+							type:'fontawesome',
+							class:'fa-paste',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Pegar_00338',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById('Okno').clipboard.Paste())
+							Components.getComponentById('Okno').drawTree();
+					}
+				}
+			},
+			/*{
+				type: 'Button',
+				id : 'asd',
+				shape:'box',
+				scale:'minier',
+			   icon:{
+							type:'fontawesome',
+							class:'fa-paste',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'minim actividadess',
+				listeners: {
+					click: function() {
+						var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							seleccionado.hideActividades();
+							seleccionado.tree.drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'asd',
+				shape:'box',
+				scale:'minier',
+			   icon:{
+							type:'fontawesome',
+							class:'fa-paste',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'maxim actividadess',
+				listeners: {
+					click: function() {
+						var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							seleccionado.showActividades();
+							seleccionado.tree.drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},*/
+		]
+	},
+	{
+		 type: 'SvgContainer', 
+		 region: 'center',
+		 id:'mysvg',
+		 items:[
+			{
+				type: 'WBSTree',						
+				id:'Okno',
+				clipboard:true,
+				 listeners: {
+					onNodeSelectForCopy: function() {
+						Components.getComponentById('copyBtnWBS').changeIcono(1,{color:'red'});
+						Components.getComponentById('pasteBtnWBS').enable();
+					},
+					onNodeSelectForCut: function() {
+						Components.getComponentById('pasteBtnWBS').enable();
+					},
+					onCancelClipoard: function() {
+						Components.getComponentById('copyBtnWBS').changeIcono(1,{color:'#000099'});	
+						Components.getComponentById('cutBtnWBS').changeIcono(1,{color:'#000099'});
+						Components.getComponentById('pasteBtnWBS').disable();
+					},
+					oncreateCopyTask: function(obj) {
+						console.log("se creo nueva tarea mediante copia");
+						console.log(obj);
+						
+					},
+				},
+				actividades:actividadesTree,
+				items:[
+					{	
+						 type: 'WBSNode', 
+						 id:0,
+						 idp:null,
+						 Descripcion:'Gerente general',
+						 tipoObjeto:'Tarea',
+						 childsId:[1,2,3]
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:1,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de recursos humanos',
+						 actividadesId: [20,21,22,23],
+						 dibujarActividades:true,
+						 //Background:'teal',
+						 stroke:'purple'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:2,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de logística',
+						 //childsId:[8]
+						 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:3,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de Desarrollo',
+						 childsId:[4,5,6]								 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:4,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'LÃ­der de proyecto',
+						 actividadesId: [4,5,6,7],
+						 //dibujarActividades:true,						 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:5,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Planeamiento'								 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:6,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Calidad',
+						 childsId:[7]
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:7,
+						 idp:6,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de otra cosa',
+						
+						
+					},
+					/*{	
+						 type: 'WBSNode', 
+						 id:8,
+						 idp:2,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de logística',						 
+					},*/
+				]
+		}
+		]
+	
+	}
+   ]	
+}).show();
+//}
+});  
+</script>	
+</head>
+
+</html>

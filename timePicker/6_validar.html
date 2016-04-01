@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<title>TimePickerItem Ejemplo 6_validar</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/SimpleDateTime/jquery.simple-dtpicker.js"></script>	
+<script src="../functions.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/DateFieldItem.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>		
+<script src="../components/items/TimePicker.js"></script>		
+	
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/timepicker.css" />
+<link rel="stylesheet" href="../components/SimpleDateTime/jquery.simple-dtpicker.css" />
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('InputField',{	 	
+	id:"hola",	
+	state:'error',
+	label: {html:'<b>DatePicker1 Type</b>',cols:2},
+	input:{
+		type:'DatePicker',
+		id:'holadate',
+		cols:2,
+		state:'error',
+		width: '130',
+		buttonPosition:'rigth',
+		icon:{
+			type:'fontawesome',
+			class:'fa-key',
+			color:'rgb(85, 85, 95)',
+			},
+	},
+}).show();
+
+Components.create('InputField',{
+	id:"chau",	
+	state:'info',
+	label: {html:'<b>TimePicker1 Type</b>',cols:2},
+	input:{
+		type:'Timepicker',
+		id:'holatime',
+		//value:'10:20',
+		cols:3,
+		state:'info',
+		width: '130',
+		buttonPosition:'rigth',
+		icon:{
+			type:'fontawesome',
+			class:'fa-key',
+			color:'rgb(85, 85, 95)',
+			},
+		validar:{		
+				'hora':true,				   
+			},
+		listeners: {
+					onValidateSucess: function(event) {
+					console.log("OK");
+						//alert("OK")
+					iconX = {class:'fa-check',type:'fa',color:'green',
+								};
+						event.data.OBJ.TextField.changeIcon(iconX);
+						event.data.OBJ.TextField.changeInputState('info');
+					},
+					onValidateFail: function(event) {
+					console.log("nada");
+					iconY = {class:'fa-times',type:'fa',color:'red'};
+					event.data.OBJ.TextField.changeIcon(iconY);
+					event.data.OBJ.TextField.changeInputState('error');
+					},
+		}
+	},
+}).show();
+ 
+	});  
+	</script>	
+</head>
+</html>

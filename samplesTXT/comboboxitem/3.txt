@@ -1,0 +1,47 @@
+ var idiomas = ['Ingles','Frances','Sueco','Original']; 
+ var paises = ['EEUU','Francia','Suecia','Peru']; 
+Components.create('FreeDiv',{																		
+	x: 0,
+	y: 50,
+	height: 50,
+	width: 400,
+	html: 'Conjunto Datos 1<br><p>'+JSON.stringify(idiomas)+'</p>'																	
+}).show();
+Components.create('FreeDiv',{																		
+	x: 0,
+	y: 150,
+	height: 50,
+	width: 400,
+	html: 'Conjunto Datos 2<br><p>'+JSON.stringify(paises)+'</p>'																	
+}).show();
+ Components.create('ComboBox',{	  
+                                id:"MiComboBox",      
+                                x:0,
+								y: 250,
+                                label: 'Datos Idiomas',                                        
+								store: {data: idiomas},
+								readOnly: false	,
+								labelWidth:80	
+}).show();
+ 
+ Components.create('Button',{		
+										id:"botontoggle",
+                                        x:250,
+                                        y:250,
+                                        scale: 'medium',
+                                        text:'Cambiar Datos',                                     
+                                        tooltip:'Cambiar Conjunto de Datos',
+										enableToggle:true,
+                                        handler: function() {
+                                                if (Components.getComponentById('botontoggle').pressed){
+                                                     Components.getComponentById('MiComboBox').setStore(paises);
+													 Components.getComponentById('MiComboBox').setLabel("Datos Paises");                                                 		
+                                                }else{
+                                                     Components.getComponentById('MiComboBox').setStore(idiomas);
+													 Components.getComponentById('MiComboBox').setLabel("Datos idiomas");
+												}
+                                                    
+                                        }    										
+                                        
+    }).show();
+	 

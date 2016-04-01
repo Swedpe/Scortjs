@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIDEBAR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/Slider.js"></script>
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TextArea.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('FreeDiv',{
+freeHtml:true,
+html:'<div><div class="row"><div  id="parte1" class="col-sm-3"></div><div  id="parte2" class="col-sm-9" ></div></div></div>',
+});
+
+Components.create('Sidebar',{  
+	id: 'SidebarTest',	
+	container: $('#parte1'),
+	listeners: {
+             resize: function() {
+				alert("Change");
+			},
+		},
+ items: [
+		{
+		type: 'Button',
+		id:"F1",
+		state:'active',		//estado 1 
+		scale: 'minier',
+		shape:'box',
+		sidebar:'head',
+		icon:{
+			type:'fontawesome',
+			class:'fa-gavel',
+		},
+		handler: function() {
+				alert("boton 1 de cabecera");	
+				}                                   
+		},
+		{
+		type: 'Button',
+		id:"F2",
+		sidebar:'head',
+		shape:'box',
+		state:'info',		//estado 1 
+		scale: 'minier',
+		icon:{
+			type:'fontawesome',
+			class:'fa-users',
+		},
+		handler: function() {
+				alert("boton F2 de cabecera");	
+				}                                   
+		},
+		{
+		type: 'Button',
+		id:"F3",
+		state:'warning',		//estado 1 
+		scale: 'minier',
+		shape:'box',
+		sidebar:'head',
+		icon:{
+			type:'fontawesome',
+			class:'fa-plug',
+		},
+		handler: function() {
+				alert("boton F3 de cabecera");	
+				}                                   
+		},
+		{
+		type: 'Button',
+		id:"F4",
+		state:'error',		//estado 1 
+		scale: 'minier',
+		shape:'box',
+		sidebar:'head',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cogs',
+		},
+		handler: function() {
+				alert("boton F4 de cabecera");	
+				}                                   
+		},
+	   	{
+			type: 'SidebarItem',
+			text: 'DashBoard',
+			canActivate: true,
+			name: 'Nombre',
+			icon:{
+				type:'fontawesome',
+				class:'fa-tachometer',				
+			},
+			listeners: {
+             activate: function() {
+				alert("DashBoard Activate");
+			}
+			}
+			
+		},
+		{
+			type: 'SidebarItem',
+			text: ' Portafolio',
+			name: 'Apellido',
+			adorno:{				//adorno numérico, 
+					type:'fontawesome',
+					contador:8,
+					state:'default',
+					tooltip:''
+				},
+			icon:{
+				type:'fontawesome',
+				class:'fa-briefcase',				
+			},
+			listeners: {
+             activate: function() {
+				alert("Portafolio Activate");
+			}
+			},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Vistas',
+				name: 'st1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Panel Principal',
+							name: 'st1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Vista Resumen',
+							name: 'st1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Vista Costos',
+							name: 'st1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Reportes',
+							name: 'st1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Acciones',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Admin Recursos',
+							name: 'st1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Admin Estructura',
+							name: 'st1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Submenu3',
+				name: 'Nombre'
+			}
+		]
+},
+{
+	type: 'SidebarItem',
+	text: 'Contrataciones',
+	name: 'contrataciones',
+	icon:{
+		type:'fontawesome',
+		class:'fa-leanpub',
+		},
+	listeners: {
+		open: function() {
+			alert("Contrataciones Open");
+		},
+		close: function() {
+			alert("Contrataciones Close");
+		}
+	},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Vistas',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Panel Principal',
+							name: 'Cst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Invitaciones',
+							name: 'Cst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Ganadas',
+							name: 'Cst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Perdidas',
+							name: 'Cst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Documentacion',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Comprimir',
+							name: 'Cst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Encriptar',
+							name: 'Cst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Asociados',
+				name: 'Nombre'
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Proyectos',
+	name: 'proyectos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-database',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Vistas',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Panel Principal',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Recursos',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Costos',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Analisis',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Acciones',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Crear',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Calcular',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Reportes',
+				name: 'P_asociados'
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Recursos',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-users',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Humanos',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Por Empresas',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Por Portafolios',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Por Proyectos',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Por Roles',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Materiales',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Crear',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Calcular',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Roles',
+				name: 'P_asociados'
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Calendarios',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-calendar',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Sistema',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'BPT Master',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: '8 horas',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Full Day',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Machine',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Proyectos',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Asignar',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Previsualizar',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Wizard',
+				name: 'P_asociados'
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Documentos',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-file-text',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Sistema',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'BPT Master',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: '8 horas',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Full Day',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Machine',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Proyectos',
+				name: 'Nombre',
+				
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Asignar',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Previsualizar',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Wizard',
+				name: 'P_asociados'
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Social',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-at',
+		},
+	adorno:{				//adorno numérico, 
+		type:'numeric',
+		contador:5,
+		state:'error',
+		tooltip:''
+	},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Compañeros',
+				name: 'Cst1-0',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:1,
+					state:'info',
+					tooltip:''
+				},
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Actual',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Historico',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Mismo Rol',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Recomendados',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Empresas',
+				name: 'Nombre',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:2,
+					state:'warning',
+					tooltip:''
+				},
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Actual',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Pasadas',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Mi Ranking',
+				name: 'P_asociados',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:3,
+					state:'highlight',
+					tooltip:''
+				},
+				
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Chat',
+				name: 'P_asociados',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:7,
+					state:'active',
+					tooltip:''
+				},
+				
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Pendientes',
+				name: 'P_asociados',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:8,
+					state:'default',
+					tooltip:''
+				},
+				
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Administración',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-cogs',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Riesgos',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Nuevo',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Proyecto',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Estructura',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Seguridad',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Unidades',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Nueva',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Visualizar',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Vistas',
+				name: 'P_asociados'
+			}
+		]			
+		}
+	],                                       
+}).show();
+}); 
+</script>	
+</script>
+</head>
+</html>

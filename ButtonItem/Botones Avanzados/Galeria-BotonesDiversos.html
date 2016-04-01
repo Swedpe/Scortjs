@@ -1,0 +1,1576 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GALERIA DE BOTONES DIVERSOS</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+	<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+    <link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	
+		<script src="../../jqfu/vendor/jquery.ui.widget.js"></script>
+			<script src="../../JquerySVG/jquery.svg.js"></script>
+			<script src="../../JquerySVG/jquery.svganim.js"></script>
+			
+		<script src="../../components/Components.js"></script>	
+        <script src="../../functions.js"></script>		
+        <script src="../../components/containers/WindowContainer.js"></script>
+		
+		<script src="../../components/items/Image.js"></script>
+		<script src="../../components/items/ButtonItem.js"></script>
+		
+		<link rel="stylesheet" href="../../css_components/css_window.css" />
+		<script src="../../components/items/fontawesomegrid.js"></script>
+		<script src="../../components/items/HtmlScreenGrid.js"></script>
+		<script src="../../components/items/Image.js"></script>
+		<script src="../../components/svg/ClipBoardSVG.js"></script>
+		<script src="../../components/svg/ControlBox.js"></script>
+		<script src="../../components/svg/ScreenGrid.js"></script>
+		<script src="../../components/svg/TextCajita.js"></script>
+		<script src="../../components/svg/TextProcesor.js"></script>
+		
+		
+		
+		
+		
+		
+		<script src="../../components/containers/SvgContainer.js"></script>
+		
+		
+		<link rel="stylesheet" href="../../css_components/css_window.css" />
+		<link rel="stylesheet" href="../../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../../css_components/fontawesomegrid.css" />
+		<link rel="stylesheet" href="../../css_components/glipgrid.css" />
+		
+       
+	   <link rel="stylesheet" href="../../css_components/css_principal.css" />
+		<link rel="stylesheet" href="../../css_components/css_buttonItem.css" />
+		<style type="text/css">
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			background-image: url("images/1101t.gif");
+
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+	//minier------------------------------------------------------------------------------------		
+    Components.create('Button',{		
+		container: $('#S1-1'),
+		id:"botontoggle",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'minier',
+		icon:{
+			type:'glipicon',
+			class:'glyphicon-zoom-in',
+			color:'white',
+			position:'left'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'glipicon',
+			class:'glyphicon-zoom-in',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Small info Toggle',
+		text:'minier',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S1-1'),	 
+		id:"hola",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/cancel.png',  
+			position:'left'
+		},
+		tooltip:'mini info Toggle',
+		text:'minier',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+	 //mini------------------------------------------------------------------------------------		
+	Components.create('Button',{		
+		container: $('#S1-1'),
+		id:"botontoggle",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'mini',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'left'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Small info Toggle',
+		text:'mini',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S1-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		},
+		tooltip:'mini info Toggle',
+		text:'mini',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//small--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 Components.create('Button',{		
+		container: $('#S1-1'),
+		id:"SmallT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'left'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Small info Toggle',
+		text:'small',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S1-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		},
+		tooltip:'mini info Toggle',
+		text:'small',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//medium--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+	  Components.create('Button',{		
+		container: $('#S1-1'),
+		id:"SmallT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'medium',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'left'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Small info Toggle',
+		text:'medium',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S1-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'medium',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		},
+		tooltip:'mini info Toggle',
+		text:'medium',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//large -------------------------------------------------------------------------------------------------------------------------------	 
+	   Components.create('Button',{		
+		container: $('#S1-1'),
+		id:"SmallT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'large',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'left'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Small info Toggle',
+		text:'large',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'large',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'left'
+		},
+		tooltip:'mini info Toggle',
+		text:'large',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//--------------------------------------otro grupo -------------------------------------
+
+//minier------------------------------------------------------------------------------------		
+    Components.create('Button',{		
+		container: $('#S2-1'),
+		id:"botontoggle",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'minier',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Small info Toggle',
+		text:'minier',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S2-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		},
+		tooltip:'mini info Toggle',
+		text:'minier',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+	 //mini------------------------------------------------------------------------------------		
+	Components.create('Button',{		
+		container: $('#S2-1'),
+		id:"botontoggle",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'mini',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Small info Toggle',
+		text:'mini',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S2-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		},
+		tooltip:'mini info Toggle',
+		text:'mini',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//small--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 Components.create('Button',{		
+		container: $('#S2-1'),
+		id:"SmallT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Small info Toggle',
+		text:'small',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S2-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		},
+		tooltip:'mini info Toggle',
+		text:'small',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//medium--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+	  Components.create('Button',{		
+		container: $('#S2-1'),
+		id:"SmallT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'medium',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Small info Toggle',
+		text:'medium',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S2-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'medium',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		},
+		tooltip:'mini info Toggle',
+		text:'medium',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//large -------------------------------------------------------------------------------------------------------------------------------	 
+	   Components.create('Button',{		
+		container: $('#S2-1'),
+		id:"SmallT",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'large',
+		icon:{
+			type:'fontawesome',
+			class:'fa-camera-retro',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Small info Toggle',
+		text:'large',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S2-1'),	 
+		id:"botontoggle2",
+		//shape:'circle',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'large',
+		
+		icon:{
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		
+		},
+		icon2:{					//icono para el segundo estado
+			type:'image',
+			image:'images/ok.png',  
+			position:'right'
+		},
+		tooltip:'mini info Toggle',
+		text:'large',
+		enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+		}    
+                                        
+     }).show();
+//Circulares, de todo tamaño, y con iconos diferentes	 
+	Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'minier',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 
+	Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 
+	 Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 //circulares icono derecha
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'minier',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 
+	Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-2'),	 
+		id:"BCircle1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 //fin circulares
+
+	 //Cajas, de todo tamaño, y con iconos diferentes	 
+	Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'box Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'minier',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 
+	Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 
+	 Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'left'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 //Cuadrados icono derecha
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'minier',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'mini',                           
+     }).show();
+	 
+	Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'small',                           
+     }).show();
+	Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'medium',                           
+     }).show();
+	 
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"BCircle1",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+		text:'Large',                           
+     }).show();
+	 //fin Rectangulares
+	 
+	 //sin texto
+	 Components.create('Button',{		
+		container: $('#S2-3'),	 
+		id:"uno",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',                         
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"dos",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',                          
+     }).show();
+	Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"tres",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"cuatro",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',                          
+     }).show();
+	 
+	Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"cinco",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',                         
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"seis",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'small',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',                     
+     }).show();
+	Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"Siete",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+                         
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"ocho",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',
+     }).show();
+	 
+	 Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"Nueve",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'large',
+		icon:{
+			type:'image',
+			image:'images/1569944.png',  
+			position:'right'
+		
+		},
+		tooltip:'Circle Large Ico image',
+                        
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S2-4'),	 
+		id:"dies",
+		shape:'box',
+		state:'active',		//estado 1 
+		scale: 'large',
+		
+		icon:{
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Circle Large Ico image',                       
+     }).show();
+	 //fin sin texto
+	//sin icono --------------------------------------------texto
+	 Components.create('Button',{		
+		container: $('#S1-4'),	 
+		id:"ee1",
+		state:'active',		//estado 1 
+		scale: 'minier',
+		text:"minier button",	                    
+     }).show();
+	
+	Components.create('Button',{		
+		container: $('#S1-4'),	 
+		id:"ee2",
+		state:'active',		//estado 1 
+		scale: 'mini',
+		text:"mini button",	                         
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-4'),	 
+		id:"ee4",
+		state:'active',		//estado 1 
+		scale: 'small',
+		text:"small button",	 
+		tooltip:'Circle Large Ico image',                     
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-4'),	 
+		id:"ee5",
+		state:'active',		//estado 1 
+		scale: 'medium',
+		tooltip:'Circle Large Ico image',
+		text:'medium button',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-4'),	 
+		id:"ee8",
+		state:'active',		//estado 1 
+		scale: 'large',
+		text: 'Large button',
+		tooltip:'Circle Large Ico image',                       
+     }).show();
+	 //sin texto circulares ---------------22----------------
+	  Components.create('Button',{		
+		container: $('#S1-4'),	 
+	    id:"var1",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'minier',
+		text:"minier button",	                    
+     }).show();
+	
+	Components.create('Button',{		
+		container: $('#S1-4'),	
+		id:"var2",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'mini',
+		text:"mini button",	                         
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-4'),
+		id:"var3",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'small',
+		text:"small button",	 
+		tooltip:'Circle Large Ico image',                     
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-4'),
+		id:"var4",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'medium',
+		tooltip:'Circle Large Ico image',
+		text:'circular',                           
+     }).show();
+	 Components.create('Button',{		
+		container: $('#S1-4'),	 
+		id:"var5",
+		shape:'circle',
+		state:'active',		//estado 1 
+		scale: 'large',
+		text: 'Circular',
+		tooltip:'Circle Large Ico image',                       
+     }).show();
+	 //fin sin texto
+	}); 
+	</script>	
+   
+  </script>
+</head>
+<body>
+<div class="row">
+		<div  id="S1-1" class="col-sm-3" style="height: 300px" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> FontAwesome Vs Ico, rectangular derecha</P></font></strong> 
+		<br><br>
+		</div>
+		<div id="S1-2" class="col-sm-3" style="height: 300px" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> Circulares Left</P></font></strong> 
+		</div>
+		<div id="S1-3" class="col-sm-3" style="height: 300px" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Rectangulares Left</P></font></strong> 
+		</div>
+		<div id="S1-4" class="col-sm-3" style="height: 300px" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Botones de distintos tamaños + iconos</P></font></strong> 
+		</div>
+	</div>
+<div class="row">
+		<div  id="S2-1" class="col-sm-3" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> FontAwesome Vs Ico, rectangular Izquierda</P></font></strong> 
+		<br><br>
+		</div>
+		<div id="S2-2" class="col-sm-3" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt"> Circulares Rigth</P></font></strong> 
+		</div>
+		<div id="S2-3" class="col-sm-3" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Rectangulares Rigth</P></font></strong> 
+		</div>
+		<div id="S2-4" class="col-sm-3" >
+		<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">Botones sin texto solo con icono</P></font></strong> 
+		</div>
+	</div> 
+</body>
+</html>

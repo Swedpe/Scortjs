@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FreeDivItem Ejemplo 3</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+<!--------------------------JS	------------------------------------------->
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/bptstrap_input.css" />
+		
+		
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+	var vertical =10;
+Components.create('Button',{
+	x:220,
+	y:450,
+	scale: 'medium',
+	state:'info',
+	text:'Agregar Boton',     
+	 icon:{
+				type:'fontawesome',
+				class:'fa-plus',
+				position:'left',
+		},
+	tooltip:'Leer Valor Seleccionado',	  
+	handler: function() {
+		vertical+=30;
+		Components.getComponentById('padrefreediv').add(CrearBoton());												
+	}
+}).show();										
+										
+Components.create('FreeDiv',{																		
+	x: 100,
+	y: 50,
+	height: 400,
+	width: 400,
+	id:"padrefreediv",
+	html:'<p>Soy un <i>FreeDiv</i></p>',	
+	css:[
+			{border: "2px solid"}						
+	]
+}).show();
+
+function CrearBoton(){
+ var boton = {		
+	type:'Button',
+	y:vertical,
+	scale: 'medium',
+	text:'New button',
+	state:'active',
+	tooltip:"Soy un boton creado en tiempo de ejecucion",	  
+	handler: function() {
+					 alert("Soy un boton creado en tiempo de ejecucion");														
+	}  
+  }
+	return  boton;
+}
+	});  
+</script>	
+</head>

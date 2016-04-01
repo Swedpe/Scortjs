@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 12</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSActividad.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/extra/FontLoader.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+
+$( document ).ready(function(){
+var fontLoader = new FontLoader(["Lato"], {
+            "fontLoaded": function(font) {
+                // One of the fonts was loaded
+                console.log("font loaded: " + font.family);
+            },
+            "complete": function(error) {
+                if (error !== null) {
+                    // Reached the timeout but not all fonts were loaded
+                    console.log(error.message);
+                    console.log(error.notLoadedFonts);
+                } else {
+                    // All fonts were loaded
+                    console.log("all fonts were loaded");
+					dibujaejemplo();
+                }
+			}
+        }, 3000);
+		fontLoader.loadFonts();
+function dibujaejemplo(){
+actividadesTree=[
+	
+			{	id:0,
+			idp: 6,
+			type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:1,
+			idp: 6,
+			type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:2,
+			idp: 6,
+			type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:3,
+			idp: 6,
+			type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			{	id:4,
+			idp: 9,
+					type: 'WBSActividad',
+					"descripcion": "Evento o listener: seleccionar",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							alert(obj.descripcion);
+					}
+					}
+			},
+			{	
+					id:5,
+					idp: 9,
+					type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							console.log(obj.descripcion);
+						}
+					  }
+			},
+			{	id:6,
+			idp: 9,
+					type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							console.log(obj.descripcion);
+						}
+					  }
+			},
+			{	id:7,
+			idp: 9,
+					type: 'WBSActividad',
+					"descripcion": "Evento o listener: deseleccionar",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						deselect: function(obj){
+							alert(obj.descripcion);
+						}
+					  }
+			},
+			{	id:8,
+			idp: 10,
+			type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							console.log(obj.descripcion);
+						}
+					  }
+			},
+			{	id:9,
+			idp: 10,
+			type: 'WBSActividad',
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la lunaTarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							console.log(obj.descripcion);
+						}
+					  }
+			},
+			{	id:10,
+			idp: 10,
+			type: 'WBSActividad',
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la lunaTarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Barrer como la vieja chancluda del 44",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							console.log(obj.descripcion);
+						}
+					  }
+			},
+			{	id:11,
+			idp: 10,
+			type: 'WBSActividad',
+					//"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la lunaTarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"descripcion": "Pintar como pinturillo al estilo Miguel Angel con la capilla sixtina",
+					"inicio":"fecha",
+					"fin":"fecha",
+					listeners: {
+						select: function(obj){
+							console.log(obj.descripcion);
+						}
+					  }
+			},
+		];
+Components.create('Window',{
+title: "WBS Eventos",	
+state:'active',	
+height:700, 
+width:1400,
+items:[
+	{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+			{
+				type: 'Button',
+				id : 'bolita',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-circle',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'bolita',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.bolizando();
+							//Components.getComponentById("Okno").calcTree();
+							Components.getComponentById("Okno").drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+						
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'cuadrado',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-square-o',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'cuadrado',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
+							//Components.getComponentById("Okno").calcTree();
+							Components.getComponentById("Okno").drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-exchange',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'exchange',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							if(seleccionado.bolita){
+								seleccionado.cuadrando();
+								//seleccionado.tree.calcTree();
+								Components.getComponentById("Okno").drawTree();
+							}else{
+								seleccionado.bolizando();
+								//Components.getComponentById("Okno").calcTree();
+								seleccionado.tree.drawTree();
+								}
+						}else{
+							console.log("Debe seleccionar un Nodo");
+						}
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'nada1',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					
+				},
+				
+			},
+			{
+				type: 'Button',
+				id : 'exp_activdades',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-list-ol',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'expandir actividades de subarbol',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							seleccionado.expandirActividades();
+							seleccionado.tree.drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exp_activdades',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-history',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'contraer actividades de subarbol',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							seleccionado.contraerActividades();
+							seleccionado.tree.drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			/*{
+				type: 'Button',
+				id : 'lista',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-expand',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'show lista',
+				listeners: {
+					click: function() {
+						Components.getComponentById("Okno").nodoSeleccionado.showActividades();
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'lista',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-compress',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'hide lista',
+				listeners: {
+					click: function() {
+						Components.getComponentById("Okno").nodoSeleccionado.hideActividades();
+					}
+				}
+			},*/
+		]
+	},
+	{
+	 type: 'SvgContainer', 
+	 region: 'center',
+	 id:'mysvg',
+	 items:[
+		{
+			type: 'WBSTree',						
+			id:'Okno',
+			plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+						parentType: 'WBSTree',
+			}},
+			actividades:actividadesTree,
+			items:[
+				{	
+					 type: 'WBSNode', 
+					 id:0,
+					 idp:null,
+					 Descripcion:'Nodo Padre',
+					 tipoObjeto:'Cabecera',
+					 childsId:[1,2,3]
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:1,
+					 idp:0,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:show',
+					 childsId:[9,10],
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:2,
+					 idp:0,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:hide',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:3,
+					 idp:0,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener: The best way to get an idea of what could be accomplished by using this component is to download the sources and play with the sample included. The API reference below could give you a more precise idea of what could be done. But, as a briefing, features include:',
+					 childsId:[4,5,6],
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:4,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:select',
+					 //childsId:[7,8,11,12,13,14,15,16,17,18,19,20],
+					 childsId:[7,8],
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:5,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:deselect',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:6,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 //Descripcion:'This article presents a JavaScript component which renders a tree on the screen using VML (Vector Markup Language) in Internet Explorer 6+ or the canvas element in Firefox 1.5+.There are plenty of JavaScript trees out there, and most of them have a better cross-browser compatibility than this, are faster and better optimized. The goal of this code is to present a client-side implementation of the Walkers layout algorithm (see References), leaving off code optimizations. In short, the component has born after the algorithm, as I think that a living sample would be better than an abstract source-code level implementation.',
+					 Descripcion:'This article presents a JavaScript component which renders a tree on the screen using VML (Vector Markup Language) in Internet Explorer 6+ or the canvas element in Firefox 1.5+.There are plenty of JavaScript trees out there, and most of them have a better cross-browser compatibility than this, are faster and better optimized. ',
+					 //Descripcion:'Listener: show',
+					 actividadesId: [0,1,2,3],
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:7,
+					 idp:4,
+					 //bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+					 childsId:[11,12,13],
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:8,
+					 idp:4,
+					 //bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:show',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:9,
+					 idp:1,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:show',
+					 actividadesId: [4,5,6,7],
+					 dibujarActividades:true,
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:10,
+					 idp:1,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'show',
+					 actividadesId: [8,9,10,11],
+					 //dibujarActividades:true,
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:11,
+					 idp:7,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:12,
+					 idp:7,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:13,
+					 idp:7,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				/*{	
+					 type: 'WBSNode', 
+					 id:14,
+					 idp:7,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				/*{	
+					 type: 'WBSNode', 
+					 id:15,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:16,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:17,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:18,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:19,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:20,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},*/
+			]
+	    }
+	  ]
+	
+	}
+  ]      
+}).show();	
+}
+});  
+</script>	
+</head>
+
+</html>

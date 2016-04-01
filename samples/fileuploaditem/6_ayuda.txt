@@ -1,0 +1,11 @@
+<b>Basico Con ValidationScript</b><br>
+- Se define multiple Upload <br>
+- Se define que el subir archivos no sea automatico <br>
+- Cuando el método <b>fileuploadadd</b> se lanza se crea un botón que sera el encargado de ejecutar el envió de datos al servidor <br>
+- Se Define <b>ValidationScript = true</b>, lo cual hará que se cargue un script adicional para verificaciones, ademas que activara el evento <b>fileuploadprocessstart</b><br>
+- al añadir el Script de validación también se activa el evento <b>fileuploadprocessalways</b><br>
+- La propiedad que indicara que archivos pueden y cuales no ser incluidos es: <b>acceptFileTypes</b><br>
+- <b>fileuploadprocessalways</b> desactivara el boton en caso de que el archivo no este entre los tipos aceptados.<br>
+- Se define el listener <b>fileuploadprogressall</b>, el cual nos mostrara el avance mientras el archivo es cargado <br>
+- Los archivos subidos solo quedaran en la carpeta temporal [esto se controla desde PHP] .<br>
+- Probar con archivos de tamaño entre 1mb y 5mb para notar el avance.

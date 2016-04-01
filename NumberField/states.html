@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NumberField Ejemplo 1</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+  <link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+	<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../functions.js"></script>
+		<script src="../components/Components.js"></script>		
+		<script src="../components/items/SplitButtonItem.js"></script>
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		<script src="../components/items/TextFieldItem.js"></script>
+		<script src="../components/items/InputFieldItem.js"></script>
+		<script src="../components/items/NumberFieldItem.js"></script>
+		<script src="../components/items/Separator.js"></script>
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+Components.create('NumberField', { 
+placeholder:'de 10 en 10',
+step:1,
+state:'error',
+maxValue: 100,
+minValue: 1,
+value: 300,
+ listeners: {
+		change: function() {
+			alert("change");
+		}
+			}
+}).show();
+Components.create('Separator');
+Components.create('NumberField', { 
+	placeholder:'de 10 en 10',
+	step:1,
+	state:'highlight',
+	maxValue: 100,
+	minValue: 1,
+	value: 200,
+}).show();
+
+Components.create('Separator');
+Components.create('NumberField', { 
+	placeholder:'de 10 en 10',
+	step:1,
+	value:50,
+	state:'active',
+	position:'rigth',
+	maxValue: 100,
+	minValue: 1,
+	value: 100,
+}).show();
+Components.create('Separator');
+Components.create('NumberField', { 
+	placeholder:'de 10 en 10',
+	step:1,
+	value:50,
+	state:'warning',
+	position:'rigth',
+	maxValue: 100,
+	minValue: 1,
+	value: 100,
+}).show();
+Components.create('Separator');
+Components.create('NumberField', { 
+	placeholder:'de 10 en 10',
+	step:1,
+	value:50,
+	state:'info',
+	position:'rigth',
+	maxValue: 100,
+	minValue: 1,
+	value: 100,
+}).show();
+Components.create('Separator');
+Components.create('NumberField', { 
+	placeholder:'de 10 en 10',
+	step:1,
+	value:50,
+	state:'default',
+	position:'rigth',
+	maxValue: 100,
+	minValue: 1,
+	value: 100,
+}).show();
+
+	});  
+	</script>	
+</head>
+<body>
+</body>
+</html>

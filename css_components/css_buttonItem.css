@@ -1,0 +1,576 @@
+/* 
+    Document   : css_buttonItem
+    Created on : 25-feb-2014, 19:39:47
+    Description:
+        Estilos para los botones
+*/
+.buttonItem {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+/* Añadiendo nuevos estados a Jquery Ui, state-info, state warning */
+.ui-state-info,
+.ui-widget-content .ui-state-info,
+.ui-widget-header .ui-state-info {
+	border: 1px solid #46b8da;
+	background: #5bc0de;
+	color: #ffffff;
+}
+/* hover para info*/
+.buttonItem.ui-state-info:hover {
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+}
+.ui-state-warning,
+.ui-widget-content .ui-state-warning,
+.ui-widget-header .ui-state-warning {
+	border: 1px solid #eea236;
+	background: #f0ad4e;
+	color: #ffffff;
+}
+/* hover para warning y highlight*/
+.buttonItem.ui-state-warning:hover {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+/* hover para active*/
+.buttonItem.ui-state-active:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+/* hover para highlight*/
+.buttonItem.ui-state-highlight:hover{
+  background-color: #fee188!important;
+  border-color: #fee188;
+}
+.buttonItem.ui-state-error:hover {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+border: 1px solid #d3d3d3;
+background: rgba(195,193,193,0.5);
+color:black;
+}
+.buttonItem.ui-state-default:hover {
+border: 1px solid #d3d3d3;
+background:rgba(195,193,193,1);
+color: black;
+}
+.ui-state-default:hover, .splitButtonItem.button.ui-state-hover {
+background: linear-gradient(to bottom, #E7F3FD 5%, #9ABFEE 100%);
+border: 1px solid #d3d3d3;
+background:#C3C1C1 url("/themeroller/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
+}
+
+.buttonItem>.buttonItem-icon-left {
+  text-align: center;
+  margin-right: 4px;
+}
+.buttonItem>.buttonItem-icon-right {
+  text-align: center;
+  margin-left: 4px;
+ }
+ .buttonItem.buttonItem-windowHead>.buttonItem-icon-left {
+  text-align: center;
+  margin-right: 1px;
+  width: 12px;
+}
+ /*--------------------------------------------------------SOLO BOTONES POR DEFECTO-------------------------------------------------------------*/
+/*cuando se usan botones para la cabecera de un window se usa este*/
+ .buttonItem-windowHead {
+  padding: 1px 2px;
+  line-height: 13px;
+  border-width: 0px;
+  font-size: 10px;
+}
+/*este se usa cuando se va usar en un numberfield spiner*/
+.buttonItem-spiner {  
+   padding: 0px 0px;
+  display: block;
+  float: none;
+  font-size: 11px;
+  width: 18px;
+  line-height: 10px
+}
+/*este se usa para los addons de un TextField*/
+.buttonItem-inputAddon { 
+  padding: 1px 4px 1px 4px;
+  height: 27px;
+  line-height: 24px;
+  border-width: 1px;
+  font-size: 14px;
+  margin-right: 0px;
+}
+ .buttonItem-minier {
+padding: 0 2px;
+line-height: 18px;
+border-width: 1px;
+font-size: 10px;
+}
+.buttonItem-mini {
+padding: 1px 5px;
+font-size: 12px;
+line-height: 1.5;
+border-radius: 3px;
+}  
+.buttonItem-small {
+padding: 5px 10px;
+font-size: 12px;
+line-height: 1.5;
+border-radius: 3px;
+}
+.buttonItem-medium{
+padding: 7px 13px;
+font-size: 15px;
+line-height: 1.3333333;
+border-radius: 5px;
+}
+.buttonItem-large {
+padding: 10px 16px;
+font-size: 18px;
+line-height: 1.3333333;
+border-radius: 6px;
+}
+/*------------------------------------SOLO IMAGENES - TIPO ->  BOX-------------------------------------------------------------------------------------*/
+.buttonItem-minier.btn-box>.ImageZone.buttonItem-icon-right  {
+  width: 15px;	
+  height: 15px;
+  margin: -4px 0 2px 9px ;
+}
+.buttonItem-minier.btn-box>.ImageZone.buttonItem-icon-left  {
+width: 22px;	
+height: 22px;
+margin: 1px 0px 0px 4px;
+}
+.buttonItem-mini.btn-box>.ImageZone.buttonItem-icon-right  {
+width: 20px;	
+height: 20px;
+margin: 0 0 2px 15px;
+}
+.buttonItem-mini.btn-box>.ImageZone.buttonItem-icon-left  {
+width: 20px;	
+height: 20px;
+margin: 2px 0 0 15px;
+}
+.buttonItem-small.btn-box>.ImageZone.buttonItem-icon-right  {
+width: 29px;	
+height: 29px;
+margin: 0 0 2px 13px;
+}
+.buttonItem-small.btn-box>.ImageZone.buttonItem-icon-left  {
+width: 29px;	
+height: 29px;
+margin: 2px 0 0 13px;
+}
+.buttonItem-medium.btn-box>.ImageZone.buttonItem-icon-right  {
+width: 32px;	
+height: 32px;
+margin: 2px 0 0 10px;
+}
+.buttonItem-medium.btn-box>.ImageZone.buttonItem-icon-left  {
+width: 32px;	
+height: 32px;
+margin: 2px 0 0 10px;
+}
+.buttonItem-large.btn-box>.ImageZone.buttonItem-icon-right  {
+width: 43px;	
+height: 43px;
+margin: 2px 0 0 8px;
+}
+.buttonItem-large.btn-box>.ImageZone.buttonItem-icon-left  {
+width: 43px;	
+height: 43px;
+margin: 2px 0 0 8px;
+}
+/*------------------------------------SOLO IMAGENES - TIPO ->  RECTANGULAR-------------------------------------------------------------------------------------*/
+.buttonItem-minier>.ImageZone.buttonItem-icon-right  {
+text-align: center;
+margin-left: 4px;
+width: 10px;	
+height: 10px;
+}
+.buttonItem-minier>.ImageZone.buttonItem-icon-left  {
+text-align: center;
+margin-right: 4px;
+width: 10px;	
+height: 10px;
+}
+.buttonItem-mini>.ImageZone.buttonItem-icon-right  {
+text-align: center;
+margin-left: 4px;
+width: 12px;	
+height: 12px;
+}
+.buttonItem-mini>.ImageZone.buttonItem-icon-left  {
+text-align: center;
+margin-right: 4px;
+width: 12px;	
+height: 12px;
+}
+.buttonItem-small>.ImageZone.buttonItem-icon-right  {
+text-align: center;
+margin-left: 4px;
+width: 12px;	
+height: 12px;
+}
+.buttonItem-small>.ImageZone.buttonItem-icon-left  {
+text-align: center;
+margin-right: 4px;
+width: 12px;	
+height: 12px;
+}
+.buttonItem-medium>.ImageZone.buttonItem-icon-right  {
+text-align: center;
+margin-left: 4px;
+width: 15px;	
+height: 15px;
+}
+.buttonItem-medium>.ImageZone.buttonItem-icon-left  {
+text-align: center;
+margin-right: 4px;
+width: 15px;	
+height: 15px;
+}
+.buttonItem-large>.ImageZone.buttonItem-icon-right  {
+text-align: center;
+margin-left: 4px;
+width: 18px;	
+height: 18px;
+}
+.buttonItem-large>.ImageZone.buttonItem-icon-left  {
+text-align: center;
+margin-right: 4px;
+width: 18px;	
+height: 18px;
+}
+/*------------------------------------SOLO IMAGENES - TIPO ->  CIRCULAR-------------------------------------------------------------------------------------*/
+.buttonItem-minier.btn-circle>.ImageZone.buttonItem-icon-right  {
+width: 18px;	
+height: 18px;
+margin: 0 0 3px 11px;
+}
+.buttonItem-minier.btn-circle>.ImageZone.buttonItem-icon-left  {
+width: 18px;	
+height: 18px;	
+margin: 2px  0  0 10px;
+}
+.buttonItem-mini.btn-circle>.ImageZone.buttonItem-icon-right  {
+width: 20px;	
+height: 20px;
+margin:0  0  4px 15px;
+}
+.buttonItem-mini.btn-circle>.ImageZone.buttonItem-icon-left  {
+width: 20px;	
+height: 20px;
+margin:4px 0  0 16px;
+}
+.buttonItem-small.btn-circle>.ImageZone.buttonItem-icon-right  {
+width: 27px;	
+height: 27px;
+margin: 0 0 4px 14px;
+}
+.buttonItem-small.btn-circle>.ImageZone.buttonItem-icon-left  {
+width: 27px;	
+height: 27px;
+margin: 2px 0 0 14px;
+}
+.buttonItem-medium.btn-circle>.ImageZone.buttonItem-icon-right  {
+width: 32px;	
+height: 32px;
+margin: 4px 0 0 10px;
+}
+.buttonItem-medium.btn-circle>.ImageZone.buttonItem-icon-left  {
+width: 32px;	
+height: 32px;
+margin: 4px 0 0 10px;
+}
+.buttonItem-large.btn-circle>.ImageZone.buttonItem-icon-right  {
+width: 40px;	
+height: 40px;
+margin: 0 0 5px 10px;
+}
+.buttonItem-large.btn-circle>.ImageZone.buttonItem-icon-left  {
+width: 40px;	
+height: 40px;
+margin: 0 0 5px 10px;
+}
+/*------------------------------------BOTONES CUADRADOS + ICONOS ------------------------------------------------*/  
+.buttonItem-mini.btn-box {
+display: inline-block;
+width: 50px;	 
+height:50px;
+text-align: center;
+padding: 1px 0 2px;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-mini.btn-box>.buttonItem-icon-left {
+display: block;
+margin: 4px 0 0;
+font-size:20px;
+}
+.buttonItem-mini.btn-box>.buttonItem-icon-right {
+display: block;
+margin: 0 0 4px;
+font-size:20px;
+}
+.buttonItem-minier.btn-box {
+display: inline-block;
+width: 32px;				
+height:32px;
+text-align: center;
+padding: 1px 0 1px;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-minier.btn-box>.buttonItem-icon-left {
+display: block;
+font-size: 18px;
+margin: 1px 0px -2px -3px;
+}
+.buttonItem-minier.btn-box>.buttonItem-icon-right {
+display: block;
+font-size: 18px;
+margin: -4px 2px 0px 0px;
+}
+.buttonItem.btn-box  {
+border-radius: '';
+}
+.buttonItem-small.btn-box {
+display: inline-block;
+width: 56px;	
+height:56px;
+text-align: center;
+padding: 1px 0 2px;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-small.btn-box>.buttonItem-icon-left {
+display: block;
+font-size: 25px;
+margin: 4px 0 0;
+}
+.buttonItem-small.btn-box>.buttonItem-icon-right {
+display: block;
+font-size: 25px;
+margin: 0 0 4px;
+}
+.buttonItem-medium.btn-box {
+display: inline-block;
+width: 75px;
+height:75px;
+text-align: center;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-medium.btn-box>.buttonItem-icon-left {
+display: block;
+font-size: 40px;
+margin: 4px 0 0;
+line-height: 30px;
+}
+.buttonItem-medium.btn-box>.buttonItem-icon-right {
+display: block;
+font-size: 36px;
+line-height: 30px;
+}
+.buttonItem-large.btn-box {
+display: inline-block;
+width: 90px;
+height:90px;
+text-align: center;
+margin: 2px;
+line-height: 1.2;
+}
+.buttonItem-large.btn-box>.buttonItem-icon-left {
+display: block;
+font-size: 50px;
+margin: 8px 0 5px;
+line-height: 34px;
+}
+.buttonItem-large.btn-box>.buttonItem-icon-right {
+display: block;
+font-size: 50px;
+margin: 8px 0 5px;
+line-height: 34px;
+}
+/*--------------------------------------BOTONES CIRCULARES + ICONOS ---------------------------------------------------------------*/
+.buttonItem.btn-circle  {
+border-radius: 50%;
+}
+.buttonItem-mini.btn-circle{
+display: inline-block;
+width: 50px;				
+height:47px;
+font-size: 12px;
+text-align: center;
+border: none;
+padding: 1px 0 2px;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-mini.btn-circle>.buttonItem-icon-left {
+display: block;
+font-size: 20px;
+margin: 4px 0 0;
+line-height: 20px;
+}
+.buttonItem-mini.btn-circle>.buttonItem-icon-right {
+display: block;
+font-size: 20px;
+margin: 0 0 4px;
+line-height: 20px;
+}
+.buttonItem-minier.btn-circle {
+display: inline-block;
+width: 40px;
+height:39px;
+text-align: center;
+border: none;
+padding: 1px 0 1px;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-minier.btn-circle>.buttonItem-icon-left {
+display: block;
+font-size: 18px;
+margin: 2px 0 0;
+line-height: 18px;
+}
+.buttonItem-minier.btn-circle>.buttonItem-icon-right {
+display: block;
+font-size: 18px;
+margin: 0 0 2px;
+line-height: 18px;
+}
+.buttonItem-small.btn-circle {
+display: inline-block;
+width: 56px;
+height:52px;
+text-align: center;
+padding: 1px 0 2px;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-small.btn-circle>.buttonItem-icon-left {
+display: block;
+font-size: 25px;
+margin: 4px 0 0;
+line-height: 28px;
+}
+.buttonItem-small.btn-circle>.buttonItem-icon-right {
+display: block;
+font-size: 25px;
+margin: 0 0 4px;
+line-height: 28px;
+}
+.buttonItem-medium.btn-circle {
+display: inline-block;
+width: 77px;
+height:75px;
+text-align: center;
+border: none;
+margin: 2px;
+line-height: 1.7;
+}
+.buttonItem-medium.btn-circle>.buttonItem-icon-left {
+display: block;
+font-size: 40px;
+line-height: 32px;
+}
+.buttonItem-medium.btn-circle>.buttonItem-icon-right {
+display: block;
+font-size: 40px;
+line-height: 32x;
+margin: 0 0 0 -2px;
+}
+.buttonItem-large.btn-circle {
+display: inline-block;
+width: 90px;
+height:86px;
+text-align: center;
+margin: 2px;
+line-height: 1.2;
+}
+.buttonItem-large.btn-circle>.buttonItem-icon-left {
+display: block;
+font-size: 50px;
+margin: 8px 0 5px;
+line-height: 32px;
+}
+.buttonItem-large.btn-circle>.buttonItem-icon-right {
+display: block;
+font-size: 50px;
+margin: 8px 0 5px;
+line-height: 32px;
+}
+/*--------------------------------FIN DE BOTONES CIRCULARES + ICONOS-------------------------------------------------------------------------------------*/
+.buttonItem .iconButton {
+font-size: 20px;
+margin: 4px 0 0;
+line-height: 20px;
+}
+.centerbt{	    
+background-position: 50%;
+}  
+.buttonItem .textButton {
+font-size: 11px;
+padding: 0px 4px;
+}
+.buttonItem-small .textButton {
+line-height: 16px;
+}
+.buttonItem-medium .textButton {
+line-height: 24px;
+}
+.buttonItem-large .textButton {
+line-height: 32px;
+}
+.buttonItem-disabled, .splitButtonItem.button.ui-state-disabled {
+cursor: default;
+border: 1px solid rgb(23, 21, 21);
+background-color: rgb(94, 100, 107)!important;
+color: rgb(255, 255, 255);
+opacity: .5;
+}
+.buttonItem-enabled {
+cursor: pointer;
+opacity: 1;
+}
+.buttonItem-pressed {
+background-color: rgb(175, 204, 243)!important;
+cursor: pointer;
+}
+/*------------------ SPLIT BUTTON ------------------------*/
+.splitButtonItem button {
+border: 1px solid rgb(212, 223, 240);
+background: linear-gradient(to bottom, #A5CAEC 5%, #3E61A0 100%);
+}
+.splitButtonItem-pressed {
+background: linear-gradient(to bottom, #BBDBEB 5%, #A4C5F0 100%);
+}

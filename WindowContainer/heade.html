@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WindowContainer state </title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+	<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+	<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/Components.js"></script>		
+        <script src="../components/containers/WindowContainer.js"></script>
+		 <script src="../components/items/ButtonItem.js"></script>
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+//ejemplo con botones extra en la barra de titulos
+Components.create('Window',{
+    x:100,
+	y:100,
+	id:'hola',
+	state:'active',
+	title: "HEADER BUTTONS", 
+	html:'<div><i>VENTANA CON HEADER BUTTONS</b></div>',
+	headerbuttons:[
+		{type:'Button',		 
+		scale: 'minier',
+		state:'active',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cog',
+		},
+		tooltip:'Tamaño Personalizado',	  
+		handler: function() {
+			alert('Hola Boton Extra');
+		  }  
+		},
+		{type:'Button',		 
+		scale: 'minier',
+		state:'active',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-bell',
+		},
+		tooltip:'Tamaño Personalizado',	  
+		handler: function() {
+			alert('Hola Boton Extra');
+		}  
+		},
+		{type:'Button',		 
+		scale: 'minier',
+		state:'active',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-map-marker',
+		},
+		tooltip:'Tamaño Personalizado',	  
+		handler: function() {
+			alert('Hola Boton Extra');
+		}  
+		}
+	]
+}).show();
+Components.create('Button',{
+    id:'hola',	
+    container: $('#S2-3'),	
+	scale: 'minier',
+	state:'active',	
+	shape:'box',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		color:'white'
+	},
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+		button={scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-align-left',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		  }
+	};
+   Components.getComponentById('hola').createHeaderButton(button);
+	}  
+}).show();
+
+Components.create('Button',{		
+		container: $('#S2-3'),
+		scale: 'minier',
+		state:'active',	
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			color:'white'
+		},
+		tooltip:'boton mini',	  
+		handler: function() {
+		
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('hola').createHeaderButton(button);
+	}  
+	}).show();
+
+Components.create('Button',{		
+		container: $('#S2-3'),
+		scale: 'minier',
+		state:'active',	
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cubes',
+			color:'white'
+		},
+		tooltip:'Small button',	  
+		handler: function() {
+		
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cubes',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('hola').createHeaderButton(button);
+	}  
+}).show();
+		
+Components.create('Button',{		
+		container: $('#S2-3'),
+		state:'active',
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			color:'white',
+		},
+		tooltip:'medium active',	  
+		handler: function() {
+		
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('hola').createHeaderButton(button);
+		}  
+    }).show();
+
+Components.create('Button',{
+		container: $('#S2-3'),
+		state:'active',	
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			color:'white',
+		},
+		tooltip:'large Info',	  
+		handler: function() {
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('hola').createHeaderButton(button);
+		}  
+    }).show();
+
+Components.create('Button',{
+		container: $('#S2-3'),
+		state:'active',		
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cc-visa',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Boton Warning',
+        handler: function() {
+		button={
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cc-visa',
+			color:'white'
+		},
+		handler: function() {
+			alert('Hola Boton Extra');
+		}
+	  };
+     Components.getComponentById('hola').createHeaderButton(button);
+	}  		
+ }).show();
+		});  
+	</script>	
+   
+</head>
+<body>
+<div class="row">
+   <div  class="col-sm-12" style="height: inherit">
+   
+	<div  id="S2-4" class="col-sm-4" style="height: inherit" >
+	</div>
+	<div  id="S2-3" class="col-sm-4" style="height: inherit" >
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">Botones a agregar:</P></font></strong> 
+	</div>
+	</div>
+</div>
+</body>
+</html>

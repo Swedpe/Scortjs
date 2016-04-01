@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ButtonItem ejemplo 3</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/jquery.iframe-transport.js"></script>	
+<script src="../jqfu/jquery.fileupload.js"></script>
+<script src="../jqfu/jquery.fileupload-process.js"></script>
+<script src="../JquerySVG/jquery.svg.js"></script>
+<script src="../JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+<style type="text/css">		
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+	Components.create('Button',{
+	id:'hola',	
+	scale: 'medium',
+	state:'error',
+	text:'Estado error',
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+		alert('error');
+	}  
+}).show();
+
+Components.create('Button',{		
+	scale: 'medium',
+	text:'Estado highlight',
+	state:'highlight',
+	tooltip:'texto + icono',	  
+	handler: function() {
+		alert('highlight');
+}  
+}).show();
+	
+Components.create('Button',{		
+	scale: 'medium',
+	text:'Estado default',
+	icon: 
+	{
+		type:'image',
+		image:'images/plussymbol.png',  
+		position:'left'
+		
+	},
+		
+	tooltip:'Small button',	  
+	handler: function() {
+		alert('default');
+	}  
+}).show();
+Components.create('Button',{		
+	state:'active',
+	scale: 'medium',
+	text:'Estado active',
+	tooltip:'Medium button',	  
+	handler: function() {
+		alert('active');
+	}  
+}).show();
+Components.create('Button',{
+	state:'info',	
+	scale: 'medium',
+	text:'Estado info',
+	tooltip:'Boton Info',	  
+	handler: function() {
+		alert('info');
+	}  
+}).show();
+
+Components.create('Button',{
+	state:'warning',		
+	scale: 'medium',
+	text:'Estado warning',
+	tooltip:'Boton Warning',	
+}).show();
+	
+Components.create('Button',{		
+	id:"botontoggle",
+	state:'info',		//estado 1 
+	State2:'error',		//estado 2 
+	scale: 'medium',
+	icon: 'images/ok.png',
+	tooltip:'Toggle Button',
+	text:'Toggle Info-Error',
+	enableToggle:true,
+	handler: function() {
+			 console.log("ee");
+	}    									
+ }).show();
+});  
+	</script>	
+</head>
+</html>

@@ -1,0 +1,21 @@
+Components.create('FileUploader',{  	
+    x:0,
+	y:23,
+	id: 'SubirFotobt',
+	icon: 'images/Warehouse-icon16.png',
+	tooltip:'Subir Foto',
+	text:'Subir Foto',
+	filesize: 5000000,//5mb
+	script:'php/uploadhandlerfp.php',	
+	formdata:[												
+			{	name  :'folder', value: 'upload' },
+			{	name  :'UploadType', value: '' }
+	],
+	listeners: {
+		fileuploaddone: function(e, data) {
+				$.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name).appendTo(document.body);
+            })	
+		}
+	}
+}).show();

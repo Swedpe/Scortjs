@@ -1,0 +1,63 @@
+/* 
+    Document   : css_buttonItem
+    Created on : 25-feb-2014, 19:39:47
+    Description:
+        Estilos para los botones
+*/
+.boton-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  padding: 0px 0;
+  margin: 0px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.nav-tabs>li, .nav-pills>li {
+  float: left;
+}
+.nav-tabs:before, .nav-pills:before, .nav-tabs:after, .nav-pills:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.nav-tabs:after, .nav-pills:after {
+  clear: both;
+}
+.nav-tabs:before, .nav-pills:before, .nav-tabs:after, .nav-pills:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.BotonMenu1{
+  float: left;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  list-style: none;
+}
+.BotonMenu2{
+  float: left;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  list-style: none;
+}
+
+.menuHover:hover .boton-dropdown {
+    display: block;
+}

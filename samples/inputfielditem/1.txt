@@ -1,0 +1,125 @@
+Components.create('TextField',{						
+						x:0,
+						y:50,	
+						label: '<b>&nbsp;Con Etiqueta :</b>',
+						width: 150,
+						alignLabel: "left",
+					}).show();
+
+Components.create('TextField',{
+						x:10,
+						y:100,	
+						width: 100,
+						alignLabel: "left",
+					}).show();
+Components.create('Label',{
+			x:200,
+			y: 100,
+			text: 'Sin Etiqueta',			
+			width: 150
+}).show(); 					
+Components.create('TextField',{
+						x:0,
+						y:150,	
+						label: '<b>&nbsp;Etiqueta con tamaño personalizado   :</b>',
+						width: 150,
+						alignLabel: "left",
+						labelWidth: 300	
+					}).show();
+
+Components.create('TextField',{
+						x:10,
+						y:200,	
+						width: 100,
+						label: '<b>&nbsp;Texto a la derecha :</b>',
+						alignLabel: "right",
+						alignText:"right"
+}).show();
+
+Components.create('TextField',{						
+								x:0,
+								y: 250,								
+								label: '<b> Estilo Personalizado :</b>',
+								id: 'remuneracion_personal',
+								width: 128,
+								alignLabel: "left",
+								labelWidth: 186,				
+								readOnly: false,
+								styleLabel:'customlabel',
+								ico	:true,
+								InputCss:
+									{ 'border': "1px solid #125EB1",
+									 'background-color':  "#FFFFFF",
+									 'color': "#125EB1",
+									'height':"18px",
+									'margin-left':'4px'
+									}
+								
+}).show();
+Components.create('TextField',{						
+						x:0,
+						y:300,	
+						label: '<b>&nbsp;Validacion Email :</b>',
+						width: 150,
+						alignLabel: "left",
+						validar:{								
+								
+										'email':true,
+										'longitud':{
+														'min':5,
+														'max':35
+												   }
+										
+										},		
+					}).show();
+
+					
+Components.create('Label',{
+			x:250,
+			y: 350,
+			text: 'Escriba \'Hola\' ',			
+			width: 150
+}).show();
+Components.create('Label',{
+			x:250,
+			y: 400,
+			text: 'Escriba \'Hola\' ',			
+			width: 150
+}).show();
+Components.create('TextField',{						
+						x:0,
+						y:350,	
+						label: '<b>&nbsp;Evento KeyUp :</b>',
+						width: 150,
+						alignLabel: "left",
+						ico	:true,
+						listeners:{
+                                    keyup:function(event){
+										if(event.data.OBJ.divInput.val()=="Hola")
+											event.data.OBJ.ChangeIcoClass('databaseok');
+										else
+											event.data.OBJ.ChangeIcoClass('duda');
+									}
+								}
+}).show();
+
+Components.create('TextField',{						
+						x:0,
+						y:400,	
+						label: '<b>&nbsp;Evento KeyPress :</b>',
+						width: 150,
+						alignLabel: "left",
+						ico	:true,
+					    labelWidth: 150,
+						listeners:{
+                                    specialKey:function(obj, event){
+										if(obj.divInput.val()=="Hola"){
+											obj.ChangeIcoClass('databaseok');
+											obj.setLabel("Ya esta");
+										}else{
+											obj.ChangeIcoClass('duda');
+											obj.setLabel("No todavia");
+										}
+									}
+								}
+}).show();

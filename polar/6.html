@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Desempeño de Personal Polar</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--anterior comentado -->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!--url web
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+-->
+<script src="../jquery/jquery-1.10.2.js"></script>
+<script src="../jquery/jquery-ui.js"></script>
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+
+<!--mis scripts-->
+<script src="../jqfu/JquerySVG/jquery.svgfilter.js"></script>
+<!---->
+
+<script src="../components/Components.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<!--anterior comentado -->
+<script src="../components/svg/ScreenGrid.js"></script>					<!--este componente solo lo usan los WBS no deveria estar generalizado en svgContainer -->			
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/polar/polar.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>
+
+<script id="customscript">
+/*
+1) el fill de un poligono de calificacion deve ser opcional mediante un parametro, el parametro sera global, si es true todos los poligonos tienen fondo
+si es false todos los poligonos no tienen fondo.
+2) las letras rojas pequeñas con el nombre cesar cardenas retirar eliminar toda referencia a ese dato.
+2) No se implemento aun el echo que un poligono aparesca con un click y desaparesca con el siguiente click.
+3) El parametro Imagen de cada poligono aun no se usa, no se ven dibujadas imagenes en la leyenda de poligonos.
+4) Implementa el poligono promedio, el cual resulta de promediar todas sus calificaciones, no siempre esta disponible, se controla tambien por parametro.
+5) Calcular la altura y ancho reales de el contenedor SVG.
+6) El numero actual de circulos concentricos de calificacion se fijo esta fijo en 5, permitir que este parametro sea variable
+7) Los criterios de evaluacion estan fijos en todos los ejemplos pero en un sistema de control de proyectos diferentes empresas usan diferentes criterios, y en algunos casos los criterios pueden cambiar hasta por proyecto
+  lo cual nesesitamos ver la forma de asociar los criterios a cada poligono individualmente.
+
+*/
+personal={
+	"nombre":"Cesar Cardenas",
+	"Id":"Ccardenas",
+	"maquina":34,
+	"imagen":"Cesar Peña.png",
+},
+proyectos = {
+		10:{
+            "criterio":0,
+			"Id": 10,
+            "Descripcion": "Proyecto: Sala Electrica XRM40",
+            "imagen": "def.png",
+            "color": "#ff0000",
+      			"calificaciones": {
+      				"1": 5,
+      				"2": 1,
+      				"3": 1,
+      				"4": 1,
+      				"5": 1,
+      				"6": 1,
+      				"7": 1,
+      				"8": 1,
+      				"9": 5,
+      				"10": 5,
+      				"11": 5
+      			},
+        },
+		11:{
+            "criterio":0,
+			"Id": 11,
+            "Descripcion": "Proyecto: Ingenieria Inversa S10",
+            "imagen": "def.png",
+            "color": "#ffff00",
+            "calificaciones": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 2,
+            "5": 5,
+            "6": 5,
+            "7": 5,
+            "8": 2,
+            "9": 5,
+            "10": 5,
+            "11": 5
+             },
+        },
+		12:{
+            "criterio":0,
+			"Id": 12,
+            "Descripcion": "Tarea: Instalacion de Transformador A123",
+            "imagen": "def.png",
+            "color": "#00ff00",
+      			 "calificaciones": {
+      				"1": 2,
+      				"2": 5,
+      				"3": 1,
+      				"4": 4,
+      				"5": 2,
+      				"6": 3,
+      				"7": 2,
+      				"8": 3,
+      				"9": 4,
+      				"10": 5,
+      				"11": 1
+			      },
+        },
+		13:{
+            "criterio":0,
+			"Id": 13,
+            "Descripcion": "Tarea: TESTEOOO",
+            "imagen": "def.png",
+            "color": "#0000ff",
+      			 "calificaciones": {
+      				"1": 5,
+      				"2": 2,
+      				"3": 5,
+      				"4": 3,
+      				"5": 5,
+      				"6": 2,
+      				"7": 1,
+      				"8": 6,
+      				"9": 3,
+      				"10": 4,
+      				"11": 2
+			      },
+        },
+};
+criterios = {
+			"tipo": "global",
+			0:{vectores:[
+			{
+              "titulo": "Orden",							
+              "datos": [
+                  "Todo trabajo que ocupa termina desordenado",
+                  "Predomina el desorden",
+                  "No logra tener todo en orden, ",
+                  "Mantiene el orden y organizacion controlados",
+                  "Tiene bajo control su propio orden y organizacion",
+                  "Mejora las condiciones de orden y organizacion de grupo en los que esta involucrado",
+                ]
+            },
+            {
+                "titulo": "Calidad",
+                "datos": [
+                    "Comete errores apreciables con frecuencia y en general su trabajo es insatisfactorio",
+                    "Cumple en forma aceptable con las obligaciones de su puesto, debe mejorar la calidad de su trabajo",
+                    "Cumple en forma aceptable con las obligaciones de su puesto",
+                    "hace su trabajo con exactitud, pulcritud y minuciosidad",
+                    "hace su trabajo con exactitud, pulcritud y minuciosidad",
+                    "Su trabajo es excepcional totalmente bueno y se supera cada vez m&aacute;s"
+                ]
+            },
+            {
+
+              "titulo":"Responsabilidad",
+                "datos":[
+                  "Requiere supervisi&oacute;n permanente debido a sus continuos errores",
+                  "Necesita frecuentemente supervisi&oacute;n",
+                  "Requiere eventual supervisi&oacute;n",
+                  "Requiere eventual supervisi&oacute;n",
+                  "Requiere supervisi&oacute;n en casos especiales",
+                  "No requiere supervisi&oacute;n"
+                ]
+            },
+            {
+              "titulo": "Iniciativa",
+                "datos":[
+                  "Sabe de iniciativa en la relación de su trabajo. Requiere instrucciones detalladas y guia permanente",
+                  "Tiene acciones lentas, con frecuencia hay que guiarle en su trabajo y en resolver problemas\r\n",
+                  "Ocacionalmente hay que guiarle en su trabajo, algunas veces tiene ideas constructivas",
+                  "Ocacionalmente hay que guiarle en su trabajo, algunas veces tiene ideas constructivas",
+                  "Resuelve solo problemas que se le presenta.\r\nCon frecuencia aporta ideas",
+                  "Constantemente contribuye con ideas y sugerencias.\r\nResuelve solo problemas que se le presentan"
+                ]
+
+
+
+
+            },
+            {
+              "titulo": "Persistencia",
+                "datos":[
+                    "Se rinde muy facilmente, abandona el trabajo sin terminar",
+                    "Luego de unos cuantos intentos insatisfactorios abandona el trabajo",
+                    "Se rinde muy frecuentemente, Intenta delegar el trabajo a otros ",
+                    "Se rinde muy Dificilmente, Intenta solucionarlo luego de encontrar mas informacion",
+                    "A veces se rinde, pero sigue en busca de ayuda hasta lograrlo",
+                    "Siempre sigue intentando hasta que lo logra(AUTOSUFICIENTE)"
+                ]
+            },
+            {
+              "titulo": "Cooperacion",
+                "datos":[
+                    "No colabora",
+                    "Colabora poco",
+					"Colabora solo con sus amigos",
+                    "Colabora normalmente",
+                    "Buen espiritutu de colaboracion",
+                    "Excelente espiritu de colaboracion"
+                ]
+            },
+              {
+              "titulo": "intuición",
+                "datos":[
+                    "Ninguna capacidad de intuición",
+                    "Poca capacidad de intuición ",
+                    "Capacidad satisfactoria de intuición",
+                    "Capacidad satisfactoria de intuición",
+                    "Buena capacidad de intuición",
+                    "Excelente capacidad de intuición"
+                ]
+            },
+
+             {
+              "titulo": "Creatividad",
+                "datos":[
+                  "Nunca presenta ideas",
+                  "Raras veces presenta ideas",
+                  "Algunas veces presenta ideas",
+                  "regularmente presenta ideas",
+                  "Casi siempre tiene ideas excelentes",
+                  "Siempre tiene ideas excelentes"
+                ]
+            },
+
+            {
+              "titulo": "Pensamiento Analítico",
+                "datos":[
+                    "Nulo Pensamiento Analítico",
+                    "Dificultad para realizar pensamiento Analítico ",
+                    "Razonable capacidad de Pensamiento Analítico ",
+                    "Buen Pensamiento Analítico ",
+                    "Pensamiento Analítico superior al promedio",
+                    "Excelente Pensamiento Analítico "
+                ]
+            },
+            {
+              "titulo": "Búsqueda de información",
+                "datos":[
+                    "Incapaz de realizar buenas búsquedas",
+                    "Dificultad para localizar buenos datos ",
+                    "generalmente encuentra información no relevante",
+                    "Buena capacidad de búsqueda de información",
+                    "Regularmente encuentra información relevante",
+                    "capacidad sobresaliente de búsqueda de información. "
+                ]
+            },
+
+            {
+              "titulo": "Trato Personal",
+                "datos":[
+                    "Trato Tosco",
+                    "Trato serio",
+                    "Neutral",
+                    "Neutral",
+                    "Amigable",
+                    "Muy amigable"
+                ]
+            }
+			],
+			Descripcion:'Habilidades Blandas'},
+			1:{vectores:[
+            {
+              "titulo": "Conocimiento del cargo",							//Esto quedo OK
+              "datos": [
+                  "No posee conocimientos ni habilidades para el cargo, Demuestra deseos de aprender",
+                  "Conoce sus obligaciones sin llegar a dominarlos",
+                  "Conoce sus obligaciones satisfactoriamente",
+                  "Conoce sus obligaciones satisfactoriamente",
+                  "Conoce bien sus obligaciones y cada dia se supera en el mejor desempe&ntilde;o de sus labores",
+                ]
+            },
+            {
+                "titulo": "Calidad",
+                "datos": [
+                    "Comete errores apreciables con frecuencia y en general su trabajo es insatisfactorio",
+                    "Cumple en forma aceptable con las obligaciones de su puesto, debe mejorar la calidad de su trabajo",
+                    "Cumple en forma aceptable con las obligaciones de su puesto",
+                    "hace su trabajo con exactitud, pulcritud y minuciosidad",
+                    "hace su trabajo con exactitud, pulcritud y minuciosidad",
+                    "Su trabajo es excepcional totalmente bueno y se supera cada vez m&aacute;s"
+                ]
+
+
+            },
+            {
+
+              "titulo":"Responsabilidad",
+                "datos":[
+                  "Requiere supervisi&oacute;n permanente debido a sus continuos errores",
+                  "Necesita frecuentemente supervisi&oacute;n",
+                  "Requiere eventual supervisi&oacute;n",
+                  "Requiere eventual supervisi&oacute;n",
+                  "Requiere supervisi&oacute;n en casos especiales",
+                  "No requiere supervisi&oacute;n"
+                ]
+            },
+            {
+              "titulo": "est&aacute;ndares",
+                "datos":[
+                    "Siempre esta por debajo de los est&aacute;ndares",
+                    "A veces por debajo de los est&aacute;ndares",
+                    "Satisface los est&aacute;ndares",
+                    "Satisface los est&aacute;ndares",
+                    "A veces supera los est&aacute;ndares",
+                    "Siempre supera los est&aacute;ndares"
+                ]
+            },
+            {
+              "titulo": "Realizacion",
+                "datos":[
+                    "Incapaz de realizar",
+                    "Dificultad para realizar",
+                    "Razonable capacidad de realizaci&oacute;n",
+                    "Buena capacidad de realizaci&oacute;n",
+                    "Buena capacidad de realizaci&oacute;n",
+                    "Excelente capacidad de realizaci&oacute;n"
+                ]
+            },
+            {
+              "titulo": "Trato Personal",
+                "datos":[
+                    "Trato Tosco",
+                    "Trato serio",
+                    "Neutral",
+                    "Neutral",
+                    "Amigable",
+                    "Muy amigable"
+                ]
+            }
+			],
+			Descripcion:'Habilidades Administrativas'
+			},
+			
+        };
+
+newproyecto={
+            "criterio":0,
+			"Id": 7,
+            "Descripcion": "Tarea: Comicionamiento de Linea 2",
+            "imagen": "def.png",
+            "color": "#00DDDD",
+            "calificaciones": {
+              "1": 2,
+              "2": 2,
+              "3": 2,
+              "4": 5,
+              "5": 2,
+              "6": 5,
+              "7": 2,
+              "8": 5,
+              "9": 2,
+              "10": 5,
+              "11": 2,
+
+            }
+        };
+newproyecto2={
+            "criterio":1,
+			"Id": 8,
+            "Descripcion": "Tarea: TESTEO distinto criterio",
+            "imagen": "def.png",
+            "color": "#000000",
+            "calificaciones": {
+              "1": 2,
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 2,
+              "6": 2,
+
+            }
+        };
+newproyecto3={
+            "criterio":1,
+			"Id": 18,
+            "Descripcion": "Tarea: TESTEO proyecto sin formato",
+            "imagen": "def.png",
+            "color": "#000000",
+            "calificaciones": {
+              "1": 2,
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 2,
+              "6": 2,
+              "7": 2,
+
+            }
+        };
+
+$( document ).ready(function(){
+    Components.create('Window', {
+            height: 700,
+            width: 900,
+			state: 'error',
+            resizable: true,
+            minimizable: false,
+            closeAction:'destroy',
+            constrain: true,
+            title:'PC_Desempeño_00401',
+            id:'WindowDesempeno',
+            html:'<div Id="FormWindowDesempeno" style="background-color: white;padding: 1px; height:100%; " class=""></div>',
+            items:[
+			{	type: 'ToolBar',
+				id: 'Demo_ProyectoWindowsToolBar',
+				region: 'top',
+				items: [
+					{
+					type: 'Button',
+					id : 'Additem',
+					shape:'box',
+					scale:'minier',
+					icon:{
+						type:'fontawesome',
+						class:'fa-plus',
+						color:'#000099',
+						position:'left',
+					},
+					tooltip:'Additem',
+					listeners: {
+						click: function() {
+							Components.getComponentById('polarid').additem(newproyecto);
+							
+						}
+					}
+					},
+					{
+					type: 'Button',
+					id : 'Additem',
+					shape:'box',
+					scale:'minier',
+					icon:{
+						type:'fontawesome',
+						class:'fa-plus-square',
+						color:'#000099',
+						position:'left',
+					},
+					tooltip:'Agregar elemento con distinto criterio',
+					listeners: {
+						click: function() {
+							Components.getComponentById('polarid').additem(newproyecto2);
+							
+						}
+					}
+					},
+					{
+					type: 'Button',
+					id : 'Removeitem',
+					shape:'box',
+					scale:'minier',
+					icon:{
+						type:'fontawesome',
+						class:'fa-trash',
+						color:'#000099',
+						position:'left',
+					},
+					tooltip:'Remove selected',
+						listeners: {
+							click: function() {
+								console.log(Components.getComponentById('micombo').getValue());
+								Components.getComponentById('polarid').removeitem(Components.getComponentById('micombo').getValue());
+								//Components.getComponentById('polarid').removeitem(10);
+								Components.getComponentById('micombo').setStore(polarData).drawRows();
+							}
+						}
+					},
+					{
+					type: 'Button',
+					id : 'Additem',
+					shape:'box',
+					scale:'minier',
+					icon:{
+						type:'fontawesome',
+						class:'fa-plus-circle',
+						color:'#000099',
+						position:'left',
+					},
+					tooltip:'Add un no proyecto',
+					listeners: {
+						click: function() {
+							Components.getComponentById('polarid').additem(newproyecto3);
+							
+						}
+					}
+					},
+					{
+					type: 'ComboBox',  
+						id:"micombo",
+						x:0,
+						y: 50,
+						label: 'ComboBox con Evento',                                        
+						store: {
+							fields: ["Id", "Descripcion"],
+							data: [			]
+						},
+						valueField: 'Id',
+						displayField: 'Descripcion',
+						mode:'local',
+						readOnly: false	,								
+						listeners: {
+									select: function(combo, record, index){
+										
+										//alert("succes");
+									}
+								}
+
+								
+					},
+				]
+			},
+			{
+                type:'SvgContainer',
+                region: 'center',
+                id:'mysvg',
+                items:[
+                  {
+                    id:'polarid',
+                    type: 'PolarSvg',
+					centerY:315,
+					pointscolors:'rgb(255, 86, 86)',
+					titulo:{'texto': "Evaluacion de desempeño: Cesar Cardenas"},
+					//subtitulo:{'texto': "11 escalas"},
+					poligonStrokeWidth:2,
+					legendTextSpace:20,
+					legendPosition: 'center',					
+					fillPoligon:true,
+					shadows: true,
+					plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'izquierda',
+						offset:7,
+					}},
+                    proyectos:proyectos,
+					criterios:criterios,
+					personal:personal,
+					listeners: {
+						onRequestDeleteProyect: function(succes) {
+							
+							//alert(succes);
+						},
+						onRequestAddProyect: function(succes) {
+							var polarData=Components.getComponentById('polarid').proyectos;
+							Components.getComponentById('micombo').setStore(polarData).drawRows();
+							//alert(succes);
+						}
+					}
+                  }
+                ]
+
+            }]
+  }).show();
+  var polarData=Components.getComponentById('polarid').proyectos;
+	Components.getComponentById('micombo').setStore(polarData).drawRows();
+});
+
+</script>
+</head>
+
+</html>

@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ButtonItem ejemplo8</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../JquerySVG/jquery.svg.js"></script>
+		<script src="../JquerySVG/jquery.svganim.js"></script>
+		<script src="../components/Components.js"></script>	
+        <script src="../functions.js"></script>		
+        <script src="../components/containers/WindowContainer.js"></script>
+		
+		<script src="../components/items/Image.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<script src="../components/items/fontawesomegrid.js"></script>
+		<script src="../components/items/HtmlScreenGrid.js"></script>
+		<script src="../components/items/Image.js"></script>
+		<script src="../components/svg/ClipBoardSVG.js"></script>
+		<script src="../components/svg/ControlBox.js"></script>
+		<script src="../components/svg/ScreenGrid.js"></script>
+		<script src="../components/svg/TextCajita.js"></script>
+		<script src="../components/svg/TextProcesor.js"></script>
+		<script src="../components/containers/SvgContainer.js"></script>
+		
+		
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" /> 
+	   <link rel="stylesheet" href="../css_components/css_principal.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<style type="text/css">
+		
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+Components.create('Button',{		 
+	scale: 'minier',
+	state:'error',
+	shape:'box',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		color:'white',
+		position:'right'
+	},
+	text:'minier',
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+		alert('minier');
+	}  
+}).show();
+Components.create('Button',{		 
+	scale: 'minier',
+	state:'error',
+	shape:'box',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		color:'white',
+		position:'left'
+	},
+	text:'minier',
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+					alert('minier');
+				}  
+}).show();
+
+Components.create('Button',{		
+		scale: 'mini',
+		text:'mini',
+		state:'highlight',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'boton mini',	  
+		handler: function() {
+					alert('mini');
+				}  
+	}).show();
+Components.create('Button',{		
+		scale: 'mini',
+		text:'mini',
+		state:'highlight',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-group',
+			color:'white',
+		},
+		tooltip:'boton mini',	  
+		handler: function() {
+					alert('mini');
+				}  
+	}).show();
+    
+Components.create('Button',{		
+		scale: 'small',
+		text:'small',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cubes',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'Small button',	  
+		handler: function() {
+						alert('small');
+					}  
+		}).show();
+Components.create('Button',{		
+		scale: 'small',
+		text:'small',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cubes',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'Small button',	  
+		handler: function() {
+						alert('small');
+					}  
+		}).show();		
+Components.create('Button',{		
+		state:'active',
+		scale: 'medium',
+		text:'medium',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'medium active',	  
+		handler: function() {
+			alert('medium');
+		}  
+    }).show();
+Components.create('Button',{		
+		state:'active',
+		scale: 'medium',
+		text:'medium',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cut',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'medium active',	  
+		handler: function() {
+			alert('medium');
+		}  
+    }).show();
+Components.create('Button',{
+		state:'info',	
+		scale: 'large',
+		text:'Large',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			color:'white',
+			position:'right'
+		},
+		tooltip:'large Info',	  
+		handler: function() {
+			alert('large');
+		}  
+    }).show();
+Components.create('Button',{
+		state:'info',	
+		scale: 'large',
+		text:'Large',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-floppy-o',
+			color:'white',
+			position:'left'
+		},
+		tooltip:'large Info',	  
+		handler: function() {
+			alert('large');
+		}  
+    }).show();
+Components.create('Button',{
+		state:'warning',		
+		scale: 'medium',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cc-visa',
+			color:'white',
+			position:'right'
+		},
+		text:'medium',
+		tooltip:'Boton Warning',	
+    }).show();
+    
+Components.create('Button',{		
+		id:"botontoggle",
+		shape:'box',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		icon:{
+			type:'fontawesome',
+			class:'fa-ra',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-cart-plus',
+			color:'white'
+		},
+		tooltip:'Small info Toggle',
+		text:'Toggle1',
+		enableToggle:true,
+		handler: function() {
+				 console.log("small togle");
+		}    
+                                        
+     }).show();
+Components.create('Button',{		
+		state:'error',				//estado 1 
+		State2:'active',			//estado 2 
+		scale: 'mini',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-tty',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-joomla',
+			color:'white'
+		},
+		tooltip:'mini Toggle',
+		text:'Toggle2',
+		enableToggle:true,
+		handler: function() {
+				 console.log("mini togle");
+		}    
+                                        
+     }).show();	 
+Components.create('Button',{		
+		state:'active',		//estado 1 
+		State2:'highlight',		//estado 2 
+		scale: 'minier',
+		shape:'box',
+		icon:{
+			type:'fontawesome',
+			class:'fa-reddit',
+			color:'white',
+			position:'right'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fontawesome',
+			class:'fa-user-secret',
+			color:'white'
+		},
+		tooltip:'minier Toggle',
+		text:'Toggle3',
+		enableToggle:true,
+		handler: function() {
+				 console.log("mini togle");
+		}    
+                                        
+     }).show();	 
+	 
+	 function changebutton(){
+	 Components.getComponentById('Bprueba').setIcon.class('fa-reddit');
+     }
+	});  
+	</script>	
+   <script id="switchthemescript"> 
+	$(function() {
+		$('#theme-switcher').change(function () {
+			var theme = $('#theme');
+			theme.prop(
+				'href',
+				theme.prop('href').replace(
+					/[\w\-]+\/jquery-ui.css/,
+					$(this).val() + '/jquery-ui.css'
+				)
+			);
+		});
+	});
+  </script>
+</head>
+<body>
+Theme Switcher:
+ <select id="theme-switcher" class="pull-right">
+        <option value="black-tie">Black Tie</option>
+        <option value="blitzer">Blitzer</option>
+        <option value="cupertino">Cupertino</option>
+        <option value="dark-hive" selected>Dark Hive</option>
+        <option value="dot-luv">Dot Luv</option>
+        <option value="eggplant">Eggplant</option>
+        <option value="excite-bike">Excite Bike</option>
+        <option value="flick">Flick</option>
+        <option value="hot-sneaks">Hot sneaks</option>
+        <option value="humanity">Humanity</option>
+        <option value="le-frog">Le Frog</option>
+        <option value="mint-choc">Mint Choc</option>
+        <option value="overcast">Overcast</option>
+        <option value="pepper-grinder">Pepper Grinder</option>
+        <option value="redmond">Redmond</option>
+        <option value="smoothness">Smoothness</option>
+        <option value="south-street">South Street</option>
+        <option value="start" selected >Start</option>
+        <option value="sunny">Sunny</option>
+        <option value="swanky-purse">Swanky Purse</option>
+        <option value="trontastic">Trontastic</option>
+        <option value="ui-darkness">UI Darkness</option>
+        <option value="ui-lightness">UI Lightness</option>
+        <option value="vader">Vader</option>
+    </select>
+ 
+</body>
+</html>

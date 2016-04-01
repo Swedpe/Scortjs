@@ -1,0 +1,68 @@
+Components.create('Window',{
+        title: "Window", 
+        height:400, 
+        width:600,
+        items: [
+          {
+                            type: 'ToolBar',
+                            region: 'top',
+                            items: [				        
+                                {
+                                    type: 'Button',
+                                    text:'buscar',
+                                    width: 85,
+                                    scale: 'small',
+                                    icon: 'images/search_go.png',
+                                    tooltip:'OK',
+                                    handler: function() {
+                                       
+                                    }
+                                },
+								{
+                                    type: 'TextField',                                    
+                                    allowBlank: false,
+                                    listeners: {
+                                        specialkey: function(f,e){
+                                            if (e.getKey() == e.ENTER) {
+                                                
+                                            }
+                                        }
+                                    }
+                                },
+								{
+                                    type: 'Button',
+                                    text:'Guardar',
+                                    width: 85,
+                                    scale: 'small',
+                                    icon: 'images/save.png',
+                                    tooltip:'OK',
+                                    handler: function() {
+                                       
+                                    }
+                                },
+								{
+                                    type: 'Button',
+                                    text:'Copiar',
+                                    width: 85,
+                                    scale: 'small',
+                                    icon: 'images/copy16.png',
+                                    tooltip:'OK',
+                                    handler: function() {
+                                       
+                                    }
+                                },
+								{
+                                    type: 'Button',
+                                    text:'Cortar',
+                                    width: 85,
+                                    scale: 'small',
+                                    icon: 'images/cut.png',
+                                    tooltip:'OK',
+                                    handler: function() {
+                                       
+                                    }
+                                }
+						]		
+            }
+        ]
+    }).show();

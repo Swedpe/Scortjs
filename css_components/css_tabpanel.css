@@ -1,0 +1,221 @@
+/* 
+    Document   : css_tabpanel
+    Created on : 21-mar-2014, 12:39:32
+    Linked in  : BPT/top.php
+    Description:
+        Este archivo contiene los estilos para los tabs y tabpanel
+*/
+
+.tabContainer {
+    padding: 0px;
+    height: 100%;
+}
+
+.tabContainer .headerTabs {
+    /*width: 100%;
+    display: inline-block;*/
+    display: block;
+    position: relative;
+    height: 28px;
+}
+
+.tabContainer .bodyTabs {
+    width: 100%;
+    position: relative;
+    clear: both;
+}
+
+.headerTabs .containerTabs {
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 26px;
+	float: left;
+}
+
+.headerTabs .ui-tabs-nav {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-bottom-width: 1px;
+    position: relative;
+    left: 0px;
+}
+
+.headerTabs .ui-tabs-nav li {
+    margin: 0px;
+    top: 0px;
+    display: inline-block;
+    float: none;
+    vertical-align: bottom;
+    border: 1px solid rgb(212, 223, 240);
+    border-top: 0px;
+    height: 24px;
+    font-size: 12px;
+}
+
+.headerTabs .ui-tabs-selected {
+    background-color: rgb(18, 94, 177);
+    border-color: rgb(18, 94, 177);
+    border-bottom-width: 0px;
+}
+
+.headerTabs .ui-state-hover {
+    color: white;
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: white;
+}
+.ui-widget-content {
+        border: 1px solid white;
+	background: #fcfdfd url("images/ui-bg_inset-hard_100_fcfdfd_1x100.png") 50% bottom repeat-x;
+    color: #222222;
+}
+.headerTabs .controlButtons {
+    float: left;
+    cursor: pointer;
+    display: none;
+    width: 15px;
+    height: 26px;
+}
+
+#btnAnt.controlButtons {
+    background-repeat: no-repeat;
+}
+#btnNext.controlButtons {
+    background-repeat: no-repeat;
+}
+
+.tabItem {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    position: relative;
+    display: none;
+}
+/*-------STATES-------*/
+ul.error,ul.ui-tabs-nav .error{
+ background: #721C1D;
+background-image: linear-gradient(to bottom,#721C1D 0,#E05556 100%);
+}
+ul.highlight,ul.ui-tabs-nav .highlight{
+background: #BBBE28/*{bgColorHeader}*/;
+background-image: linear-gradient(to bottom,#D8D682 0,#CBAF29 100%);
+}
+ul.active,ul.ui-tabs-nav .active{
+	background: #258E3A/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#3E9B4C 0,#7BD85A 100%);
+}
+ul.warning,ul.ui-tabs-nav .warning{
+	background: #BD591D/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#917C49 0,#D58917 100%);
+}
+ul.info,ul.ui-tabs-nav .info{
+	background: #40B1D8/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#2D3067 0,#31A8BD 100%);
+}
+ul.default,ul.ui-tabs-nav .default{
+    background: #4F5751/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#C0D0C3 0,#6E766C 100%);
+}
+/*------------------------ TAB DE COLORES ----------------------------*/
+.tabs-red li.ui-tabs-active {
+    background-image: linear-gradient(rgb(243, 72, 93) 5%, rgb(194, 6, 28) 100%)!important;
+    border: 1px solid #BD111E!important;
+}
+
+.tabs-red .headerTabs .ui-tabs-nav li {
+    background-color: rgba(218, 41, 62, 0.91);
+}
+
+.tabs-red .headerTabs .ui-state-hover a:hover{
+    background-image: linear-gradient(rgb(238, 14, 67) 5%, rgb(209, 21, 29) 80%);
+}
+
+/*---------------------------------------------------------------------*/
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 3px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 3px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 3px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 2px;
+}
+
+.tabContainer .headerTabs .containerTabs ul li a span{
+    line-height: 17px;
+    padding-right: 2px;
+}
+.tabContainer .headerTabs .containerTabs ul li a i{
+ margin-right: 2px;
+ margin-left: 3px;
+}
+
+.ui-state-hover a ,.ui-state-hover a:hover ,.ui-state-hover a:link{
+color:black;
+} 
+.tabContainer .headerTabs #btnAnt i{
+    margin: 7px 0px 0px 5px;
+}
+.tabContainer .headerTabs #btnNext i{
+    margin: 6px 0 0px 1px;
+}
+.tabContainer .headerTabs #btnNext {
+    margin-left: -3px;
+}
+.tabContainer .headerTabs .containerTabs ul li a span  img{
+    margin-bottom: -4px;
+}
+
+.tabContainer.error .headerTabs,.tabContainer.error .headerTabs #btnNext.controlButtons{
+    background-repeat: no-repeat;
+    background: #721C1D/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#721C1D 0,#E05556 100%);
+}
+.tabContainer.highlight .headerTabs, .tabContainer.highlight .headerTabs #btnNext.controlButtons{
+    background: #BBBE28/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#D8D682 0,#CBAF29 100%);
+}
+.tabContainer.active .headerTabs,.tabContainer.active .headerTabs #btnNext.controlButtons{
+    background: #258E3A/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#3E9B4C 0,#7BD85A 100%);
+}
+.tabContainer.info .headerTabs,.tabContainer.info .headerTabs #btnNext.controlButtons{
+    background: #40B1D8/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#2D3067 0,#31A8BD 100%);
+}
+.tabContainer.warning .headerTabs,.tabContainer.warning .headerTabs #btnNext.controlButtons{
+    background: #BD591D/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#917C49 0,#D58917 100%);
+}
+.tabContainer.default .headerTabs,.tabContainer.default .headerTabs #btnNext.controlButtons{
+    background: #4F5751/*{bgColorHeader}*/;
+    background-image: linear-gradient(to bottom,#C0D0C3 0,#6E766C 100%);
+}
+/*-------IS SELECTED--------------*/
+li.error[aria-selected="true"]{
+  background-image: linear-gradient(to bottom,#6F0F10 0,#9D2728 100%);
+}
+li.highlight[aria-selected="true"]{
+  background-image: linear-gradient(to bottom,#BC9D17 0,#9D7B27 100%);
+}
+li.active[aria-selected="true"]{
+ background-image: linear-gradient(to bottom,#315515 0,#53D031 100%);
+}
+li.warning[aria-selected="true"]{
+ background-image: linear-gradient(to bottom,#A9530F 0,#B5752F 100%);
+}
+li.info[aria-selected="true"]{
+ background-image: linear-gradient(to bottom,#081B53 0,#1EA7E3 100%);
+}
+li.default[aria-selected="true"]{
+    background-image: linear-gradient(to bottom,rgba(24, 24, 25, 0.62) 0,#B8BFC2 100%);
+}

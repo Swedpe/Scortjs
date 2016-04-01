@@ -1,0 +1,56 @@
+/* 
+    Document   : css_form
+    Created on : 02-may-2014, 13:12:30
+    Description:
+         Estilos para Form
+*/
+
+.formContainer {
+    position: absolute;
+    width: 100%;
+	font-family: arial, helvetica, sans-serif;
+}
+.formContainer .buttonItem {
+    float: left;
+}
+.form-horizontal .form-group {
+  margin-left: -12px;
+}
+.windowRegionCenter .formContainer {
+ overflow:auto;
+ height:inherit;
+}
+/*----------STATES----------*/
+.formContainer.error{
+    border-color: #D9534F;
+    border-style: solid;
+    border-width: 1px;
+}
+.formContainer.highlight{
+    border-color: #F8DA4E;;
+    border-style: solid;
+    border-width: 1px;
+}
+.formContainer.active{
+    border-color: #6EAC2C;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.formContainer.warning{
+    border-color:#F0AD4E;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.formContainer.info{
+    border-color: #5BC0DE;
+    border-style: solid;
+    border-width: 1px;
+}
+.formContainer.default{
+
+}
+
+
+

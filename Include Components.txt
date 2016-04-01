@@ -1,0 +1,58 @@
+<script src="../BPT/incluidos/components/extra/Validacion.js"></script>
+<script src="../BPT/incluidos/components/Components.js"></script>		
+<script src="../BPT/incluidos/components/data/StoreContainer.js"></script>
+<script src="../BPT/incluidos/components/data/DataProxy.js"></script>
+<script src="../BPT/incluidos/components/items/StatusBarItem.js"></script>
+<script src="../BPT/incluidos/components/items/ToolBarItem.js"></script>
+<script src="../BPT/incluidos/components/items/ButtonItem.js"></script>
+<script src="../BPT/incluidos/components/items/FileUploaderItem.js"></script>
+<script src="../BPT/incluidos/components/items/AutoCompleteInputFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/FreeDivItem.js"></script>
+<script src="../BPT/incluidos/components/items/ProgressBarItem.js"></script>
+<script src="../BPT/incluidos/components/items/SplitButtonItem.js"></script>
+<script src="../BPT/incluidos/components/items/ComboBoxItem.js"></script>
+<script src="../BPT/incluidos/components/items/InputFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/TextFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/NumberFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/DateFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/DatePickerItem.js"></script>
+<script src="../BPT/incluidos/components/items/FileFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/CheckboxFieldItem.js"></script>
+<script src="../BPT/incluidos/components/items/LabelItem.js"></script>
+<script src="../BPT/incluidos/components/items/Image.js"></script>
+<script src="../BPT/incluidos/components/items/TabItem.js"></script>
+<script src="../BPT/incluidos/components/items/AccordeonItem.js"></script>
+<script src="../BPT/incluidos/components/items/Slider.js"></script>
+<script src="../BPT/incluidos/components/items/SplitterItem.js"></script>
+<script src="../BPT/incluidos/components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../BPT/incluidos/components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../BPT/incluidos/components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../BPT/incluidos/components/items/DateColumnItem.js"></script>
+<script src="../BPT/incluidos/components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../BPT/incluidos/components/items/PagingToolbarItem.js"></script>
+<script src="../BPT/incluidos/components/items/ResizableGridItem.js"></script>
+<script src="../BPT/incluidos/components/containers/PanelContainer.js"></script>
+<script src="../BPT/incluidos/components/containers/WindowContainer.js"></script>
+<script src="../BPT/incluidos/components/containers/TabContainer.js"></script>
+<script src="../BPT/incluidos/components/containers/GridContainer.js"></script>
+<script src="../BPT/incluidos/components/containers/MenuContainer.js"></script>
+<script src="../BPT/incluidos/components/containers/FormContainer.js"></script>
+<script src="../BPT/incluidos/components/containers/AcordeonContainer.js"></script> 		
+<script src="../BPT/incluidos/components/colResizable/js/colResizable15.js"></script> 		
+
+<link rel="stylesheet" href="css_components/css_colresize.css" />
+<link rel="stylesheet" href="css_components/css_window.css" />
+<link rel="stylesheet" href="css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="css_components/css_statusbar.css" />
+<link rel="stylesheet" href="css_components/css_toolbar.css" />
+<link rel="stylesheet" href="css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="css_components/bptstrap_input.css" />		
+<link rel="stylesheet" href="css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="css_components/css_menupanel.css" />
+<link rel="stylesheet" href="css_components/css_panel.css" />
+<link rel="stylesheet" href="css_components/css_form.css" />
+<link rel="stylesheet" href="css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="SimpleDateTime/jquery.simple-dtpicker.css" />

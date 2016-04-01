@@ -1,0 +1,37 @@
+
+Components.create('CheckboxField', {            
+                x: 10,
+                y: 50,
+                boxLabel  : 'Casilla 1',
+                name      : 'Casilla1',
+                inputValue: '1',
+                checked   : true,
+                id        : 'checkbox1'
+  }).show();
+  
+  Components.create('CheckboxField', {            
+                x: 10,
+                y: 80,
+                boxLabel  : 'Evento 1',
+                name      : 'Evento 1',
+                inputValue: '0',
+                checked   : false,
+                id        : 'checkbox2',
+                listeners: {
+                    change: function(e1){
+                        alert("La casilla "+((e1.data.OBJ.getValue())?"":"no")+" esta marcada");
+                    }
+                }
+  }).show();
+  
+Components.create('CheckboxField', {            
+                x: 10,
+                y: 110,
+                boxLabel  : 'Solo Lectura',
+                name      : 'Evento 1',
+                inputValue: '0',
+                checked   : true,
+                id        : 'checkbox2',
+                readOnly:   true,
+                
+}).show();

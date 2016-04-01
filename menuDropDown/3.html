@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MenuContainer Dropdown Ejemplo 3</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>
+
+<!-------------------------- JS------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/items/MenuItem.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/DragSvg.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+
+<!-------------------------- CSS------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+.first_li span {
+    font-weight: normal;
+    margin: 0px;
+    /* color: #000; */
+    display: block;
+    cursor: default;
+    padding: 3px;
+    border: 1px solid #fff;
+    background: transparent;
+    text-align: left;
+}
+.first_li span i{
+      font-size: 18px;
+}
+.menu_nivel_tres {
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+	title: "Pase el mouse sobre el boton rojo",		
+	state:'info',
+	height:120, 
+	width:310,
+	items:[
+		{
+			type: 'ToolBar',
+			id: 'ChartProyectoWindowsToolBar',
+			region: 'top',
+			state:'info',
+			items: [
+			   {
+					type: 'Button',
+					id : 'BtnCritical',
+					scale:'minier',
+					shape:'box',                      
+					icon:{
+						type:'fontawesome',
+						class:'fa-sitemap',	
+					},
+					tooltip:'Critical',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnShape',
+					scale:'minier',
+					shape:'box',
+					icon:{
+						type:'fontawesome',
+						class:'fa-connectdevelop',	
+					},	
+					tooltip:'Shape',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnRefresh',        
+					scale:'minier',
+					shape:'box',
+					css:{
+						'float': 'left'},
+					icon:{
+						type:'fontawesome',
+						class:'fa-refresh',	
+					},	
+					tooltip:'Refresh',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnArrastre',        
+					scale:'minier',
+					shape:'box',
+					css:{
+						'float': 'left'},
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},
+					tooltip:'Drag',
+					listeners: {
+						click: function(e) {
+						//hacer que el elemento sea dragable
+						   Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].StartDrag();
+						}
+					}
+				},
+				{  type: 'MenuScort',						//el menu principal, el UL
+					id : 'PrimerUL',        
+					menuType:'ButtonDropDown',
+					css:{
+						'float': 'left'},
+					 items:[
+						{
+						type: 'MenuItem',				//el menu secundario el LI		
+						id:'PrimerUL_PrimerLI',
+						submenu:{
+								Visible:false,
+								VisibleOnHover:true,
+								VisibleOnClick:false,
+						},
+							items:[
+							{
+								type: 'Button',				//el boton que estara visible en el toolbar
+								id : 'BotonVisible',        
+								scale:'minier',
+								state:'error',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-connectdevelop',
+								},	
+								tooltip:'connectdevelop',
+								listeners: {
+									click: function() {
+									}
+								}					
+							},
+							{type: 'MenuScort',			//el sub menu, inicialmente oculto  Segundo UL
+							id : 'SegundoUL', 
+							width:'36',
+							scale:'minier',
+							shape:'box',
+							icon:{
+								type:'fontawesome',
+								class:'fa-toggle-off',	
+							},
+							items:[											
+							{
+							type: 'MenuItem',			//primer LI submenu 				
+							id:'SegundoUL_primerLI',
+								items:[
+								{													
+								type: 'Button',				//el Primer boton oculto del menu
+								id : 'BotonParaCirculo',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-genderless',	
+								},	
+								tooltip:'Circular',
+								listeners: {
+									click: function() {
+									console.log('click button');
+									}
+								}
+								}
+								],
+							},
+							{
+							type: 'MenuItem',		//segundo Li submenu				
+							id:'BoxShape',
+								items:[
+								{
+								type: 'Button',				//el Primer boton oculto del menu
+								id : 'BotonParacuadrado',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-square-o',	
+								},	
+								tooltip:'Rectangular',
+								listeners: {
+									click: function() {
+									console.log('click button');
+									}
+								}
+								}
+								],
+							},
+							{
+							type: 'MenuItem',		//tercer Li submenu				
+							id:'PoligonShape',
+								items:[
+								{
+								type: 'Button',				//el Primer boton oculto del menu
+								id : 'BotonParacuadrado',        
+								scale:'minier',
+								shape:'box',
+								state:'error',
+								icon:{
+									type:'fontawesome',
+									class:'fa-codepen',	
+								},	
+								tooltip:'Hexagon',
+								listeners: {
+									click: function() {
+									console.log('click button');
+									}
+								}
+								},
+								{type: 'MenuScort',			//el sub menu 2, UL se abre al costado 
+								id : 'TercerUL',
+								width:'200',		
+								items:[											
+								{
+								type: 'MenuItem',			//primer LI submenu 
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Yo soy especial',
+									icon:{
+										ico:"images/actualizar.png",
+										type:'image',
+										color:'red'		
+									},		
+								},
+								id:'TercerUL_PrimerLI',
+									items:[
+									],
+								},
+								{
+								type: 'MenuItem',		//segundo Li submenu				
+								id:'BoxShape',
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;PC_Datos_00274',
+									ico:"images/edit.png",
+									icon:{
+										type:'fontawesome',
+										class:'fa-bug',
+										color:'green'
+									},		
+								},
+									items:[									
+									{type: 'MenuScort',			//el sub menu 2, se abre al costado 
+									id : 'CuartoUL',        
+									width:'35',	
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-gavel',
+										color:'blue'
+									},
+									items:[											
+									{
+									type: 'MenuItem',			//primer LI submenu 				
+									id:'cuartoUL_PrimerLI',
+										items:[
+										{													
+										type: 'Button',				//el Primer boton oculto del menu
+										id : 'BotonParaCirculo',        
+										scale:'minier',
+										shape:'box',
+										icon:{
+											type:'fontawesome',
+											class:'fa-genderless',	
+										},	
+										tooltip:'Circular',
+										listeners: {
+											click: function() {
+											console.log('este es un click de botton de 4to nivel y no de el menu');
+											}
+										}
+										}
+										],
+									},
+									{
+									type: 'MenuItem',		//segundo Li submenu				
+									id:'BoxShape',
+										items:[
+										{
+										type: 'Button',				//el Primer boton oculto del menu
+										id : 'BotonParacuadrado',        
+										scale:'minier',
+										shape:'box',
+										icon:{
+											type:'fontawesome',
+											class:'fa-square-o',	
+										},	
+										tooltip:'Rectangular',
+										listeners: {
+											click: function() {
+											console.log('este es un click de botton de 4to nivel y no de el menu');
+											}
+										}
+										}
+										],
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'PoligonShape',
+										items:[
+										{
+										type: 'Button',				//el Primer boton oculto del menu
+										id : 'BotonParacuadrado',        
+										scale:'minier',
+										shape:'box',
+										icon:{
+											type:'fontawesome',
+											class:'fa-codepen',	
+										},	
+										tooltip:'Hexagon',
+										listeners: {
+											click: function() {
+											console.log('este es un click de botton de 4to nivel y no de el menu');
+											}
+										}
+										}
+										],
+									}
+									],					
+									tooltip:'Drag',
+									}
+									],
+								},
+								{
+								type: 'MenuItem',		//tercer Li submenu				
+								id:'PoligonShape',
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Calcular Indices Tareas',
+									ico:"images/wbs.png",
+									icon:{
+										type:'fontawesome',
+										class:'fa-gavel',
+										color:'blue'
+										
+									},		
+								},
+								listeners: {
+									click: function() {
+									console.log('click Menu correcto');
+									}
+								}
+								}
+								],					
+								tooltip:'Drag',
+								}
+								],
+							}
+							],					
+							tooltip:'Drag',
+							}
+							]
+						}
+						]
+				},
+				{
+					type: 'Button',
+					id : 'BtnZoom',        
+					scale:'minier',
+					shape:'box',
+						css:{
+						'float': 'left'},
+					icon:{
+						type:'fontawesome',
+						class:'fa-search',	
+					},
+					tooltip:'Zoom',
+					listeners: {
+						click: function() {
+							BarraAbajoTareaSVG();
+						}
+					}
+				}
+			]
+		},
+	  
+		]
+	
+}).show();	
+//el siguiente ejemplo usa asignacion live, el elemento inicialmente es declarado como un boton, y tiene como plugin a el menu.
+MenuDinamico = 
+{type: 'MenuScort',			//el sub menu, inicialmente oculto  Segundo UL
+			id : 'DSegundoUL', 
+			width:'200',
+			scale:'minier',
+			shape:'box',
+			icon:{
+				type:'fontawesome',
+				class:'fa-toggle-off',	
+			},
+			items:[											
+			{
+			type: 'MenuItem',			//primer LI submenu 				
+			id:'DSegundoUL_primerLI',
+				
+				layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo soy redondo',
+						icon:{
+							type:'fontawesome',
+							class:'fa-genderless',	
+						},		
+					},
+			},
+			{
+			type: 'MenuItem',		//segundo Li submenu				
+			id:'DBoxShape',
+				layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo soy cuadrado',
+						icon:{
+							type:'fontawesome',
+							class:'fa-square-o',	
+						},			
+					},
+			},
+			{
+			type: 'MenuItem',		//tercer Li submenu				
+			id:'DPoligonShape',
+			layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo tengo Sub menu',
+						icon:{
+							type:'fontawesome',
+							class:'fa-genderless',	
+						},		
+					},
+				items:[
+				{type: 'MenuScort',			//el sub menu 2, UL se abre al costado 
+				id : 'DTercerUL',
+				width:'200',		
+				items:[											
+				{
+				type: 'MenuItem',			//primer LI submenu 
+				layout:{
+					template:'basic',
+					text:'&nbsp;&nbsp;Calcular Tareas largas',
+					ico:"images/actualizar.png",
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},		
+				},
+				id:'DTercerUL_PrimerLI',
+					items:[
+					],
+				},
+				{
+				type: 'MenuItem',		//segundo Li submenu				
+				id:'BoxShape',
+				layout:{
+					template:'basic',
+					text:'&nbsp;&nbsp;PC_Datos_00274',
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},		
+				},
+					items:[									
+					{type: 'MenuScort',			//el sub menu 2, se abre al costado 
+					id : 'DinamicoUl4',        
+					width:'200',
+					shape:'box',
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},
+					items:[											
+					{
+					type: 'MenuItem',
+					id:'DcuartoUL_PrimerLI',					
+					layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo soy especial',
+						icon:{
+							ico:"images/wbs.png",
+							type:'image',
+							color:'red'		
+						},		
+					},
+					
+					},
+					{
+					type: 'MenuItem',		//segundo Li submenu				
+					id:'DBoxShapeX',				
+					layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Menu image actualizar',
+						icon:{
+							ico:"images/actualizar.png",
+							type:'image',
+							color:'red'		
+						},		
+					},	
+					},
+					{
+					type: 'MenuItem',		//tercer Li submenu				
+					id:'DPoligonShape',
+						layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Fredy Mercuri',
+						icon:{
+							type:'fontawesome',
+							class:'fa-toggle-off',	
+							color:'red'		
+						},		
+					},
+					}
+					],					
+					tooltip:'Drag',
+					}
+					],
+				},
+				{
+				type: 'MenuItem',		//tercer Li submenu				
+				id:'DPoligonShape',
+				layout:{
+					template:'basic',
+					text:'&nbsp;&nbsp;Calcular Indices Tareas',
+					ico:"images/wbs.png",
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},		
+				},
+				listeners: {
+					click: function() {
+					console.log('click Menu correcto');
+					}
+				}
+				}
+				],					
+				tooltip:'Drag',
+				}
+				],
+			}
+			],					
+			tooltip:'Drag',
+			};
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+Components.create('Window',{
+	title: "el boton naranja convierte al verde en menu",		
+	state:'info',
+	height:120, 
+	x:340,
+	width:310,
+	items:[
+		{
+			type: 'ToolBar',
+			id: 'ChartProyectoWindowsToolBar',
+			region: 'top',
+			state:'info',
+			items: [
+			   {
+					type: 'Button',
+					id : 'BtnCritical',
+					scale:'minier',
+					shape:'box',                      
+					icon:{
+						type:'fontawesome',
+						class:'fa-sitemap',	
+					},
+					tooltip:'Critical',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnShape',
+					scale:'minier',
+					shape:'box',
+					icon:{
+						type:'fontawesome',
+						class:'fa-connectdevelop',	
+					},	
+					tooltip:'Shape',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnRefresh',        
+					scale:'minier',
+					shape:'box',
+					css:{
+						'float': 'left'},
+					icon:{
+						type:'fontawesome',
+						class:'fa-refresh',	
+					},	
+					tooltip:'Refresh',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnArrastre',        
+					scale:'minier',
+					shape:'box',
+					state:'warning',
+					css:{
+						'float': 'left'},
+					icon:{
+						type:'fontawesome',
+						class:'fa-plus',	
+					},
+					tooltip:'Agregar el menu dinamico',
+					listeners: {
+						click: function(e) {
+						Components.getComponentById('quieroMasSub').add(MenuDinamico);
+						}
+					}
+				},
+				{type: 'MenuScort',						//el menu principal, el UL
+				id : 'DPrimerUL',        
+				menuType:'ButtonDropDown',
+				css:{
+					'float': 'left'},
+				items:[
+						{
+						type: 'MenuItem',				//el menu secundario el LI		
+						id:'quieroMasSub',
+						submenu:{
+								Visible:false,
+								VisibleOnHover:true,
+								VisibleOnClick:false,		
+						},
+						items:[
+						{					
+							type: 'Button',				//el boton que estara visible en el toolbar
+							id : 'ConvertirEnMenu',        
+							scale:'minier',
+							state:'active',
+							shape:'box',
+							icon:{
+								type:'fontawesome',
+								class:'fa-tasks',	
+							},	
+							tooltip:'Refresh',
+							listeners: {
+								click: function() {
+								}
+							}					
+						}]
+						}
+						]
+				},
+			]
+		},
+	  
+		]
+	
+}).show();	
+
+});  
+</script>	
+</head>
+<body>
+</body>
+</html>

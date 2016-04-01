@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pie3d Multiple Window Example</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+
+<!--mis scripts-->
+<script src="../jqfu/JquerySVG/jquery.svgfilter.js"></script>
+<!---->
+
+<script src="../components/Components.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<!--anterior comentado -->
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+<!---->
+<script src="../components/svg/3dpie/3dpieSvg.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+* [title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+</style>
+
+<script id="customscript">
+$( document ).ready(function(){
+    Components.create('Window', {
+            height: 400,
+            width: 530,
+            resizable: true,
+            minimizable: false,
+            closeAction:'destroy',
+            constrain: true,
+            modal: true,
+            title:'PC_Desempeño_00401',
+            id:'WindowDesempeno',
+            html:'<div Id="FormWindowDesempeno" style="background-color: white;padding: 1px; height:100%; " class=""></div>',
+            items:[{
+                type:'SvgContainer',
+                region: 'center',
+                id:'mysvg',
+                items:[
+                  {
+                    id:'3dPieOne',
+                    type: 'pie3DSvg',
+					//titulo:'Ejemplo de 3D Pie',
+					//subTitulo:'ScortJs',
+                    data:[
+						{label:"Cajamarca", color:"#990099", value:35},
+						{label:"Huanuco", color:"#3366CC", value:33.5},
+						{label:"Ucayali", color:"#DC3912", value:15},
+						{label:"Tumbes", color:"#FF9900", value:23},
+						{label:"Ayacucho", color:"#109618", value:25},
+					],
+					rx:130,
+					ry:100,
+					ir:0.4,
+					h:30,
+					plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'arriba',
+					}},
+					textFormat:'value',
+					responsive:true,
+					drawRadialLegend:true,
+					drawLinealLegend:false,	
+                  }
+                ]
+            }]
+  }).show();
+ Components.create('Window', {
+            height: 380,
+            width: 520,
+			x:90,
+			y:90,
+            resizable: true,
+            minimizable: false,
+            closeAction:'destroy',
+            title:'prueba 2',
+            id:'WindowDesempeno2',
+            html:'<div Id="FormWindowDesempeno" style="background-color: white;padding: 1px; height:100%; " class=""></div>',
+            items:[{
+                type:'SvgContainer',
+                region: 'center',
+                id:'mysvg',
+                items:[
+                  {
+                    id:'3dPiedos',
+                    type: 'pie3DSvg',
+                    data:[
+						{label:"Cajamarca", color:"#990099", value:135},
+						{label:"Huanuco", color:"#3366CC", value:33.5},
+						{label:"Ucayali", color:"#DC3912", value:315},
+						{label:"Tumbes", color:"#FF9900", value:23},
+						{label:"Ayacucho", color:"#109618", value:125},
+					],
+					titulo:{'texto': "Prueba 2", 'fontSize': 20},	
+					rx:130,
+					ry:100,
+					ir:0.4,
+					h:10,
+					plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+					}},
+					textFormat:'value',
+					responsive:true,
+					drawRadialLegend:true,
+					drawLinealLegend:true,	
+                  }
+                ]
+
+            }]
+  }).show();
+  
+  Components.create('Window', {
+            height: 420,
+            width: 520,
+			x:180,
+			y:180,
+            resizable: true,
+            minimizable: false,
+            closeAction:'destroy',
+            title:'prueba 3',
+            id:'WindowDesempeno2',
+            html:'<div Id="FormWindowDesempeno" style="background-color: white;padding: 1px; height:100%; " class=""></div>',
+            items:[{
+                type:'SvgContainer',
+                region: 'center',
+                id:'mysvg',
+                items:[
+                  {
+                    id:'3dradial',
+                    type: 'pie3DSvg',
+                    data:[
+						{label:"Cajamarca", color:"#990099", value:135},
+						{label:"Huanuco", color:"#3366CC", value:33.5},
+						{label:"Ucayali", color:"#DC3912", value:115},
+						{label:"Tumbes", color:"#FF9900", value:23},
+						{label:"Ayacucho", color:"#109618", value:125},
+					],
+					titulo:{'texto': "Prueba 3", 'fontSize': 20},	
+					rx:130,
+					ry:100,
+					ir:0,
+					h:30,
+					plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'arriba',
+					}},
+					responsive:true,
+					drawRadialLegend:false,
+					drawLinealLegend:true,	
+					centerY:220,	
+					centerX:200,
+					textFormat:'percent'
+                  }
+                ]
+            }]
+  }).show();
+
+});
+
+</script>
+</head>
+
+</html>

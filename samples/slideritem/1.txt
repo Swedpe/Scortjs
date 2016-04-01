@@ -1,0 +1,124 @@
+﻿ Components.create('Slider',{ 
+	x:10,
+	y:50,		
+	width: 150,
+	value: 50,
+	label: "Con etiqueta",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	tooltip:'Con etiqueta',
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+
+Components.create('Slider',{ 
+	x:110,
+	y:100,		
+	width: 150,
+	value: 50,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	tooltip:'Sin etiqueta',
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+
+ Components.create('Slider',{ 
+	x:10,
+	y:150,		
+	width: 250,
+	value: 50,
+	label: "Tamaño Personalizado",                       
+	increment: 1,
+	minValue: 0,
+	maxValue: 100,
+	tooltip:'Tamaño Personalizado',                       
+}).show();
+
+ Components.create('Slider',{ 
+	x:10,
+	y:200,		
+	width: 100,
+	value: 50,
+	label: "Rango de Valor Personalizado",                       
+	increment: 1,
+	minValue: 0,
+	maxValue: 200,
+	tooltip:'Rango de Valor Personalizado',                       
+}).show();
+
+ Components.create('Slider',{ 
+	x:10,
+	y:250,		
+	width: 100,
+	value: 50,
+	label: "Incremento Personalizado",                       
+	increment: 10,
+	minValue: 0,
+	maxValue: 100,
+	tooltip:'Rango de Valor Personalizado',                      
+}).show();
+
+ Components.create('Slider',{ 
+	id:"lecturaslider",
+	x:10,
+	y:300,		
+	width: 100,
+	value: 50,
+	label: "Lectura de Valor",                       
+	increment: 1,
+	minValue: 0,
+	maxValue: 200,
+	tooltip:'Lectura de Valor',                        
+}).show();
+
+ Components.create('Button',{										     
+	x:230,
+	y:290,
+	scale: 'small',
+	text:'Leer Valor',
+	State:'active',
+	handler: function() {
+		   alert(Components.getComponentById('lecturaslider').getValue());
+	} 
+ }).show();
+
+ Components.create('Slider',{ 
+	id:"ingresovalorslider",
+	x:10,
+	y:350,		
+	width: 100,
+	value: 50,
+	label: "Cambio de Valor",                       
+	increment: 1,
+	minValue: 0,
+	maxValue: 200,
+	tooltip:'Cambio de Valor',                        
+}).show();
+
+ Components.create('Button',{												
+	x:150,
+	y:340,
+	scale: 'small',
+	State:'active',
+	text:'Cambiar Valor',										
+	handler: function() {
+		  Components.getComponentById('ingresovalorslider').setValue(Components.getComponentById('mytf').getValue());
+	} 
+ }).show();
+ 
+ Components.create('TextField',{	
+	id:"mytf",
+	x:400,
+	y:350,
+	width: 50,
+	alignLabel: "left",
+	value:"70",					
+}).show();

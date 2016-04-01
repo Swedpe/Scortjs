@@ -1,0 +1,75 @@
+Components.create('Window',{
+		title: "WBS Basico",		
+        height:400, 
+        width:610,
+        items:[
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'mysvg',
+				 items:[
+					{
+						type: 'WBSTree',						
+						id:'Okno',
+						items:[
+							{	
+								 type: 'WBSNode', 
+								 id:0,
+								 idp:null,
+								 Descripcion:'soy tu papi',
+								 tipoObjeto:'Cabecera',
+								 childsId:[1,2,3]
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:1,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'cain'
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:2,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'abel',
+								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:3,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'leonel',
+								 childsId:[4,5,6]								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:4,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'raquel',
+								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:5,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Isabel'
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:6,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Ezequiel'
+							}
+						]
+				}
+				]
+			
+			}
+            ]
+        
+    }).show();

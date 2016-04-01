@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridContainer Ejemplo 7</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../functions.js"></script>
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/extra/jspdf/jspdf.min.js"></script>
+<script src="../components/extra/jspdf/jspdf.plugin.autotable.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+
+Components.create('Window',{
+	title: "GridPrueba2", 
+	height:332, 
+	state:'active',
+	width:600,
+	items: [
+		{
+			type: "GridContainer",
+			region: "center",
+			id: "GridPrueba",
+			state:'active',
+			cellEditing: {clicksToEdit: 2},
+			autoScroll: true,
+			selModel: {
+							type: "checkboxmodel",
+							checkOnly: false,
+						   
+			},	
+			columns: [
+				{
+					type: "CheckColumn",
+					text: "CHECK",
+					dataIndex: "pos0",
+					width: "22%",
+					editor: {
+										type: 'TextField',
+										allowBlank: false
+					}
+				},
+				{
+					type: "GridColumn",
+					text: "NOMBRE",
+					dataIndex: "pos1",
+					width: "22%",
+					editor: {
+										type: 'TextField',
+										allowBlank: false
+					}
+				},
+				{
+					type: "GridColumn",
+					text: "EDAD",
+					dataIndex: "pos2",
+				   // typeData: "number",
+				   // sortable: true,
+					//filter: true,
+					 width: "22%",
+					 editor: {
+										type: 'TextField',
+										allowBlank: false
+									}
+				},					
+				{
+						type: 'GridColumn',                            
+						text: 'NICKNAME',							
+						width: "22%",
+						  editor: {
+										type: 'TextField',
+										allowBlank: false
+									},
+						renderer: function(value, metaData, record, row, col, store, gridView){
+							/*console.log(value);
+							console.log(metaData);
+							console.log(record);
+							console.log(row);
+							console.log(col);
+							console.log(store);
+							console.log(gridView);*/
+							return record.pos1+record.pos2;
+						}
+				 },
+			   
+			
+			 
+			],
+			store: {
+				/*fields: ["pos1", "pos2", "pos4"],
+				data: [
+					{ pos1: "Cesar", pos2: true, pos4:21},
+					{ pos1: "abelardo", pos2: false, pos4:19},
+					{ pos1: "geanfranco", pos2: true, pos4:10},
+					{ pos1: "ernesto", pos2: false,  pos4:40},
+					{ pos1: "roberto", pos2: true, pos4:50},
+					{ pos1: "luis", pos2: true, pos4:50},
+					{ pos1: "jose", pos2: true,pos4:50},
+					{ pos1: "daniel", pos2: true, pos4:50},
+					{ pos1: "luis", pos2: true, pos4:50}*/
+					
+				fields: ["pos0", "pos1", "pos2"],
+				data: [
+					{ pos0: true, pos1: "Cesar", pos2:21},
+					{ pos0: false, pos1: "abelardo", pos2:19},
+					{ pos0: true, pos1: "geanfranco", pos2:10},
+					{ pos0: false, pos1: "ernesto", pos2:40},
+					{ pos0: true, pos1: "roberto", pos2:50},
+					{ pos0: true, pos1: "luis", pos2:50},
+					{ pos0: true, pos1: "jose", pos2:50},
+					{ pos0: true, pos1: "daniel", pos2:50},
+					{ pos0: true, pos1: "luis", pos2:50}
+					
+				]
+			},
+			bbar: { //determina la barra de paginacion
+			//barra de paginacion,  los parametros [1,2,3] -> [Elemento de inicio de grupo,Elemento Final de grupo, Total de elementos]
+						displayInfo: true,
+						displayMsg: 'Mostrando  {0} - {1} de {2}',
+						emptyMsg: "No hay temas a mostrar"
+					},
+					gridviewtittle: {
+					   displayInfo:  true,
+					},
+		}
+	]
+}).show();
+});  
+</script>	
+</head>
+<body>
+</body>
+</html>

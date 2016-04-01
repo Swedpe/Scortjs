@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BUTTON BUILDER FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../../components/Components.js"></script>	
+<script src="../../functions.js"></script>		
+<script src="../../components/items/Image.js"></script>
+<script src="../../components/items/ButtonItem.js"></script>
+<script src="../../components/items/fontawesomegrid.js"></script>
+<script src="../../components/items/HtmlScreenGrid.js"></script>
+<script src="../../components/items/Image.js"></script>
+<script src="../../components/items/LabelItem.js"></script>
+<script src="../../components/items/FileFieldItem.js"></script>
+<script src="../../components/items/InputFieldItem.js"></script>
+<script src="../../components/items/TextFieldItem.js"></script>
+<script src="../../components/extra/Validacion.js"></script>
+<script src="../../components/svg/ClipBoardSVG.js"></script>
+<script src="../../components/svg/ControlBox.js"></script>
+<script src="../../components/svg/ScreenGrid.js"></script>
+<script src="../../components/svg/TextCajita.js"></script>
+<script src="../../components/svg/TextProcesor.js"></script>
+<link rel="stylesheet" href="../../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../../css_components/css_principal.css" />
+<link rel="stylesheet" href="../../css_components/css_buttonItem.css" />
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////BOTONES DE COLORES ///////////////////////////////////
+Components.create('Button',{	
+	id:'state1',
+	container: $('#S2-2'),
+	scale: 'medium',
+	state:'error',
+	text:'Error',
+	tooltip:'Tamaño Personalizado',	 
+	handler: function() {
+	Components.getComponentById('ejemplo').changeColor(1 ,'error');
+}  
+}).show();
+
+Components.create('Button',{	
+	id:'state2',
+	container: $('#S2-2'),
+	scale: 'medium',
+	text:'Highlight',
+	state:'highlight',
+	tooltip:'texto + icono',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeColor(1 ,'highlight');
+	}  
+}).show();
+
+Components.create('Button',{		
+	id:'state3',
+	container: $('#S2-2'),
+	scale: 'medium',
+	text:'Default',
+	tooltip:'Small button',	  
+	handler: function() {
+
+	Components.getComponentById('ejemplo').changeColor(1 ,'default');
+	}  
+}).show();
+
+Components.create('Button',{		
+	id:'state4',
+	container: $('#S2-2'),
+	state:'active',
+	scale: 'medium',
+	text:'Active',
+	tooltip:'Medium button',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeColor(1 ,'active');
+	}  
+}).show();
+Components.create('Button',{
+	id:'state5',
+	container: $('#S2-2'),
+	state:'info',	
+	scale: 'medium',
+	text:'Info',
+	tooltip:'Boton Info',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeColor(1 ,'info');
+	}  
+}).show();
+
+Components.create('Button',{
+	id:'state6',
+	container: $('#S2-2'),
+	state:'warning',		
+	scale: 'medium',
+	text:'Warning',
+	tooltip:'Boton Warning',
+	handler: function() {
+	Components.getComponentById('ejemplo').changeColor(1 ,'warning');
+	}
+}).show();
+///////////////////SOLO-TAMAÑOS///////////////////	
+Components.create('Button',{
+	id:'scale1',
+	container: $('#S2-3'),
+	scale: 'minier',
+	state:'error',
+	text:'minier',
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeScale('minier');
+	}  
+}).show();
+
+Components.create('Button',{	
+	id:'scale2',
+	container: $('#S2-3'),
+	scale: 'mini',
+	text:'mini',
+	state:'highlight',
+	tooltip:'boton mini',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeScale('mini');
+	}  
+}).show();
+
+Components.create('Button',{
+	id: 'scale3',
+	container: $('#S2-3'),
+	scale: 'small',
+	text:'small',
+	tooltip:'Small button',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeScale('small');
+	}  
+}).show();
+Components.create('Button',{		
+	id:'scale4',
+	container: $('#S2-3'),
+	state:'active',
+	scale: 'medium',
+	text:'medium',
+	tooltip:'medium active',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeScale('medium');
+	}  
+}).show();
+Components.create('Button',{
+	id:'scale5',
+	container: $('#S2-3'),
+	state:'info',	
+	scale: 'large',
+	text:'large',
+	tooltip:'large Info',	  
+	handler: function() {
+	Components.getComponentById('ejemplo').changeScale('large');
+	}  
+}).show();
+
+
+
+/////////////TEXTFIELD - INPUT //////////////////
+Components.create('TextField',{
+	id:'textinput0',
+	container: $('#S2-1'), 
+	label: '<b>&nbsp;Escriba el texto aqui :</b>',
+	width: 250,
+	alignLabel: "left",
+	css:{
+	float:'left',},
+	handler: function() {
+	Components.getComponentById('ejemplo').text("");
+	}  
+}).show();
+
+
+Components.create('Button',{
+	id :'bin',
+	container: $('#S2-1'),
+	scale: 'small',
+	text:'cambio',
+	//width:250,
+	tooltip:'Tamaño Personalizado',
+	css:{
+	float:'left',
+
+	},
+	handler: function() 
+	{console.log('hola');
+		var texto = "";
+		texto=Components.getComponentById('textinput0').getText();
+		Components.getComponentById('ejemplo').setText(texto);}  
+}).show();
+
+///////////////////////////////////////ICONOS GLIPS/////////////////////////////////////////////////////////
+
+Components.create('HtmlScreenGrid',{		
+container: $('#p-2C'),
+text:'Tamaño Personalizado',
+ColsDef:[                       
+	{	ancho: 12,
+		ClassId: 'row2'
+	},
+	]
+});
+Components.create('HtmlScreenGrid',{		
+container: $('#p-2C'),
+text:'Tamaño Personalizado',
+ColsDef:[                       
+	{	ancho: 12,
+	ClassId: 'row2'
+	}
+ ]
+});
+
+
+Components.create('fontawesomegrid',{
+	container: $('#p-2C'),
+	container: $('.row2'),
+	scale: 'small',				//minier,mini,medium,small,large 
+	type:'glipicon',			//tipo
+	handler: function( e, font) {		//global, todos los botones de fontawesomegrid enviaran el mismo evento
+		var fontprocesado = font.substring(""+10);
+		//console.log(font);
+		console.log(fontprocesado);
+		ico={ type:'fa',  class:''};
+			 Components.getComponentById('ejemplo').changeIcono(1,ico);
+	}
+}).show();
+//////////////GRILLA FONTAWESOME///////////////////////////
+Components.create('HtmlScreenGrid',{		
+container: $('#p-2B'),
+text:'Tamaño Personalizado',
+ColsDef:[                       
+		{	ancho: 12,
+		ClassId: 'row1'
+		},
+	]
+});
+Components.create('HtmlScreenGrid',{		
+	container: $('#p-2B'),
+	text:'Tamaño Personalizado',
+	ColsDef:[                       
+		{	ancho: 12,
+			ClassId: 'row1'
+		}
+	]
+});
+Components.create('fontawesomegrid',{
+	container: $('#p-2B'),
+	container: $('.row1'),
+	scale: 'small',				//minier,mini,medium,small,large 
+	type:'fontawesome',			//tipo
+	handler: function( e, font) {		//global, todos los botones de fontawesomegrid enviaran el mismo evento
+		var fontprocesado = font.substring(""+3);
+		console.log(fontprocesado);
+		ico={ type:'fa',
+		class:fontprocesado
+			};
+	Components.getComponentById('ejemplo').changeIcono(1,ico);
+	}
+}).show();
+
+//boton principal--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+Components.create('Button',{
+	id :'ejemplo',
+	container: $('#S1-B'),
+	scale: 'medium',
+	text:'Ejemplo',
+	width:250,
+	tooltip:'Tamaño Personalizado',
+	handler: function() 
+	{}  
+	
+	
+}).show();
+
+////////////toogle///////////////
+
+Components.create('Button',{
+	id :'ejemplo2',
+	container: $('#S1-B'),
+	scale: 'medium',
+	text:'Ejemplo2',
+	width:250,
+	tooltip:'Tamaño Personalizado',
+	icon:{
+			type:'glyphicon',
+			class:'glyphicon-chevron-left',
+			position:'left'
+		},
+		icon2:{					//icono para el segundo estado
+			type:'fa',
+			class:'fa-cart-plus',
+			color:'red',
+			position:'left'
+		},
+		
+	
+		enableToggle:true,
+		
+	
+	handler: function() 
+	{}  
+	
+	
+}).show();
+
+//////////////////////////left//////////////////////////////////
+Components.create('Button',{
+	id :'le',
+	container: $('#posit'),
+	scale: 'medium',
+	text:'Left',
+	//width:250,
+	tooltip:'Tamaño Personalizado',
+	icon:{
+		type:'glyphicon',
+		class:'glyphicon-chevron-left',  
+		position:'left'
+	},
+handler: function() 
+	{ iconp1={position:'left'};
+	  Components.getComponentById('ejemplo').changeIcono(1,iconp1);
+	}  
+}).show();
+/////////////////////////////right////////////////////////////////////////
+Components.create('Button',{
+	id :'ri',
+	container: $('#posit'),
+	scale: 'medium',
+	text:'Right',
+	//width:250,
+	tooltip:'Tamaño Personalizado',
+	icon:{
+		type:'glyphicon',
+		class:'glyphicon-chevron-right',  
+		position:'right'
+	},
+handler: function() 
+	{
+	iconp12={position:'right'};
+	Components.getComponentById('ejemplo').changeIcono(1,iconp12);
+	}  
+}).show();
+////////////////////////////////SHAPE - FORMA /////////////////////////////////////////
+
+Components.create('Button',{	
+id:'sh1',
+container: $('#S2-4'),
+	state:'error',
+	text:'rect',
+	scale: 'medium',
+	tooltip:'Medium button',	  
+	handler: function() {
+		Components.getComponentById('ejemplo').changeForma('');
+	}  
+}).show();
+
+
+
+Components.create('Button',{
+	id:'sh2',
+	container: $('#S2-4'),
+	state:'warning',		
+	scale: 'small',
+	shape:'box',
+	text:'Box',
+	tooltip:'Boton Warning',
+	handler: function() {
+		console.log('box');
+		Components.getComponentById('ejemplo').changeForma('box');
+	} 		
+}).show();
+
+Components.create('Button',{
+	id:'sh3',
+	container: $('#S2-4'),
+	state:'info',
+	scale: 'large',
+	shape:'circle',
+	text:'circle',
+	tooltip:'medium active',	  
+	handler: function() {
+		Components.getComponentById('ejemplo').changeForma('circle');
+	}  
+ }).show();
+ 
+ Components.create('Image',{ 
+		id:"myimage",
+       container: $('#S1-A'),
+	   tooltip: "Imagen2",		
+        image:'images/logo.png',  
+		width:150,
+												
+}).show();
+
+}); 
+</script>	
+</script>
+</head>
+
+<body>
+
+<div class="row">
+	<div  id="S1-1" class="col-sm-6" style="height: inherit;">
+		<div class="row">
+			<div  id="S1-A" class="col-sm-12" style="height: inherit">
+			
+			</div>
+			
+		<br><br>
+		</div>
+	</div>
+
+	<div  id="S1-2" class="col-sm-6" style="height: inherit">
+		<div class="row">
+		<div  id="S2-1" class="col-sm-12" style="height: inherit"></div>
+		<br><br>
+		</div>
+	</div>
+<br><br>
+</div>
+
+<div class="row">
+	<div  id="S1-B" class="col-sm-6" style="height: inherit">
+	<strong><FONT FACE="arial"> <p style="color: #BD133D; margin: 10px 0 5px 165px; font-size: 14pt">BUTTON BUILDER-EJEMPLO</P></font></strong> 
+	<strong><FONT FACE="arial"> <p style="color: #black;margin: 10px 0 80px 165px; font-size: 16pt">Button Builder for Scorts JS</P></font></strong> 
+	</div>
+	
+	<div  class="col-sm-6" style="height: inherit">
+
+		<div class="row">
+			<div  id="S2-2" class="col-sm-12" style="height: inherit">
+			<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">Cambio de Color:</P></font></strong> 
+			</div>
+		</div>
+		<div class="row">
+			<div  id="S2-3" class="col-sm-12" style="height: inherit">
+			<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">Cambio de tamaño:</P></font></strong> 
+			</div>
+
+		</div>
+		<div class="row">
+			<div  id="S2-4" class="col-sm-12" style="height: inherit">
+			<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">Cambio de forma:</P></font></strong> 
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div  class="col-sm-12">
+	<strong><FONT FACE="arial"> <p style="color: #black; font-size: 11pt">Posicion del icono</P></font></strong> 
+	</div>
+</div>
+
+
+<div class="row">
+	<div  id="posit" class="col-sm-12" style="height: inherit" ></div>
+</div>
+
+<div class="row">
+	<div  class="col-sm-12">
+	<H1>FONTAWESOME</H1>
+	</div>
+</div>
+
+<div class="row">
+	<div  id="p-2B" class="col-sm-12" style="height: inherit" ></div>
+</div>
+
+<div class="row">
+	<div  class="col-sm-12">
+	<H1>GLIPICONS</H1>
+	</div>
+</div>
+
+<div class="row">
+	<div  id="p-2C" class="col-sm-12" style="height: inherit"></div>
+</div>		
+</div>	
+</div>
+</body>
+</html>

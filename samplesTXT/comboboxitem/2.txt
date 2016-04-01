@@ -1,0 +1,30 @@
+Components.create('ComboBox',{	  
+                                       
+                                       	x:0,
+								        y: 50,
+                                        label: 'Combo Box',
+                                        id:"mycombo",
+										store: {
+                                        id: 'idStoredata',
+                                        model: 'MyData',
+                                        pageSize: 5,
+                                        fields: [
+                                            'value', 
+                                            'label'                               
+                                        ],
+                                        proxy: {
+                                            type: 'POST',
+                                            url: 'php/dataphp.php',
+                                            extraParams: {
+                                                dataset:'sampledata3'									
+                                            }
+                                       
+                                        }
+                                    },
+								valueField: 'value',
+								displayField: 'label',
+								mode:'local',
+								readOnly: false	,
+								labelWidth:80	
+}).show();
+ Components.getComponentById('mycombo').getStore().loadPage(1);	

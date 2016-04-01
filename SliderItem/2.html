@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Slider Item ejemplo1</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/Components.js"></script>	
+        <script src="../functions.js"></script>		
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/items/Image.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		<script src="../components/items/Slider.js"></script>
+		
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+        
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+
+		<style type="text/css">
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+			
+ Components.create('Slider',{ 
+	x:10,
+	y:50,		
+	width: 150,
+	value: 50,
+	label: "ERROR",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	state:'error',
+	tooltip:'Con etiqueta',
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+ Components.create('Slider',{ 
+	x:10,
+	y:90,		
+	width: 150,
+	value: 50,
+	label: "HIGHLIGHT",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	state:'highlight',
+	tooltip:'Con etiqueta',
+
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+
+ Components.create('Slider',{ 
+	x:10,
+	y:140,		
+	width: 150,
+	value: 50,
+	label: "ACTIVE",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	state:'active',
+	tooltip:'Con etiqueta',
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+ Components.create('Slider',{ 
+	x:10,
+	y:190,		
+	width: 150,
+	value: 50,
+	label: "WARNING",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	state:'warning',
+	tooltip:'Con etiqueta',
+	
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+
+ Components.create('Slider',{ 
+	x:10,
+	y:250,		
+	width: 150,
+	value: 50,
+	label: "INFO",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	state:'info',
+	tooltip:'Con etiqueta',
+	
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+ Components.create('Slider',{ 
+	x:10,
+	y:320,		
+	width: 150,
+	value: 50,
+	label: "DEFAULT",
+	labelWidth: 100,
+	increment: 25,
+	minValue: 0,
+	maxValue: 100,
+	state:'default',
+	tooltip:'Con etiqueta',
+	listeners: {
+		change: function( event, ui ) {			  
+			}
+	}
+}).show();
+
+ 
+
+			
+			
+	});  
+	</script>	
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,66 @@
+Components.create('FileUploader',{  	
+    x:220,
+	y:5,
+	id: 'SubirFotobt',
+	icon: 'images/Warehouse-icon16.png',
+	tooltip:'Escoger Archivos',
+	text:'Subir archivos',
+	filesize: 5000000,//5mb
+	multiple:true,	
+	autoUpload:false,
+	script:'php/uploadhandlerfp.php',	
+	formdata:[												
+			{	name  :'folder', value: 'upload' },
+			{	name  :'UploadType', value: '' }
+	],
+	listeners: {
+		fileuploaddone: function(e, data) {
+			console.log("Trigger FileuploadDone");
+				$.each(data.result.files, function (index, file) {
+                $('<p/>').html('Archivo Enviado '+ file.name).appendTo(document.body);
+            })	
+		},
+		fileuploadadd: function(e, data) {
+		console.log("Trigger fileuploadadd");
+			//Se pasa por esta zona por cada archivo agregado a la cola
+			$.each(data.files, function (index, file) {
+			$('<p/>').html('<b>Archivo Agregado a la Cola:</b>  ' +file.name + '<div id="'+file.lastModified+'"></div>').appendTo(document.body);
+			//Para comenzar a subir archivos basta con lanzar  data.submit();, esto lo realizara un boton asociado a cada archivo	
+			Components.create('Button',{		
+				container:$('#'+file.lastModified),
+				scale: 'medium',
+				text:'Subir: '+file.name,
+				icon: 'images/plussymbol.png',
+				tooltip:'texto + icono',
+				CodeHelper:data,
+				css:{position:'relative'},				
+				handler: function(e) {
+					var $thisButton = e.data.OBJ;
+					var $data = $thisButton.config.CodeHelper;
+					//se lanza el proceso final.
+					$data.submit();
+					$thisButton.destroy();
+				}  
+			}).show();
+			});
+		},
+		fileuploadprogressall: function(e, data) {
+			console.log(data);
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			Components.getComponentById('progress').setValue(progress);
+		},
+	}
+}).show();
+Components.create('ProgressBar',{  	
+        id:"progress",
+        x:325,
+		y:2,
+        text: "",
+        align: "left",
+        width: 250,
+        height: 10,
+		value:0,
+      	color:'#123456',
+		textcolorstart:'#0000',
+		textcolorend:'#FFF',
+}).show();

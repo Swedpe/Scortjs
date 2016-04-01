@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 8W</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<script src="../components/items/MenuItem.js"></script>	
+
+
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSActividad.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />	
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+	
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+		
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+Actividades1={
+	
+			"0":{	id:0,
+			type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"1":{	id:1,
+			type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"2":{	id:2,
+			type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"3":{	id:3,
+			type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			
+		};
+$( document ).ready(function(){
+Components.create('Window',{
+	title: "WBS Copiar Pegar",		
+	height:442, 
+	width:823,
+	state:'active',
+	items:[
+	{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [                  
+			{
+				type: 'Button',
+				id : 'copyBtnWBS',    
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-files-o',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'Copiar',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Prepare("Copy");                               
+					}
+				}
+			},
+			{
+				type: 'Button',
+				 id : 'cutBtnWBS', 
+				 shape:'box',
+				 scale:'minier',
+				 
+				icon:{
+							type:'fontawesome',
+							class:'fa-cut',
+							color:'#000099',
+							position:'left',
+				},
+					
+				tooltip:'PC_Cortar_00349',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Prepare("Cortar");
+					}
+				}
+			},					
+			{
+				type: 'Button',
+				id : 'CancelCBtnWBS',  
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-times-circle',
+							color:'#000099',
+							position:'left',
+				},
+				
+				tooltip:'PC_Cancelar_Operaciones_00339',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Clear();
+						
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'pasteBtnWBS',
+				shape:'box',
+				scale:'minier',
+			   icon:{
+							type:'fontawesome',
+							class:'fa-paste',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Pegar_00338',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Paste();
+						Components.getComponentById('Okno').drawTree();
+					}
+				}
+			}
+		]
+	},
+	{
+		 type: 'SvgContainer', 
+		 region: 'center',
+		 id:'mysvg',
+		 items:[
+			{
+				type: 'WBSTree',						
+				id:'Okno',
+				algorithm:'basicWilliam',
+				clipboard:true,
+				 listeners: {
+					onNodeSelectForCopy: function() {
+						Components.getComponentById('copyBtnWBS').changeIcono(1,{color:'red'});
+						Components.getComponentById('pasteBtnWBS').enable();
+					},
+					onNodeSelectForCut: function() {
+						Components.getComponentById('pasteBtnWBS').enable();
+					},							
+					onCancelClipoard: function() {
+						Components.getComponentById('copyBtnWBS').changeIcono(1,{color:'#000099'});	
+						Components.getComponentById('cutBtnWBS').changeIcono(1,{color:'#000099'});
+						Components.getComponentById('pasteBtnWBS').disable();
+					},
+					oncreateCopyTask: function(obj) {
+						console.log("se creo nueva tarea mediante copia");
+						console.log(obj);
+						
+					},
+				},
+				items:[
+					{	
+						 type: 'WBSNode', 
+						 id:0,
+						 idp:null,
+						 Descripcion:'Gerente general',
+						 tipoObjeto:'Tarea',
+						 childsId:[1,2,3]
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:1,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de recursos humanos',
+						 items: Actividades1,
+						
+						
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:2,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de logÃ­stica',
+						 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:3,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de Desarrollo',
+						 childsId:[4,5,6]								 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:4,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'LÃ­der de proyecto',								
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:5,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Planeamiento'								 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:6,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Calidad',
+						 childsId:[7]
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:7,
+						 idp:6,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerente de recursos humanos',
+						
+						
+					},
+				]
+		}
+		]
+	
+	}
+   ]	
+}).show();
+});  
+</script>	
+</head>
+
+</html>

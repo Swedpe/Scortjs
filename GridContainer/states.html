@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GRICONTAINER STATES</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('Window',{
+		 x:349,
+	     y:24,
+		state:'active',
+		title: "active", 
+        items: [
+{
+type: "GridContainer",
+region: "center",
+id: "GridPrueba",
+state:'active',
+cellEditing: {clicksToEdit: 2},
+autoScroll: true,
+columns: [
+	{
+		type: "GridColumn",
+		text: "ID",
+		dataIndex: "pos2",
+		width: "26%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	
+	
+	{
+		type: "GridColumn",
+		text: "NOMBRE",
+		dataIndex: "pos1",
+		width: "40%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	{
+		type: "GridColumn",
+		text: "EDAD",
+		dataIndex: "pos4",
+		typeData: "number",
+		sortable: true,
+		filter: true,
+		 width: "40%",
+		 editor: {
+							type: 'NumberField',
+							allowBlank: false
+						}
+	},					
+	
+],
+store: { //store permite almacenar los datos en el grid.
+	fields: ["pos1", "pos2", "pos4"], //pos1:representa al nombre
+									  //pos2:representa el ID      
+									  //pos4:representa la EDAD
+									  //Cada pos es definido en cada columa como data index.
+	data: [
+		{ pos1: "Cesar", pos2: 01, pos4:21},
+		{ pos1: "abelardo", pos2: 02, pos4:19},
+		{ pos1: "geanfranco", pos2: 03, pos4:10},
+		{ pos1: "ernesto", pos2: 04, pos4:40},
+		{ pos1: "roberto", pos2: 05, pos4:50},
+		{ pos1: "luis", pos2: 06, pos4:50},
+		{ pos1: "jose", pos2: 07, pos4:50},
+		{ pos1: "daniel", pos2: 08, pos4:50},
+		{ pos1: "william", pos2: 09, pos4:50},
+		{ pos1: "ana", pos2: 10, pos4:45}
+	]
+}
+}
+]
+		
+		
+    }).show();
+Components.create('Window',{
+    x:21,
+	y:252,
+		state:'info',
+		title: "info", 
+        items: [
+{
+type: "GridContainer",
+region: "center",
+id: "GridPrueba2",
+state:'info',
+cellEditing: {clicksToEdit: 2},
+autoScroll: true,
+columns: [
+	{
+		type: "GridColumn",
+		text: "ID",
+		dataIndex: "pos2",
+		width: "26%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	
+	
+	{
+		type: "GridColumn",
+		text: "NOMBRE",
+		dataIndex: "pos1",
+		width: "40%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	{
+		type: "GridColumn",
+		text: "EDAD",
+		dataIndex: "pos4",
+		typeData: "number",
+		sortable: true,
+		filter: true,
+		 width: "40%",
+		 editor: {
+							type: 'NumberField',
+							allowBlank: false
+						}
+	},					
+	
+],
+store: { //store permite almacenar los datos en el grid.
+	fields: ["pos1", "pos2", "pos4"], //pos1:representa al nombre
+									  //pos2:representa el ID      
+									  //pos4:representa la EDAD
+									  //Cada pos es definido en cada columa como data index.
+	data: [
+		{ pos1: "Cesar", pos2: 01, pos4:21},
+		{ pos1: "abelardo", pos2: 02, pos4:19},
+		{ pos1: "geanfranco", pos2: 03, pos4:10},
+		{ pos1: "ernesto", pos2: 04, pos4:40},
+		{ pos1: "roberto", pos2: 05, pos4:50},
+		{ pos1: "luis", pos2: 06, pos4:50},
+		{ pos1: "jose", pos2: 07, pos4:50},
+		{ pos1: "daniel", pos2: 08, pos4:50},
+		{ pos1: "william", pos2: 09, pos4:50},
+		{ pos1: "ana", pos2: 10, pos4:45}
+	]
+}
+}
+]
+		
+    }).show();
+Components.create('Window',{
+   x: 691,
+	y:20,
+		state:'error',
+		title: "error", 
+        items: [
+{
+type: "GridContainer",
+region: "center",
+id: "GridPrueba3",
+state:'error',
+cellEditing: {clicksToEdit: 2},
+autoScroll: true,
+columns: [
+	{
+		type: "GridColumn",
+		text: "ID",
+		dataIndex: "pos2",
+		width: "26%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	
+	
+	{
+		type: "GridColumn",
+		text: "NOMBRE",
+		dataIndex: "pos1",
+		width: "40%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	{
+		type: "GridColumn",
+		text: "EDAD",
+		dataIndex: "pos4",
+		typeData: "number",
+		sortable: true,
+		filter: true,
+		 width: "40%",
+		 editor: {
+							type: 'NumberField',
+							allowBlank: false
+						}
+	},					
+	
+],
+store: { //store permite almacenar los datos en el grid.
+	fields: ["pos1", "pos2", "pos4"], //pos1:representa al nombre
+									  //pos2:representa el ID      
+									  //pos4:representa la EDAD
+									  //Cada pos es definido en cada columa como data index.
+	data: [
+		{ pos1: "Cesar", pos2: 01, pos4:21},
+		{ pos1: "abelardo", pos2: 02, pos4:19},
+		{ pos1: "geanfranco", pos2: 03, pos4:10},
+		{ pos1: "ernesto", pos2: 04, pos4:40},
+		{ pos1: "roberto", pos2: 05, pos4:50},
+		{ pos1: "luis", pos2: 06, pos4:50},
+		{ pos1: "jose", pos2: 07, pos4:50},
+		{ pos1: "daniel", pos2: 08, pos4:50},
+		{ pos1: "william", pos2: 09, pos4:50},
+		{ pos1: "ana", pos2: 10, pos4:45}
+	]
+}
+}
+]
+		
+    }).show();	
+Components.create('Window',{
+	x:20,
+	y:20,
+		state:'highlight',
+		title: "highlight", 
+        items: [
+{
+type: "GridContainer",
+region: "center",
+id: "GridPrueba4",
+state:'highlight',
+cellEditing: {clicksToEdit: 2},
+autoScroll: true,
+columns: [
+	{
+		type: "GridColumn",
+		text: "ID",
+		dataIndex: "pos2",
+		width: "26%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	
+	
+	{
+		type: "GridColumn",
+		text: "NOMBRE",
+		dataIndex: "pos1",
+		width: "40%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	{
+		type: "GridColumn",
+		text: "EDAD",
+		dataIndex: "pos4",
+		typeData: "number",
+		sortable: true,
+		filter: true,
+		 width: "40%",
+		 editor: {
+							type: 'NumberField',
+							allowBlank: false
+						}
+	},					
+	
+],
+store: { //store permite almacenar los datos en el grid.
+	fields: ["pos1", "pos2", "pos4"], //pos1:representa al nombre
+									  //pos2:representa el ID      
+									  //pos4:representa la EDAD
+									  //Cada pos es definido en cada columa como data index.
+	data: [
+		{ pos1: "Cesar", pos2: 01, pos4:21},
+		{ pos1: "abelardo", pos2: 02, pos4:19},
+		{ pos1: "geanfranco", pos2: 03, pos4:10},
+		{ pos1: "ernesto", pos2: 04, pos4:40},
+		{ pos1: "roberto", pos2: 05, pos4:50},
+		{ pos1: "luis", pos2: 06, pos4:50},
+		{ pos1: "jose", pos2: 07, pos4:50},
+		{ pos1: "daniel", pos2: 08, pos4:50},
+		{ pos1: "william", pos2: 09, pos4:50},
+		{ pos1: "ana", pos2: 10, pos4:45}
+	]
+}
+}
+]
+		
+    }).show();
+Components.create('Window',{
+	x:692,
+	y:256,
+		state:'warning',
+		title: "warning",
+        items: [
+{
+type: "GridContainer",
+region: "center",
+id: "GridPrueba5",
+state:'warning',
+cellEditing: {clicksToEdit: 2},
+autoScroll: true,
+columns: [
+	{
+		type: "GridColumn",
+		text: "ID",
+		dataIndex: "pos2",
+		width: "26%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	
+	
+	{
+		type: "GridColumn",
+		text: "NOMBRE",
+		dataIndex: "pos1",
+		width: "40%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	{
+		type: "GridColumn",
+		text: "EDAD",
+		dataIndex: "pos4",
+		typeData: "number",
+		sortable: true,
+		filter: true,
+		 width: "40%",
+		 editor: {
+							type: 'NumberField',
+							allowBlank: false
+						}
+	},					
+	
+],
+store: { //store permite almacenar los datos en el grid.
+	fields: ["pos1", "pos2", "pos4"], //pos1:representa al nombre
+									  //pos2:representa el ID      
+									  //pos4:representa la EDAD
+									  //Cada pos es definido en cada columa como data index.
+	data: [
+		{ pos1: "Cesar", pos2: 01, pos4:21},
+		{ pos1: "abelardo", pos2: 02, pos4:19},
+		{ pos1: "geanfranco", pos2: 03, pos4:10},
+		{ pos1: "ernesto", pos2: 04, pos4:40},
+		{ pos1: "roberto", pos2: 05, pos4:50},
+		{ pos1: "luis", pos2: 06, pos4:50},
+		{ pos1: "jose", pos2: 07, pos4:50},
+		{ pos1: "daniel", pos2: 08, pos4:50},
+		{ pos1: "william", pos2: 09, pos4:50},
+		{ pos1: "ana", pos2: 10, pos4:45}
+	]
+}
+}
+]
+		
+    }).show();
+Components.create('Window',{
+	x:350,
+	y:251,
+		title: "Default", 
+        items: [
+{
+type: "GridContainer",
+region: "center",
+id: "GridPrueba6",
+state:'default',
+cellEditing: {clicksToEdit: 2},
+autoScroll: true,
+columns: [
+	{
+		type: "GridColumn",
+		text: "ID",
+		dataIndex: "pos2",
+		width: "26%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	
+	
+	{
+		type: "GridColumn",
+		text: "NOMBRE",
+		dataIndex: "pos1",
+		width: "40%",
+		editor: {
+							type: 'TextField',
+							allowBlank: false
+		}
+	},
+	{
+		type: "GridColumn",
+		text: "EDAD",
+		dataIndex: "pos4",
+		typeData: "number",
+		sortable: true,
+		filter: true,
+		 width: "40%",
+		 editor: {
+							type: 'NumberField',
+							allowBlank: false
+						}
+	},					
+	
+],
+store: { //store permite almacenar los datos en el grid.
+	fields: ["pos1", "pos2", "pos4"], //pos1:representa al nombre
+									  //pos2:representa el ID      
+									  //pos4:representa la EDAD
+									  //Cada pos es definido en cada columa como data index.
+	data: [
+		{ pos1: "Cesar", pos2: 01, pos4:21},
+		{ pos1: "abelardo", pos2: 02, pos4:19},
+		{ pos1: "geanfranco", pos2: 03, pos4:10},
+		{ pos1: "ernesto", pos2: 04, pos4:40},
+		{ pos1: "roberto", pos2: 05, pos4:50},
+		{ pos1: "luis", pos2: 06, pos4:50},
+		{ pos1: "jose", pos2: 07, pos4:50},
+		{ pos1: "daniel", pos2: 08, pos4:50},
+		{ pos1: "william", pos2: 09, pos4:50},
+		{ pos1: "ana", pos2: 10, pos4:45}
+	]
+}
+}
+]
+		
+    }).show();
+}); 
+</script>	
+</script>
+</head>
+
+<body>
+<div>
+<div class="row">
+	<div  id="Colorerror" class="col-sm-4">
+	</div>
+
+	<div  id="ColorActive" class="col-sm-4" >
+	</div>
+	
+	<div  id="Colorinfo" class="col-sm-4" >
+	</div>
+
+</div>
+
+<div class="row">
+	<div  id="Colorhighlight" class="col-sm-4">
+	</div>
+
+	<div  id="Colorwarning"class="col-sm-4">
+	</div>
+	
+	<div  id="Colordefault" class="col-sm-4">
+	</div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+Crea un menu con efecto acordeón para mostrar paneles de informacion en un espacio limitado.
+Esta compuesto por un AccordeonContainer que  contiene los paneles internos denominados AccordeonItem.
+El componente AccordeonContainer tiene las siguientes opciones
+
+id (opcional)  tipo string 
+Es el identificador del objeto, sirve para referirse a un componente(s) en concreto dentro de la coleccion de componentes Components.objects. Mediante la funcion
+Components.getComponentById(id) es posible acceder al componente, sus propiedades y funciones.  
+En caso de no indicar un id, el componente recibe un id aleatorio.
+
+Components.create('AccordeonContainer', {
+					...
+					id:"miacordeon"
+					...
+});	
+				
+icons  (opcional)  tipo objeto  por defecto: false
+Indica los iconos que tendran los paneles internos AccordeonItem al estar desplegados o replegados. Siendo el valor de activeHeader el estado desplegado y  header
+el estado replegado.
+
+Components.create('AccordeonContainer', {
+					...
+					icons: {
+								'header': "ui-icon-circle-minus",
+								'activeHeader': "ui-icon-circle-plus"
+					}
+					...
+});	
+
+collapsible (opcional)  tipo: boolean  por defecto: false
+Indica el estado inicial de los paneles internos AccordeonItem. En caso que sea true  estos apareceran replegados y en caso que sea false el primero aparacera desplegado.
+
+Components.create('AccordeonContainer', {
+					...
+						collapsible:true
+					...
+});	
+
+active (opcional)  tipo: boolean | integer  por defecto: 0
+Indica si uno de los paneles internos AccordeonItem aparacera desplegado.
+
+Components.create('AccordeonContainer', {
+					...
+						active:1,
+					...
+});	
+
+heightStyle (opcional)  tipo: string   por defecto: 'auto'
+Indica el alto de los paneles internos AccordeonItem.
+Valor posibles:
+"auto": All panels will be set to the height of the tallest panel.
+"fill": Expand to the available height based on the accordion's parent height.
+"content": Each panel will be only as tall as its content.
+
+Components.create('AccordeonContainer', {
+					...
+						heightStyle:'fill',	
+					...
+});	
+
+
+items   tipo: array   
+Contiene los  paneles internos AccordeonItem que apareceran en el AccordeonContainer
+
+Components.create('AccordeonContainer', {
+					...
+					items: []
+					...
+});
+
+listeners
+activate
+Sucede cuando el AccordeonContainer  tiene el focus 
+activate( event, ui )
+event
+	Type: Event
+ui
+	Type: Object
+	newHeader
+		Type: jQuery
+		The header that was just activated.
+	oldHeader
+		Type: jQuery
+		The header that was just deactivated.
+	newPanel
+		Type: jQuery
+		The panel that was just activated.
+	oldPanel
+		Type: jQuery
+		The panel that was just deactivated.
+
+
+
+AccordeonItem
+Es un panel interno que aparece dentro del  AccordeonContainer, el  AccordeonItem tambien puede contener otros componentes.
+El componente AccordeonItem tiene las siguientes opciones
+
+id (opcional)  tipo string 
+Es el identificador del objeto, sirve para referirse a un componente(s) en concreto dentro de la coleccion de componentes Components.objects. Mediante la funcion
+Components.getComponentById(id) es posible acceder al componente, sus propiedades y funciones.  
+En caso de no indicar un id, el componente recibe un id aleatorio.
+
+Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								id:'miaccordeonitem',
+								...
+							}
+					]					
+});
+
+title (opcional)  tipo string por defecto: ''
+Indica el titulo de cabecera del AccordeonItem dentro del AccordeonContainer. Si no se da valor a esta propiedad la cabecera aparecera en blanco.
+Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								title: 'Accordeon 1',								
+								...
+							}
+					]					
+});
+
+ height     tipo string|integer por defecto: -1
+ Indica la longitud  del AccordeonItem.
+ Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								height: 'inherit',								
+								...
+							}
+					]					
+});
+ width     tipo string|integer por defecto: -1
+ Indica el ancho del  del AccordeonItem.
+ Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								width: '100%',								
+								...
+							}
+					]					
+});
+
+ html (opcional)    tipo string por defecto: '' 		
+ Permite definir etiquetas html personalizadas dentro del AccordeonItem
+ Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								html: '<div>html tag</div>',								
+								...
+							}
+					]					
+});
+
+hidden (opcional)  tipo: boolean   por defecto: false
+Indica si el AccordeonItem aparecera visible dentro del AccordeonContainer
+Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								hidden:false,								
+								...
+							}
+					]					
+});
+
+autoScroll (opcional)  tipo: boolean   por defecto: false
+Indica que, en caso de que el contenido de el AccordeonItem sea mayor que el area visisble de este, mostrara una barra de desplasamiento
+Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								autoScroll: true,							
+								...
+							}
+					]					
+});
+
+items (opcional)  tipo: array[]   por defecto: []
+Contiene los componentes que se mostraran dentro del AccordeonItem 
+Components.create('AccordeonContainer', {
+					...
+					items: [
+							{
+								...
+								type: 'AccordeonItem', 
+								items: []																
+								...
+							}
+					]					
+});
+
+listeners
+activate
+Sucede cuando el AccordeonItem es desplegado ó tiene el focus 
+activate( event, ui )
+event
+	Type: Event
+ui
+	Type: Object
+	newHeader
+		Type: jQuery
+		The header that was just activated.
+	oldHeader
+		Type: jQuery
+		The header that was just deactivated.
+	newPanel
+		Type: jQuery
+		The panel that was just activated.
+	oldPanel
+		Type: jQuery
+		The panel that was just deactivated.
+		
+render
+Sucede cuando el AccordeonItem es dibujado  		

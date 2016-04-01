@@ -1,0 +1,95 @@
+/* 
+    Document   : css_panel
+    Created on : 15-abr-2014, 10:59:24
+    Linked in  : BPT/top.php
+    Description:
+        Este archivo contiene los estilos css para un PanelContainer
+*/
+
+.panelContainer {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #387BBB;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.panelContainer .headerPanel {
+    position: relative;
+    padding: 0px 7px;
+    height: 25px;
+    background: linear-gradient(to bottom, #609FF0 10%, #21507C 100%);
+}
+
+.panelContainer .bodyPanel {
+    position: relative;
+    height: 100%;
+}
+
+.titleHeader {
+    color: #FFFFFF;
+    font-weight: bold;
+    position: absolute;
+    line-height: 22px;
+}
+
+.dockedComponent {
+    position: absolute;
+}
+
+/*------STATES--------*/
+.panelContainer.info .headerPanel{
+	background: linear-gradient(to bottom, #3D5D91 10%, #44869F 100%);
+}
+.panelContainer.info .bodyPanel{
+    border: 1px solid #3E6293;
+}
+.panelContainer.error .headerPanel{
+    background: linear-gradient(to bottom, #9A2E2F 10%, #C36F70 100%);
+}
+.panelContainer.error .bodyPanel{
+border: 1px solid #B5595A;
+background-color: rgba(214, 163, 163, 0.09);
+}
+.panelContainer.highlight .headerPanel{
+    background: linear-gradient(to bottom, #CBB02C 10%, #D6D177 100%);
+}
+.panelContainer.highlight .bodyPanel{
+    border: 1px solid #D1C152;
+    background-color: rgba(214, 218, 126, 0.22);
+}
+.panelContainer.active .headerPanel{
+    background: linear-gradient(to bottom, #55AD58 10%, #7ACB6D 100%);
+}
+.panelContainer.active .bodyPanel{
+    border: 1px solid #5FB55E;
+    background-color: rgba(173, 225, 138, 0.22);
+}
+.panelContainer.warning .headerPanel{
+    background: linear-gradient(to bottom, #D24D28 10%, #D87A5F 100%);
+}
+.panelContainer.warning .bodyPanel{
+    border: 1px solid #D24D28;
+    background-color: rgba(243, 213, 189, 0.22);
+}
+
+
+/*------------ SPLITTER ---------------*/
+.splitterItem {
+    cursor: col-resize;
+    background: #387BBB;
+    float: left;
+}
+
+.splitterItem-vertical {
+    height: 100%;
+    width: 4px;
+}
+
+.splitterItem-horizontal {
+    width: 100%;
+    height: 4px;
+}

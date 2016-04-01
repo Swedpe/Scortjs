@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Form Container ejemplo 2</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>
+<script src="../functions.js"></script>		
+<script src="../components/functions.js"></script>	
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css"/>
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/colorPicker.css">
+		
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+	$( document ).ready(function(){
+	Components.create('InputField',{
+					id:'colorea4',
+					label: {html:'<b>con Paleta</b>',
+					cols:2},
+					input:{
+					name:'colorin4',
+					cols:10,
+					type:'colorPicker',
+					preferredFormat: "hex",
+					showPalette: true,
+					showSelectionPalette: true,
+					showInitial: true,
+					maxSelectionSize: 10,
+					//showPaletteOnly:true,
+					localStorageKey: "ColorPicker.demo",					//html5 la paleta se guardara en localstorage.
+					palette: [
+							["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
+							"rgb(204, 204, 204)", "rgb(217, 217, 217)","rgb(255, 255, 255)"],
+							["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+							"rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"], 
+							["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)", 
+							"rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)", 
+							"rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)", 
+							"rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)", 
+							"rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)", 
+							"rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+							"rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+							"rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+							"rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)", 
+							"rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
+						],
+					width: '130',
+					listeners: {
+						onValidateSucess: function() {
+						alert("onValidateSucess");
+						}
+					}
+				},
+		 css:{'padding-top': '10px'},
+		}).show();
+});  
+</script>	
+</head>
+</html>

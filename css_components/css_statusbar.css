@@ -1,0 +1,17 @@
+/* 
+    Document   : css_statusbar
+    Created on : 22-feb-2014, 13:48:02
+    Linked in  : BPT/top.php
+    Description:
+        Configuraciones de estilos para la barra de estas
+*/
+
+.statusBar {
+    padding-left: 2px;
+    letter-spacing: .1em;
+    text-align: left;
+    position: static;
+    height: 15px;
+    background: rgb(207, 212, 213);
+    border-top: 1px solid #AAA;
+}

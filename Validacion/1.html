@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Validacion ejemplo1</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/extra/Validacion.js"></script>
+		<script src="../components/Components.js"></script>	
+        <script src="../functions.js"></script>		
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/containers/FormContainer.js"></script>
+		<script src="../components/items/Image.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		<script src="../components/items/LabelItem.js"></script>
+		<script src="../components/items/FileFieldItem.js"></script>
+		<script src="../components/items/InputFieldItem.js"></script>
+		<script src="../components/items/TextFieldItem.js"></script>
+		
+		<script src="../components/data/DataProxy.js"></script>
+		<script src="../components/data/StoreContainer.js"></script>
+		
+		
+	<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+	<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	<script src="../components/items/fontawesomegrid.js"></script>
+	<script src="../components/items/HtmlScreenGrid.js"></script>
+	<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+	
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/sidebar.css" />
+		<link rel="stylesheet" href="../css_components/css_form.css" />
+		<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_principal.css" />
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		
+
+		
+		<style type="text/css">
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+			try{
+Components.create('Form',{
+	title: "Validacion simple",		
+	height:400, 
+	width:610,
+	items: [
+	{
+		type: 'Form',
+		id: 'TestForm',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items:[
+			{type: 'InputField',
+			label: {html:'<b>Numero de caracteres</b>',
+					cols:4
+			},
+			input:{cols:8,
+					width: '100%',
+					placeholder:'De 3 a 4 caracteres [Alert]',
+					state:'error',
+					validar:{											
+						'longitud':{
+						'min':3,
+						'max':4			
+						}				   
+					},
+					 listeners: {
+                            onValidateSucess: function() {
+                            alert("onValidateSucess");
+							}
+                        }
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			
+			
+			{type: 'InputField',
+			label: {html:'<b>DNI Change status</b>',
+					cols:4},
+			input:{cols:8,
+			  state:'highlight',
+				width: '100%',
+				placeholder:'8 numeros exacto [setLabel()]',
+			
+				validar:{											
+					'longitud':{
+						'min':8,
+						'max':8			
+					   },
+					'numero' : {
+							'tipo':'entero'																												
+							}				   
+				},
+				listeners: {
+                            onValidateSucess: function(event) {
+                            event.data.OBJ.parent.setLabel('<b>OK</b>');
+							},
+							onValidateFail: function(event) {
+                            event.data.OBJ.parent.setLabel('<b>FAIL</b>');
+							}
+                        }
+			},
+			 
+			},
+			
+			{type: 'InputField',
+			label: {html:'<b>Change State</b>',
+					cols:4},
+			input:{cols:8,
+				state:'active',
+				width: '100%',
+				placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
+			
+				listeners: {
+                            onValidateSucess: function(event) {
+							console.log('validate state OK');
+                            event.data.OBJ.changeInputState('active');
+							},
+							onValidateFail: function(event) {
+							console.log('validate state Fail');
+                            event.data.OBJ.changeInputState('error');
+							}
+                        },
+						validar:{											
+							'longitud':{
+							'min':6		
+							},
+							'texto' : true				   
+						},
+						
+			},
+		},
+			{type: 'InputField',
+				id:'Test',
+				label: {html:'<b>Change Icon Position</b>',
+						cols:4},
+				input:{cols:8,
+					width: '100%',
+					placeholder:'Valida Email Efecto[changeIcon position]',
+			     	state:'warning',
+					validar:{		
+						'email':true,
+						'longitud':
+						{
+							'min':5,
+							'max':35
+						}				   
+					},
+					listeners: {
+                            onValidateSucess: function(event) {
+							iconX = {position:'rigth'};
+                            event.data.OBJ.changeIcon(iconX);
+							},
+							onValidateFail: function(event) {
+							iconY = {position:'left'};
+                            event.data.OBJ.changeIcon(iconY);
+							}
+                        }
+				},
+				
+		
+			},
+			{type: 'InputField',
+			label: {html:'<b>Change Icon Clas</b>',
+					cols:4},
+			input:{cols:8,
+				width: '100%',
+				state:'info',
+				placeholder:'Valida Email Efecto[changeIcon class]',
+			
+				listeners: {
+                            onValidateSucess: function(event) {
+							console.log("OK");
+							iconX = {class:'fa-check',
+									type:'fa'
+									};
+                            event.data.OBJ.changeIcon(iconX);
+							},
+							onValidateFail: function(event) {
+							console.log("fail");
+							iconY = {class:'fa-times',type:'fa'};
+                            event.data.OBJ.changeIcon(iconY);
+							}
+                        },
+			validar:{		
+					'email':true,
+					'longitud':
+					{
+						'min':5,
+						'max':35
+					}				   
+				},
+			},
+	
+			},
+			{type: 'InputField',
+			label: {html:'<b>validar url[con color]</b>',
+					cols:4},
+			input:{cols:8,
+				width: '100%',
+				placeholder:'http://www.google.com.pe',
+				
+				validar:{		
+					'url':true,				   
+				},
+				listeners: {
+                            onValidateSucess: function(event) {
+							console.log("OK");
+							iconX = {class:'fa-check',type:'fa',color:'green',
+									};
+                            event.data.OBJ.changeIcon(iconX);
+							},
+							onValidateFail: function(event) {
+							console.log("fail");
+							iconY = {class:'fa-times',type:'fa',color:'red'};
+                            event.data.OBJ.changeIcon(iconY);
+							}
+                        },
+			},
+			
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Validar Direccion Ip</b>',
+					cols:4},
+			input:{cols:8,
+				width: '100%',
+				placeholder:'192.168.0.1',
+				state:'error',
+			validar:{		
+					'ipv4':true,				   
+				},
+			listeners: {
+                            onValidateSucess: function(event) {
+							console.log("OK");
+							iconX = {class:'fa-check',type:'fa',color:'green',
+									};
+                            event.data.OBJ.changeIcon(iconX);
+							event.data.OBJ.changeInputState('active');
+							},
+							onValidateFail: function(event) {
+							console.log("fail");
+							iconY = {class:'fa-times',type:'fa',color:'red'};
+                            event.data.OBJ.changeIcon(iconY);
+							event.data.OBJ.changeInputState('error');
+							}
+                        },
+			},	
+			},
+			{type: 'InputField',
+			label: {html:'<b>Validar Hora</b>',
+					cols:4},
+			input:{cols:8,
+				width: '100%',
+				placeholder:'00:00',
+				state:'error',
+			validar:{		
+					'hora':true,				   
+				},
+			listeners: {
+                            onValidateSucess: function(event) {
+							console.log("OK");
+							iconX = {class:'fa-check',type:'fa',color:'green',
+									};
+                            event.data.OBJ.changeIcon(iconX);
+							event.data.OBJ.changeInputState('active');
+							},
+							onValidateFail: function(event) {
+							console.log("fail");
+							iconY = {class:'fa-times',type:'fa',color:'red'};
+                            event.data.OBJ.changeIcon(iconY);
+							event.data.OBJ.changeInputState('error');
+							}
+                        },
+			},	
+			}
+		
+	   ]
+	}
+]	
+}).show();
+
+           }catch(err){			
+				alert("Codigo No valido "+err);			
+			}
+			
+	});
+  </script>
+</head>
+<body>
+</body>
+</html>

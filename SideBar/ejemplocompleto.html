@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIDEBAR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>	
+		<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/functions.js"></script>	
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+		<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/Slider.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/AcordeonContainer.js"></script> 	
+<script src="../components/items/AccordeonItem.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TextArea.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<script src="../components/items/SplitterItem.js"></script>
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_accordeon.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<script src="../components/items/MenuItem.js"></script>	
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+
+
+<!--------------------------------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<script src="../components/items/FileUploaderItem.js"></script>
+<script src="../jqfu/jquery.fileupload.js"></script>
+<script src="../jqfu/jquery.iframe-transport.js"></script>
+<script src="jqfu/jquery.fileupload-process.js"></script>	
+
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+		
+		<script src="../components/items/fontawesomegrid.js"></script>
+		<script src="../components/items/HtmlScreenGrid.js"></script>
+		
+<style type="text/css">
+
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('Sidebar',{  
+	id: 'mainSidebar',	
+	listeners: {
+             resize: function() {
+				//alert("Change");
+			},
+		},
+ items: [
+		{
+		type: 'Button',
+		id:"F1",
+		state:'active',		//estado 1 
+		scale: 'minier',
+		shape:'box',
+		sidebar:'head',
+		icon:{
+			type:'fontawesome',
+			class:'fa-gavel',
+		},
+		handler: function() {
+				//alert("boton 1 de cabecera");
+                EliminarVisibles();				
+				}                                   
+		},
+		{
+		type: 'Button',
+		id:"F2",
+		sidebar:'head',
+		shape:'box',
+		state:'info',		//estado 1 
+		scale: 'minier',
+		icon:{
+			type:'fontawesome',
+			class:'fa-users',
+		},
+		handler: function() {
+				alert("boton F2 de cabecera");	
+				}                                   
+		},
+		{
+		type: 'Button',
+		id:"F3",
+		state:'warning',		//estado 1 
+		scale: 'minier',
+		shape:'box',
+		sidebar:'head',
+		icon:{
+			type:'fontawesome',
+			class:'fa-plug',
+		},
+		handler: function() {
+				alert("boton F3 de cabecera");	
+				}                                   
+		},
+		{
+		type: 'Button',
+		id:"F4",
+		state:'error',		//estado 1 
+		scale: 'minier',
+		shape:'box',
+		sidebar:'head',
+		icon:{
+			type:'fontawesome',
+			class:'fa-cogs',
+		},
+		handler: function() {
+				alert("boton F4 de cabecera");	
+				}                                   
+		},
+	   	{
+			type: 'SidebarItem',
+			text: 'DashBoard',
+			canActivate: true,
+			name: 'Nombre',
+			icon:{
+				type:'fontawesome',
+				class:'fa-tachometer',				
+			},
+			listeners: {
+             activate: function() {
+				 EliminarVisibles();
+				if (typeof (ejemploDash) == 'undefined'){
+				$.getScript("../SideBar/fomularios/Dasht.js" , function(){
+					ejemploDash();
+				});
+				}
+				else{
+				  ejemploDash();
+				}
+			 }
+			}
+			
+		},
+		{
+			type: 'SidebarItem',
+			text: 'Elements UI',
+			name: 'Apellido',
+			adorno:{				//adorno numérico, 
+					type:'fontawesome',
+					contador:8,
+					state:'default',
+					tooltip:''
+				},
+			icon:{
+				type:'fontawesome',
+				class:'fa-group',				
+			},
+			listeners: {
+             activate: function() {
+				alert("Portafolio Activate");
+			}
+			},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Botones',
+				name: 'st1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Vista Completa',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploButton) == 'undefined'){
+								$.getScript("../SideBar/fomularios/botonEjemplo.js" , function(){
+									ejemploButton();
+								});
+								}
+								else{
+								  ejemploButton();
+								}
+							 }
+							},
+						},
+						
+						{
+							type: 'SidebarItem',
+							text: 'Vista Builder',
+							name: 'st1-2',
+							canActivate: true,
+							listeners: {
+							activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploButtonBuilder) == 'undefined'){
+								$.getScript("../SideBar/fomularios/botonBuilderEjemplo.js", function(){
+								 ejemploButtonBuilder();
+								});
+								}
+								else{
+								  ejemploButtonBuilder();
+								}
+							 }
+							},
+						}
+						]
+			},
+			{
+							type: 'SidebarItem',
+							text: 'ComboBoxItem',
+							name: 'st1-2',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploCombo) == 'undefined'){
+								$.getScript("../SideBar/fomularios/EjemploCombo.js" , function(){
+									ejemploCombo();
+								});
+								}
+								else{
+								  ejemploCombo();
+								}
+							 }
+							},
+			},
+			{
+				type: 'SidebarItem',
+				text: 'ProgressBarItem',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'ProgressBarItem Finales',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (ejemploProgress) == 'undefined'){
+								$.getScript("../SideBar/fomularios/progressEjemplo.js", function(){
+								ejemploProgress();
+								});
+								}
+								else{
+								  ejemploProgress();
+								}
+								//ejemploProgress();
+							 }
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'ProgressBar Builder',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (ejemploProgressBuilder) == 'undefined'){
+								$.getScript("../SideBar/fomularios/progressBuilderEjemplo.js", function(){
+								});
+								}
+								else{
+								  ejemploProgressBuilder();
+								}
+							 }
+							},
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Sliders',
+				name: 'Nombre',
+				canActivate: true,
+							listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (ejemploSliders) == 'undefined'){
+								$.getScript("../SideBar/fomularios/SliderEjemplo.js", function(){
+								ejemploSliders();
+								});
+								}
+								else{
+								  ejemploSliders();
+								}
+							 }
+				},
+			},
+			{
+				type: 'SidebarItem',
+				text: 'On-Off & NumberField',
+				name: 'Nombre',
+				canActivate: true,
+							listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (ejemplon) == 'undefined'){
+								$.getScript("../SideBar/fomularios/EjemploOn.js", function(){
+								ejemplon();
+								});
+								}
+								else{
+								  ejemplon();
+								}
+							 }
+				},
+			}
+		]
+},
+{
+	type: 'SidebarItem',
+	text: 'TextItems & Inputs',
+	name: 'proyectos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-font',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Ejemplo Inputs & Texts',
+				name: 'ejemplof',
+				canActivate: true,
+				listeners: {
+				 activate: function() {
+				 EliminarVisibles();
+				 if (typeof (ejemploTextFin) == 'undefined'){
+					$.getScript("../SideBar/fomularios/FinalText.js", function(){
+					ejemploTextFin();
+					});
+					}
+					else{
+					  ejemploTextFin();
+					}
+				 }
+			   },
+			},
+			{
+				type: 'SidebarItem',
+				text: 'TextItems',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'TextFieldItem',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							activate: function() {
+							EliminarVisibles();
+								if (typeof (ejemploTextAll) == 'undefined'){
+								$.getScript("../SideBar/fomularios/TextAllEjemplo.js", function(){
+								ejemploTextAll();
+								});
+								}
+								else{
+								  ejemploTextAll();
+								}
+							 }
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Builder Button Addon',
+							name: 'st1-2',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+							  EliminarVisibles();
+								if (typeof (TextBuilderAddon) == 'undefined'){
+								$.getScript("../SideBar/fomularios/TextBuiderAddonEjemplo.js" , function(){
+								TextBuilderAddon();
+								});
+								}
+								else{
+								  TextBuilderAddon();
+								}
+							 }
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Builder Icon Addon',
+							name: 'st1-3',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (TextBuilderIcon) == 'undefined'){
+								$.getScript("../SideBar/fomularios/TextBuiderIconEjemplo.js", function(){
+								TextBuilderIcon();
+								});
+								}
+								else{
+								 
+								  TextBuilderIcon();
+								  
+								}
+							 }
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'TextArea',
+							name: 'st1-4',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (ejemploArea) == 'undefined'){
+								$.getScript("../SideBar/fomularios/AreaEjemplo.js", function(){
+								ejemploArea();
+								});
+								}
+								else{
+								  ejemploArea();
+								}
+							 }
+							},
+						},
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'InputFieldItem',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'InputFieldItem Finales',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+							 EliminarVisibles();
+							 if (typeof (InputsFinales) == 'undefined'){
+								$.getScript("../SideBar/fomularios/InputsEjemplo.js", function(){
+								InputsFinales();
+								});
+								}
+								else{
+								  InputsFinales();
+								}
+							 }
+							},
+						},
+						
+					]
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Containers',
+	name: 'contrataciones',
+	icon:{
+		type:'fontawesome',
+		class:'fa-windows',
+		},
+	listeners: {
+		open: function() {
+			//alert("Contrataciones Open");
+		},
+		close: function() {
+			//alert("Contrataciones Close");
+		}
+	},
+	items: [
+	{
+				type: 'SidebarItem',
+				text: 'All Containers',
+				name: 'Cst1-1',
+				canActivate: true,
+				listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (Allcontainers) == 'undefined'){
+								$.getScript("../SideBar/fomularios/AllEjemplo.js", function(){
+								Allcontainers();
+								});
+								}
+								else{
+								  Allcontainers();
+								}
+							 }
+							},
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Windows',
+				name: 'Cst1-0',
+				canActivate: true,
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Windows Finales',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								EliminarVisibles();
+								if (typeof (ejemploWindows) == 'undefined'){
+								$.getScript("../SideBar/fomularios/WindowEjemplo.js", function(){
+								ejemploWindows();
+								});
+								}
+								else{
+								  ejemploWindows();
+								}
+							 }
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Windows Builder',
+							name: 'st1-2',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploWindowsBuilder) == 'undefined'){
+								$.getScript("../SideBar/fomularios/WindowBuilderEjemplo.js", function(){
+								ejemploWindowsBuilder();
+								});
+								}
+								else{
+								  ejemploWindowsBuilder();
+								}
+							 }
+							},
+						},
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Accordeon',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Accordeon Finales',
+							name: 'Cst1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploAccordeon) == 'undefined'){
+								$.getScript("../SideBar/fomularios/AccordeonEjemplo.js", function(){
+								ejemploAccordeon();
+								});
+								}
+								else{
+								  ejemploAccordeon();
+								}
+							 }
+							},
+							
+						},
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'TabContainer',
+				name: 'Nombre',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'TabContainer Finales',
+							name: 'Cst1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploTab) == 'undefined'){
+								$.getScript("../SideBar/fomularios/Tabjemplo.js", function(){
+								ejemploTab();
+								});
+								}
+								else{
+								  ejemploTab();
+								}
+							 }
+							},
+							
+						},
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'FormContainer',
+				name: 'Nombre',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Datos Form',
+							name: 'Cst1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploForm) == 'undefined'){
+								$.getScript("../SideBar/fomularios/Formejemplo.js", function(){
+								ejemploForm();
+								});
+								}
+								else{
+								  ejemploForm();
+								}
+							 }
+							},
+							
+						},
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'GridContainer',
+				name: 'Nombre',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Crud Local',
+							name: 'Cst1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploGrid) == 'undefined'){
+								$.getScript("../SideBar/fomularios/Gridejemplo.js", function(){
+								ejemploGrid();
+								});
+								}
+								else{
+								  ejemploGrid();
+								}
+							 }
+							},
+							
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Vistas Grid',
+							name: 'Cst1-2',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemplovistaGrid) == 'undefined'){
+								$.getScript("../SideBar/fomularios/VistaGridejemplo.js", function(){
+								ejemplovistaGrid();
+								});
+								}
+								else{
+								  ejemplovistaGrid();
+								}
+							 }
+							},
+							
+						}
+					]
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Calendarios',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-calendar',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'DatePickerItem',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'DatePickerItem Finales',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+							 activate: function() {
+								 EliminarVisibles();
+								if (typeof (ejemploPicker) == 'undefined'){
+								$.getScript("../SideBar/fomularios/PickerEjemplo.js", function(){
+								ejemploPicker();
+								});
+								}
+								else{
+								  ejemploPicker();
+								}
+							 }
+							},
+						},
+					]
+			},
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Menús',
+	name: 'Menu',
+	icon:{
+		type:'fontawesome',
+		class:'fa-list-alt',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Menu & ToolBar',
+				name: 'Cst1-0',
+				canActivate: true,
+				listeners: {
+				 activate: function() {
+					 EliminarVisibles();
+					if (typeof (ejemploMenu) == 'undefined'){
+					$.getScript("../SideBar/fomularios/menuEjemplo.js", function(){
+					ejemploMenu();
+					});
+					}
+					else{
+					  ejemploMenu();
+					}
+				 }
+				},
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Proyectos',
+				name: 'Nombre',
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'SvgContainer',
+	name: 'wbs',
+	icon:{
+		type:'fontawesome',
+		class:'fa-sitemap',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Vistas WBS',
+				name: 'Cst1-0',
+				canActivate: true,
+				listeners: {
+				 activate: function() {
+					 EliminarVisibles();
+					if (typeof (ejemploWBS) == 'undefined'){
+					$.getScript("../SideBar/fomularios/wbsEjemplo.js", function(){
+					ejemploWBS();
+					});
+					}
+					else{
+					  ejemploWBS();
+					}
+				 }
+				},
+			},
+			{
+				type: 'SidebarItem',
+				text: 'WBS Pert',
+				name: 'Cst1-1',
+				canActivate: true,
+				listeners: {
+				 activate: function() {
+					 EliminarVisibles();
+					if (typeof (ejemploPert) == 'undefined'){
+					$.getScript("../SideBar/fomularios/pertEjemplo.js", function(){
+					ejemploPert();
+					});
+					}
+					else{
+					  ejemploPert();
+					}
+				 }
+				},
+			},
+			{
+				type: 'SidebarItem',
+				text: 'SVG Pert Ejemplos',
+				name: 'Cst1-2',
+				canActivate: true,
+				listeners: {
+				 activate: function() {
+					 EliminarVisibles();
+					if (typeof (ejemploPert) == 'undefined'){
+					$.getScript("../SideBar/fomularios/pertEjemplo.js", function(){
+					ejemploPert();
+					});
+					}
+					else{
+					  ejemploPert();
+					}
+				 }
+				},
+			}
+		]			
+},
+{
+			type: 'SidebarItem',
+			text: 'Uploader',
+			canActivate: true,
+			name: 'Nombre',
+			icon:{
+				type:'fa',
+				class:'fa-spinner',
+				animate:true,
+			},
+			listeners: {
+             activate: function() {
+				 EliminarVisibles();
+				if (typeof (ejeUploader) == 'undefined'){
+				$.getScript("../SideBar/fomularios/uploaders.js" , function(){
+					ejeUploader();
+				});
+				}
+				else{
+				  ejeUploader();
+				}
+			 }
+			}
+			
+		},
+{
+	type: 'SidebarItem',
+	text: 'Galeria',
+	name: 'recursos',
+	icon:{
+		type:'fa',
+		class:'fa-image',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Sistema',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'BPT Master',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: '8 horas',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Full Day',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Machine',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Proyectos',
+				name: 'Nombre',
+				
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Asignar',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Previsualizar',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Wizard',
+				name: 'P_asociados'
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Social',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-at',
+		},
+	adorno:{				//adorno numérico, 
+		type:'numeric',
+		contador:5,
+		state:'error',
+		tooltip:''
+	},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Compañeros',
+				name: 'Cst1-0',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:1,
+					state:'info',
+					tooltip:''
+				},
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Actual',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Historico',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Mismo Rol',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Recomendados',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Empresas',
+				name: 'Nombre',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:2,
+					state:'warning',
+					tooltip:''
+				},
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Actual',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Pasadas',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Mi Ranking',
+				name: 'P_asociados',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:3,
+					state:'highlight',
+					tooltip:''
+				},
+				
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Chat',
+				name: 'P_asociados',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:7,
+					state:'active',
+					tooltip:''
+				},
+				
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Pendientes',
+				name: 'P_asociados',
+				adorno:{				//adorno numérico, 
+					type:'numeric',
+					contador:8,
+					state:'default',
+					tooltip:''
+				},
+				
+			}
+		]			
+},
+{
+	type: 'SidebarItem',
+	text: 'Administración',
+	name: 'recursos',
+	icon:{
+		type:'fontawesome',
+		class:'fa-cogs',
+		},
+	items: [
+			{
+				type: 'SidebarItem',
+				text: 'Riesgos',
+				name: 'Cst1-0',
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Nuevo',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Proyecto',
+							name: 'Pst1-2',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Estructura',
+							name: 'Pst1-3',
+							canActivate: true
+						},{
+							type: 'SidebarItem',
+							text: 'Seguridad',
+							name: 'Pst1-3',
+							canActivate: true
+						}
+						]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Unidades',
+				name: 'Nombre',
+					items: [
+						{
+							type: 'SidebarItem',
+							text: 'Nueva',
+							name: 'Pst1-1',
+							canActivate: true
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Visualizar',
+							name: 'Pst1-2',
+							canActivate: true
+						}
+					]
+			},
+			{
+				type: 'SidebarItem',
+				text: 'Vistas',
+				name: 'P_asociados'
+			}
+		]			
+		}
+	],                                       
+}).show();
+Components.create('FreeDiv',{
+freeHtml:true,
+html:'<div  id="parte2"  style="margin-left: 190px;"></div>',
+});
+}); 
+</script>	
+</script>
+</head>
+</html>

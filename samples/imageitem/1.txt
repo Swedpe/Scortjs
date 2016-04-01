@@ -1,0 +1,44 @@
+Components.create('Image',{ 
+        tooltip: "Imagen",		
+        image:'images/actualizar2.jpg',      
+        x: 10,
+        y: 30
+}).show();
+Components.create('Image',{ 
+        tooltip: "Imagen2",		
+        image:'images/actualizar2.jpg',  
+		height: 40,
+        width: 50,	
+        x: 10,
+        y: 150
+}).show();
+
+Components.create('Image',{ 
+		id:"myimage",
+        tooltip: "Imagen2",		
+        image:'images/actualizar2.jpg',  
+		height: 40,
+        width: 50,	
+        x: 10,
+        y: 250
+}).show();
+
+ Components.create('Button',{		
+										
+                                        id:"mybutton",
+										x:150,
+                                        y:250,
+                                        scale: 'medium',
+                                        text:'Cambiar Imagen',
+										enableToggle:true,
+                                        handler: function() {
+                                                if (Components.getComponentById('mybutton').pressed)
+                                                     Components.getComponentById('myimage').setImage('images/535106-user_512x512.png');
+                                                else
+													Components.getComponentById('myimage').setImage('images/actualizar2.jpg');                                                 
+                                                       
+                                                    
+                                        }    										
+                                       										
+                                        
+ }).show();

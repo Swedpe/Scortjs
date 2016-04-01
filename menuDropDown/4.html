@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MenuContainer Dropdown Ejemplo 3</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>
+
+<!-------------------------- JS------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/items/MenuItem.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/DragSvg.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+
+<!-------------------------- CSS------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+.first_li span {
+    font-weight: normal;
+    margin: 0px;
+    /* color: #000; */
+    display: block;
+    cursor: default;
+    padding: 3px;
+    border: 1px solid #fff;
+    background: transparent;
+    text-align: left;
+}
+.first_li span i{
+      font-size: 18px;
+}
+.menu_nivel_tres {
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+MenuDinamico = 
+{type: 'MenuScort',			//el sub menu, inicialmente oculto  Segundo UL
+			id : 'DSegundoUL', 
+			width:'200',
+			scale:'minier',
+			shape:'box',
+			icon:{
+				type:'fontawesome',
+				class:'fa-toggle-off',	
+			},
+			items:[											
+			{
+			type: 'MenuItem',			//primer LI submenu 				
+			id:'DSegundoUL_primerLI',
+				
+				layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo soy redondo',
+						icon:{
+							type:'fontawesome',
+							class:'fa-genderless',	
+						},		
+					},
+			},
+			{
+			type: 'MenuItem',		//segundo Li submenu				
+			id:'DBoxShape',
+				layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo soy cuadrado',
+						icon:{
+							type:'fontawesome',
+							class:'fa-square-o',	
+						},			
+					},
+			},
+			{
+			type: 'MenuItem',		//tercer Li submenu				
+			id:'DPoligonShape',
+			layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo tengo Sub menu',
+						icon:{
+							type:'fontawesome',
+							class:'fa-genderless',	
+						},		
+					},
+				items:[
+				{type: 'MenuScort',			//el sub menu 2, UL se abre al costado 
+				id : 'DTercerUL',
+				width:'200',		
+				items:[											
+				{
+				type: 'MenuItem',			//primer LI submenu 
+				layout:{
+					template:'basic',
+					text:'&nbsp;&nbsp;Calcular Tareas largas',
+					ico:"images/actualizar.png",
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},		
+				},
+				id:'DTercerUL_PrimerLI',
+					items:[
+					],
+				},
+				{
+				type: 'MenuItem',		//segundo Li submenu				
+				id:'BoxShape',
+				layout:{
+					template:'basic',
+					text:'&nbsp;&nbsp;PC_Datos_00274',
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},		
+				},
+					items:[									
+					{type: 'MenuScort',			//el sub menu 2, se abre al costado 
+					id : 'DinamicoUl4',        
+					width:'200',
+					shape:'box',
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},
+					items:[											
+					{
+					type: 'MenuItem',
+					id:'DcuartoUL_PrimerLI',					
+					layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Yo soy especial',
+						icon:{
+							ico:"images/wbs.png",
+							type:'image',
+							color:'red'		
+						},		
+					},
+					
+					},
+					{
+					type: 'MenuItem',		//segundo Li submenu				
+					id:'DBoxShapeX',				
+					layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Menu image actualizar',
+						icon:{
+							ico:"images/actualizar.png",
+							type:'image',
+							color:'red'		
+						},		
+					},	
+					},
+					{
+					type: 'MenuItem',		//tercer Li submenu				
+					id:'DPoligonShape',
+						layout:{
+						template:'basic',
+						text:'&nbsp;&nbsp;Fredy Mercuri',
+						icon:{
+							type:'fontawesome',
+							class:'fa-toggle-off',	
+							color:'red'		
+						},		
+					},
+					}
+					],					
+					tooltip:'Drag',
+					}
+					],
+				},
+				{
+				type: 'MenuItem',		//tercer Li submenu				
+				id:'DPoligonShape',
+				layout:{
+					template:'basic',
+					text:'&nbsp;&nbsp;Calcular Indices Tareas',
+					ico:"images/wbs.png",
+					icon:{
+						type:'fontawesome',
+						class:'fa-toggle-off',	
+					},		
+				},
+				listeners: {
+					click: function() {
+					console.log('click Menu correcto');
+					}
+				}
+				}
+				],					
+				tooltip:'Drag',
+				}
+				],
+			}
+			],					
+			tooltip:'Drag',
+			};
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+Components.create('Window',{
+	title: "Controlando el Menu DropDown de la ventana",		
+	state:'info',
+	height:420, 
+	x:10,
+	width:390,
+	html:'<p>En este ejemplo se tiene un window con un menu como boton principal <i class="buttonItem-icon-left   fa fa-plus" style="color:default"></i>,'+
+	'<br> El cual inicialmente no tiene subitems.<br>'+
+	'Procedimiento: <br><br>'+
+	'<button type="Button" class="buttonItem buttonItem-minier ui-button buttonItem-enabled ui-corner-all ui-state-warning btn-box"><i class="buttonItem-icon-left   fa fa-plus" style="color:default"></i></button>'+
+	'preciona este boton del toolbar y agregara el menu dinamico al boton <i class="buttonItem-icon-left   fa fa-plus" style="color:default"></i>.<p>'+
+	'el menu agregado tiene el atributo: <br><b>subMenu:{requireClick:true,}, </b> <br> Por lo cual solo sera visible luego de hacer click en el. <br>'+
+	'<p>Puede experimentar vambiando este atributo para hacer funcionar el menu solo con <b>hover</b></p>',
+	items:[
+		{
+			type: 'ToolBar',
+			id: 'ChartProyectoWindowsToolBar',
+			region: 'top',
+			state:'info',
+			items: [
+			   {
+					type: 'Button',
+					id : 'BtnCritical',
+					scale:'minier',
+					shape:'box',                      
+					icon:{
+						type:'fontawesome',
+						class:'fa-sitemap',	
+					},
+					tooltip:'Critical',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnShape',
+					scale:'minier',
+					shape:'box',
+					icon:{
+						type:'fontawesome',
+						class:'fa-connectdevelop',	
+					},	
+					tooltip:'Shape',
+					listeners: {
+						click: function() {
+						console.log('este es un click de botton y no de el menu');
+						}
+					}
+				},
+				{
+					type: 'Button',
+					id : 'BtnArrastre',        
+					scale:'minier',
+					shape:'box',
+					state:'warning',
+					icon:{
+						type:'fontawesome',
+						class:'fa-plus',	
+					},
+					tooltip:'Agregar el menu dinamico',
+					listeners: {
+						click: function(e) {
+						alert('menu agregado');
+						Components.getComponentById('quieroMasSub').add(MenuDinamico);
+						}
+					}
+				}
+			]
+		},
+	  
+		]
+	
+}).show();
+	
+Components.create('Window',{
+id:'window',
+x:400,
+y:40,
+resizable:false,
+      height:150, 
+        width:400, 
+		state:'default',
+		title: "default", 
+        html:'<div><i>Soy una ventana con un boton de titulo </i> <b>Especial</b></div>',
+		headerbuttons:[
+			{type: 'MenuScort',						//el menu principal, el UL
+				id : 'DPrimerUL',        
+				menuType:'ButtonDropDown',
+				subMenu:{
+						requireClick:true,		
+						},
+				css:{
+					'float': 'left'},
+				listeners: {
+							click: function() {
+							console.log('Click me bitch');
+							}
+						},
+				items:[
+						{
+						type: 'MenuItem',				//el menu secundario el LI		
+						id:'quieroMasSub',
+						subMenu:{
+							requireClick:true,			//el menu se hara visible con click		
+						},
+						items:[
+						{					
+							type: 'Button',				//el boton que estara visible en el toolbar
+							id : 'ConvertirEnMenu',        
+							scale:'windowHead',
+							shape:'box',
+							icon:{
+								type:'fontawesome',
+								class:'fa-plus',	
+							},
+							
+							tooltip:'Menu Ejemplo',					
+						}]
+						}
+						]
+			},
+		]
+    }).show();
+	
+var menu2 = {type: 'MenuScort',			//el sub menu, inicialmente oculto  Segundo UL
+							id : 'MenuProyecto', 
+							width:'200',
+							scale:'minier',
+							shape:'box',
+							icon:{
+								type:'fontawesome',
+								class:'fa-toggle-off',	
+							},
+							items:[											
+							{
+								type: 'MenuItem',			//primer LI submenu 
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Actualizar calculos',
+									icon:{
+										type:'fontawesome',
+										class:'fa-calculator',
+										color:'red'
+									},
+		
+								},
+								id:'tpact',
+									items:[
+									],
+							},
+							{
+								type: 'MenuItem',			//primer LI submenu 
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Calcular Indices',
+									icon:{
+										type:'fontawesome',
+										class:'fa-list-ol',
+										color:'red'
+									},	
+								},
+								id:'tpact2',
+									items:[
+									],
+							},
+							{
+							type: 'MenuItem',		////menu con submenus		
+							id:'tpdia',
+							layout:{
+								template:'basic',
+								text:'&nbsp;&nbsp;Diagramas',
+								icon:{
+										type:'fontawesome',
+										class:'fa-tachometer',
+										color:'green'
+									},
+							},
+								items:[
+								{type: 'MenuScort',			//UL
+								id : 'TercerUL',
+								width:'200',		
+								items:[											
+								{
+								type: 'MenuItem',			//LI
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Red',
+									icon:{
+										type:'fontawesome',
+										class:'fa-codepen',
+										color:'green'
+									},		
+								},
+								id:'TercerUL_PrimerLI',
+									items:[
+									],
+								},
+								{
+								type: 'MenuItem',		//LI
+								id:'BoxShape',
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;WBS',
+									icon:{
+										type:'fontawesome',
+										class:'fa-sitemap',
+										color:'green'
+									},		
+								},
+									items:[									
+									{type: 'MenuScort',			//UL
+									id : 'CuartoUL',        
+									width:'200',	
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-gavel',
+										color:'blue'
+									},
+									items:[											
+									{
+									type: 'MenuItem',			//primer LI submenu 				
+									id:'cuartoUL_PrimerLI',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;NORMAL',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-sitemap',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//segundo Li submenu				
+									id:'BoxShape',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;DETALLADO',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-sitemap',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'PoligonShape',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;SEGUIMIENTO',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-sitemap',
+											color:'green'
+										},		
+									},	
+									}
+									],					
+									tooltip:'Drag',
+									}
+									],
+								},
+								{
+								type: 'MenuItem',		//tercer Li submenu				
+								id:'PoligonShape',
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;PERT',
+									ico:"images/wbs.png",
+									icon:{
+										type:'fontawesome',
+										class:'fa-circle-o',
+										color:'blue'
+										
+									},		
+								},
+								listeners: {
+									click: function() {
+									console.log('click Menu correcto');
+									}
+								}
+								},
+								{
+								type: 'MenuItem',		//tercer Li submenu				
+								id:'PoligonShape',
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;GHANT',
+									ico:"images/wbs.png",
+									icon:{
+										type:'fontawesome',
+										class:'fa-tasks',
+										color:'blue'
+										
+									},		
+								},
+								listeners: {
+									click: function() {
+									console.log('click Menu correcto');
+									}
+								}
+								},
+								{
+								type: 'MenuItem',		//tercer Li submenu				
+								id:'PoligonShape',
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;DIAGRAMA S',
+									ico:"images/wbs.png",
+									icon:{
+										type:'fontawesome',
+										class:'fa-line-chart',
+										color:'blue'
+										
+									},		
+								},
+								listeners: {
+									click: function() {
+									console.log('click Menu correcto');
+									}
+								}
+								}
+								],					
+								tooltip:'Drag',
+								}
+								],
+							},
+							{
+								type: 'MenuItem',			//menu simple sin submenu
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Documentos',
+									
+									icon:{
+										type:'fontawesome',
+										class:'fa-book',
+										color:'black'	
+									},			
+								},
+								id:'tppro',
+									items:[
+									],
+							},
+							{
+								type: 'MenuItem',			//Con submenu
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Datos',
+									icon:{
+										type:'fontawesome',
+										class:'fa-database',
+										color:'black'	
+									},			
+								},
+								id:'tppro',
+									items:[
+																		
+									{type: 'MenuScort',			//UL
+									id : 'CuartoUL',        
+									width:'200',	
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-gavel',
+										color:'blue'
+									},
+									items:[											
+									{
+									type: 'MenuItem',			//primer LI submenu 				
+									id:'cuartoUL_PrimerLI',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Importar WBS Chart',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-file-code-o',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//segundo Li submenu				
+									id:'exportWBS',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Exportar WBS Chart',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-file-code-o',
+											color:'red'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Importar Project 2010',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-file-code-o',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'exportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Exportar Project 2010',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-file-code-o',
+											color:'red'
+										},		
+									},	
+									}
+									],					
+									tooltip:'Drag',
+									}
+									],
+							},
+							{
+								type: 'MenuItem',			//Con submenu
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Reportes',
+									icon:{
+										type:'fontawesome',
+										class:'fa-clipboard',
+										color:'blue'	
+									},			
+								},
+								id:'tppro',
+									items:[
+																		
+									{type: 'MenuScort',			//UL
+									id : 'CuartoUL',        
+									width:'200',	
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-gavel',
+										color:'blue'
+									},
+									items:[											
+									{
+									type: 'MenuItem',			//primer LI submenu 				
+									id:'cuartoUL_PrimerLI',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Recursos Humanos',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-users',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//segundo Li submenu				
+									id:'exportWBS',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Recursos materiales',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-diamond',
+											color:'red'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Valor ganado',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-line-chart',
+											color:'black'
+										},		
+									},	
+									},
+									],					
+									tooltip:'Drag',
+									}
+									],
+							},
+							{
+								type: 'MenuItem',			//Con submenu
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Vistas',
+									icon:{
+										type:'fontawesome',
+										class:'fa-eye',
+										color:'blue'	
+									},			
+								},
+								id:'tppro',
+									items:[
+																		
+									{type: 'MenuScort',			//UL
+									id : 'CuartoUL',        
+									width:'200',	
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-gavel',
+										color:'blue'
+									},
+									items:[											
+									{
+									type: 'MenuItem',			//primer LI submenu 				
+									id:'cuartoUL_PrimerLI',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista standard',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-history',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//segundo Li submenu				
+									id:'exportWBS',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista Recursos Humanos',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-male',
+											color:'brown'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista Recursos Materiales',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-truck',
+											color:'brown'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista Calidad',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-gavel',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista Costos',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-money',
+											color:'green'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista Documentos',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-book',
+											color:'black'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista seguridad',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-ambulance',
+											color:'black'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Vista trabajo',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-wrench',
+											color:'black'
+										},		
+									},	
+									},
+									{
+									type: 'MenuItem',		//tercer Li submenu				
+									id:'ImportProj',
+									layout:{
+										template:'basic',
+										text:'&nbsp;&nbsp;Personalizar',
+										ico:"images/edit.png",
+										icon:{
+											type:'fontawesome',
+											class:'fa-magic',
+											color:'red'
+										},		
+									},	
+									},
+									],					
+									tooltip:'Drag',
+									}
+									],
+							},
+							{
+								type: 'MenuItem',			//menu simple sin submenu
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Propiedades proyecto',
+									
+									icon:{
+										type:'fontawesome',
+										class:'fa-bars',
+										color:'red'	
+									},			
+								},
+								id:'tppro',
+									items:[
+									],
+							},
+							{
+								type: 'MenuItem',			//menu simple sin submenu
+								layout:{
+									template:'basic',
+									text:'&nbsp;&nbsp;Configuracion interfaz',
+									
+									icon:{
+										type:'fontawesome',
+										class:'fa-magic',
+										color:'green'	
+									},			
+								},
+								id:'tppro',
+									items:[
+									],
+							},
+							],					
+							tooltip:'Drag',
+			};
+
+
+							
+Components.create('Window',{
+id:'window',
+x:400,
+y:40,
+resizable:false,
+      height:150, 
+        width:400, 
+		y:200,
+		state:'error',
+		title: "requireClick:false,", 
+        html:'<div><i>Soy una ventana con un menu creado en la definicion de la ventana</br>, solo pasa el mouse sobre el icono  <i class="buttonItem-icon-left   fa fa-wrench" style="color:default"></i> de mi menu superior </b></br>'+
+		'No requiere click asi que se activa con el hover</div>',
+		headerbuttons:[
+			{type: 'MenuScort',						//el menu principal, el UL
+				id : 'DPrimerUL',        
+				menuType:'ButtonDropDown',
+				subMenu:{
+						requireClick:true,		
+						},
+				css:{
+					'float': 'left'},
+				listeners: {
+							click: function() {
+							console.log('Click me bitch');
+							}
+						},
+				items:[
+						{
+						type: 'MenuItem',				//el menu secundario el LI		
+						id:'definidoAntes',
+						subMenu:{
+							requireClick:false,			//el menu se hara visible con click		
+						},
+						items:[
+						{					
+							type: 'Button',				//el boton que estara visible en el toolbar
+							id : 'ConvertirEnMenu',        
+							scale:'windowHead',
+							shape:'box',
+							icon:{
+								type:'fontawesome',
+								class:'fa-wrench',	
+							},
+							
+							tooltip:'Menu Ejemplo',					
+						},menu2,						
+						]
+						}
+						]
+			},
+		]
+    }).show();	
+	
+});  
+</script>	
+</head>
+<body>
+
+</body>
+</html>

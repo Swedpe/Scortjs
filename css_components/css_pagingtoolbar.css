@@ -1,0 +1,30 @@
+/* 
+    Document   : css_pagingtoolbar
+    Created on : 07-may-2014, 13:29:18
+    Author     : usuario
+    Description:
+        Estilos para los controles del paging toolbar
+*/
+
+.btnsPagingToolbar {
+    /*height: 16px;
+    width: 16px;*/
+    background-repeat: inherit;
+    background-image: url(images/page_move_24.png);
+}
+
+.toolBar .inputSpan  input[type="text"]{
+  height: 21px;
+ }
+ 
+.toolBar  .inputSpan.input-group {
+  line-height: 21px;
+ }
+ .toolBar .buttonItem-spiner{
+  line-height: 8px;
+  font-size: 7px;
+ }
+ .toolBar button{
+ border-radius: 0px;
+ }
+ 

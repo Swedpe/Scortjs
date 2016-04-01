@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 10</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<script src="../components/items/MenuItem.js"></script>	
+
+
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSActividad.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />	
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+	
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+		
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+Actividades9={
+			"0":{	id:0,
+					type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"1":{	
+					id:1,
+					type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"2":{	id:2,
+					type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"3":{	id:3,
+					type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			
+		};
+Actividades10={
+	
+			"0":{	id:0,
+			type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"1":{	id:1,
+			type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"2":{	id:2,
+			type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"3":{	id:3,
+			type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			
+		};
+
+
+$( document ).ready(function(){
+Components.create('Window',{
+	title: "WBS Eventos",		
+	height:700, 
+	width:1850,
+	state:'active',
+	items:[
+	{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+		   {
+				type: 'Button',
+				id : 'izquierdaBtn',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-left',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'PC_Agregar_Hermano_a_la_Izquierda_00359',
+				listeners: {
+					click: function() {							
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(1,0);
+							}
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'derechaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-right',
+					color:'#000099',
+					position:'left',
+				},
+				
+				tooltip:'PC_Agregar_Hermano_a_la_Derecha_00358',
+				listeners: {
+					click: function() {
+					   if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(0,0);
+						}
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-up',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'PC_Agregar_Nuevo_Padre_00357',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.AgregarPadre(null);
+						}
+						else
+							alert("Debe seleccionar un Nodo");	
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-down',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'PC_Agregar_Hijo_00356',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.AddChild(null);
+						}
+						else
+							alert("Debe seleccionar un Nodo");	
+						}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'nada1',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					
+				},
+				tooltip:'nada',
+			},
+			{
+				type: 'Button',
+				id : 'bolita',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-circle',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'bolita',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.bolizando();
+							Components.getComponentById("Okno").calcTree();
+							Components.getComponentById("Okno").drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+						
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'cuadrado',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-square-o',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'cuadrado',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
+							Components.getComponentById("Okno").calcTree();
+							Components.getComponentById("Okno").drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-exchange',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'exchange',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							if(seleccionado.bolita){
+								seleccionado.cuadrando();
+								seleccionado.tree.calcTree();
+								Components.getComponentById("Okno").drawTree();
+							}else{
+								seleccionado.bolizando();
+								Components.getComponentById("Okno").calcTree();
+								seleccionado.tree.drawTree();
+								}
+						}else{
+							console.log("Debe seleccionar un Nodo");
+						}
+					}
+				}
+			},
+		]
+	},
+	{
+		 type: 'SvgContainer', 
+		 region: 'center',
+		 id:'mysvg',
+		 items:[
+			{
+				type: 'WBSTree',						
+				id:'Okno',
+				plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+						parentType: 'WBSTree',
+				}},
+				items:[
+					{	
+						 type: 'WBSNode', 
+						 id:0,
+						 idp:null,
+						 Descripcion:'Directorio',
+						 tipoObjeto:'Cabecera',
+						 childsId:[1,2,3],
+						 Background:'#CC9900'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:1,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Auditoría J. Espósito'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:2,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Cumplimiento B. Falero',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:3,
+						 idp:0,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Gerencia General W. Bayly',
+						 childsId:[4,5,6,24,25,26,27,7,8],
+						 Background:'#CC9900'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:4,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Legal G. Morales',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:5,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Gestión y Desarrollo Humano F. Giuffra',
+						 childsId:[9,10],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:6,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Asuntos Corporativos J. Otero',
+						 childsId:[11,12,13,14],						 
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:7,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. de Riesgos R. Llosa',
+						 childsId:[15,16,17],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:8,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Secretaría General M. Ferrari',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:9,
+						 idp:5,
+						 tipoObjeto:'Tarea',
+						 //Descripcion:'A. Planeamiento y Desarrollo K. Mitre',
+						 Descripcion:'Ana',
+						 items: Actividades9,
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:10,
+						 idp:5,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Asesoría en G y DH B. Sambra',
+						 items: Actividades10,
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:11,
+						 idp:6,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Relaciones Institucionales A. Carulla',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:12,
+						 idp:6,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Relaciones con Inversionistas A. Kleffmann',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:13,
+						 idp:6,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Responsabilidad Social L. Puente',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:14,
+						 idp:6,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Relaciones con Gobierno M. Podestá',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:15,
+						 idp:7,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Administración de Riesgos J. Incháustegui',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:16,
+						 idp:7,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Riesgos Banca Minorista H. Marcenaro',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:17,
+						 idp:7,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. de Créditos P. Miñán',
+						 childsId:[18,19,20,21,22,23],
+					},					
+					{	
+						 type: 'WBSNode', 
+						 id:18,
+						 idp:17,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Créditos Bca. Ext. y Corp. A. Franco',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:19,
+						 idp:17,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Créditos Bca. Emp. Lima A. García',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:20,
+						 idp:17,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Créditos Bca. Empresa S. Isidro A. Gavilano',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:21,
+						 idp:17,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Créditos Centralizado J. Gómez',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:22,
+						 idp:17,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Seg. y Control de Créditos L. Rivera',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:23,
+						 idp:17,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Cuentas Especiales C. Arias',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:24,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'G. Central Planeamiento y Fin. A. Correa',
+						 childsId:[28,29,30,31,32],
+						 Background:'#EAD20B'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:25,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'G. Central Banca Mayorista P. Rubio',
+						 childsId:[33,34,35,36,37,38],
+						 Background:'#EAD20B'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:26,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'G. Central Gestión de Activos J. Maggiolo',
+						 childsId:[45,46,47,48,49,50],
+						 Background:'#EAD20B'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:27,
+						 idp:3,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'G. Central Banca Minorista G. Ferrari',
+						 childsId:[51,52,53,54],
+						 Background:'#EAD20B'
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:28,
+						 idp:24,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Contabilidad General J. L. Muñoz',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:29,
+						 idp:24,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Tesorería y Cambios A. Figuerola',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:30,
+						 idp:24,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Planeamiento y Control Financiero P. Travezán',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:31,
+						 idp:24,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión Financiera B. Zapata',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:32,
+						 idp:24,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'Proyectos Corporativos M. Torres',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:33,
+						 idp:25,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Banca Empresarial F. Fort G.',
+						 childsId:[39,40,41],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:34,
+						 idp:25,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Banca Corporativa C. Laub',
+						 childsId:[42,43,44],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:35,
+						 idp:25,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Servicios para Empresas F. Paz',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:36,
+						 idp:25,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Negocios Internacionales G. Álvarez Calderón',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:37,
+						 idp:25,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Leasing A. Ferrand',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:38,
+						 idp:25,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Planeamiento Estratégico y Desarrollo de Negocios M. Casassa',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:39,
+						 idp:33,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Banca Empresas Lima 1 M. Del Mar',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:40,
+						 idp:33,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Banca Empresas Lima 2 L. Bouroncle',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:41,
+						 idp:33,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Banca Empresas Lima 3 P. Bordarampé',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:42,
+						 idp:34,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Banca Corporativa L. A. Carrera',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:43,
+						 idp:34,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Finanzas Corporativas M. Baca',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:44,
+						 idp:34,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Banca Institucional A. Arredondo',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:45,
+						 idp:26,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión de Inversiones B. Ghio',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:46,
+						 idp:26,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Estrategia de Inv. y Estudios Económicos A. Segura',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:47,
+						 idp:26,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión de Patrimonios A. Pérez',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:48,
+						 idp:26,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión de Productos de Inversión A. Montoya',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:49,
+						 idp:26,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión de Producción y Tecnología J. L. Lazarte',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:50,
+						 idp:26,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Negocios Fiduciarios J. M. Peschiera',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:51,
+						 idp:27,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Comercial C. Morante',
+						 childsId:[55,56,57,58,59,60,61],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:52,
+						 idp:27,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Sistemas y Organización R. Bustamante',
+						 childsId:[62,63,64,65,66,67],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:53,
+						 idp:27,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Administración y Procesos J. Ramírez del Villar',
+						 childsId:[68,69,70,71,72],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:54,
+						 idp:27,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'D. Marketing F. Dasso',
+						 childsId:[73,74,75,76,77,78,79],
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:55,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Comercial Lima 1 P. Urteaga',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:56,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Comercial Lima 2 E. Rizo Patrón',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:57,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Comercial Lima 3 J. Matute',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:58,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Comercial Provincias 1 J. Ichazo',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:59,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Comercial Provincias 2 P. Macarachvili',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:60,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Ventas N. Tueros',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:61,
+						 idp:51,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Banca de Negocios y Negocios Inmobiliarios J. Mujica',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:62,
+						 idp:52,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Soluciones de Negocios I. Muñoz',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:63,
+						 idp:52,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Infraestructura y Operaciones de TI C. Herrera',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:64,
+						 idp:52,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Ingeniería y Desarrollo de TI I. Osores',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:65,
+						 idp:52,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Arquitectura y Estándares de TI B. Rivadeneyra',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:66,
+						 idp:52,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión de Procesos e Info. C. Sanguinetti',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:67,
+						 idp:52,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Mejorando la Acción de Sist. P. Canales',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:68,
+						 idp:53,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Mejora de Procesos Clave J. Ortiz',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:69,
+						 idp:53,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Seguridad y Prevención de Fraudes J. Marangunich',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:70,
+						 idp:53,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Operaciones A. Astete',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:71,
+						 idp:53,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Administración J. I. Maúrtua',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:72,
+						 idp:53,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Cobranza Banca Minorista C. Ríos',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:73,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Productos M. Ruiz',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:74,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Canales de Distribución A. Johnson Pastor',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:75,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Gestión Comercial C. Sulópulos',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:76,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Mercadeo E. Melgar',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:77,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Bancaseguros A. Di Paola',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:78,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Marca BCP, Calidad, Invest. Mcdo. P. Foster',
+					},
+					{	
+						 type: 'WBSNode', 
+						 id:79,
+						 idp:54,
+						 tipoObjeto:'Tarea',
+						 Descripcion:'A. Alianzas Comerciales W. Harster',
+					},
+				]
+		    }
+	    ]
+	
+	}
+  ]	
+}).show();
+});  
+</script>	
+</head>
+
+</html>

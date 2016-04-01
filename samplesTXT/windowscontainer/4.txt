@@ -1,0 +1,5 @@
+  Components.create('Window',{
+		title: "Modal", 
+        html:'<div><i>Soy un ventana</i> <b>modal</b></div>',
+        modal: true,
+    }).show();

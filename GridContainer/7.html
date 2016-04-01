@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridContainer Ejemplo 7</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../functions.js"></script>
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/extra/jspdf/jspdf.min.js"></script>
+<script src="../components/extra/jspdf/jspdf.plugin.autotable.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+
+Components.create('Window',{
+	title: "GridPrueba2", 
+	height:332, 
+	state:'active',
+	width:600,
+	items: [
+		{
+			type: "GridContainer",
+			region: "center",
+			id: "GridPrueba",
+			state:'active',
+			cellEditing: {clicksToEdit: 2},
+			autoScroll: true,
+			selModel: {
+							type: "checkboxmodel",
+							checkOnly: false,
+						   
+			},	
+			columns: [
+				{
+					type: "CheckColumn",
+					text: "CHECK",
+					dataIndex: "pos0",
+					width: "22%",
+					editor: {
+										type: 'TextField',
+										allowBlank: false
+					}
+				},
+				{
+					type: "GridColumn",
+					text: "NOMBRE",
+					dataIndex: "pos1",
+					width: "22%",
+					editor: {
+										type: 'TextField',
+										allowBlank: false
+					}
+				},
+				{
+					type: "GridColumn",
+					text: "EDAD",
+					dataIndex: "pos2",
+				   // typeData: "number",
+				   // sortable: true,
+					//filter: true,
+					 width: "22%",
+					 editor: {
+										type: 'TextField',
+										allowBlank: false
+									}
+				},					
+				{
+						type: 'GridColumn',                            
+						text: 'NICKNAME',							
+						width: "22%",
+						  editor: {
+										type: 'TextField',
+										allowBlank: false
+									},
+						renderer: function(value, metaData, record, row, col, store, gridView){
+							/*console.log(value);
+							console.log(metaData);
+							console.log(record);
+							console.log(row);
+							console.log(col);
+							console.log(store);
+							console.log(gridView);*/
+							return record.pos1+record.pos2;
+						}
+				 },
+			   
+			
+			 
+			],
+			store: {
+				/*fields: ["pos1", "pos2", "pos4"],
+				data: [
+					{ pos1: "Cesar", pos2: true, pos4:21},
+					{ pos1: "abelardo", pos2: false, pos4:19},
+					{ pos1: "geanfranco", pos2: true, pos4:10},
+					{ pos1: "ernesto", pos2: false,  pos4:40},
+					{ pos1: "roberto", pos2: true, pos4:50},
+					{ pos1: "luis", pos2: true, pos4:50},
+					{ pos1: "jose", pos2: true,pos4:50},
+					{ pos1: "daniel", pos2: true, pos4:50},
+					{ pos1: "luis", pos2: true, pos4:50}*/
+					
+				fields: ["pos0", "pos1", "pos2"],
+				data: [
+					{ pos0: true, pos1: "Cesar", pos2:21},
+					{ pos0: false, pos1: "abelardo", pos2:19},
+					{ pos0: true, pos1: "geanfranco", pos2:10},
+					{ pos0: false, pos1: "ernesto", pos2:40},
+					{ pos0: true, pos1: "roberto", pos2:50},
+					{ pos0: true, pos1: "luis", pos2:50},
+					{ pos0: true, pos1: "jose", pos2:50},
+					{ pos0: true, pos1: "daniel", pos2:50},
+					{ pos0: true, pos1: "luis", pos2:50}
+					
+				]
+			},
+			bbar: { //determina la barra de paginacion
+			//barra de paginacion,  los parametros [1,2,3] -> [Elemento de inicio de grupo,Elemento Final de grupo, Total de elementos]
+						displayInfo: true,
+						displayMsg: 'Mostrando  {0} - {1} de {2}',
+						emptyMsg: "No hay temas a mostrar"
+					},
+					gridviewtittle: {
+					   displayInfo:  true,
+					},
+		}
+	]
+}).show();
+Components.create('Button',{		
+	x:130,
+	y:440,
+	scale: 'medium',
+	text:'Generar PDF',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-file-pdf-o',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Generar PDF',	  
+	handler: function() {
+		Components.getComponentById('GridPrueba').downloadPdf('ejemplo7.pdf',1,90)
+	}
+ }).show();
+ function generateXml(){
+		/* xml root element - because html() does not include the root element and we want to
+			* include <report /> in the output. There may be a better way to do this.
+			*/
+		var nameSpace = "scortjs";	
+		//var $root = $('<XMLDocument />');
+		var worksheet = document.createElementNS(nameSpace,"Worksheet");
+			worksheet.setAttribute("ss:Name", "Hoja1" );
+		var table = document.createElementNS(nameSpace,"Table");
+			table.setAttribute("ss:ExpandedColumnCount", "30" );
+			table.setAttribute("ss:ExpandedRowCount", "30" );
+			table.setAttribute("x:FullColumns", "1" );
+			table.setAttribute("x:FullRows", "1" );
+			table.setAttribute("ss:DefaultColumnWidth", "60" );
+			table.setAttribute("ss:DefaultRowHeight", "15" );
+		
+		var row = document.createElementNS(nameSpace,"Row");
+		//var cell = document.createElementNS(nameSpace,"Cell");
+		//var data = document.createElementNS(nameSpace,"Data");
+		
+		row.setAttribute("ss:Index", "1" );
+		//cell.setAttribute("ss:Index","2" );
+		//data.setAttribute("ss:Type", "String" );
+		for (var i in Components.getComponentById('GridPrueba').config.columns)
+		{
+			console.log(i);
+			var cell = document.createElementNS(nameSpace,"Cell");
+			cell.setAttribute("ss:Index",parseInt(i)+1 );
+			var data = document.createElementNS(nameSpace,"Data");
+			data.setAttribute("ss:Type", "String" );
+			if(Components.getComponentById('GridPrueba').config.columns[i].type=="CheckColumn")
+			{
+				$(data).html(" ");
+				//continue; 
+			}
+			else{
+			$(data).html(Components.getComponentById('GridPrueba').config.columns[i].text);}
+			cell.appendChild(data);
+			row.appendChild(cell);
+		}
+		table.appendChild(row);
+		
+		for (var i in Components.getComponentById('GridPrueba').store.data)
+		{	
+			var rowdatos = document.createElementNS(nameSpace,"Row");
+			rowdatos.setAttribute("ss:Index", parseInt(i)+2 );
+			//var adentro=new Array();
+			var v=0;
+			for(var w in Components.getComponentById('GridPrueba').itemsObjs) 
+			{
+				var cell = document.createElementNS(nameSpace,"Cell");
+				cell.setAttribute("ss:Index",v+1 );
+				var data = document.createElementNS(nameSpace,"Data");
+				data.setAttribute("ss:Type", "String" );
+				//console.log(w);
+				if(Components.getComponentById('GridPrueba').itemsObjs[w].customrenderer)
+				{
+					var valor=Components.getComponentById('GridPrueba').itemsObjs[w].renderer(0,0,Components.getComponentById('GridPrueba').store.data[i]);
+					$(data).html(valor);
+					//adentro.push(valor);
+				}
+				else if(w == "rowSelected")
+				{
+					$(data).html(" ");
+				}
+				else
+				{	/*if(){	}else{*/
+					$(data).html(String(Components.getComponentById('GridPrueba').store.data[i][w]));
+					//adentro.push(Components.getComponentById('GridPrueba').store.data[i][w]);
+					//}	//console.log(w);
+				}
+				v=v+1;
+				//console.log(w);
+				cell.appendChild(data);
+				rowdatos.appendChild(cell);
+			}
+			//console.log(adentro);
+			table.appendChild(rowdatos);
+			//rows1.push(adentro);
+		}
+		
+		worksheet.appendChild(table);
+		var $root = (new XMLSerializer).serializeToString(worksheet);	
+
+		
+		var newTable = document.createElementNS(nameSpace, "table");
+		var newcp = document.createElementNS(nameSpace, "row");
+		newcp.setAttributeNS(nameSpace, "ss:Type", "String");
+		newTable.appendChild(newcp);
+
+		var xml = (new XMLSerializer).serializeToString(newTable);
+		
+
+		
+		var downloadchar='<?xml version="1.0"?> <?mso-application progid="Excel.Sheet"?> <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40"> <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">  <Author>ususu</Author>  <LastAuthor>ususu</LastAuthor>  <Created>2015-10-08T17:19:08Z</Created>  <Version>14.00</Version> </DocumentProperties> <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">  <AllowPNG/> </OfficeDocumentSettings> <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel"> </ExcelWorkbook>';
+		var restante='</Workbook>';
+
+		downloadchar=downloadchar+$root+restante;
+		
+
+		//console.log($root);
+		return downloadchar;
+		//return xml;
+
+	}
+Components.create('Button',{		
+	x:130,
+	y:440,
+	scale: 'medium',
+	text:'Generar Xml',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-download',
+				position:'left',
+		},
+	state:'active',
+	
+	tooltip:'Generar Xml',	  
+	handler: function() {
+		var Xmlgenerado = Components.getComponentById('GridPrueba').generateXml('ejemplo7.xml',1,1);
+		//var Xmlgenerado = generateXml();
+		//download('ejemplo7.xml',Xmlgenerado);
+ 	}
+}).show();
+});  
+</script>	
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<b>Basico Con ValidationScript</b><br>
+- Se Mantiene todos los elementos del ejemplo 6, adicional mente se va activar visualizacion previa para subir fotos <br>
+- Para activar la visualización previa de archivos del tipo imagen, se requiere activar la propiedad <b>PreviewImage<b>
+-

@@ -1,0 +1,8 @@
+<b>Basico Con confirmacion</b><br>
+- Se crea un control de upload.<br>
+- Se define multiple Upload <br>
+- Se define que el subir archivos no sea automatico <br>
+- El metodo <b>fileuploadadd</b> se lanza cada vez que se agrega un archivo a la cola <br>
+- Cuando el metodo <b>fileuploadadd</b> se lanza se crea un boton que sera el encargado de ejecutar el envio de datos al servidor <br>
+- Se define el listener <b>fileuploaddone</b>, que se disparara cuando la subida de los archivos esta completa, <br> y mostrara el nombre de los archivos subidos como confirmacion<br>
+- Los archivos subidos solo quedaran en la carpeta temporal [esto se controla desde PHP] .<br>

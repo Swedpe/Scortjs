@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MenuContainer Ejemplo 1</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>
+
+<!--------------------------JS------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+
+<!-------------------------- CSS------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{		
+	title: "Menu Container", 
+	height:250, 
+	width:450,
+	state:'active',
+	html:'<div id="customdiv"><div>',
+	items: [
+		{
+			type: 'ToolBar',
+			region: 'top',
+			items: [								
+				{
+					type: 'Button',
+					id: 'RestoreSlices',
+					shape:'box',
+					scale:'minier',
+					icon:{
+								type:'fontawesome',
+								class:'fa-dollar',
+								color:'#000099',
+								position:'left',
+					},
+					tooltip: 'Restaurar Valores Iniciales',
+					listeners: {
+						click: function() {
+							
+						}
+					}									
+				},
+				{
+					type: 'SplitButton',
+					id: 'EscalaTiempo',
+					text : 'Escala de Barras',
+					tooltip: 'Elegir tipo de documento',
+					menu: {
+						items: [
+								{
+								id: 'ninguno',
+								text: '<img src="images/play.png">Ninguno',									
+								handler: function() {
+									$("#customdiv").html("selecciono ninguno");
+									Components.getComponentById('mitxt').setValue('ninguno');
+								}  
+							},
+							{
+								id: 'semanal',
+								text: '<img src="images/pie2.png">Semanal',
+								handler: function() {
+									$("#customdiv").html("selecciono SEMANAL");
+									Components.getComponentById('mitxt').setValue('semanal');
+								}  
+							},
+							{
+								id: 'mensual',
+								text: '<img src="images/ungroup.png">Mensual',
+								handler: function() {
+									$("#customdiv").html("selecciono MENSUAL");
+									Components.getComponentById('mitxt').setValue('mensual');
+									
+								}  
+							}
+						]
+					}
+				 },                         
+				{
+					type: 'TextField',	
+					id:'mitxt',	
+					readOnly: true,
+					width: 200,
+					value: 'Mensual'
+				}		
+				
+			]						
+	
+		}            
+	]
+    }).show();
+});  
+</script>	
+</head>
+<body>
+</body>
+</html>

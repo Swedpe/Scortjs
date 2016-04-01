@@ -1,0 +1,84 @@
+Components.create('Window',{		
+        title: "Menu Container", 
+        height:300, 
+        width:500,		
+        items: [
+			{
+								
+										type: 'Button',
+										id: 'RestoreSlices',
+										scale: 'medium',
+										text : 'Agregar',
+										icon: 'images/dolar16.png',
+										tooltip: 'Restaurar Valores Iniciales',
+										x:10,
+										y:32,
+										listeners: {
+											click: function() {
+												var menu = Components.getComponentById('EscalaTiempo').menu;
+												menu.add(CreateItem());
+											}
+										}									
+									},
+									{
+										type: 'SplitButton',
+										id: 'EscalaTiempo',
+										text : 'Escala de Barras',
+										x:100,
+										y:32,
+										tooltip: 'Elegir tipo de documento',
+										menu: {
+											id:'mimenuitems',
+											items: [
+													{
+													id: 'ninguno',
+													text: '<img src="images/play.jpg">Ninguno',
+													handler: function() {
+														
+														Components.getComponentById('mitxt').setValue('ninguno');
+													}  
+												},
+												{
+													id: 'semanal',
+													text: '<img src="images/pie2.png">Semanal',
+													handler: function() {
+														
+														Components.getComponentById('mitxt').setValue('semanal');
+													}  
+												},
+												{
+													id: 'mensual',
+													text: '<img src="images/ungroup.png">Mensual',
+													handler: function() {
+														Components.getComponentById('mitxt').setValue('mensual');
+													}  
+												}
+											]
+										}
+									 },                         
+									{
+										type: 'TextField',	
+										id:'mitxt',
+										x:280,
+										y:32,
+										readOnly: true,
+										width: 200,
+										value: ''
+													
+						
+			                        }            
+        ]
+    }).show();
+	
+function CreateItem(){
+var myitem = {
+                   
+						id: 'mensual',
+						text: '<img src="images/clock24.png"><b>Tiempo</b> de <i>Ejecucion</i>',
+						handler: function() {
+							Components.getComponentById('mitxt').setValue('Tiempo de Ejecucion');														
+						}  
+												
+					}
+	return myitem;				
+}

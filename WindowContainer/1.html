@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WindowContainer Ejemplo 1</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/Components.js"></script>	
+		<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+        <link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+			
+		
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+	Components.create('Window',{
+        id:'hi', //id definido por nosotros
+	    behavior:'window',
+		title: "Demo Window", 
+        height:200, 
+		state:'active', //da el color al contenedor(error,highlight,active,warning,info,default)
+        width:310    
+    }).show();
+	});  
+	</script>	
+   <script id="switchthemescript"> 
+	$(function() {
+		$('#theme-switcher').change(function () {
+			var theme = $('#theme');
+			theme.prop(
+				'href',
+				theme.prop('href').replace(
+					/[\w\-]+\/jquery-ui.css/,
+					$(this).val() + '/jquery-ui.css'
+				)
+			);
+		});
+	});
+  </script>
+</head>
+
+</html>

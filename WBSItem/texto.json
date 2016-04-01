@@ -1,0 +1,73 @@
+[
+    {
+        "type": "WBSNode",
+        "id": 0,
+        "Descripcion": "Padre",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": -1,
+        "childsId": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "type": "WBSNode",
+        "id": 1,
+        "Descripcion": "Listener:show",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": 0,
+        "childsId": []
+    },
+    {
+        "type": "WBSNode",
+        "id": 2,
+        "Descripcion": "Listener:hide",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": 0,
+        "childsId": []
+    },
+    {
+        "type": "WBSNode",
+        "id": 3,
+        "Descripcion": "Listener:maximize,minimize",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": 0,
+        "childsId": [
+            4,
+            5,
+            6
+        ]
+    },
+    {
+        "type": "WBSNode",
+        "id": 4,
+        "Descripcion": "Listener:select",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": 3,
+        "childsId": []
+    },
+    {
+        "type": "WBSNode",
+        "id": 5,
+        "Descripcion": "Listener:deselect",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": 3,
+        "childsId": []
+    },
+    {
+        "type": "WBSNode",
+        "id": 6,
+        "Descripcion": "Listener:null",
+        "Background": "#FFFFFF",
+        "stroke": "green",
+        "idp": 3,
+        "childsId": []
+    }
+]

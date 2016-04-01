@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Spectrum - The No Hassle jQuery Colorpicker</title>
+
+    <meta name="description" content="Spectrum is a JavaScript colorpicker plugin using the jQuery framework.  It is highly customizable, but can also be used as a simple input type=color polyfill">
+    <meta name="author" content="Brian Grinstead and Spectrum contributors">
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="../components/items/colorPicker/tinycolor.js"></script>
+	<script src="../components/Components.js"></script>	
+	<script src="../components/items/TextFieldItem.js"></script>
+	<script src="../components/items/ButtonItem.js"></script>	
+    <script type="text/javascript" src="../components/items/colorPicker/colorPicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css_components/colorPicker.css">
+	<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+	<link rel="stylesheet" href="../css_components/css_principal.css" />
+	<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+	<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+	<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+	<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	
+</head>
+<body>
+<a href='http://bgrins.github.com/spectrum'>&lt;--Spectrum Homepage</a>
+
+<h2>Basic Usage</h2>
+<h2>Full Example</h2>
+</body>
+</html>
+<script id="customscript">
+$( document ).ready(function(){
+
+Components.create('colorPicker',{
+	color: "#f00",
+	flat:false,																
+	showInitial: true,
+	showInput: true,														//al desplegar el control mostrar un input dentro de el componente
+	preferredFormat: "hex",
+	showPalette: true,
+		change: function(color) {
+			$("#basic-log").text("change called: " + color.toHexString());
+		}
+	});
+});
+</script>

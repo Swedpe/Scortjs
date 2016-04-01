@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>COMBOBOX FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/Slider.js"></script>
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />	
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('Window', {
+	height: 242,
+	width: 311,
+	state:'active',
+	minimizable: false,
+	id: 'windowModuloTraduccion',
+    title: 'COMBOBOX - STATES',
+	items: [{
+		type: 'Form',
+		id: 'formModuloTraduccion',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: [				   
+			{type: 'InputField',
+			label: {html:'<b>Default</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Highlight</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'highlight',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Active</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'active',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Info</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					width:150,
+					state:'info',
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			
+			
+			},
+			{type: 'InputField',
+			label: {html:'<b>Error</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					state:'error',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			},
+			{type: 'InputField',
+			label: {html:'<b>Warning</b>',
+					cols:3
+			},
+			input:{cols:9,
+     				type: 'ComboBox',
+					label: 'Tipo Variable',
+					state:'warning',
+					width:150,
+					name:'ComboNumber',
+					displayField: 'TipoVariable',
+					valueField: 'TipoVariable',
+					store: {
+						id: 'DataTypes',
+						fields: ['IdTipoVariable','TipoVariable'],
+						data: [
+							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+						]
+					}
+
+			},
+			
+			css:{'padding-top': '10px'
+			},
+			},
+			
+		],
+	}]
+}).show();
+
+Components.create('Button',{
+	container:$('.btnAceptar'),		 
+	scale: 'medium',
+	state:'active',
+	text:'Leer Valor Seleccionado',
+	icon:{
+		type:'fontawesome',
+		class:'fa-align-left',
+		color:'white',
+		position:'left'
+	},
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {
+				var valor = Components.getComponentById('micombo').getValue();
+				Components.getComponentById('miInput').setValue(valor);
+				}  
+}).show();
+
+Components.create('Button',{
+	container:$('.btnCancelar'),		 		
+	scale: 'medium',
+	text:'Leer Todo el combo',
+	state:'info',
+	icon:{
+		type:'fontawesome',
+		class:'fa-database',
+		color:'black',
+		position:'left'
+	},
+	tooltip:'Leer toda la data',	  
+	handler: function() {
+					Components.getComponentById('miInput').setValue(JSON.stringify(Components.getComponentById('micombo').getStore().data ));
+				}  
+}).show();	
+//botones para cargar la data de los combobox
+Components.create('Button',{
+	container:$('.btnData1'),		 
+	scale: 'medium',
+	state:'active',
+	text:'Cargar Data 1',
+	icon:{
+		type:'fontawesome',
+		class:'fa-repeat',
+		color:'white',
+		position:'left'
+	},
+	tooltip:'Tamaño Personalizado',	  
+	handler: function() {		
+				var data = ['Ingles','Frances','Sueco','Original']; 
+				console.log('setStore');
+				 Components.getComponentById('micombodata').setStore(data).drawRows();
+				}  
+}).show();
+
+Components.create('Button',{
+	container:$('.btnData2'),		 		
+	scale: 'medium',
+	text:'Cargar Data 2',
+	state:'info',
+	icon:{
+		type:'fontawesome',
+		class:'fa-repeat',
+		color:'black',
+		position:'left'
+	},
+	tooltip:'Leer toda la data',	  
+	handler: function() {
+				var data = ['EEUU','Francia','Suecia','Peru']; 
+				
+				console.log('setStoreA');
+				Components.getComponentById('micombodata').setStore(data).drawRows();
+				}  
+}).show();
+
+
+}); 
+</script>	
+</script>
+</head>
+
+
+</html>

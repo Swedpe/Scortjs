@@ -1,0 +1,5 @@
+<h2>Eventos Basicos</h2>
+1)Se crea un contenedor de graficos SVG <br>
+2)Se crea un Arbol WBS.    <br>
+3)Se crean 8 nodos para el Arbol WBS. <br>
+4)Se asignan controladores de eventos para 6 nodos.

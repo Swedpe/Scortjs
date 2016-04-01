@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 5</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<script src="../components/items/MenuItem.js"></script>	
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>	
+
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />	
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/colorPicker.css">
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+
+		
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+	title: "WBS Eventos",		
+	height:400, 
+	width:600,
+	state:'active',
+	items:[
+		{
+			type: 'ToolBar',
+			id: 'ChartProyectoWindowsToolBar',
+			region: 'top',
+			items: [
+			   {
+					type: 'Button',
+					id : 'PropBtn',
+					shape:'box',
+					scale:'minier',
+					icon:{
+								type:'fontawesome',
+								class:'fa-pencil',
+								color:'#000099',
+								position:'left',
+					},
+					
+					tooltip:'PC_Editar_00161',
+					listeners: {
+						click: function() {
+							//console.log(Components.getComponentById("Tree1").nodoSeleccionado);
+							if(Components.getComponentById("Tree1").nodoSeleccionado!=-1)
+							{
+								Components.getComponentById("windowEdicionNodos").show();
+								//Dar Formato para los datos de un FormContainer
+								var WinData = {
+												NodoId:Components.getComponentById("Tree1").nodoSeleccionado.id,
+												Descripcion:Components.getComponentById("Tree1").nodoSeleccionado.Descripcion,
+												Background:Components.getComponentById("Tree1").nodoSeleccionado.Background,
+												stroke:Components.getComponentById("Tree1").nodoSeleccionado.stroke,
+													};
+								//colocar los datos en el FormContainer
+								Components.getComponentById("formNodos").setValues(WinData);
+							}
+							else
+							{alert("seleccione un nodo")}
+						}
+					}
+				}      	  
+			]
+		},
+		{
+			 type: 'SvgContainer', 
+			 region: 'center',
+			 id:'mysvg',
+			 items:[
+				{
+					type: 'WBSTree',						
+					id:'Tree1',
+					plugins:{ svgToolTip:{
+							type: 'svgToolTip',
+							orientacion:'abajo',
+							parentType: 'WBSTree',
+					}},
+					items:[
+						{	
+							 type: 'WBSNode', 
+							 id:0,
+							 idp:null,
+							 Descripcion:'Nodo Editable Raizzzzzzzzz',
+							 tipoObjeto:'Tarea',
+							 childsId:[1,2,3],
+							 Background:'white',
+							 stroke:'blue'
+						},
+						{	
+							 type: 'WBSNode', 
+							 id:1,
+							 idp:0,
+							 tipoObjeto:'Tarea',
+							 Descripcion:'Nodo Editable B',
+							 Background:'yellow',
+							 stroke:'red'
+						},
+						{	
+							 type: 'WBSNode', 
+							 id:2,
+							 idp:0,
+							 tipoObjeto:'Tarea',
+							 Descripcion:'Nodo Editable C',
+							 Background:'red',
+							 stroke:'black'							 
+						},
+						{	
+							 type: 'WBSNode', 
+							 id:3,
+							 idp:0,
+							 tipoObjeto:'Tarea',
+							 Descripcion:'Nodo Editable D',
+							 childsId:[4,5,6],
+							 Background:'#00fdff',
+							 stroke:'green'
+						},
+						{	
+							 type: 'WBSNode', 
+							 id:4,
+							 idp:3,
+							 tipoObjeto:'Tarea',
+							 Descripcion:'Nodo Editable E',
+							 Background:'purple',
+							 stroke:'red'							 
+						},
+						{	
+							 type: 'WBSNode', 
+							 id:5,
+							 idp:3,
+							 tipoObjeto:'Tarea',
+							 Descripcion:'Nodo Editable F',
+							 Background:'#b9b4b4',
+							 stroke:'orange'
+						},
+						{	
+							 type: 'WBSNode', 
+							 id:6,
+							 idp:3,
+							 tipoObjeto:'Tarea',
+							 Descripcion:'Nodo Editable G',
+							 Background:'yellow',
+							 stroke:'purple'
+						},
+					]
+			}
+			]
+		
+		}
+	 ]	
+}).show();
+
+//definiremos una ventana donde se realizara la edicion
+Components.create('Window', {
+	title: 'Edicion de nodos',
+	height: 250,
+	width: 465,
+	closeAction:'hide',
+	minimizable: false,
+	id: 'windowEdicionNodos',
+	items: [{
+		type: 'Form',
+		id: 'formNodos',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items: 
+		[
+			{
+				type: 'InputField',
+				container: $('Id'),
+				enabled:false,
+				input:{cols:12,
+					width: '80%',
+					state:'default',
+					readOnly:true,
+					name: 'NodoId'
+				 },
+			},
+			{	type: 'InputField',
+				autocalcCols:true,
+				container: $('#ejemplo6'),
+				input:{cols:12, placeholder:'ADDON ICON DEFAULT',
+					width: '80%',
+					addon:{
+						addonType: 'icon',
+						type:'fa',
+						class:'fa fa-font',
+						position:'right'
+					},
+					state:'default',
+				name: 'Descripcion'
+			},
+			},
+			{type: 'InputField',
+					id:'colorea2',
+					input:{
+					cols:12,
+					name:'colorin2',
+					type:'colorPicker',
+					preferredFormat: "hex",
+					width: '130',
+					name: 'Background',
+					listeners: {
+						onValidateSucess: function() {
+						alert("onValidateSucess");
+						}
+					}
+				},
+
+			},
+			{type: 'InputField',
+					id:'colorea2',
+					input:{
+					cols:12,
+					name:'colorin2',
+					type:'colorPicker',
+					preferredFormat: "hex",
+					width: '130',
+					name: 'stroke',
+					listeners: {
+						onValidateSucess: function() {
+						alert("onValidateSucess");
+						}
+					}
+				},
+
+			},
+		],
+		buttons: [
+			{ 
+				text: 'Aceptar Cambio',			
+				x: 50,
+				icon:{
+				type:'fontawesome',
+				class:'fa-check',
+				position:'left',
+		},
+				handler: function(e) {
+				Components.getComponentById("windowEdicionNodos").hide();
+				var formData = Components.getComponentById("formNodos").getValues();			
+					Components.getComponentById("Tree1").nodos[formData.NodoId].Edicion(formData);	 
+					
+				}
+			},
+			{ 
+				text: 'Cancelar Cambio' ,
+				x: 100,
+				icon:{
+				type:'fontawesome',
+				class:'fa-close',
+				position:'left',
+		       },
+		
+				handler: function(e) {
+					Components.getComponentById("windowEdicionNodos").hide();
+				} 
+			}
+		]
+	}
+  ]
+}).hide();
+                        
+	
+});  
+</script>	
+</head>
+
+</html>

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CHANGE-ICONO</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+	<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+    <link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	
+		<script src="../../jqfu/vendor/jquery.ui.widget.js"></script>
+			<script src="../../JquerySVG/jquery.svg.js"></script>
+			<script src="../../JquerySVG/jquery.svganim.js"></script>
+			
+		<script src="../../components/Components.js"></script>	
+        <script src="../../functions.js"></script>		
+        <script src="../../components/containers/WindowContainer.js"></script>
+		
+		<script src="../../components/items/Image.js"></script>
+		<script src="../../components/items/ButtonItem.js"></script>
+		
+		<link rel="stylesheet" href="../../css_components/css_window.css" />
+		<script src="../../components/items/fontawesomegrid.js"></script>
+		<script src="../../components/items/HtmlScreenGrid.js"></script>
+		<script src="../../components/items/Image.js"></script>
+		<script src="../../components/svg/ClipBoardSVG.js"></script>
+		<script src="../../components/svg/ControlBox.js"></script>
+		<script src="../../components/svg/ScreenGrid.js"></script>
+		<script src="../../components/svg/TextCajita.js"></script>
+		<script src="../../components/svg/TextProcesor.js"></script>
+		
+		
+		
+		
+		
+		
+		<script src="../../components/containers/SvgContainer.js"></script>
+		
+		
+		<link rel="stylesheet" href="../../css_components/css_window.css" />
+		<link rel="stylesheet" href="../../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../../css_components/fontawesomegrid.css" />
+		<link rel="stylesheet" href="../../css_components/glipgrid.css" />
+		
+       
+	   <link rel="stylesheet" href="../../css_components/css_principal.css" />
+		<link rel="stylesheet" href="../../css_components/css_buttonItem.css" />
+		<style type="text/css">
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			
+
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+	//seis botones		
+    Components.create('Button',{		
+		container: $('#S1-1'),
+		id:"1",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		//shape:'box',
+		icon:{
+			type:'fa',
+			class:'fa-ra',
+			color:'white',
+			position:'left'
+		},
+		
+		tooltip:'Small info Toggle',
+		text:'tipo-Fa-left',
+		//enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				ICON={
+				type:'fa',
+				class: 'fa-forward',
+				position:'left',
+				color: 'purple'};
+				Components.getComponentById('ejemplo').changeIcono(1,ICON);
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S1-2'),	 
+		id:"2",
+		//shape:'box',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		
+		icon:{
+			type:'glyphicon',
+			class:'glyphicon-music',  
+			position:'left'
+			
+		
+		},
+		
+		tooltip:'small info Toggle',
+		text:'tipo-glip-left',
+		//enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				ICON1={
+				type:'glyphicon',
+				class: 'glyphicon-music',
+				position:'left',
+				color: 'purple'};
+				Components.getComponentById('ejemplo').changeIcono(1,ICON1);
+		}    
+		   
+                                        
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-3'),
+		id:"3",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+	//	shape:'box',
+		icon:{
+			type:'image',
+			image:'images/ok.png',
+			position:'left'
+		},
+		
+		tooltip:'Small info Toggle',
+		text:'tipo-imagen-left',
+		//enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				ICON2={
+				type:'image',
+				image: 'images/ok.png',
+				position:'left',
+				color: 'purple'};
+				Components.getComponentById('ejemplo').changeIcono(1,ICON2);
+				
+		}    
+                                        
+     }).show();
+/////////////////////////////////////////////////////////////////////////
+ Components.create('Button',{		
+		container: $('#S1-4'),
+		id:"4",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		//shape:'box',
+		icon:{
+			type:'fa',
+			class:'fa-ra',
+			color:'white',
+			position:'right'
+		},
+		
+		tooltip:'Small info Toggle',
+		text:'tipo-fa-right',
+		//enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				ICON3={
+				type:'fa',
+				class: 'fa-forward',
+				position:'right',
+				color: 'purple'};
+				Components.getComponentById('ejemplo').changeIcono(1,ICON3);
+				
+		}    
+                                        
+     }).show();
+
+	
+	 Components.create('Button',{
+		container: $('#S1-5'),	 
+		id:"5",
+		//shape:'box',
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		
+		icon:{
+			type:'glyphicon',
+			class:'glyphicon-music',  
+			position:'right'
+			
+		
+		},
+		
+		tooltip:'small info Toggle',
+		text:'tipo-glip-right',
+		//enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				
+				ICON4={
+				type:'glyphicon',
+				class: 'glyphicon-music',
+				position:'right',
+				color: 'purple'};
+				Components.getComponentById('ejemplo').changeIcono(1,ICON4);
+		}    
+                                        
+     }).show();
+	Components.create('Button',{		
+		container: $('#S1-6'),
+		id:"6",
+		state:'info',		//estado 1 
+		State2:'error',		//estado 2 
+		scale: 'small',
+		//shape:'box',
+		icon:{
+			type:'image',
+			image:'images/ok.png',
+			position:'right'
+		},
+		//
+		tooltip:'Small info Toggle',
+		text:'tipo-imagen-right',
+		//enableToggle:true,
+		handler: function() {
+				// console.log("small togle");
+				ICON5={
+				type:'image',
+				image: 'images/ok.png',
+				position:'right',
+				color: 'purple'};
+				Components.getComponentById('ejemplo').changeIcono(1,ICON5);
+				
+		}    
+				
+		    
+                                        
+     }).show();
+//boton principal--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	 
+	  Components.create('Button',{
+	    id :'ejemplo',
+		         
+				container: $('#S2-2'),
+				scale: 'medium',
+				state:'warning',
+				icon:{
+					type:'glyphicon',
+					class:'glyphicon-music',  
+					position:'left'
+				},
+				text:'Ejemplo',
+				tooltip:'Tamaño Personalizado',
+				
+				handler: function() {
+								alert('error');
+							}  
+			}).show();
+	 //fin sin texto
+	}); 
+	</script>	
+   
+  </script>
+</head>
+<body>
+<strong><FONT FACE="arial"> <p style="color: #BD133D; font-size: 12pt">EJEMPLO CHANGE-ICONO</P></font></strong> 
+
+<div class="row">
+		<div  id="S2-1" class="col-sm-2" style="height: 55px"></div>
+		<div  id="S2-2" class="col-sm-2" style="height: 55px"></div>
+		<div  id="S2-3" class="col-sm-2" style="height: 55px"></div>
+		<br><br>
+		</div>
+
+	
+	<div class="row">
+		<div  id="S1-1" class="col-sm-1" style="height: 45px"></div>
+		<div  id="S1-2" class="col-sm-1" style="height: 45px"></div>
+		<div  id="S1-3" class="col-sm-1"style="height: 45px"></div>
+		<div  id="S1-4" class="col-sm-1"style="height: 45px"></div>
+		<div  id="S1-5" class="col-sm-1"style="height: 45px"></div>
+		<div  id="S1-6" class="col-sm-1"style="height: 45px"></div>
+		<br><br>
+		</div>
+	
+</body>
+</html>

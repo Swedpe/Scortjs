@@ -1,0 +1,37 @@
+Components.create('Window',{
+		title: "Evento  Activacion", 
+        html:'<div><i>Cuando haces focus aqui</i> <b>mostrara un mensaje</b><p> acepte el mensaje con la tecla enter del teclado </p></div>',
+		minimizable:false,		
+		x: 40,
+		y: 90,
+		listeners: {
+            activate: function() {
+				alert("Esta ventana fue activada")
+			},
+		}			
+		  
+    }).show();
+    Components.create('Window',{
+		title: "Evento Cerrar", 
+         html:'<div><i>Cuando cierras la ventana</i> <b>muestra un mensaje</b></div>',
+		  resizable: false,
+		  x:350,
+		  y:300,
+		  listeners: {
+             beforeClose: function() {
+				alert("This window has been closed")
+			},
+		}	
+		  
+    }).show();
+    Components.create('Window',{
+		title: "Render Event Window", 
+        html:'<div><i>Mientras se dibuja</i> <b>muestra un mensaje</b></div>',		
+	    x:630,
+		y:90,
+	     listeners: {
+             render: function() {
+				alert("Dibujando...")
+			},
+		}
+    }).show();

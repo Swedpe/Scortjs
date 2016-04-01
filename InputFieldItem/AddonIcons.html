@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>InputFieldItem Addon Icons</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>	
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+
+
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+Components.create('Form',{
+		id: 'TestForm',
+		border: false,
+		defaultType: "textfield",																	
+		fieldDefaults: {
+			labelWidth: 60
+		},
+		items:[
+	
+		{type: 'InputField',
+			cols:6,
+			autocalcCols:true,
+			label: {cols:2,html:'<b>Addon Icono Adono</b>',},
+			//state:'error',
+			input:{
+			   cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				addon:{
+				addonType: 'icon',
+				type:'fa',
+				class:'fa-cogs',
+				position:'right'
+				},
+				state:'error',
+				
+			},
+			
+		},
+		{type: 'InputField',
+			autocalcCols:true,
+			cols:6,
+			label: {cols:2,
+			html:'<b>Input Con Addon tipo botton</b>',},
+			input:{
+				cols:4,
+				addon:{
+				addonType: 'button',
+				icon:{
+					type:'fa',
+					class:'fa-cogs'
+					},
+				placeholder:'ADDON tipo boton a la derecha',
+				tooltip:'Info',	
+				position:'right',	
+				handler: function(event) {
+					alert('hola');
+				}
+			},
+			state:'error',
+		  },
+		},
+        {type:'Separator'},
+		{type: 'InputField',
+			cols:6,
+			autocalcCols:true,
+			label: {cols:2,html:'<b>Addon Icono a la izquierda</b>',},
+			input:{cols:4,placeholder:'ADDON icon left',
+				width: '90%',
+				state:'highlight',
+				addon:{
+					addonType: 'icon',
+					type:'fa',
+					class:'fa-cogs',
+					position:'left'
+					},	
+				},
+		},
+		{type: 'InputField',
+			autocalcCols:true,
+			cols:6,
+			label: {cols:2,
+			html:'<b>Addon boton a la izquierda</b>',},
+			input:{cols:4,placeholder:'ADDON boton left',
+				width: '90%',
+			   state:'highlight',
+			   addon:{
+				addonType: 'button',
+				icon:{
+					type:'fa',
+					class:'fa-cogs',
+					},
+				tooltip:'Info',
+				position:'left'				,
+				handler: function(event) {
+					alert('hola');
+				}
+			 },
+			   
+	       },
+		},
+        
+		{type: 'InputField',
+			cols:6,
+			autocalcCols:true,
+			label: {cols:2,html:'<b>&nbsp;state default + addon Icono:</b>',},
+			input:{cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				state:'warning',
+				addon:{
+				addonType: 'icon',
+				type:'fa',
+				class:'fa-cogs',
+				position:'right'
+				},
+			},
+		},
+		{type: 'InputField',
+			autocalcCols:true,
+			cols:6,
+			state:'warning',
+			label: {cols:2,
+			html:'<b>&nbsp;state default + addon Icono:</b>',},
+			input:{cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				state:'warning',
+				addon:{
+				addonType: 'button',
+		
+				icon:{
+					type:'fa',
+					class:'fa-cogs',
+					},
+				tooltip:'Info',	  
+				handler: function(event) {
+					alert('hola');
+				}
+			},
+				
+	   	},
+	},
+
+        
+		{type: 'InputField',
+			cols:6,
+			autocalcCols:true,
+			label: {cols:2,html:'<b>&nbsp;state default + addon Icono:</b>',},
+			state:'active',
+			input:{cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				addon:{
+				addonType: 'icon',
+				type:'fa',
+				class:'fa-cogs',
+				position:'right'
+				},
+				state:'active',
+			},
+		},
+		{type: 'InputField',
+			autocalcCols:true,
+			cols:6,
+			label: {cols:2,
+			html:'<b>&nbsp;state default + addon Icono:</b>',},
+			input:{cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				addon:{
+				addonType: 'button',
+		
+				icon:{
+					type:'fa',
+					class:'fa-cogs',
+					},
+				tooltip:'Info',	  
+				handler: function(event) {
+					alert('hola');
+				}
+			},
+			state:'active',	
+		 },
+	 },
+        
+		{type: 'InputField',
+			cols:6,
+			autocalcCols:true,
+			label: {cols:2,html:'<b>&nbsp;state default + addon Icono:</b>',},
+			input:{cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				addon:{
+				addonType: 'icon',
+				type:'fa',
+				class:'fa-cogs',
+				position:'right'
+				},
+				state:'info',
+			},
+		},
+		{type: 'InputField',
+			autocalcCols:true,
+			cols:6,
+			state:'info',
+			label: {cols:2,
+			html:'<b>&nbsp;state default + addon Icono:</b>',},
+			input:{cols:4,placeholder:'ADDON icon rigth',
+				width: '90%',
+				state:'info',
+				addon:{
+				addonType: 'button',
+		
+				icon:{
+					type:'fa',
+					class:'fa-cogs',
+					},
+				tooltip:'Info',	  
+				handler: function(event) {
+					alert('hola');
+				}
+			},
+		  },
+	 },
+        		
+	]
+   }).show();
+});
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,291 @@
+Components.create('Window',{
+        title: "GridPrueba1", 
+        height:200, 
+        width:1000,
+        y:250,
+        items: [
+            {
+                type: "GridContainer",
+                region: "center",
+                id: "GridPrueba",
+				verticalScroll:true,
+				autoScroll:true,
+				cellEditing: {clicksToEdit: 2},
+                selModel: {
+                                type: "checkboxmodel",
+                                checkOnly: false,
+                               
+                },	
+                columns: [
+                    {
+                        type: "GridColumn",
+                        text: "Simple Edit",
+                        dataIndex: "pos1",
+						width: "16%",
+						editor: {
+                                            type: 'TextField',
+                                            allowBlank: false
+                        }
+                    },
+					{
+                        type: "GridColumn",
+                        text: "Edit NumberField",
+                        dataIndex: "pos4",
+                        typeData: "number",
+                        sortable: true,
+                        filter: true,
+						 width: "16%",
+                         editor: {
+                                            type: 'NumberField',
+                                            allowBlank: false
+                                        }
+                    },					
+					{
+                            type: 'GridColumn',                            
+                            text: 'EvntRender Val Change ',							
+                            width: "16%",
+							  editor: {
+                                            type: 'TextField',
+                                            allowBlank: false
+                                        },
+                            renderer: function(value, metaData, record, row, col, store, gridView){                               
+								return record.pos1+record.pos4;
+                            }
+                     },
+                    {
+                        type: "CheckColumn",
+                        text: "Check Boolean",
+                        dataIndex: "pos2",
+						width: "16%"
+                    },
+                    {
+                        type: "GridColumn",
+						id:"combocolumn",
+                        text: "Edit Combo",
+                        dataIndex: "pos3",
+                        sortable: true,
+                        filter: true,
+						width: "16%",
+						editor:{
+                                            type: 'ComboBox',
+                                            displayField: 'TipoVariable',
+                                            valueField: 'TipoVariable',
+                                            store: {
+                                                id: 'DataTypes',
+                                                fields: ['IdTipoVariable','TipoVariable'],
+                                                data: [
+                                                    { 'IdTipoVariable': '1', "TipoVariable": "Arequipa"  },									
+                                                    { 'IdTipoVariable': '3', "TipoVariable": "Moquegua"  },
+                                                    { 'IdTipoVariable': '4', "TipoVariable": "Cusco"  },
+                                                    { 'IdTipoVariable': '5', "TipoVariable": "Puno"  },
+													{ 'IdTipoVariable': '6', "TipoVariable": "Tacna"  }
+                                                ]
+                                            }
+                                 }
+                    },
+                    {
+                        type: 'ActionColumn',
+                        dataIndex: 'Funcion',
+                        text: 'Funcion',                                        
+                        width: "17%",
+                        items: [
+                                {
+                                    icon: 'images/function.png',
+                                    tooltip: 'Funcion',
+                                    handler: function(grid, rowIndex, colIndex,gridview, record, item, index) {
+                                        alert("Evento fila "+(rowIndex+1)+" columna "+(colIndex+1) )
+                                    }
+                                }
+                        ]
+                    }
+                ],
+                store: {
+                    fields: ["pos1", "pos2", "pos3", "pos4"],
+                    data: [
+                        { pos1: "Cesar", pos2: true, pos3:"Cardenas", pos4:21},
+                        { pos1: "abelardo", pos2: false, pos3:"ussss", pos4:19},
+                        { pos1: "geanfranco", pos2: true, pos3:"yssss", pos4:10},
+                        { pos1: "ernesto", pos2: false, pos3:"essss", pos4:40},
+                        { pos1: "roberto", pos2: true, pos3:"wssss", pos4:58},
+                        { pos1: "luis", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "jose", pos2: true, pos3:"wssss", pos4:5},
+                        { pos1: "daniel", pos2: true, pos3:"wssss", pos4:51},
+                        { pos1: "isac", pos2: true, pos3:"wssss", pos4:59},
+                        { pos1: "emma", pos2: true, pos3:"wssss", pos4:45},	
+						{ pos1: "raul", pos2: true, pos3:"sssss", pos4:21},
+                        { pos1: "abelardo", pos2: false, pos3:"ussss", pos4:19},
+                        { pos1: "geanfranco", pos2: true, pos3:"yssss", pos4:10},
+                        { pos1: "ernesto", pos2: false, pos3:"essss", pos4:40},
+                        { pos1: "roberto", pos2: true, pos3:"wssss", pos4:25},
+                        { pos1: "luis", pos2: true, pos3:"wssss", pos4:4},
+                        { pos1: "jose", pos2: true, pos3:"wssss", pos4:56},
+                        { pos1: "daniel", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "isac", pos2: true, pos3:"wssss", pos4:80},
+                        { pos1: "emma", pos2: true, pos3:"wssss", pos4:70},
+						{ pos1: "raul", pos2: true, pos3:"sssss", pos4:21},
+                        { pos1: "abelardo", pos2: false, pos3:"ussss", pos4:19},
+                        { pos1: "geanfranco", pos2: true, pos3:"yssss", pos4:10},
+                        { pos1: "ernesto", pos2: false, pos3:"essss", pos4:40},
+                        { pos1: "roberto", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "luis", pos2: true, pos3:"wssss", pos4:71},
+                        { pos1: "jose", pos2: true, pos3:"wssss", pos4:72},
+                        { pos1: "daniel", pos2: true, pos3:"wssss", pos4:73},
+                        { pos1: "isac", pos2: true, pos3:"wssss", pos4:74},
+                        { pos1: "emma", pos2: true, pos3:"wssss", pos4:75},	
+						{ pos1: "emma", pos2: true, pos3:"wssss", pos4:76},							
+                        { pos1: "William", pos2: true, pos3:"Uria", pos4:50}
+                    ]
+                },
+				    resizable: {
+                            liveDrag:true,   
+                        }
+            }
+        ]
+    }).show();
+
+Components.create('Window',{
+        title: "GridPrueba2", 
+        height:200, 
+        width:1000,
+        y:20,
+        items: [
+            {
+                type: "GridContainer",
+                region: "center",
+                id: "GridPrueba2",
+				verticalScroll:true,
+				autoScroll:true,
+				cellEditing: {clicksToEdit: 2},
+                selModel: {
+                                type: "checkboxmodel",
+                                checkOnly: false,
+                               
+                },	
+                columns: [
+                    {
+                        type: "GridColumn",
+                        text: "Simple Edit",
+                        dataIndex: "pos1",
+						width: "16%",
+						editor: {
+                                            type: 'TextField',
+                                            allowBlank: false
+                        }
+                    },
+					{
+                        type: "GridColumn",
+                        text: "Edit NumberField",
+                        dataIndex: "pos4",
+                        typeData: "number",
+                        sortable: true,
+                        filter: true,
+						 width: "16%",
+                         editor: {
+                                            type: 'NumberField',
+                                            allowBlank: false
+                                        }
+                    },					
+					{
+                            type: 'GridColumn',                            
+                            text: 'EvntRender Val Change ',							
+                            width: "16%",
+							  editor: {
+                                            type: 'TextField',
+                                            allowBlank: false
+                                        },
+                            renderer: function(value, metaData, record, row, col, store, gridView){                               
+								return record.pos1+record.pos4;
+                            }
+                     },
+                    {
+                        type: "CheckColumn",
+                        text: "Check Boolean",
+                        dataIndex: "pos2",
+						width: "16%"
+                    },
+                    {
+                        type: "GridColumn",
+						id:"combocolumn",
+                        text: "Edit Combo",
+                        dataIndex: "pos3",
+                        sortable: true,
+                        filter: true,
+						width: "16%",
+						editor:{
+                                            type: 'ComboBox',
+                                            displayField: 'TipoVariable',
+                                            valueField: 'TipoVariable',
+                                            store: {
+                                                id: 'DataTypes',
+                                                fields: ['IdTipoVariable','TipoVariable'],
+                                                data: [
+                                                    { 'IdTipoVariable': '1', "TipoVariable": "Arequipa"  },									
+                                                    { 'IdTipoVariable': '3', "TipoVariable": "Moquegua"  },
+                                                    { 'IdTipoVariable': '4', "TipoVariable": "Cusco"  },
+                                                    { 'IdTipoVariable': '5', "TipoVariable": "Puno"  },
+													{ 'IdTipoVariable': '6', "TipoVariable": "Tacna"  }
+                                                ]
+                                            }
+                                 }
+                    },
+                    {
+                        type: 'ActionColumn',
+                        dataIndex: 'Funcion',
+                        text: 'Funcion',                                        
+                        width: "17%",
+                        items: [
+                                {
+                                    icon: 'images/function.png',
+                                    tooltip: 'Funcion',
+                                    handler: function(grid, rowIndex, colIndex,gridview, record, item, index) {
+                                        alert("Evento fila "+(rowIndex+1)+" columna "+(colIndex+1) )
+                                    }
+                                }
+                        ]
+                    }
+                ],
+                store: {
+                    fields: ["pos1", "pos2", "pos3", "pos4"],
+                    data: [
+                        { pos1: "raul", pos2: true, pos3:"sssss", pos4:21},
+                        { pos1: "abelardo", pos2: false, pos3:"ussss", pos4:19},
+                        { pos1: "geanfranco", pos2: true, pos3:"yssss", pos4:10},
+                        { pos1: "ernesto", pos2: false, pos3:"essss", pos4:40},
+                        { pos1: "roberto", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "luis", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "jose", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "daniel", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "isac", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "emma", pos2: true, pos3:"wssss", pos4:50},	
+						{ pos1: "raul", pos2: true, pos3:"sssss", pos4:21},
+                        { pos1: "abelardo", pos2: false, pos3:"ussss", pos4:19},
+                        { pos1: "geanfranco", pos2: true, pos3:"yssss", pos4:10},
+                        { pos1: "ernesto", pos2: false, pos3:"essss", pos4:40},
+                        { pos1: "roberto", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "luis", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "jose", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "daniel", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "isac", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "emma", pos2: true, pos3:"wssss", pos4:50},
+						{ pos1: "raul", pos2: true, pos3:"sssss", pos4:21},
+                        { pos1: "abelardo", pos2: false, pos3:"ussss", pos4:19},
+                        { pos1: "geanfranco", pos2: true, pos3:"yssss", pos4:10},
+                        { pos1: "ernesto", pos2: false, pos3:"essss", pos4:40},
+                        { pos1: "roberto", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "luis", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "jose", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "daniel", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "isac", pos2: true, pos3:"wssss", pos4:50},
+                        { pos1: "emma", pos2: true, pos3:"wssss", pos4:50},	
+						{ pos1: "emma", pos2: true, pos3:"wssss", pos4:50},							
+                        { pos1: "rosa", pos2: true, pos3:"wssss", pos4:50}
+                    ]
+                },
+				resizable: {
+                            liveDrag:true, 
+										
+                }
+            }
+        ]
+    }).show();
+	    //Filtro habilitado en todas las columnas  height:0px

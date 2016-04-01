@@ -1,0 +1,169 @@
+Components.create('Window',{
+		title: "WBS Copiar Pegar",		
+        height:400, 
+        width:810,
+        items:[
+			{
+                type: 'ToolBar',
+                id: 'ChartProyectoWindowsToolBar',
+                region: 'top',
+                items: [                  
+                    {
+                        type: 'Button',
+                        height: 24,
+                        width: 24,
+                        id : 'copyBtnWBS',        
+                        scale:'medium',
+                        icon:'images/copy16.png',
+                        tooltip:'PC_Copiar_00348',
+                        listeners: {
+                            click: function() {
+								Components.getComponentById('Okno').clipboard.Prepare("Copy");                               
+                            }
+                        }
+                    },
+					{
+                        type: 'Button',
+                        height: 24,
+                        width: 24,
+                        id : 'cutBtnWBS',        
+                        scale:'medium',
+                        icon:'images/cut16.png',
+                        tooltip:'PC_Cortar_00349',
+                        listeners: {
+                            click: function() {
+                                Components.getComponentById('Okno').clipboard.Prepare("Cortar");
+                            }
+                        }
+                    },					
+                    {
+                        type: 'Button',
+                        height: 24,
+                        width: 24,
+                        id : 'CancelCBtnWBS',        
+                        scale:'medium',
+                        icon:'images/cancel16.png',
+                        tooltip:'PC_Cancelar_Operaciones_00339',
+                        listeners: {
+                            click: function() {
+                                Components.getComponentById('Okno').clipboard.Clear();
+								
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        height: 24,
+                        width: 24,
+                        id : 'pasteBtnWBS',
+                        enabled: false,
+                        scale:'medium',
+                        icon:'images/paste16.png',
+                        tooltip:'PC_Pegar_00338',
+                        listeners: {
+                            click: function() {
+                                Components.getComponentById('Okno').clipboard.Paste();
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'mysvg',
+				 items:[
+					{
+						type: 'WBSTree',						
+						id:'Okno',
+						clipboard:true,
+						 listeners: {
+                            onNodeSelectForCopy: function() {
+                                Components.getComponentById('copyBtnWBS').setIcon('images/redcopy24.png');
+								Components.getComponentById('pasteBtnWBS').enable();
+                            },
+							onNodeSelectForCut: function() {
+                                Components.getComponentById('pasteBtnWBS').enable();
+                            },							
+                            onCancelClipoard: function() {
+								Components.getComponentById('copyBtnWBS').setIcon('images/copy16.png');	
+								Components.getComponentById('cutBtnWBS').setIcon('images/cut16.png');
+								Components.getComponentById('pasteBtnWBS').disable();
+							}
+                        },
+						items:[
+							{	
+								 type: 'WBSNode', 
+								 id:0,
+								 idp:null,
+								 Descripcion:'Gerente general',
+								 tipoObjeto:'Cabecera',
+								 childsId:[1,2,3]
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:1,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de recursos humanos',
+								
+								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:2,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de logística',
+								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:3,
+								 idp:0,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Gerente de Desarrollo',
+								 childsId:[4,5,6]								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:4,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Líder de proyecto',								
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:5,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Planeamiento'								 
+							},
+							{	
+								 type: 'WBSNode', 
+								 id:6,
+								 idp:3,
+								 tipoObjeto:'Tarea',
+								 Descripcion:'Calidad'
+							}
+						]
+				}
+				]
+			
+			}
+            ]
+        
+    }).show();
+	
+	Components.create('Button',{		
+	x:350,
+	y:5,
+	scale: 'medium',
+	text:'Seleccion Elemento',
+	width: 150,
+	tooltip:'Seleccion Elemento',	  
+	handler: function() {					
+					Components.getComponentById('0').Seleccionar();
+					alert("seleccionado el elemento 0")
+				}  
+    }).show(); 

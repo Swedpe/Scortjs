@@ -1,0 +1,131 @@
+Components.create('Window', {
+		autoShow: true,
+		height: 300,
+		width: 500,
+		resizable: true,
+		minimizable: false,
+		closeAction:'destroy',
+		constrain: true,		
+		title: 'Accordeon Container',				
+		items: [
+			{
+			
+								type: 'Panel',
+								region: 'center',
+								autoScroll: true,																
+								items: [
+									{
+										type: 'Label',
+										x:0,
+										y:20,
+										text: '<b>FICHA</b>',
+										id: 'fichalb',
+										width: "100%",
+										height:'',										
+										alignLabel: "center"
+									},														
+									{
+										type: 'FreeDiv',
+										x: 0,
+										y: 55,
+										height: '88%',
+										width: '100%',									
+										items: [												
+											{
+												type: "AccordeonContainer",
+												region: 'center',
+												id:'miacordeon',													
+												icons: {
+													'header': "ui-icon-circle-minus",
+													'activeHeader': "ui-icon-circle-plus"
+													},
+												collapsible:true,
+												active:false,
+												listeners: {
+													activate: function(event, ui){
+																console.log("cargando "+ ui.newPanel.attr("id"));
+													}
+												},
+												heightStyle:'fill',	
+												items: [
+														  {
+															   type: 'AccordeonItem',                                                    
+															   title: 'Accordeon 1',													   
+															   height:'inherit',
+															   items: [
+																	{
+																					type: 'ToolBar',
+																					region: 'top',																			
+																					items: [
+																						{
+																							type: 'Button',
+																							icon: 'images/save-n.png',
+																							tooltip: 'PC_Guardar_00153',
+																						   
+																						}
+																					]
+																	},					   
+																	{
+																		type: 'DateField',	
+																		x:0,		
+																		y: 50,								
+																		label: '<b> Fecha :</b>',
+																		id: 'fec',
+																		width: 150,
+																		format: 'dd/MM/yyyy'
+																		
+																	},
+																	{
+																			type: 'TextField',
+																			x: 0,
+																			y: 73,	
+																			label: '<b>&nbsp;Segundo Nombre :</b>',
+																			id: 'sec_nombre_personal',
+																			width: 128,
+																			alignLabel: "left",
+																			labelWidth: 186,
+																			readOnly: false
+																	}
+																]
+														  },												  
+														  {
+															   type: 'AccordeonItem',                                                    
+															   title: 'Accordeon 2',													  
+															   height:'auto',
+															   items: [														
+																	{
+																		type: 'FreeDiv',
+																		x: 0,
+																		y: 0,
+																		height: '88%',
+																		width: '100%',
+																		html:"<p>Contenedor <b>html</b></p>"
+																		
+																	}													   
+															   ]
+														},
+														{
+															   type: 'AccordeonItem',                                                    
+															   title: 'Accordeon 3',													 
+															   items: [													   
+																	{
+																			type: 'TextField',
+																			x: 0,
+																			y: 60,	
+																			label: '<b>&nbsp;Nombre :</b>',																	
+																			width: 128,
+																			alignLabel: "left",
+																			labelWidth: 186,
+																			readOnly: false
+																	}													   
+																]						
+														}
+												]
+											}
+										]
+								}								
+										
+				]							
+			}
+		]
+}).show();

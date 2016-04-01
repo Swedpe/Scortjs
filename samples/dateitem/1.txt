@@ -1,0 +1,64 @@
+	Components.create('DateField',{	 	
+										id:"DateField1",	
+										x:0,		
+										y: 50,								
+										label: '<b> Fecha :</b>',										
+										width: 150,
+										format: 'dd/MM/yyyy'
+    }).show();
+    
+    Components.create('Button',{		
+       
+                                        x:250,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Cambiar Fecha a 12/08/1987',                                     
+                                        tooltip:'Debe ser igual al formato definido',	  
+                                        handler: function() {
+														 Components.getComponentById('DateField1').setValue('12/08/1987');														
+													}  
+    }).show();
+	
+	Components.create('Button',{		
+       
+                                        x:500,
+                                        y:50,
+                                        scale: 'medium',
+                                        text:'Leer Valor',                                     
+                                        tooltip:'Leer Valor',	  
+                                        handler: function() {
+														 alert(Components.getComponentById('DateField1').getValue().toString());														
+													}  
+    }).show();
+    
+   	Components.create('DateField',{	 	
+										id:"DateField2",	
+										x:0,		
+										y:100,
+										labelWidth:0,										
+										width: 150,
+										format: 'dd/MM/yyyy'
+										
+    }).show();
+	
+
+    Components.create('DateField',{		
+       
+                                     	type: 'DateField',
+										id:"DateField3",	
+										x:0,		
+										y:150,
+										readOnly:true,		
+										width: 150,
+										format: 'dd/MM/yyyy',
+										label:'<b>Solo Lectura:</b>'
+    }).show();
+	
+	Components.create('Label',{
+			x:250,
+			y: 100,
+			text: 'Sin Etiqueta',			
+			width: 350
+	}).show();   
+Components.getComponentById('DateField3').setValue('12/08/1987');
+Components.getComponentById('DateField1').setValue(new Date().toString('yyyy-MM-dd'))

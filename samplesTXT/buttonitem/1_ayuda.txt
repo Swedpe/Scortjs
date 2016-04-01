@@ -1,0 +1,13 @@
+1)Crea un Button  de escala medium, con texto, con un largo de 150px y tiene asociado un evento que muetra el mensaje "bt1"
+
+2)Crea un Button  de escala medium, con texto, con un largo de 150px, con un icono y tiene asociado un evento que muetra el mensaje "bt2" 
+
+3)Crea un Button  de escala small, con un icono y tiene asociado un evento que muetra el mensaje "bt3" 
+
+4)Crea un Button  de escala medium, con un icono y tiene asociado un evento que muetra el mensaje "bt3" 
+
+5)Crea un Button  de escala large, con un icono y tiene asociado un evento que muetra el mensaje "bt3" 
+
+6)Crea un Button  deshabilitado de escala medium, con un icono y tiene asociado un evento que muetra el mensaje "bt3" 
+
+7)Crea un Button toggle de escala medium, con texto, con un icono y tiene asociado un evento que cambia su icono cuando el boton es presionado 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wbstree>
+	<nodo>
+		<id>0</id>
+		<type>WBSNode</type>
+		<descripcion>Padre</descripcion>
+		<background>#FFFFFF</background>
+		<stroke>green</stroke>
+		<idp>-1</idp>
+		<childsid>1</childsid>
+		<childsid>2</childsid>
+		<childsid>3</childsid>
+	</nodo>
+		<nodo>
+		<id>1</id>
+		<type>WBSNode</type>
+		<descripcion>Listener:show</descripcion>
+		<background>#FFFFFF</background>
+		<stroke>green</stroke>
+		<idp>0</idp>
+	</nodo>
+	<nodo>
+		<id>2</id>
+		<type>WBSNode</type>
+		<descripcion>Listener:hide</descripcion>
+		<background>#FFFFFF</background>
+		<stroke>green</stroke>
+		<idp>0</idp></nodo>
+		<nodo><id>3</id>
+		<type>WBSNode</type>
+		<descripcion>Listener:maximize,minimize</descripcion>
+		<background>#FFFFFF</background><stroke>green</stroke><idp>0</idp><childsid>4</childsid><childsid>5</childsid><childsid>6</childsid></nodo><nodo><id>4</id><type>WBSNode</type><descripcion>Listener:select</descripcion><background>#FFFFFF</background><stroke>green</stroke><idp>3</idp></nodo><nodo><id>5</id><type>WBSNode</type><descripcion>Listener:deselect</descripcion><background>#FFFFFF</background><stroke>green</stroke><idp>3</idp></nodo><nodo><id>6</id><type>WBSNode</type><descripcion>Listener:null</descripcion><background>#FFFFFF</background><stroke>green</stroke><idp>3</idp></nodo><nodo><id>-1</id><type>WBSNode</type><descripcion></descripcion><background>#FFFFFF</background><stroke>green</stroke><idp>null</idp><childsid>0</childsid>
+	</nodo>
+</wbstree>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PagingToolbarItem Ejemplo </title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+  <link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+	<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+	
+	<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/Components.js"></script>		
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/containers/FormContainer.js"></script>
+		<script src="../functions.js"></script>
+		<script src="../components/containers/GridContainer.js"></script>
+		<script src="../components/data/StoreContainer.js"></script>
+		<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+		<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+		<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+		<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+		<script src="../components/items/FreeDivItem.js"></script>
+		
+		<script src="../components/items/ButtonItem.js"></script>
+		<script src="../components/items/PagingToolbarItem.js"></script>
+		<script src="../components/items/LabelItem.js"></script>
+		<script src="../components/items/ToolBarItem.js"></script>
+		<script src="../components/items/NumberFieldItem.js"></script>
+		<script src="../components/items/InputFieldItem.js"></script>
+		<script src="../components/data/DataProxy.js"></script>
+		<script src="../components/items/ComboBoxItem.js"></script>
+		<script src="../components/items/TextFieldItem.js"></script>
+		<script src="../components/items/InputFieldItem.js"></script>
+		<script src="../components/items/ResizableGridItem.js"></script>
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+		<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+		<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/css_form.css" />
+        
+		<!--------------------------------FONTAWESOME ICONS------------------------------------------->
+	    <script src="../components/items/fontawesomegrid.js"></script>
+		<script src="../components/items/HtmlScreenGrid.js"></script>
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+		
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+			
+		Components.create('Window',{
+        title: "PagingToolbarItem", 
+        height:260, 
+        state:'active',
+		width:580,
+        items: [
+            {
+                type: "PagingToolbar",
+                region: "center",
+                id: "hola",
+				state:'active',
+            }
+        ]
+    }).show();
+	});  
+	</script>	
+   
+</head>
+<body>
+</body>
+</html>

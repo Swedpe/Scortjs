@@ -1,0 +1,124 @@
+/* 
+    Document   : css_buttonItem
+    Created on : 25-feb-2014, 19:39:47
+    Description:
+        Estilos para los botones
+*/
+ul, li, ol, form {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.first_li{
+    padding: 1px;
+    margin: 0px;
+    background: #fff;
+    width: 200px;
+    position: relative;
+    font-size: 11px;
+}	
+.first_li span {
+    font-weight: normal;
+    margin: 0px;
+    color: #000;
+    display: block;
+    cursor: default;
+    padding: 3px;
+    border: 1px solid #fff;
+    background: transparent;
+    text-align: left;
+}
+.first_li:hover{
+	 background: #B4B8B8;
+}
+
+.menu_nivel_tres {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+	border: 1px solid #999;
+}
+
+.menu_nivel_cuatro{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+	border: 1px solid #999;
+}
+.top-level-menu li.hoverview:hover > ul
+{
+    /* On hover, display the next level's menu */
+    display: inline;
+}
+.menu_nivel_dos > li, .menu_nivel_tres> li {
+    position: relative;
+}
+.menu_nivel_dos {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  padding: 0px 0;
+  margin: 0px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.nav-tabs>li, .nav-pills>li {
+  float: left;
+}
+.nav-tabs:before, .nav-pills:before, .nav-tabs:after, .nav-pills:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.nav-tabs:after, .nav-pills:after {
+  clear: both;
+}
+.nav-tabs:before, .nav-pills:before, .nav-tabs:after, .nav-pills:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.BotonMenu1{
+  float: left;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  position:relative;
+  list-style: none;
+}
+.BotonMenu2{
+  float: left;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  list-style: none;
+}
+
+.MenuItem.MenuItem-disabled {
+  cursor: default;
+  background-color: rgb(94, 100, 107)!important;
+  color: rgb(255, 255, 255);
+  opacity: .5;
+}

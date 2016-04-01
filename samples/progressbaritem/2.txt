@@ -1,0 +1,39 @@
+Components.create('ProgressBar',{  	
+                                        id:"mypb",
+                                        x:10,
+										y:50,
+									  text: "",
+        align: "left",
+        width: 250,
+        height: 10,
+		value:50,
+      
+		color:'#123456',
+		textcolorstart:'#0000',
+		textcolorend:'#FFF',
+}).show();
+
+Components.create('TextField',{	
+                        id:"mytf",
+						x:10,
+						y:150,	
+						label: '<b>&nbsp;Valor :</b>',
+						width: 50,
+						alignLabel: "left",
+						value:"70",
+						
+					
+}).show();
+
+ Components.create('Button',{		
+										
+                                        x:150,
+                                        y:150,
+                                        scale: 'medium',
+                                        text:'Cambiar Valor',                                     
+                                        tooltip:'Leer Datos',									
+                                        handler: function() {                                               
+                                             Components.getComponentById('mypb').setValue( Components.getComponentById('mytf').getValue());      
+                                        }    										
+                                        
+ }).show();

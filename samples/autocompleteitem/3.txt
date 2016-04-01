@@ -1,0 +1,39 @@
+Components.create('FreeDiv',{																		
+	x: 0,
+	y: 50,
+	height: 50,
+	width: 200,
+	html:'<p>Escriba "Nombre" o "Direccion"</p>'																		
+}).show();
+Components.create('AutoCompleteInputField',{						
+	x:0,
+	y: 100,
+	id:'MiAutocomplete',	
+	imputoptions:{									
+			label: '<b>&nbsp;Select List :</b>',
+			id: 'AutocompleteInput',
+			width: 128,
+			readOnly: false,
+			source:[
+					{"value":"Direccion1","label":"Direccion1","id":1},
+					{"value":"Nombre2","label":"Nombre2","id":2},
+					{"value":"Direccion3","label":"Direccion3","id":3},
+					{"value":"Direccion4","label":"Direccion4","id":4}
+			]								
+	},	
+	listeners: {								
+			select: function(event, ui) {												
+				alert("Seleccionado "+ui.item.label);			
+			}											
+	}
+}).show();
+ Components.create('Button',{		
+	x:0,
+	y:150,
+	scale: 'medium',
+	text:'Leer Valor Seleccionado',                                     
+	tooltip:'Leer Valor Seleccionado',	  
+	handler: function() {
+		 alert("Seleccionado "+Components.getComponentById('MiAutocomplete').imputselectedValue);														
+	}  
+ }).show();

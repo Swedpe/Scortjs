@@ -1,0 +1,23 @@
+/* 
+    Document   : css_fieldItem
+    Created on : 26-feb-2014, 17:45:51
+    Description:
+        Estilos para los inputField en general
+*/
+.inputField  input.bpt[type="text"]{
+    border: 1px solid rgb(18, 94, 177);
+	color: rgb(18, 94, 177);
+	height: 16px;
+	margin-left: 4px;
+	font-size: 11px;
+	width: 293px;
+	text-align: left;
+	background-color: rgb(255, 255, 255);
+}
+.inputField  input:read-only.bpt[type="text"]{
+    border: 1px solid rgb(157, 159, 161);
+	background-color: rgb(237, 237, 237);
+}
+
+
+

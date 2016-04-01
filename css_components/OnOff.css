@@ -1,0 +1,107 @@
+.switch-button-label {
+    float: left;
+    font-size: 10pt;
+    cursor: pointer;
+}
+.switch-button-label.off {
+    color: #adadad;
+}
+.switch-button-label.on {
+    color: #949C9C;
+}
+/*------------------SCALE----------------------------*/
+.OnOff.minier .switch-button-background{
+    width: 25px;
+    height: 11px;
+}
+.OnOff.minier .switch-button-background .switch-button-button{
+     width: 13px;
+     height: 11px;
+}
+.OnOff.mini .switch-button-background{
+    width: 30px;
+    height: 14px;
+}
+.OnOff.mini .switch-button-background .switch-button-button{
+     width: 15px;
+     height: 14px;
+}
+.OnOff.small .switch-button-background{
+    width: 35px;
+    height: 17px;
+}
+.OnOff.small .switch-button-background .switch-button-button{
+     width: 17px;
+     height: 17px;
+}
+.OnOff.medium .switch-button-background{
+    width: 40px;
+    height: 19px;
+}
+.OnOff.medium .switch-button-background .switch-button-button{
+     width: 20px;
+     height: 19px;
+}
+.OnOff.large .switch-button-background{
+    width: 71px;
+    height: 22px;
+}
+.OnOff.large .switch-button-background .switch-button-button{
+     width: 34px;
+     height: 22px;
+}
+/*----------------STATES------------------------------*/
+.OnOff.error .switch-button-background{
+    background: #B25B5B;
+    border: 1px solid #A33333;
+	content: 'III';
+    font-size: 12px;
+}
+.OnOff.error .switch-button-label.on {
+  color: #E2352B;}
+.OnOff.highlight .switch-button-background{
+    background: #CCC071;
+    border: 1px solid #CEB72D;
+}
+.OnOff.highlight .switch-button-label.on {
+  color: #CECE36;}
+.OnOff.active .switch-button-background{
+    background: #538E51;
+    border: 1px solid #1D6810;
+}
+.OnOff.active .switch-button-label.on {
+  color: #31B731;}
+.OnOff.warning .switch-button-background{
+    background: #C37C49;
+    border: 1px solid #CA5915;
+}
+.OnOff.warning .switch-button-label.on {
+  color:orange;}
+.OnOff.info .switch-button-background{
+    background: #1B5D94;
+    border: 1px solid rgba(21, 34, 202, 0.58);
+}
+.OnOff.info .switch-button-label.on {
+     color: #0088CC;}
+/*----------------------------------------------*/
+.switch-button-background {
+    float: left;
+    position: relative;
+    background: #ccc;
+    border: 1px solid #aaa;
+    margin: 1px 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.switch-button-button {
+    position: absolute;
+    left: -1px;
+    top : -1px;
+    background: #FAFAFA;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}

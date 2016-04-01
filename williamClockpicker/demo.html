@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Clock Picker</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+
+<!--------------------------JS	------------------------------------------->
+<script src="clockpicker.js"></script>
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="clockpicker.css">
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+	var input = $('#input-a');
+input.clockpicker({
+    autoclose: true
+});
+
+// Manual operations
+$('#button-a').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    input.clockpicker('show')
+            .clockpicker('toggleView', 'minutes');
+});
+$('#button-b').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    input.clockpicker('show')
+            .clockpicker('toggleView', 'hours');
+});
+	});  
+</script>	
+</head>
+<body>
+	<div class="container">
+    <input id="input-a" value="" data-default="20:48">
+    <button type="button" id="button-a">Check the  minutes</button>
+    <button type="button" id="button-b">Check the  hours</button>
+	</div>
+</body>
+</html>

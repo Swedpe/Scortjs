@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 15</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSActividad.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/extra/FontLoader.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+var fontLoader = new FontLoader(["Lato"], {
+            "fontLoaded": function(font) {
+                // One of the fonts was loaded
+                console.log("font loaded: " + font.family);
+            },
+            "complete": function(error) {
+                if (error !== null) {
+                    // Reached the timeout but not all fonts were loaded
+                    console.log(error.message);
+                    console.log(error.notLoadedFonts);
+                } else {
+                    // All fonts were loaded
+                    console.log("all fonts were loaded");
+					dibujaejemplo();
+                }
+            
+			
+			}
+        }, 3000);
+		fontLoader.loadFonts();
+function dibujaejemplo(){
+Actividades6={
+	
+			"0":{	id:0,
+			type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"1":{	id:1,
+			type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"2":{	id:2,
+			type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"3":{	id:3,
+			type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			
+		};
+Actividades9={
+			"0":{	id:0,
+					type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"1":{	
+					id:1,
+					type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"2":{	id:2,
+					type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"3":{	id:3,
+					type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			
+		};
+Actividades10={
+	
+			"0":{	id:0,
+			type: 'WBSActividad',
+					"descripcion": "Pintar como pinturillo",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"1":{	id:1,
+			type: 'WBSActividad',
+					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"2":{	id:2,
+			type: 'WBSActividad',
+					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			"3":{	id:3,
+			type: 'WBSActividad',
+					"descripcion": "Barrer",
+					"inicio":"fecha",
+					"fin":"fecha"},
+			
+		};
+
+
+
+Components.create('Window',{
+title: "WBS Eventos",	
+state:'active',	
+height:700, 
+width:1735,
+items:[
+	{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+			{
+				type: 'Button',
+				id : 'bolita',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-circle',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'bolita',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.bolizando();
+							Components.getComponentById("Okno").calcTree();
+							Components.getComponentById("Okno").drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+						
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'cuadrado',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-square-o',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'cuadrado',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
+							Components.getComponentById("Okno").calcTree();
+							Components.getComponentById("Okno").drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-exchange',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'exchange',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							if(seleccionado.bolita){
+								seleccionado.cuadrando();
+								//seleccionado.tree.calcTree();
+								Components.getComponentById("Okno").drawTree();
+							}else{
+								seleccionado.bolizando();
+								//Components.getComponentById("Okno").calcTree();
+								seleccionado.tree.drawTree();
+								}
+						}else{
+							console.log("Debe seleccionar un Nodo");
+						}
+					}
+				}
+			},
+		]
+	},
+	{
+	 type: 'SvgContainer', 
+	 region: 'center',
+	 id:'mysvg',
+	 items:[
+		{
+			type: 'WBSTree',						
+			id:'Okno',
+			algorithm:'basicWilliam',
+			viewFormat:'"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:50px;height:60px;\'></center></td><td colspan=4><strong style=\'font-size:14px;\'>"+this.datos.name+"</strong></td></tr><tr><td colspan=4>Title: "+this.datos.title+"</td></tr><tr><td colspan=1>ID:"+this.id+"</td><td colspan=3>"+this.datos.descripcion+"</td></tr></table>"',
+			plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+						parentType: 'WBSTree',
+						//viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.name+"</strong></td></tr><tr><td colspan=2>Title: "+this.datos.title+"</td></tr><tr><td colspan=2>ID:"+this.id+"</td></tr></table>"',
+						viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.name+"</strong></td></tr></table>"',
+			}},
+			items:[
+				{	
+					type: 'WBSNode', 
+					id:1,
+					idp:null,
+					datos:{
+					"name":"Stella Payne Diaz",
+					"title":"CEO",
+					"imagen": "images/1.jpg",
+					},
+					tipoObjeto:'Cabecera',
+					viewFormat:'"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:50px;height:60px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.name+"</strong></td></tr><tr><td colspan=2>Title: "+this.datos.title+"</td></tr><tr><td colspan=2>ID:"+this.id+"</td></tr></table>"',
+					viewToolTip:'"<p class=\'pNodoSvg\'>CLASIFICADO</p>"',
+					childsId:[2,4],
+					stroke:'red'
+				},
+				{
+					 type: 'WBSNode', 
+					 id:2,
+					 idp:1,
+					 datos:{
+					 "name":"Luke Warm",
+					 "title":"VP Marketing/Sales",
+					 "descripcion":"Boss: 1",
+					 "imagen": "images/2.jpg",
+					 },
+					 childsId:[3,6],
+					 stroke:'blue'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:3,
+					 idp:2,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Meg Meehan Hoffa",
+					 "title":"Sales",
+					 "descripcion":"Boss: 2",
+					 "imagen": "images/3.jpg",
+					 },
+					
+					 childsId:[7,16],
+					 stroke:'purple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:4,
+					 idp:1,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Peggy Flaming",
+					 "title":"VP Engineering",
+					 "descripcion":"Boss: 1",
+					 "imagen": "images/4.jpg",
+					 },
+					 childsId:[5,10],
+					 stroke:'blue'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:5,
+					 idp:4,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Saul Wellingood",
+					 "title":"Manufacturing",
+					 "descripcion":"Boss: 4",
+					 "imagen": "images/5.jpg",
+					 },
+					 childsId:[8,11,15],
+					 stroke:'purple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:6,
+					 idp:2,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Al Ligori",
+					 "title":"Marketing",
+					 "descripcion":"Boss: 2",
+					 "imagen": "images/6.jpg",
+					 },
+					 childsId:[9],
+					 stroke:'purple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:7,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Dot Stubadd",
+					 "title":"Sales Rep",
+					 "descripcion":"Boss: 3",
+					 "imagen": "images/7.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:8,
+					 idp:5,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Les Ismore",
+					 "title":"Project Mgr",
+					 "descripcion":"Boss: 5",
+					 "imagen": "images/8.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:9,
+					 idp:6,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"April Lynn Parris",
+					 "title":"Events Mgr",
+					 "descripcion":"Boss: 6",
+					 "imagen": "images/9.jpg",
+					 },
+					 items: Actividades9,
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:10,
+					 idp:4,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Xavier Breath",
+					 "title":"Engineering",
+					 "descripcion":"Boss: 4",
+					 "imagen": "images/10.jpg",
+					 },
+					 childsId:[12,13,14],
+					 stroke:'purple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:11,
+					 idp:5,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Anita Hammer",
+					 "title":"Process",
+					 "descripcion":"Boss: 5",
+					 "imagen": "images/11.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:12,
+					 idp:10,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Billy Aiken",
+					 "title":"Software",
+					 "descripcion":"Boss: 10",
+					 "imagen": "images/12.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:13,
+					 idp:10,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Stan Wellback",
+					 "title":"Testing",
+					 "descripcion":"Boss: 10",
+					 "imagen": "images/13.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:14,
+					 idp:10,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Marge Innovera",
+					 "title":"Hardware",
+					 "descripcion":"Boss: 10",
+					 "imagen": "images/14.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:15,
+					 idp:5,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Evan Elpus",
+					 "title":"Quality",
+					 "descripcion":"Boss: 5",
+					 "imagen": "images/15.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:16,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"Lotta B. Essen",
+					 "title":"Sales Rep",
+					 "descripcion":"Boss: 3",
+					 "imagen": "images/16.jpg",
+					 },
+					 stroke:'MediumPurple'
+				},
+			]
+	    }
+	  ]
+	
+	}
+  ]      
+}).show();	
+}
+});  
+</script>	
+</head>
+
+</html>

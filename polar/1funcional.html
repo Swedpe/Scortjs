@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 1</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<!---->
+<!---->
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+
+
+<script src="../components/svg/polar/polar.js"></script>
+<!---->
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+  data = {
+    "Ordenes": {
+        "0": {
+            "Id": "2",
+            "Descripcion": "Sistema de Gestion de Proyectos SWEDPE",
+        },
+        "939": {
+            "Orden": "2",
+            "Descripcion": "Comunicacion con S10",
+
+        },
+        "941": {
+            "Orden": "2",
+            "Descripcion": "Pruebas Sistema BPT",
+        }
+    },
+    "tarea": 1,
+    "Calificaciones": {
+        "0": {
+            "1": 5,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 5,
+            "10": 5
+        },
+        "939": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 5,
+            "5": 5,
+            "6": 5,
+            "7": 5,
+            "8": 5,
+            "9": 5,
+            "10": 5
+        },
+        "941": {
+            "1": 2,
+            "2": 5,
+            "3": 1,
+            "4": 5,
+            "5": 1,
+            "6": 5,
+            "7": 1,
+            "8": 5,
+            "9": 5,
+            "10": 1
+        }
+    },
+    "tipo": "global",
+    "textos": {
+        "2": {
+            "1": {
+                "0": "Conocimiento del cargo",
+                "1": "No posee conocimientos ni habilidades para el cargo, Demuestra deseos de aprender",
+                "2": "Conoce sus obligaciones sin llegar a dominarlos",
+                "3": "Conoce sus obligaciones satisfactoriamente",
+                "4": "Conoce bien sus obligaciones y cada dia se supera en el mejor desempe&ntilde;o de sus labores",
+                "5": "Conoce perfectamente sus obligaciones y demuestra condiciones excepcionales para el cargo.",
+                "6": "(experiencia en el trabajo)"
+            },
+            "2": {
+                "0": "Kalidad de Trabajo",
+                "1": "Comete errores apreciables con frecuencia y en general su trabajo es insatisfactorio",
+                "2": "Cumple en forma aceptable con las obligaciones de su puesto, debe mejorar la calidad de su trabajo",
+                "3": "Cumple en forma aceptable con las obligaciones de su puesto",
+                "4": "hace su trabajo con exactitud, pulcritud y minuciosidad",
+                "5": "Su trabajo es excepcional totalmente bueno y se supera cada vez m&aacute;s",
+                "6": "(minusiocidad, exactitud y esmero con que realiza su labor)"
+            },
+            "3": {
+                "0": "Responsabilidad",
+                "1": "Requiere supervisi&oacute;n permanente debido a sus continuos errores",
+                "2": "Necesita frecuentemente supervisi&oacute;n",
+                "3": "Requiere eventual supervisi&oacute;n",
+                "4": "Requiere supervisi&oacute;n en casos especiales",
+                "5": "No requiere supervisi&oacute;n",
+                "6": "(especializaci&oacute;n para reaccionar en forma oportuna en funciones claves)"
+            },
+            "4": {
+                "0": "Iniciativa",
+                "1": "  Sabe de iniciativa en la relación de su trabajo. Requiere instrucciones detalladas y guia permanente",
+                "2": "Tiene acciones lentas, con frecuencia hay que guiarle en su trabajo y en resolver problemas\r\n",
+                "3": "Ocacionalmente hay que guiarle en su trabajo, algunas veces tiene ideas constructivas",
+                "4": "Resuelve solo problemas que se le presenta.\r\nCon frecuencia aporta ideas",
+                "5": "Constantemente contribuye con ideas y sugerencias.\r\nResuelve solo problemas que se le presentan",
+                "6": "(capacidad para adecuarse con el medio y ejecutar un trabajo)"
+            },
+            "5": {
+                "0": "Produccion cambiada",
+                "1": "Siempre esta por debajo de los est&aacute;ndares",
+                "2": "A veces por debajo de los est&aacute;ndares",
+                "3": "Satisface los est&aacute;ndares",
+                "4": "A veces supera los est&aacute;ndares",
+                "5": "Siempre supera los est&aacute;ndares",
+                "6": "(cantidad de trabajo)"
+            },
+            "6": {
+                "0": "Cooperacion",
+                "1": "No colabora",
+                "2": "Colabora poco",
+                "3": "Colabora normalmente",
+                "4": "Buen esp&iacute;ritu de colaboraci&oacute;n",
+                "5": "Excelente esp&iacute;ritu de colaboraci&oacute;n",
+                "6": "(relaciones interpersonales)"
+            },
+            "7": {
+                "0": "Comprension de situaciones",
+                "1": "Ninguna capacidad de intuici&oacute;n",
+                "2": "Poca capacidad de intuici&oacute;n",
+                "3": "Capacidad satisfactoria de intuici&oacute;n",
+                "4": "Buena capacidad de intuici&oacute;n",
+                "5": "Excelente capacidad de intuici&oacute;n",
+                "6": "(capacidad para resolver problemas)"
+            },
+            "8": {
+                "0": "Creatividad",
+                "1": "Nunca presenta ideas",
+                "2": "Raras veces presenta ideas",
+                "3": "Algunas veces presenta ideas",
+                "4": "Casi siempre tiene ideas excelentes",
+                "5": "Siempre tiene ideas excelentes",
+                "6": "(capacidad de innovar)"
+            },
+            "9": {
+                "0": "Realizacion",
+                "1": "Incapaz de realizar",
+                "2": "Dificultad para realizar",
+                "3": "Razonable capacidad de realizaci&oacute;n",
+                "4": "Buena capacidad de realizaci&oacute;n",
+                "5": "Excelente capacidad de realizaci&oacute;n",
+                "6": "(capacidad de hacer)"
+            },
+            "10": {
+                "0": "prueba\n\n",
+                "1": "Muy en desacuerdo",
+                "2": "En desacuerdo",
+                "3": "Neutral",
+                "4": "De acuerdo",
+                "5": "Muy de acuerdo",
+                "6": ""
+            }
+        }
+    },
+    "personal": {
+        "Id": "962",
+        "Presentacion": "Cesar Cardenas",
+        "Empresa_ID": "23",
+        "Nivel": "1",
+    }
+};
+
+
+/*---------------------*/
+/*---------------------*/
+ Components.create('Window', {
+            height: 590,
+            width: 800,
+            resizable: true,
+            minimizable: false,
+            closeAction:'destroy',
+            constrain: true,
+            modal: true,
+            title:'PC_Desempeño_00401',
+            id:'WindowDesempeno',
+            html:'<div Id="FormWindowDesempeno" style="background-color: white;padding: 1px; height:100%; " class=""></div>',
+            items:[{
+                type:'SvgContainer',
+                region: 'center',
+                id:'mysvg',
+                width:400,
+                height:800,
+                items:[
+                  {
+                    type: 'PolarSvg',           
+                    id:'Okno',
+                    width:400,
+                    height:800,
+                    datos:data
+                  }
+                ]
+
+            }]
+  }).show();
+
+
+$('#FormWindowDesempeno').html('');
+    Components.getComponentById('WindowDesempeno').show();
+
+
+/*---------------------*/
+
+/*
+{
+  type:'SvgContainer',
+  region: 'center',
+	 id:'mysvg',
+	 width:400,
+	 height:800,
+	 items:[
+		{
+			type: 'PolarSvg',						
+			id:'Okno',
+			width:400,
+			height:800,
+      datos:data		
+	}
+	]	
+).show();*/
+
+
+
+}); 
+
+
+</script>	
+</head>
+
+</html>

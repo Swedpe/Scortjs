@@ -1,0 +1,31 @@
+Components.create('Window',{		
+        title: "TabsPrueba", 
+        height:300, 
+        width:500, 
+        items: [
+            {
+              type: "TabPanel",
+	      id:"EjemploTabs",
+              region: 'center',
+              activeTab: 0,
+              items: [                 
+		   {
+                      type: "Tab",
+                      title: "Tab Simple",
+                      
+                  },
+				  {
+                      type: "Tab",
+                      title: "Custom html Tab",
+					  html:"<p>Im a <b>custom</b> html paragraph tag<p><br><button id='tabbutton' type='button'>Active</button>"
+					  
+                  }
+				 
+				  
+              ]
+            }
+        ]
+    }).show();
+$("#tabbutton").click(function(){
+		alert("El tab "+Components.getComponentById('EjemploTabs').getActiveTab().title+" esta activo");
+	});

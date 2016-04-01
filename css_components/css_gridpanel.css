@@ -1,0 +1,400 @@
+/* 
+    Document   : css_gridpanel
+    Created on : 29-mar-2014, 11:16:16
+    Linked in  : BPT/top.php
+    Description:
+        Este archivo contiene los estilos para la creacion de un grid
+*/
+
+.gridColumnItem{
+ position: relative;
+}
+.gridContainer {
+    height: 100%;
+    position: relative;
+    border: 3px solid #BAC6E4;
+    border-radius: 3px;
+}
+.gridContainer table {
+    border-width: 0px;
+    width: 100%;
+}
+/* INICIO fondo de la columna de cabecera,*/
+.gridContainer.table-default .gridhead th{
+	border: 1px solid #d3d3d3;
+	background: rgba(195,193,193,0.5);
+	color: black;
+	border-collapse: separate;
+}
+.gridContainer.table-default .gridhead th:hover{
+	border: 1px solid #d3d3d3;
+	background:rgba(153, 152, 152, 0.5);
+}
+.gridContainer.table-info .gridhead th{
+	border: 1px solid #d3d3d3;
+	background-image: linear-gradient(to bottom,#2D3067 0,#31A8BD 100%);
+	color: black;
+	border-collapse: separate;
+}
+.gridContainer.table-info .gridhead th:hover{
+	border: 1px solid #d3d3d3;
+	background:#6fb3e0;
+}
+.gridContainer.table-active .gridhead th{
+	border: 1px solid #d3d3d3;
+	background-image: linear-gradient(to bottom,#3E9B4C 0,#7BD85A 100%);
+	color: black;
+	border-collapse: separate;
+}
+.gridContainer.table-active .gridhead th:hover{
+	border: 1px solid #d3d3d3;
+	background:#69aa46!important;
+}
+.gridContainer.table-error .gridhead th{
+	border: 1px solid #d3d3d3;
+	background-image: linear-gradient(to bottom,#721C1D 0,#E05556 100%);
+	color: white;
+	border-collapse: separate;
+}
+.gridContainer.table-error .gridhead th:hover{
+	border: 1px solid #d3d3d3;
+	background: #d15b47;
+}
+.gridContainer.table-warning .gridhead th{
+	border: 1px solid #d3d3d3;
+	background-image: linear-gradient(to bottom,#917C49 0,#D58917 100%);
+	color: black;
+	border-collapse: separate;
+}
+.gridContainer.table-warning .gridhead th:hover{
+	border: 1px solid #d3d3d3;
+	background:#ffb752!important;
+}
+.gridContainer.table-highlight .gridhead th{
+	border: 1px solid #d3d3d3;
+	background-image: linear-gradient(to bottom,#D8D682 0,#CBAF29 100%);
+	color: black;
+	border-collapse: separate;
+}
+.gridContainer.table-highlight .gridhead th:hover{
+	border: 1px solid #d3d3d3;
+	background:#f7d05b!important;
+}
+/*FIN fondo de la columna de cabecera*/
+
+/*------------------------Inicio de Cabecera de botones para CRUD--------------------*/
+.gridContainer .toolBar .buttonItem-minier.btn-circle {
+	width: 25px;
+	height: 25px;
+}
+.gridContainer.table-error  .toolBar .buttonItem.btn-circle:hover{
+  background: rgb(213, 79, 80);
+  border: 1px rgb(213, 79, 80);
+}
+.gridContainer.table-highlight  .toolBar .buttonItem.btn-circle:hover{
+   background: rgb(192, 173, 67);
+  border: 1px rgb(192, 173, 67);
+}
+.gridContainer.table-active  .toolBar .buttonItem.btn-circle:hover{
+background: rgb(107, 200, 87);
+border: 1px solid rgb(107, 200, 87);
+}
+.gridContainer.table-warning  .toolBar .buttonItem.btn-circle:hover{
+  background: rgb(190, 133, 40);
+  border: 1px solid rgb(190, 133, 40);
+}
+.gridContainer.table-info  .toolBar .buttonItem.btn-circle:hover{
+  background: rgba(48, 137, 167, 1);
+  border: 1px solid rgba(48, 137, 167, 1);
+}
+.gridContainer.table-default  .toolBar .buttonItem.btn-circle:hover{
+  background: rgb(189, 182, 182);
+  background: rgb(189, 182, 182);
+}
+.gridContainer .toolBar .buttonItem.btn-circle{
+border: 1px solid rgb(147, 142, 142);
+}
+
+/*------------------------Fin de Cabecera de botones para CRUD------------------------/*/
+tr{ /* Todas las filas blancas */
+background-color: white;
+}
+
+.gridbody.default tr:nth-child(2n+1){/* Filas impares grises */
+ background-color:#EAEAEA!important;
+ }
+.gridbody.info tr:nth-child(2n+1){/* Filas impares grises */
+ background-color:#E6E9F6!important;
+ }
+/*la cabecera de una tabla state default*/
+.gridbody.error tr:nth-child(2n+1){/* Filas impares grises */
+ background-color:#FFF7F8!important;
+ }
+ 
+ .gridbody.active tr:nth-child(2n+1){/* Filas impares grises */
+ background-color:#E6F6EC!important;
+ }
+ 
+  .gridbody.highlight tr:nth-child(2n+1){/* Filas impares grises */
+ background-color:#F7F7D0!important;
+ }
+ 
+.gridbody.error  .TrTitleGrid {
+	border: 1px solid #721C1D/*{borderColorHeader}*/;
+	background:#b74635!important;
+	background-image: linear-gradient(to bottom,#721C1D 0,#E05556 100%);
+     color: rgb(239, 218, 218);
+	border-collapse: separate;
+}
+.gridbody.error .TrTitleGrid .gridColumnItem{
+	background: #d15b47!important;/*{bgColorHeader}*/;
+}
+.gridbody.error  tr.scort-row td {
+   border-color:rgb(234, 212, 212);
+}
+.gridbody.highlight  tr.TrTitleGrid {
+	border: 1px solid #CBAF29/*{borderColorHeader}*/;
+	background: #BBBE28/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#D8D682 0,#CBAF29 100%);
+     color: rgb(239, 218, 218);
+	border-collapse: separate;
+}
+
+.gridbody.error .scort-row.rowGrid-selected:hover{
+  background: #e14f1c url("images/ui-bg_gloss-wave_45_e14f1c_500x100.png") 50% top repeat-x;
+}
+.gridbody.highlight .scort-row.rowGrid-selected:hover{
+  background: #f8da4e url("images/ui-bg_glass_55_f8da4e_1x400.png") 50% 50% repeat-x;
+}
+.gridbody.active .scort-row.rowGrid-selected:hover{
+  background: #6eac2c url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") 50% 50% repeat-x;
+}
+.gridbody.warning .scort-row.rowGrid-selected:hover{
+background: #f0ad4e;
+}
+.gridbody.info .scort-row.rowGrid-selected:hover{
+  background: #5bc0de;
+}
+
+.gridbody.highlight  tr.scort-row td {
+     border-color: rgb(247, 247, 166);
+}
+.gridbody.active  tr.TrTitleGrid {
+	border: 1px solid #23AE2F/*{borderColorHeader}*/;
+	background: #258E3A/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#3E9B4C 0,#7BD85A 100%);
+    color: rgb(239, 218, 218);
+	border-collapse: separate;
+}
+.gridbody.active .TrTitleGrid .gridColumnItem:hover{
+	background:#69aa46!important;
+}
+.gridbody.active  tr.scort-row td {
+   border-color: rgb(194, 246, 180);
+}
+.gridbody.warning  tr.TrTitleGrid {
+	border: 1px solid #E39531/*{borderColorHeader}*/;
+	background: #BD591D/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#917C49 0,#D58917 100%);
+    color: rgb(239, 218, 218);
+	border-collapse: separate;
+}
+.gridbody.warning .TrTitleGrid .gridColumnItem:hover{
+	background:#ffb752!important;
+}
+.gridbody.warning  tr.scort-row td {
+   border-color: rgb(244, 215, 190);
+}
+.gridbody.info  tr.TrTitleGrid {
+	border: 1px solid #2288CE/*{borderColorHeader}*/;
+	background: #40B1D8/*{bgColorHeader}*/;
+	background-image: linear-gradient(to bottom,#2D3067 0,#31A8BD 100%);
+     color: rgb(239, 218, 218);
+	border-collapse: separate;
+}
+.gridbody.info .TrTitleGrid .gridColumnItem:hover{
+	background:#6fb3e0!important;
+}
+.gridbody.info  tr.scort-row td {
+    border-color: rgb(209, 224, 250);
+}
+.gridbody.default  tr.TrTitleGrid {
+	border: 1px solid #aaaaaa/*{borderColorHeader}*/;
+	background: #cccccc/*{bgColorHeader}*/;
+	background-image:linear-gradient(to bottom,#656363 0,#BBB5B5 100%);
+     color: rgb(239, 218, 218);
+	border-collapse: separate;
+}
+.gridbody.default .TrTitleGrid .gridColumnItem:hover{
+	background:#abbac3!important;
+}
+.gridbody.default  tr.scort-row td {
+   border-color: rgb(195, 197, 200);
+}
+.gridContainer .divTitleGrid th .ui-resizable-e {
+    cursor: col-resize;
+}
+.gridContainer table td {
+    border: 1px solid #F5F0F0;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    padding: 0px 5px;
+}
+.gridContainer table tr:hover 
+{
+border: 1px solid #d3d3d3;
+background:#EFF1F3
+}
+.gridContainer table tr{
+border: 1px solid #d3d3d3;
+}
+.gridContainer divgridhead table tr{
+height:20px,
+}
+.gridContainer table td .inputField {
+    position: relative;
+}
+.gridContainer .titlecolumn{
+	font-weight: bold;
+    float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width:80%;
+}
+.gridContainer .buttonItem {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    position: inherit;
+}
+/*botones internos dentro de las columnas para buscar y el otro para ordenar*/
+.gridContainer .buttonItem.Table-sortButton{
+border: none;
+background-color: transparent;
+width:10px;
+position:absolute;
+right:12px;
+border-radius:0;
+}
+.gridContainer .buttonItem.Table-findButton{
+border: none;
+background-color: transparent;
+width:10px;
+position:absolute;
+right:0px;
+border-radius:0;
+}
+.TrTitleGrid .btnSortGrid, .ScrollGridHeader .btnSortGrid {
+    position: absolute;
+	right: 16px;
+    z-index: 2;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+	background-repeat: no-repeat;
+}
+.TrTitleGrid .btnFilterGrid, .ScrollGridHeader .btnFilterGrid  {
+    position: absolute;
+	right: 0;
+    z-index: 2;
+	width: 16px;
+    height: 16px;
+	background: url('images/filter.png') 50% 50%;
+    background-repeat: no-repeat;
+}
+.gridhead {
+  table-layout: fixed;
+  margin: 0;
+  border-collapse: separate;
+}
+.gridbody .scort-row{
+  border: none;
+  outline-style: none;
+}
+.gridbody tr.scort-row td{
+  padding: 6px 4px;
+  border-right-width: 1px;
+  border-right-style: solid;
+  font-weight: 400;
+  overflow: hidden;
+  white-space: pre;
+  height: 22px;
+  padding: 0 2px 0 2px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.gridhead th div {
+  overflow: hidden;
+  position: relative;
+  height: auto;
+  margin: .1em 0em;
+}
+/*-----------------CheckboxGrid-----------------*/
+.checkboxGrid {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+.checkboxGrid.on {
+    background: transparent url('images/checkboxon.png') 50% 50%;
+    background-repeat: no-repeat;
+}
+.checkboxGrid.off {
+	height:16px;
+    background: transparent url('images/checkboxoff.png') 50% 50%;
+    background-repeat: no-repeat;
+}
+.checkboxGrid.readonlyon {
+    background: transparent url('images/checkbutomon-n.png') 50% 50%;
+    background-repeat: no-repeat;
+}
+.checkboxGrid.readonlyoff {
+    background: transparent url('images/checkbutomoff-n.png') 50% 50%;
+    background-repeat: no-repeat;
+}
+/*------------- Action Column -------------------*/
+/*--------------------------------------------------------------------------------------------------*/
+.JColResizer {
+	  cursor: col-resize;
+	  float: right;
+	  margin: -2px -2px -2px 0;
+	  height: 20px !important;
+	  position: relative;
+	  cursor: e-resize;
+	  display: inline;
+      overflow: hidden;
+}
+.JColResizer td,.JColResizer th {
+    overflow: hidden;
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+.JCLRgrips {
+    height: 0px;
+    position: relative;
+}
+.JCLRgrip {
+    margin-left: -5px;
+    position: absolute;
+    z-index: 5;
+}
+.JCLRgrip .JColResizer {
+    position: absolute;
+    background-color: red;
+    filter: alpha(opacity=1);
+    opacity: 0;
+    width: 10px;
+    height: 100%;
+    cursor: e-resize;
+    top: 0px
+}
+.JCLRLastGrip {
+}
+
+.JCLRgripDrag {
+    border-left: 1px dotted black;
+}
+.JCLRFlex {
+    width: auto!important;
+}

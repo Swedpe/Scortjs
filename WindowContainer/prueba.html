@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PROGRESS BUILDER FOR SCORTS JS</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../functions.js"></script>		
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+  <script src="../components/containers/WindowContainer.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/items/ProgressBarItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />	
+
+<style type="text/css">
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+/////////////////////////////////////windows DE COLORES ///////////////////////////////////
+Components.create('Window',{
+       container: $('#ColorActive'),
+		behavior:'panel',
+		state:'active',
+		title: "active", 
+        html:'<div><i>Soy un Panel, y mi altura dependende de mis elementos internos</i> <b>EE</b><br><br>Y yo soy la mas alta de esta fila</div>',
+		
+		
+    }).show();
+Components.create('Window',{
+container: $('#Colorinfo'),
+        behavior:'panel',
+		height:'500px',
+		state:'info',
+		title: "info", 
+        html:'<div><i>Soy un Panel, y mi altura dependende de mis elementos internos</i> <b>EE</b></div>',
+		
+    }).show();
+Components.create('Window',{
+container: $('#Colorerror'),
+      behavior:'panel',
+		state:'error',
+		title: "error", 
+        html:'<div><i>Soy un Panel, y mi altura dependende de mis elementos internos</i> <b>EE</b></div>',
+		
+    }).show();	
+Components.create('Window',{
+container: $('#Colorhighlight'),
+		behavior:'panel',
+		state:'highlight',
+		title: "highlight", 
+        html:'<div><i>Soy un Panel, y mi altura dependende de mis elementos internos</i> <b>EE</b></div>',
+		
+    }).show();
+Components.create('Window',{
+container: $('#Colorwarning'),
+		behavior:'panel',
+		state:'warning',
+		title: "warning",
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b></div>',
+		
+    }).show();
+Components.create('Window',{
+container: $('#Colordefault'),
+        behavior:'panel',
+		resizable:false,
+		draggable:false,
+		title: "Default", 
+        html:'<div><i>Soy un ventana Default</i> <b>modal</b><br><br>yo soy la mas alta y por ende mando en altura a toda la fila</div>',
+		
+    }).show();
+}); 
+</script>	
+</script>
+</head>
+
+<body>
+<div>
+<div class="row">
+	<div  id="Colorerror" class="col-sm-4">
+	</div>
+
+	<div  id="ColorActive" class="col-sm-4" >
+	</div>
+	
+	<div  id="Colorinfo" class="col-sm-4" >
+	</div>
+	
+	
+<br><br>
+</div>
+
+<div class="row">
+	<div  id="Colorhighlight" class="col-sm-4">
+	</div>
+
+	<div  id="Colorwarning"class="col-sm-4">
+	</div>
+	
+	<div  id="Colordefault" class="col-sm-4">
+	</div>
+	
+	
+<br><br>
+</div>
+
+</div>
+
+</body>
+</html>

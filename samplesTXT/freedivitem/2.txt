@@ -1,0 +1,34 @@
+Components.create('FreeDiv',{																		
+	x: 10,
+	y: 50,
+	height: 400,
+	width: 400,
+	html:'<p>Soy un <i>FreeDiv</i> <b>padre</b></p>',
+	items: [                       
+			{																		
+				type:'FreeDiv',
+				x: 0,
+				y: 50,
+				height: 250,
+				width: '99%',
+				html:'Soy un <i>FreeDiv</i> <b>hijo</b>',
+				items: [                       
+						  {
+								type: 'TextField',
+								label: 'Nombre',
+								labelWidth: 100,
+								name: 'Nombre',
+								x:20,
+								y:50
+						  }
+				],
+				css:[
+						  {border: "2px solid"},
+						
+				]
+			}
+	],
+	css:[
+			{border: "2px solid"}						
+	]
+}).show();

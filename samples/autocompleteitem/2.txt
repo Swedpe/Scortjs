@@ -1,0 +1,29 @@
+Components.create('FreeDiv', {
+	x: 0,
+	y: 50,
+	height: 50,
+	width: 250,
+	html: '<p>Escriba "Nombre", "Apellido" ó "Direccion"</p>'
+}).show();
+
+Components.create('AutoCompleteInputField', {
+	x: 0,
+	y: 100,
+	id: 'MiAutocomplete',
+	imputoptions: {
+		label: '<b>&nbsp;Select List :</b>',
+		id: 'AutocompleteInput',
+		width: 128,
+		readOnly: false
+	},
+	sourcefunction: function(request, response) {
+		$.ajax({
+			url: 'php/dataphp.php',
+			data: 'dataset=sampledata2',
+			dataType: "json",
+			success: function(dato) {
+				response(dato);
+			}
+		});
+	}
+}).show();

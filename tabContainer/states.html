@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TabContainer State </title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+	<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+	<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/Components.js"></script>		
+        <script src="../components/containers/WindowContainer.js"></script>
+		 <script src="../components/items/ButtonItem.js"></script>
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+		<script src="../components/containers/TabContainer.js"></script>
+		<script src="../components/items/TabItem.js"></script>
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+Components.create('Window',{
+	 x:299,
+	y:178,
+	width:'266px',
+	height:'151px',
+	title:'TAB-ACTIVE',
+	state:'active',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  state:'active',
+	  activeTab: 0,
+	  items: [					
+	  {
+		  type: "Tab",
+		  title: "Nested Tab",
+		  state:'active',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-ra',
+			},
+		  items: [
+			  {
+				type: "TabPanel",
+				state:'active',
+				items: [
+					{
+						type: "Tab",
+						title: "Nested Tab 001",
+						state:'active',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-envelope',
+							position:'right',
+							//fa fa-whatsapp
+							//color:'green',
+						},
+						
+						
+	                },
+					{
+						type: "Tab",
+						title: "Nested Tab 002",
+						state:'active',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-paw',
+							//fa fa-whatsapp
+						},
+						
+					},
+					{
+						type: "Tab",
+						title: "Nested Tab 003",
+						state:'active',
+					icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-camera',
+							//fa fa-whatsapp
+						},						
+					}
+				]
+			  }
+		  ]
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab Simple",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+	   }                  		  
+	  ]
+	}
+]
+}).show();
+Components.create('Window',{
+   x:18,
+	y:177,
+	width:'266px',
+	height:'151px',
+	title:'TAB-INFO',
+	state:'info',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  state:'info',
+	  activeTab: 0,
+	  items: [					
+	  {
+		  type: "Tab",
+		  title: "Nested Tab",
+		  state:'info',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-ra',
+			},
+		  items: [
+			  {
+				type: "TabPanel",
+				state:'info',
+				items: [
+					{
+						type: "Tab",
+						title: "Nested Tab 001",
+						state:'info',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-envelope',
+							position:'right',
+							//fa fa-whatsapp
+							//color:'green',
+						},
+						
+						
+	                },
+					{
+						type: "Tab",
+						title: "Nested Tab 002",
+						state:'info',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-paw',
+							//fa fa-whatsapp
+						},
+						
+					},
+					{
+						type: "Tab",
+						title: "Nested Tab 003",
+						state:'info',
+					icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-camera',
+							//fa fa-whatsapp
+						},						
+					}
+				]
+			  }
+		  ]
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab Simple",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+	   }                  		  
+	  ]
+	}
+]
+}).show();
+Components.create('Window',{
+   x: 296,
+	y:20,
+	width:'266px',
+	height:'151px',
+	title:'TAB-ERROR',
+	state:'error',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  state:'error',
+	  activeTab: 0,
+	  items: [					
+	  {
+		  type: "Tab",
+		  title: "Nested Tab",
+		  state:'error',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-ra',
+			},
+		  items: [
+			  {
+				type: "TabPanel",
+				state:'error',
+				items: [
+					{
+						type: "Tab",
+						title: "Nested Tab 001",
+						state:'error',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-envelope',
+							position:'right',
+							//fa fa-whatsapp
+							//color:'green',
+						},
+						
+						
+	                },
+					{
+						type: "Tab",
+						title: "Nested Tab 002",
+						state:'error',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-paw',
+							//fa fa-whatsapp
+						},
+						
+					},
+					{
+						type: "Tab",
+						title: "Nested Tab 003",
+						state:'error',
+					icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-camera',
+							//fa fa-whatsapp
+						},						
+					}
+				]
+			  }
+		  ]
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab Simple",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+	   }                  		  
+	  ]
+	}
+]
+}).show();
+Components.create('Window',{
+	x:20,
+	y:20,
+	width:'266px',
+	height:'151px',
+	title:'TAB-HIGHLIGHT',
+	state:'highlight',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  state:'highlight',
+	  activeTab: 0,
+	  items: [					
+	  {
+		  type: "Tab",
+		  title: "Nested Tab",
+		  state:'highlight',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-ra',
+			},
+		  items: [
+			  {
+				type: "TabPanel",
+				state:'highlight',
+				items: [
+					{
+						type: "Tab",
+						title: "Nested Tab 001",
+						state:'highlight',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-envelope',
+							position:'right',
+							//fa fa-whatsapp
+							//color:'green',
+						},
+						
+						
+	                },
+					{
+						type: "Tab",
+						title: "Nested Tab 002",
+						state:'highlight',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-paw',
+							//fa fa-whatsapp
+						},
+						
+					},
+					{
+						type: "Tab",
+						title: "Nested Tab 003",
+						state:'highlight',
+					icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-camera',
+							//fa fa-whatsapp
+						},						
+					}
+				]
+			  }
+		  ]
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab Simple",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+	   }                  		  
+	  ]
+	}
+]
+}).show();
+Components.create('Window',{
+	x:18,
+	y:340,
+	width:'266px',
+	height:'151px',
+	state:'warning',
+	title:'TAB-WARNING',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  state:'warning',
+	  activeTab: 0,
+	  items: [					
+	  {
+		  type: "Tab",
+		  title: "Nested Tab",
+		  state:'warning',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-ra',
+			},
+		  items: [
+			  {
+				type: "TabPanel",
+				state:'warning',
+				items: [
+					{
+						type: "Tab",
+						title: "Nested Tab 001",
+						state:'warning',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-envelope',
+							position:'right',
+							//fa fa-whatsapp
+							//color:'green',
+						},
+						
+						
+	                },
+					{
+						type: "Tab",
+						title: "Nested Tab 002",
+						state:'warning',
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-paw',
+							//fa fa-whatsapp
+						},
+						
+					},
+					{
+						type: "Tab",
+						title: "Nested Tab 003",
+						state:'warning',
+					icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-camera',
+							//fa fa-whatsapp
+						},						
+					}
+				]
+			  }
+		  ]
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab Simple",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+	   }                  		  
+	  ]
+	}
+]
+}).show();
+Components.create('Window',{
+	x:299,
+	y:344,
+	width:'266px',
+	height:'151px',
+	title:'TAB-DEFAULT',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  activeTab: 0,
+	  items: [					
+	  {
+		  type: "Tab",
+		  title: "Nested Tab",
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-ra',
+			},
+		  items: [
+			  {
+				type: "TabPanel",
+				items: [
+					{
+						type: "Tab",
+						title: "Nested Tab 001",
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-envelope',
+							position:'right',
+							//fa fa-whatsapp
+							//color:'green',
+						},
+						
+						
+	                },
+					{
+						type: "Tab",
+						title: "Nested Tab 002",
+						icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-paw',
+							//fa fa-whatsapp
+						},
+						
+					},
+					{
+						type: "Tab",
+						title: "Nested Tab 003",
+					icon: {
+							type:'fa',		//tipos posibles fontawesome y image
+							class:'fa-camera',
+							//fa fa-whatsapp
+						},						
+					}
+				]
+			  }
+		  ]
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab Simple",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+	   }                  		  
+	  ]
+	}
+]
+}).show();
+});  
+	</script>	
+   
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<b>Basico Con Indicador de Avance</b><br>
+- Se crea un control de upload.<br>
+- Se define multiple Upload <br>
+- Se define que el subir archivos no sea automatico <br>
+- Cuando el método <b>fileuploadadd</b> se lanza se crea un botón que sera el encargado de ejecutar el envió de datos al servidor <br>
+- Se Cuando el listeer <b>fileuploadprogressall</b>
+- Se define el listener <b>fileuploaddone</b>, el cual nos mostrara el avance mientras el archivo es cargado <br>
+- Los archivos subidos solo quedaran en la carpeta temporal [esto se controla desde PHP] .<br>
+- Probar con archivos de tamaño entre 1mb y 5mb para notar el avance.

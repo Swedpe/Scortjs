@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TabItem States</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+  <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+  <link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+	
+		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+		<script src="../components/Components.js"></script>	
+			
+		
+        <script src="../components/containers/WindowContainer.js"></script>
+		<script src="../components/containers/TabContainer.js"></script>
+		<script src="../components/containers/MenuContainer.js"></script>
+	    <script src="../components/containers/GridContainer.js"></script>
+		<script src="../components/containers/PanelContainer.js"></script>
+		<script src="../components/items/ButtonItem.js"></script>
+		<script src="../components/items/ProgressBarItem.js"></script>
+	    <script src="../components/tab/tabContainer.js"></script>
+	    <script src="../components/tab/tabItemView.js"></script>
+		<script src="../components/items/easypiechart.js"></script>
+		<script src="../components/items/TabItem.js"></script>
+		<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+		
+		<link rel="stylesheet" href="../css_components/css_window.css" />
+		<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+		<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+		
+		<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+		
+        <style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+		}
+		</style>	
+	<script id="customscript">
+	$( document ).ready(function(){
+Components.create('Window',{	
+	title: "TabItem States", 
+	x:1,
+	y:9,
+	height:180, 
+	width:598, 
+	state:'error',
+	items: [
+	{
+	  type: "TabPanel",
+	  id:"EjemploTabs",
+	  region: 'center',
+	  state:'error',
+	  activeTab: 0,
+	  items: [					
+	  {		
+		  type: "Tab",
+		  title: "TabError",  
+		  state:'error',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-info',
+			},
+			
+	   },
+	   {		
+		  type: "Tab",
+		  title: "TabHighlight",  
+		 state:'highlight',
+		 icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+			},
+	   },
+	   {		
+		  type: "Tab",
+		  title: "TabActive",  
+		  state:'active',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+			},
+	   },
+	   {		
+		  type: "Tab",
+		  title: "TabWarning",  
+		 state:'warning',
+		 icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+			},
+	   },
+       {		
+		  type: "Tab",
+		  title: "TabInfo",  
+		  state:'info',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+			},
+	   },
+{		
+		  type: "Tab",
+		  title: "TabDefault", 
+		   state:'default',
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+			},
+	   } 
+	  ]
+	}
+]
+}).show();
+});  
+	</script>	
+   
+</head>
+<body>
+</body>
+</html>

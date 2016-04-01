@@ -1,0 +1,200 @@
+Components.create('Window',{
+        title: "GridPrueba1", 
+        height:400, 
+        width:1000,
+        items: [
+            {
+                type: "GridContainer",
+                region: "center",
+                id: "GridPrueba",
+				verticalScroll:true,				
+				 selModel: {
+                                type: "checkboxmodel",
+                                checkOnly: false,
+                               
+                },	
+				 columns: [
+                    {
+						type: "GridColumn",
+                        text: "ID",
+                        dataIndex: "ID",
+						width:"32%",
+						unique:true,						
+						editor: {
+                                            type: 'TextField',
+                                            allowBlank: false
+                        }
+                    },
+					{
+						type: "GridColumn",
+                        text: "Nombre",
+                        dataIndex: "Nombre",
+						width:"32%",
+						editor:{
+                                            type: 'TextField',
+                                            allowBlank: false
+                        }
+                    },
+					{
+						type: "GridColumn",
+                        text: "Apellido",
+                        dataIndex: "Apellido",
+						width:"34%",
+						editor: {
+                                            type: 'TextField',
+                                            allowBlank: false
+                        }
+                    }
+				],
+				store: {
+                            id: 'idStoredata',
+                            model: 'MyData',
+                            idProperty: 'keyword',
+                            pageSize: 15,
+                            fields: [
+                                'ID', 
+                                'Nombre', 
+                                'Apellido'                               
+                            ],
+                            proxy: {
+                                reader:{
+									type: 'POST',
+									url: 'php/dataphp.php',
+									extraParams: {
+										dataset:'readsamplelivedata'									
+									},
+									readerinternalconfig: {
+										type: 'json',
+										totalProperty: 'conteo',
+										root:'Items'
+									},
+									beforeSend: function(obj){ 										
+										//alert("Evento antes de leer");
+									},
+									complete: function(obj, exito){
+										//alert("Evento al termino de leer");
+									}
+								},
+								create:{
+									type: 'POST',
+									url: 'php/dataphp.php',
+									extraParams: {
+										dataset:'insertsamplelivedata'									
+									},
+									createinternalconfig: {
+										type: 'json',
+										succesProperty: 'succes',
+										succes:'data'
+									},
+									beforeSend: function(obj){ 
+										console.log(obj);
+										alert("Evento antes de agregar");
+									},
+									complete: function(obj, exito){
+										alert("Evento al termino de agregar");
+									}
+								},
+								update:{
+									type: 'POST',
+									url: 'php/dataphp.php',
+									extraParams: {
+										dataset:'updatesamplelivedata'									
+									},
+									createinternalconfig: {
+										type: 'json',
+										succesProperty: 'succes',
+										succes:'data'
+									},
+									beforeSend: function(obj){ 
+										console.log(obj);
+										alert("Evento antes de actualizar");
+									},
+									complete: function(obj, exito){
+										alert("Evento al termino de actualizar");
+									}
+								},
+								deleterow:{
+									type: 'POST',
+									url: 'php/dataphp.php',
+									extraParams: {
+										dataset:'deletesamplelivedata'									
+									},
+									createinternalconfig: {
+										type: 'json',
+										succesProperty: 'succes',
+										succes:'data'
+									},
+									beforeSend: function(obj){ 
+										console.log(obj);
+										alert("Evento antes de borrar");
+									},
+									complete: function(obj, exito){
+										alert("Evento al termino de borrar");
+									}
+								}
+                            }
+                        },
+                 bbar: {
+                            displayInfo: true,
+                            displayMsg: 'Mostrando  {0} - {1} de {2}',
+                            emptyMsg: "No hay temas a mostrar"
+                        },
+				gridviewtittle: {
+                           displayInfo:  true,
+                        }
+			}
+		],//Fin Windows Items
+		listeners: {
+                    activate: function(e1){		
+                       
+                    }
+        }
+}).show();					
+ console.log("cargando datos");	
+ Components.getComponentById('GridPrueba').getStore().loadPage(1);		
+
+ Components.create('Button',{		
+	x:350,
+	y:5,
+	scale: 'medium',
+	text:'getSelection',
+	width: 150,
+	tooltip:'Leer Columna Seleccionada',	  
+	handler: function() {
+					var res = '';
+					var Sel = Components.getComponentById('GridPrueba').getSelection()
+					for (i in Sel){				
+						if(Sel[i]) res+=Sel[i].ID+",";
+					}
+					alert(res);
+				}  
+    }).show(); 
+
+ Components.create('Button',{		
+	x:550,
+	y:5,
+	scale: 'medium',
+	text:'Reset/Create DB',
+	width: 150,
+	tooltip:'Reset/Create DB',	  
+	handler: function() {
+					 $.ajax({
+						url: "php/dataphp.php",
+						data:"dataset=createsamplelivedata",
+						dataType:"json",
+						success: function(respuesta){							
+								alert(respuesta.mensaje);
+								console.log(respuesta.mensaje);
+								Components.getComponentById('GridPrueba').getStore().loadPage(1);	
+						},
+						error: function(jqXHR,error, errorThrown) {  
+						   if(jqXHR.status&&jqXHR.status==400)
+								alert(jqXHR.responseText); 
+						   else
+							   alert("Something went wrong");
+						}
+					});
+				}  
+    }).show(); 
+
+
