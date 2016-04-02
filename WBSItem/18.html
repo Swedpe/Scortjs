@@ -97,7 +97,11 @@ items:[
 				id:'progressload',
 				state:'active',
 				scale:'minier',
-				animate:false,					
+				animate:false,
+				css:{
+				    'margin-top': '2px',
+					'margin-left': '2px'
+				}				
             },
 		 ]
     },
@@ -30503,7 +30507,6 @@ items:[
 	}
   ]      
 }).show();
-Components.getComponentById('Okno').statusdiv = Components.getComponentById('statusbar001').divContainer;
 Components.getComponentById('Okno').drawTree();
 });  
 </script>	

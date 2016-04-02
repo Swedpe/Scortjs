@@ -156,7 +156,24 @@ font-family: Verdana,Arial,sans-serif;
     box-shadow: 1px 1px 5px #888888;
 }
 
+/*Window container conteniendo un toolbar que actuara como status bar*/
+.windowRegionBottom.default{
+	background: rgb(213, 206, 206);
+}
+.windowRegionBottom.highlight{
+	background: rgb(207, 186, 67);
+}
+.windowRegionBottom.active{
+	background: rgb(90, 183, 83);
+}
+.windowRegionBottom.warning{
+	background: rgb(190, 133, 40);
+}
+.windowRegionBottom.info{
+	background: rgba(47, 98, 139, 1);
+}
 
+/*---------------------------------------------------------------------*/
 .windowContainer .panelContainer {
     position: relative;
 }

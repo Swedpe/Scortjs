@@ -440,7 +440,7 @@ function dibuja_Paso5(partialResult, callbackFunction) {
   callbackFunction();
 }
 function finishtwo(){
- $this.listeners.onDrawTree(this,95);
+ $this.listeners.onDrawTree(this,100);
 	if($this.nodoSeleccionado!=-1){
 		var tempN = this.nodoSeleccionado;
 		tempN.desSeleccionar();

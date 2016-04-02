@@ -42,8 +42,8 @@
   color: #fff;
   text-align: center;
   background-color: #7990A5;
-  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+/*  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);*/
 }
 .progressBox>.progress-bar.left {
   float: left;
@@ -214,4 +214,7 @@ color:#5bc0de;
 }
 .ProgressBar-circular-warning {
 color:#f0ad4e;
+}
+.ProgressBar span{    
+	vertical-align: middle;
 }

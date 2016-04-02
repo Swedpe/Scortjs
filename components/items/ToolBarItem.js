@@ -21,6 +21,7 @@ Components.ToolBar.prototype.init = function(dataObj) {
         container: $('body'),
         id: "toolbar-"+ Math.round(Math.random() * 2000),
         title: "",
+		parent:'',
         height: -1,
         width: -1,
         closeAction: 'destroy',
@@ -43,6 +44,7 @@ Components.ToolBar.prototype.init = function(dataObj) {
     this.id = this.config.id;
     this.container = this.config.container;
     this.className = "toolBar";
+	this.parent = this.config.parent;
     this.items = this.config.items;
     this.itemsObjs = [];
     
@@ -74,6 +76,9 @@ Components.ToolBar.prototype.create = function() {
     if(this.config.showHeader) {
         this.divTitle.show();
     }
+	if(this.container.hasClass('windowRegionBottom')){
+		this.container.closest('div').addClass(this.config.state);
+	};
     this.setControls();
     this.drawItems();
 	return this ;
