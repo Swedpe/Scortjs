@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>WbsItem Ejemplo 10</title>
+<title>WbsItem Ejemplo 11</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
 <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
 <link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
@@ -56,7 +56,7 @@
 <script src="../components/svg/TextCajita.js"></script>
 <script src="../components/svg/TextProcesor.js"></script>
 <script src="../components/items/ECOTree.js"></script>
-<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
 
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
@@ -81,61 +81,65 @@ font-size: 11px;
 </style>	
 
 <script id="customscript">
-Actividades9={
-			"0":{	id:0,
+$( document ).ready(function(){
+actividadesTree=[
+			{	id:0,
+			idp:9,
 					type: 'WBSActividad',
 					"descripcion": "Barrer",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			"1":{	
-					id:1,
+			{	
+				id:1,
+			idp:9,
 					type: 'WBSActividad',
 					"descripcion": "Tarrajear la pared de manera que quede bien lisa limpiar los pisos de manera que brillen a la luz de la luna limpiar los pisos de manera que brillen a la luz de la luna",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			"2":{	id:2,
+			{	id:2,
+			idp:9,
 					type: 'WBSActividad',
 					"descripcion": "Limpiar los pisos de manera que brillen a la luz de la luna",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			"3":{	id:3,
+			{	id:3,
+			idp:9,
 					type: 'WBSActividad',
 					"descripcion": "Pintar como pinturillo",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			
-		};
-Actividades10={
-	
-			"0":{	id:0,
+
+			{	id:4,
+			idp:10,
 			type: 'WBSActividad',
 					"descripcion": "Pintar como pinturillo",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			"1":{	id:1,
+			{	id:5,
+			idp:10,
 			type: 'WBSActividad',
 					"descripcion": "Tarrajear la pared de manera que  brillen a la luz de la luna",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			"2":{	id:2,
+			{	id:6,
+			idp:10,
 			type: 'WBSActividad',
 					"descripcion": "Limpiar los pisos de manera que queden bien lisos",
 					"inicio":"fecha",
 					"fin":"fecha"},
-			"3":{	id:3,
+			{	id:7,
+			idp:10,
 			type: 'WBSActividad',
 					"descripcion": "Barrer",
 					"inicio":"fecha",
 					"fin":"fecha"},
 			
-		};
+		];
 
-
-$( document ).ready(function(){
 Components.create('Window',{
 	title: "WBS Eventos",		
 	height:700, 
-	width:1850,
+	width:1200,
 	state:'active',
 	items:[
 	{
@@ -143,180 +147,63 @@ Components.create('Window',{
 		id: 'ChartProyectoWindowsToolBar',
 		region: 'top',
 		items: [
-		   {
+			{
 				type: 'Button',
-				id : 'izquierdaBtn',
+				id : 'LayoutWilliam',
 				shape:'box',
 				scale:'minier',
 				icon:{
 					type:'fontawesome',
-					class:'fa-arrow-left',
-					color:'#000099',
+					class:'fa fa-sitemap',
+					color:'red',
 					position:'left',
 				},
-				tooltip:'PC_Agregar_Hermano_a_la_Izquierda_00359',
+				tooltip:'PC_Cambiar_a_basicWilliam_00359',
+				listeners: {
+					click: function() {	
+							Components.getComponentById("Okno").cambiarLayout('basicWilliam')
+							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'ecotree',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-sitemap',
+					color:'blue',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_a_ecotree_00360',
+				listeners: {
+					click: function() {	
+							Components.getComponentById("Okno").cambiarLayout('ecotree')
+							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-exchange',
+					color:'black',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_layout_00361',
 				listeners: {
 					click: function() {							
-						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
-							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(1,0);
-							}
-						else
-							alert("Debe seleccionar un Nodo");
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'derechaBtn',        
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-arrow-right',
-					color:'#000099',
-					position:'left',
-				},
-				
-				tooltip:'PC_Agregar_Hermano_a_la_Derecha_00358',
-				listeners: {
-					click: function() {
-					   if(Components.getComponentById("Okno").nodoSeleccionado != -1){
-							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(0,0);
-						}
-						else
-							alert("Debe seleccionar un Nodo");
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'arribaBtn',        
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-arrow-up',
-					color:'#000099',
-					position:'left',
-				},
-				tooltip:'PC_Agregar_Nuevo_Padre_00357',
-				listeners: {
-					click: function() {
-						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
-							Components.getComponentById("Okno").nodoSeleccionado.AgregarPadre(null);
-						}
-						else
-							alert("Debe seleccionar un Nodo");	
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'abajoBtn',        
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-arrow-down',
-					color:'#000099',
-					position:'left',
-				},
-				tooltip:'PC_Agregar_Hijo_00356',
-				listeners: {
-					click: function() {
-						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
-							Components.getComponentById("Okno").nodoSeleccionado.AddChild(null);
-						}
-						else
-							alert("Debe seleccionar un Nodo");	
-						}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'nada1',
-				shape:'box',
-				scale:'minier',
-				icon:{
-					
-				},
-				tooltip:'nada',
-			},
-			{
-				type: 'Button',
-				id : 'bolita',
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-circle',
-					color:'#000099',
-					position:'left',
-				},
-				tooltip:'bolita',
-				listeners: {
-					click: function() {
-						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
-							Components.getComponentById("Okno").nodoSeleccionado.bolizando();
-							Components.getComponentById("Okno").calcTree();
-							Components.getComponentById("Okno").drawTree();
-						}else
-							console.log("Debe seleccionar un Nodo");
-						
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'cuadrado',        
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-square-o',
-					color:'#000099',
-					position:'left',
-				},
-				tooltip:'cuadrado',
-				listeners: {
-					click: function() {
-						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
-							Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
-							Components.getComponentById("Okno").calcTree();
-							Components.getComponentById("Okno").drawTree();
-						}else
-							console.log("Debe seleccionar un Nodo");
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'exchange',        
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-exchange',
-					color:'#000099',
-					position:'left',
-				},
-				tooltip:'exchange',
-				listeners: {
-					click: function() {
-					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
-						if(seleccionado != -1){
-							if(seleccionado.bolita){
-								seleccionado.cuadrando();
-								seleccionado.tree.calcTree();
-								Components.getComponentById("Okno").drawTree();
-							}else{
-								seleccionado.bolizando();
-								Components.getComponentById("Okno").calcTree();
-								seleccionado.tree.drawTree();
-								}
-						}else{
-							console.log("Debe seleccionar un Nodo");
-						}
+							if (Components.getComponentById("Okno").algorithm == 'basicWilliam')
+							Components.getComponentById("Okno").cambiarLayout('ecotree');
+							else if (Components.getComponentById("Okno").algorithm == 'ecotree')
+							Components.getComponentById("Okno").cambiarLayout('basicWilliam');
+							
 					}
 				}
 			},
@@ -330,11 +217,8 @@ Components.create('Window',{
 			{
 				type: 'WBSTree',						
 				id:'Okno',
-				plugins:{ svgToolTip:{
-						type: 'svgToolTip',
-						orientacion:'abajo',
-						parentType: 'WBSTree',
-				}},
+				algorithm:'basicWilliam',
+				activiades:actividadesTree,
 				items:[
 					{	
 						 type: 'WBSNode', 
@@ -351,6 +235,8 @@ Components.create('Window',{
 						 idp:0,
 						 tipoObjeto:'Tarea',
 						 Descripcion:'D. Auditoría J. Espósito'
+						
+						
 					},
 					{	
 						 type: 'WBSNode', 
@@ -358,6 +244,7 @@ Components.create('Window',{
 						 idp:0,
 						 tipoObjeto:'Tarea',
 						 Descripcion:'A. Cumplimiento B. Falero',
+						 
 					},
 					{	
 						 type: 'WBSNode', 
@@ -374,6 +261,7 @@ Components.create('Window',{
 						 idp:3,
 						 tipoObjeto:'Tarea',
 						 Descripcion:'D. Legal G. Morales',
+						 
 					},
 					{	
 						 type: 'WBSNode', 
@@ -411,9 +299,8 @@ Components.create('Window',{
 						 id:9,
 						 idp:5,
 						 tipoObjeto:'Tarea',
-						 //Descripcion:'A. Planeamiento y Desarrollo K. Mitre',
-						 Descripcion:'Ana',
-						 items: Actividades9,
+						 Descripcion:'A. Planeamiento y Desarrollo K. Mitre',
+						 actividadesId: [0,1,2,3],
 					},
 					{	
 						 type: 'WBSNode', 
@@ -421,7 +308,7 @@ Components.create('Window',{
 						 idp:5,
 						 tipoObjeto:'Tarea',
 						 Descripcion:'A. Asesoría en G y DH B. Sambra',
-						 items: Actividades10,
+						 actividadesId: [4,5,6,7],
 					},
 					{	
 						 type: 'WBSNode', 
@@ -924,10 +811,28 @@ Components.create('Window',{
 				]
 		    }
 	    ]
-	
 	}
   ]	
 }).show();
+Components.getComponentById('Okno').drawTree(); 
+Components.create('Button',{		
+	x:430,
+	y:440,
+	scale: 'medium',
+	text:'Seleccion Elemento',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-send',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Seleccion Elemento',	  
+	handler: function() {					
+		Components.getComponentById('0').Seleccionar();
+		alert("seleccionado el elemento 0")
+	}  
+}).show(); 
 });  
 </script>	
 </head>

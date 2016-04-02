@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>WbsItem Ejemplo 2</title>
+<title>WbsItem Ejemplo 16</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
 <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
 <link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
@@ -48,6 +48,10 @@
 <script src="../components/tab/tabItemView.js"></script>
 <script src="../components/items/LayoutWilliam.js"></script>
 <script src="../components/items/ECOTree.js"></script>
+<script src="../components/extra/jspdf/jspdf.min.js"></script>
+<script src="../components/toolTip.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/extra/FontLoader.js"></script>
 
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
@@ -71,14 +75,97 @@ font-size: 11px;
 
 <script id="customscript">
 $( document ).ready(function(){
+var fontLoader = new FontLoader(["Lato"], {
+            "fontLoaded": function(font) {
+                // One of the fonts was loaded
+                console.log("font loaded: " + font.family);
+            },
+            "complete": function(error) {
+                if (error !== null) {
+                    // Reached the timeout but not all fonts were loaded
+                    console.log(error.message);
+                    console.log(error.notLoadedFonts);
+                } else {
+                    // All fonts were loaded
+                    console.log("all fonts were loaded");
+					dibujaejemplo();
+                }
+            
+			
+			}
+        }, 3000);
+		fontLoader.loadFonts();
+function dibujaejemplo(){
 Components.create('Window',{
 title: "WBS Eventos",	
-state:'active',
-//x:50,
-//y:50,
-height:600, 
-width:950,
-items:[
+state:'active',	
+height:850, 
+width:1320,
+items:[{
+		type: 'ToolBar',
+		id: 'ChartProyectoWindowsToolBar',
+		region: 'top',
+		items: [
+			{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-tree',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'RO_LEFT',
+				listeners: {
+					click: function() {
+						Components.getComponentById("Okno").cambiarOrientacion("left")
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-tree',
+					color:'yellow',
+					position:'left',
+				},
+				tooltip:'RO_TOP',
+				listeners: {
+					click: function() {
+						Components.getComponentById("Okno").cambiarOrientacion("top")
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-exchange',
+					color:'black',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_orientacion',
+				listeners: {
+					click: function() {							
+							if (Components.getComponentById("Okno").config.orientation == "top")
+							Components.getComponentById("Okno").cambiarOrientacion("left");
+							else if (Components.getComponentById("Okno").config.orientation == "left")
+							Components.getComponentById("Okno").cambiarOrientacion("top");
+							
+					}
+				}
+			},
+			]
+	},
 	{
 	 type: 'SvgContainer', 
 	 region: 'center',
@@ -87,28 +174,28 @@ items:[
 		{
 			type: 'WBSTree',						
 			id:'Okno',
+			orientation: "left",
+			plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+						parentType:'WBSTree',
+			}},
 			items:[
 				{	
 					 type: 'WBSNode', 
 					 id:0,
 					 idp:null,
-					 Descripcion:'Nodo Padre',
+					 Descripcion:'Padre',
 					 tipoObjeto:'Cabecera',
 					 childsId:[1,2,3]
+	
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:1,
 					 idp:0,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:show',
-					 childsId:[9,10],
-					 listeners: {
-						show: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
-					
+					 Descripcion:'The reason why the "viewable" word is specified, is because if the elements content is taller than the actual height of the element, this property will only return the height that is visible (See More Examples).Note: To understand this property, you must understand the CSS Box Model.Tip: This property is often used together with the clientWidth property.Tip: Use the offsetHeight and offsetWidth properties to return the viewable height and width of an element, including padding, border and scrollbar.Tip: To add scrollbars to an element, use the CSS overflow property.This property is read-only.',
 				},
 				{	
 					 type: 'WBSNode', 
@@ -116,112 +203,76 @@ items:[
 					 idp:0,
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:hide',
-					 listeners: {
-						hide: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:3,
 					 idp:0,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener: The best way to get an idea of what could be accomplished by using this component is to download the sources and play with the sample included. The API reference below could give you a more precise idea of what could be done. But, as a briefing, features include:',
-					 childsId:[4,5,6],
-					  listeners: {
-						maximize: function(obj){
-							alert(obj.Descripcion);
-						},
-						minimize: function(obj){
-							alert("Minimizar");
-						}
-					  }
+					 Descripcion:'Listener:maximize,minimize',
+					 childsId:[4,5,6,11],
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:4,
 					 idp:3,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:select',
-					 childsId:[7,8],
-					 listeners: {
-						select: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
+					 Descripcion:'ola k ase',
+
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:5,
 					 idp:3,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:deselect',
-					 listeners: {
-						deselect: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
+					 Descripcion:'Listener:deselect,hola soy german',
+					 childsId:[9,10],
+
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:6,
 					 idp:3,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'This article presents a JavaScript component which renders a tree on the screen using VML (Vector Markup Language) in Internet Explorer 6+ or the canvas element in Firefox 1.5+.There are plenty of JavaScript trees out there, and most of them have a better cross-browser compatibility than this, are faster and better optimized. The goal of this code is to present a client-side implementation of the Walkers layout algorithm (see References), leaving off code optimizations. In short, the component has born after the algorithm, as I think that a living sample would be better than an abstract source-code level implementation.'
+					 childsId:[7,8],
+					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:7,
-					 idp:4,
+					 idp:6,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:show',
-					 listeners: {
-						show: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
-					
+					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:8,
-					 idp:4,
+					 idp:6,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:show',
-					 listeners: {
-						show: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
-					
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:10,
-					 idp:1,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:show',
-					 listeners: {
-						show: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
-					
+					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:9,
-					 idp:1,
+					 idp:5,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:show',
-					 listeners: {
-						show: function(obj){
-							alert(obj.Descripcion);
-						}
-					  }
-					
+					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
 				},
+				{	
+					 type: 'WBSNode', 
+					 id:10,
+					 idp:5,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:11,
+					 idp:3,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+				},
+				
 			]
 	    }
 	  ]
@@ -229,7 +280,8 @@ items:[
 	}
   ]      
 }).show();
-
+Components.getComponentById('Okno').drawTree(); 
+}
 });  
 </script>	
 </head>

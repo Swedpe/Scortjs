@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>WbsItem Ejemplo 3</title>
+<title>WbsItem Ejemplo 2</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
 <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
 <link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
@@ -48,7 +48,6 @@
 <script src="../components/tab/tabItemView.js"></script>
 <script src="../components/items/LayoutWilliam.js"></script>
 <script src="../components/items/ECOTree.js"></script>
-<script src="../components/svg/SvgToolTip.js"></script>
 
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
@@ -77,8 +76,8 @@ title: "WBS Eventos",
 state:'active',
 //x:50,
 //y:50,
-height:700, 
-width:1000,
+height:600, 
+width:950,
 items:[
 	{
 	 type: 'SvgContainer', 
@@ -88,11 +87,6 @@ items:[
 		{
 			type: 'WBSTree',						
 			id:'Okno',
-			plugins:{ svgToolTip:{
-						type: 'svgToolTip',
-						orientacion:'abajo',
-						parentType: 'WBSTree',
-			}},
 			items:[
 				{	
 					 type: 'WBSNode', 
@@ -109,6 +103,12 @@ items:[
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:show',
 					 childsId:[9,10],
+					 listeners: {
+						show: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+					
 				},
 				{	
 					 type: 'WBSNode', 
@@ -116,6 +116,11 @@ items:[
 					 idp:0,
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:hide',
+					 listeners: {
+						hide: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
 				},
 				{	
 					 type: 'WBSNode', 
@@ -124,6 +129,14 @@ items:[
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener: The best way to get an idea of what could be accomplished by using this component is to download the sources and play with the sample included. The API reference below could give you a more precise idea of what could be done. But, as a briefing, features include:',
 					 childsId:[4,5,6],
+					  listeners: {
+						maximize: function(obj){
+							alert(obj.Descripcion);
+						},
+						minimize: function(obj){
+							alert("Minimizar");
+						}
+					  }
 				},
 				{	
 					 type: 'WBSNode', 
@@ -131,7 +144,12 @@ items:[
 					 idp:3,
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:select',
-					 childsId:[7,8,11,12,13,14,15,16,17,18,19,20],
+					 childsId:[7,8],
+					 listeners: {
+						select: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
 				},
 				{	
 					 type: 'WBSNode', 
@@ -139,6 +157,11 @@ items:[
 					 idp:3,
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:deselect',
+					 listeners: {
+						deselect: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
 				},
 				{	
 					 type: 'WBSNode', 
@@ -151,24 +174,27 @@ items:[
 					 type: 'WBSNode', 
 					 id:7,
 					 idp:4,
-					 bolita:true,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+					 Descripcion:'Listener:show',
+					 listeners: {
+						show: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+					
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:8,
 					 idp:4,
-					 bolita:true,
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:show',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:9,
-					 idp:1,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:show',
+					 listeners: {
+						show: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+					
 				},
 				{	
 					 type: 'WBSNode', 
@@ -176,86 +202,25 @@ items:[
 					 idp:1,
 					 tipoObjeto:'Tarea',
 					 Descripcion:'Listener:show',
+					 listeners: {
+						show: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+					
 				},
 				{	
 					 type: 'WBSNode', 
-					 id:11,
-					 idp:4,
-					 bolita:true,
+					 id:9,
+					 idp:1,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:12,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:13,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:14,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:15,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:16,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:17,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:18,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:19,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
-				},
-				{	
-					 type: 'WBSNode', 
-					 id:20,
-					 idp:4,
-					 bolita:true,
-					 tipoObjeto:'Tarea',
-					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+					 Descripcion:'Listener:show',
+					 listeners: {
+						show: function(obj){
+							alert(obj.Descripcion);
+						}
+					  }
+					
 				},
 			]
 	    }
@@ -264,7 +229,7 @@ items:[
 	}
   ]      
 }).show();
-
+Components.getComponentById('Okno').drawTree();
 });  
 </script>	
 </head>

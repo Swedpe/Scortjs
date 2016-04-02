@@ -419,6 +419,7 @@ Components.create('Window',{
 	 ]	
 }).show();
 
+
 //definiremos una ventana donde se realizara la edicion de nodos
 Components.create('Window', {
 	title: 'Edicion de nodos',
@@ -531,7 +532,7 @@ Components.create('Window', {
 	}
   ]
 }).hide();
-
+Components.getComponentById('Tree1').drawTree(); 
 //definiremos una ventana donde se realizara la edicion de actividades
 Components.create('Window', {
 	title: 'Edicion de Actividades',

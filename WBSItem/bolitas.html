@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>WbsItem Ejemplo 16</title>
+<title>WbsItem Ejemplo 3</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
 <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
 <link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
@@ -48,10 +48,7 @@
 <script src="../components/tab/tabItemView.js"></script>
 <script src="../components/items/LayoutWilliam.js"></script>
 <script src="../components/items/ECOTree.js"></script>
-<script src="../components/extra/jspdf/jspdf.min.js"></script>
-<script src="../components/toolTip.js"></script>
 <script src="../components/svg/SvgToolTip.js"></script>
-<script src="../components/extra/FontLoader.js"></script>
 
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
@@ -75,97 +72,14 @@ font-size: 11px;
 
 <script id="customscript">
 $( document ).ready(function(){
-var fontLoader = new FontLoader(["Lato"], {
-            "fontLoaded": function(font) {
-                // One of the fonts was loaded
-                console.log("font loaded: " + font.family);
-            },
-            "complete": function(error) {
-                if (error !== null) {
-                    // Reached the timeout but not all fonts were loaded
-                    console.log(error.message);
-                    console.log(error.notLoadedFonts);
-                } else {
-                    // All fonts were loaded
-                    console.log("all fonts were loaded");
-					dibujaejemplo();
-                }
-            
-			
-			}
-        }, 3000);
-		fontLoader.loadFonts();
-function dibujaejemplo(){
 Components.create('Window',{
 title: "WBS Eventos",	
-state:'active',	
-height:850, 
-width:1320,
-items:[{
-		type: 'ToolBar',
-		id: 'ChartProyectoWindowsToolBar',
-		region: 'top',
-		items: [
-			{
-				type: 'Button',
-				id : 'VerData',
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-tree',
-					color:'#000099',
-					position:'left',
-				},
-				tooltip:'RO_LEFT',
-				listeners: {
-					click: function() {
-						Components.getComponentById("Okno").cambiarOrientacion("left")
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'VerData',
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa-tree',
-					color:'yellow',
-					position:'left',
-				},
-				tooltip:'RO_TOP',
-				listeners: {
-					click: function() {
-						Components.getComponentById("Okno").cambiarOrientacion("top")
-					}
-				}
-			},
-			{
-				type: 'Button',
-				id : 'exchange',
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa fa-exchange',
-					color:'black',
-					position:'left',
-				},
-				tooltip:'PC_Cambiar_orientacion',
-				listeners: {
-					click: function() {							
-							if (Components.getComponentById("Okno").config.orientation == "top")
-							Components.getComponentById("Okno").cambiarOrientacion("left");
-							else if (Components.getComponentById("Okno").config.orientation == "left")
-							Components.getComponentById("Okno").cambiarOrientacion("top");
-							
-					}
-				}
-			},
-			]
-	},
+state:'active',
+//x:50,
+//y:50,
+height:700, 
+width:1000,
+items:[
 	{
 	 type: 'SvgContainer', 
 	 region: 'center',
@@ -174,28 +88,27 @@ items:[{
 		{
 			type: 'WBSTree',						
 			id:'Okno',
-			orientation: "left",
 			plugins:{ svgToolTip:{
 						type: 'svgToolTip',
 						orientacion:'abajo',
-						parentType:'WBSTree',
+						parentType: 'WBSTree',
 			}},
 			items:[
 				{	
 					 type: 'WBSNode', 
 					 id:0,
 					 idp:null,
-					 Descripcion:'Padre',
+					 Descripcion:'Nodo Padre',
 					 tipoObjeto:'Cabecera',
 					 childsId:[1,2,3]
-	
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:1,
 					 idp:0,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'The reason why the "viewable" word is specified, is because if the elements content is taller than the actual height of the element, this property will only return the height that is visible (See More Examples).Note: To understand this property, you must understand the CSS Box Model.Tip: This property is often used together with the clientWidth property.Tip: Use the offsetHeight and offsetWidth properties to return the viewable height and width of an element, including padding, border and scrollbar.Tip: To add scrollbars to an element, use the CSS overflow property.This property is read-only.',
+					 Descripcion:'Listener:show',
+					 childsId:[9,10],
 				},
 				{	
 					 type: 'WBSNode', 
@@ -209,70 +122,141 @@ items:[{
 					 id:3,
 					 idp:0,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:maximize,minimize',
-					 childsId:[4,5,6,11],
+					 Descripcion:'Listener: The best way to get an idea of what could be accomplished by using this component is to download the sources and play with the sample included. The API reference below could give you a more precise idea of what could be done. But, as a briefing, features include:',
+					 childsId:[4,5,6],
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:4,
 					 idp:3,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'ola k ase',
-
+					 Descripcion:'Listener:select',
+					 childsId:[7,8,11,12,13,14,15,16,17,18,19,20],
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:5,
 					 idp:3,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:deselect,hola soy german',
-					 childsId:[9,10],
-
+					 Descripcion:'Listener:deselect',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:6,
 					 idp:3,
 					 tipoObjeto:'Tarea',
-					 childsId:[7,8],
-					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+					 Descripcion:'This article presents a JavaScript component which renders a tree on the screen using VML (Vector Markup Language) in Internet Explorer 6+ or the canvas element in Firefox 1.5+.There are plenty of JavaScript trees out there, and most of them have a better cross-browser compatibility than this, are faster and better optimized. The goal of this code is to present a client-side implementation of the Walkers layout algorithm (see References), leaving off code optimizations. In short, the component has born after the algorithm, as I think that a living sample would be better than an abstract source-code level implementation.'
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:7,
-					 idp:6,
+					 idp:4,
+					 bolita:true,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:8,
-					 idp:6,
+					 idp:4,
+					 bolita:true,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+					 Descripcion:'Listener:show',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:9,
-					 idp:5,
+					 idp:1,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+					 Descripcion:'Listener:show',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:10,
-					 idp:5,
+					 idp:1,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+					 Descripcion:'Listener:show',
 				},
 				{	
 					 type: 'WBSNode', 
 					 id:11,
-					 idp:3,
+					 idp:4,
+					 bolita:true,
 					 tipoObjeto:'Tarea',
-					 Descripcion:'Listener:null  Xmlge nerado = Com pone nts.getCompo nentByI d(Okno).p repar   eForSave(XML); download( WBSTree. xml,Xmlg ener ado); Listene',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
 				},
-				
+				{	
+					 type: 'WBSNode', 
+					 id:12,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:13,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:14,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:15,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:16,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:17,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:18,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:19,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:20,
+					 idp:4,
+					 bolita:true,
+					 tipoObjeto:'Tarea',
+					 Descripcion:'Una Estructura de Descomposición del Trabajo o EDT, también conocida por su nombre en inglés Work Breakdown Structure o WBS.',
+				},
 			]
 	    }
 	  ]
@@ -280,7 +264,7 @@ items:[{
 	}
   ]      
 }).show();
-}
+Components.getComponentById('Okno').drawTree();
 });  
 </script>	
 </head>
