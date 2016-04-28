@@ -197,8 +197,8 @@ Clipboard.prototype.exeCutTaskNode=function(){
 			if(idx!=-1){
 				delete PadreIni.childs[idx];
 				delete PadreIni.chilsDraw[idx];
-				PadreIni.screenGrid.svg.remove(PadreIni.ChildLines[idx]);
-				PadreIni.screenGrid.svg.remove(PadreIni.ChildArrow[idx]);
+				PadreIni.screenGrid.svg.remove(PadreIni.ChildLines[PadreIni.childsId[idx]]);
+				PadreIni.screenGrid.svg.remove(PadreIni.ChildArrow[PadreIni.childsId[idx]]);
 				delete PadreIni.ChildLines[idx];
 				delete PadreIni.ChildArrow[idx];
 				PadreIni.childsId.splice(idx, 1);
@@ -210,7 +210,9 @@ Clipboard.prototype.exeCutTaskNode=function(){
 			this.giftObject.idp = PadreFin.id;
 			this.giftObject.Padre = PadreFin;
 			PadreFin.Status =  "Maximizado";
-			
+			PadreFin.newChild=true;
+			PadreFin.ControlBox.Box.setAttribute("visibility", "visible");
+			PadreFin.ControlBox.Simbolo.setAttribute("visibility", "visible");	
 			if(this.tree.nodoSeleccionado)		
 				PadreFin.desSeleccionar();		
 }

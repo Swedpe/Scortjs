@@ -296,6 +296,7 @@ Components.WBSTree.prototype.dibujarCajasSVG = function() {
 			this.nodos[nodoid].draw();	
 		}
 	}
+
 	//++++++++++++++++++++++++++++++++++++++++++++
 			var Ytime = new Date().getTime();
 			console.log('dibujar textCajas');
@@ -367,7 +368,21 @@ el paso mas pesado es la creacion de los componentes DIV del DOM y esta controla
 4) repocicionamiento de los nodos.
 - si el arbol se va dibujar por primera vez, se crearan los elementos del DOM lo cual es lento.
 */	
-var $this = this;
+	var $this = this;
+	var indices = Object.keys(this.nodos)
+	var totalIndices = indices.length;
+	var contador = 0;
+	/*this.calcTree();
+	this.crearGruposSVG();
+	this.crearCajasSVG();
+    this.dibujarCajasSVG();*/
+	//dibuja_Paso0(finishtwo);
+	if($this.Dibujado==true){
+		dibuja_Paso0(finishtwo);
+	}else{
+		//this.aplicarTemplate();
+		aplicarTemplateX();
+	}
 function prepareDOM(callbackFunction){
 	if($this.Dibujado==true){
 		$this.LimpiarCalculosPrevios();	
@@ -378,9 +393,7 @@ function prepareDOM(callbackFunction){
 	}
 }
 //preparar para funcion mas pesada, hacerla en modo animacion ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	var indices = Object.keys(this.nodos)
-	var totalIndices = indices.length;
-	var contador = 0;
+
 function aplicarTemplateX() {
   var step = function() {
      if(contador >=  totalIndices) {
@@ -442,7 +455,7 @@ function dibuja_Paso5(partialResult, callbackFunction) {
 function finishtwo(){
  $this.listeners.onDrawTree(this,100);
 	if($this.nodoSeleccionado!=-1){
-		var tempN = this.nodoSeleccionado;
+		var tempN = $this.nodoSeleccionado;
 		tempN.desSeleccionar();
 		tempN.seleccionar();
 	}
@@ -458,17 +471,7 @@ $this.Dibujado = true;
 $this.statusdiv?$this.listeners.onDrawTree(this,100):false;
 $this.resizeBody();
 }	
-	/*this.calcTree();
-	this.crearGruposSVG();
-	this.crearCajasSVG();
-    this.dibujarCajasSVG();*/
-	//dibuja_Paso0(finishtwo);
-	if($this.Dibujado==true){
-		dibuja_Paso0(finishtwo);
-	}else{
-		//this.aplicarTemplate();
-		aplicarTemplateX();
-	}
+	
 
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

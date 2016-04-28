@@ -188,11 +188,11 @@ Components.create('Window',{
 				items:[
 					{	
 						 type: 'WBSNode', 
-						 id:99,
+						 id:0,
 						 idp:null,
 						 Descripcion:'Nodo 0 Padre',
 						 tipoObjeto:'Cabecera',
-						 childsId:[991],
+						 childsId:[1,2],
 						 Background:"#CC6600",
 						 listeners: {
 							onaddchild: function(obj){
@@ -203,10 +203,11 @@ Components.create('Window',{
 					},
 					{	
 						 type: 'WBSNode', 
-						 id:991,
-						 idp:99,
+						 id:1,
+						 idp:0,
 						 tipoObjeto:'Tarea',
 						 Descripcion:'Listener: show',
+						 bolita:true,
 						 listeners: {
 							onaddbrother: function(obj,dir){								       
 								  alert("hermano "+((dir==0)?"derecha":"izquierda"));
@@ -217,61 +218,11 @@ Components.create('Window',{
 					},
 					{	
 						 type: 'WBSNode', 
-						 id:0,
-						 idp:null,
-						 Descripcion:'Nodo 0 Padre',
-						 tipoObjeto:'Cabecera',
-						 childsId:[1,2,3]
-					},
-					{	
-						 type: 'WBSNode', 
-						 id:1,
-						 idp:0,
-						 tipoObjeto:'Tarea',
-						 Descripcion:'Listener:show'
-						
-						
-					},
-					{	
-						 type: 'WBSNode', 
 						 id:2,
 						 idp:0,
-						 tipoObjeto:'Tarea',
-						 Descripcion:'Listener:hide',
-						 
-					},
-					{	
-						 type: 'WBSNode', 
-						 id:3,
-						 idp:0,
-						 tipoObjeto:'Tarea',
-						 Descripcion:'Listener:maximize,minimize',
-						 childsId:[4,5,6],
-						  
-					},
-					{	
-						 type: 'WBSNode', 
-						 id:4,
-						 idp:3,
-						 tipoObjeto:'Tarea',
-						 Descripcion:'Listener:select',
-						 
-					},
-					{	
-						 type: 'WBSNode', 
-						 id:5,
-						 idp:3,
-						 tipoObjeto:'Tarea',
-						 Descripcion:'Listener:deselect',
-						
-					},
-					{	
-						 type: 'WBSNode', 
-						 id:6,
-						 idp:3,
-						 tipoObjeto:'Tarea',
-						 Descripcion:'Listener:null',
-						 Background:'#669900'
+						 Descripcion:'Nodo 0 Padre',
+						 tipoObjeto:'Cabecera',
+						 bolita:true
 					}
 				]
 		    }

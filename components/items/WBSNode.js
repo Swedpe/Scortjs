@@ -81,7 +81,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
                 this.config[i] = dataObj[i];
         }
     }
-	
+		this.newChild = false; 							// Nuevo nodo hijo fuerza  hacer drawChildLineas          
 		this.id=this.config.id;							//Id de nodo
 		this.idp=this.config.idp;						//Id del Nodo Padre
 		this.datos = this.config.datos;					//Texto que se mostrara en en nodo
@@ -316,6 +316,11 @@ if(this.TextCajita==0){		//TextCajita = 0 cuando es la primera pasada,
 Components.WBSNode.prototype.draw = function(){	
 if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible){
 	if(this.tipoObjeto!='WBSPARENT'){
+		if(this.newChild)
+		{
+			this.DrawChildLines();
+			this.newChild=false;
+		}
 		if(this.TextCajita.dibujado==false){		//TextCajita = 0 cuando es la primera pasada, 
 			//this.createTexCajita();
 			this.TextCajita.draw();						//dibujar la cajita o bolita
@@ -397,6 +402,9 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible){
 				 console.log('fixline'+this.id);
 				this.fixChildLine();
 			}
+			else if(this.bolita)
+				this.fixChildLine();
+			
 		} 
 						
 						/*if(this.id!=-1){
@@ -633,6 +641,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 	}
 }
 //---------------------------------------------------------------------------------------------------------------------
+//Dibujo de las Lineas
 Components.WBSNode.prototype.DrawChildLines = function(){
 if(this.childsId.length!=0){
 if(this.Status=='Maximizado'&&!this.tree.nodos[this.childsId[0]].fakeChild){
@@ -952,8 +961,10 @@ if(nodo==null){
 		this.ControlBox.Box.setAttribute("visibility", "visible");
 		this.ControlBox.Simbolo.setAttribute("visibility", "visible");	
 		this.listeners.onaddchild(this);
+		element.aplicarTemplate();
+		this.newChild=true;
 		this.tree.drawTree();
-		this.DrawChildLines();
+		//this.DrawChildLines();
 	return true;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -985,9 +996,11 @@ if(nodo==null){
 	nodo.tipoObjeto='Tarea';
 	childsId:[this.id];
 }	
+		this.tree.nodos[this.idp].newChild=true;
 		this.Padre.ChildLines[this.id].remove();
 		delete this.Padre.ChildLines[this.id];
-		this.Padre.ChildArrow[this.id].remove();
+		if(this.Padre.ChildArrow[this.id])
+			this.Padre.ChildArrow[this.id].remove();
 		delete this.Padre.ChildArrow[this.id];
 		if(!nodo.viewFormat)
 			nodo["viewFormat"]=this.tree.config.viewFormat;
@@ -1005,8 +1018,9 @@ if(nodo==null){
 		this.Padre = element;
 		this.tree.items[nodo.id] = nodo;
         this.tree.nodos[element.id] = element;
+        element.aplicarTemplate();
 		this.tree.drawTree();
-		this.Padre.Padre.DrawChildLines();
+		//this.Padre.Padre.DrawChildLines();
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.AgregaHermano = function(Lado,nodo){
@@ -1053,8 +1067,10 @@ if(typeof(nodo.type)=='undefined'){
         this.tree.nodos[element.id] = element;
 		this.tree.nodos[this.idp].childs[nodo.id]=this.tree.nodos[nodo.id]; 		
 		this.listeners.onaddbrother(this,Lado);
+		this.tree.nodos[this.idp].newChild=true;
+		element.aplicarTemplate();
 		this.tree.drawTree();
-		this.Padre.DrawChildLines();
+		//this.Padre.DrawChildLines();
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.Edicion = function(NewData){
@@ -1161,8 +1177,18 @@ Components.WBSNode.prototype.desSeleccionarClipBoard = function(/*Recursivo*/){
 Components.WBSNode.prototype.createCopyTask = function(Padre){
 	console.log("createCopyTask");
 	console.log(Padre)
+	if(Padre.childsId.length==0)
+	{
+		Padre.ControlBox.Box.setAttribute("visibility", "visible");
+		Padre.ControlBox.Simbolo.setAttribute("visibility", "visible");	
+	}
+	Padre.newChild=true;
+	
 	var newNodeData ={};								
-	jQuery.extend(true,newNodeData,this.tree.items[this.id]);	
+	jQuery.extend(true,newNodeData,this.tree.items[this.id]);
+	newNodeData.childsId=[];
+	jQuery.extend(true,newNodeData.childsId,this.tree.nodos[this.id].childsId);
+	//newNodeData.childsId=this.tree.nodos[this.id].childsId;	
 	newNodeData.id=this.tree.nodos.length;
 	newNodeData.Descripcion='Copia '+this.Descripcion;	
 	newNodeData.idp= Padre.id;
@@ -1171,7 +1197,7 @@ Components.WBSNode.prototype.createCopyTask = function(Padre){
 	var CopyTask = Components.create(newNodeData.type, newNodeData);
 	this.tree.items[newNodeData.id] = newNodeData;
     this.tree.nodos[CopyTask.id] = CopyTask;
-	
+	CopyTask.aplicarTemplate();
 	for(var indice in newNodeData.childsId)
 	{
 		if(this.tree.nodos[newNodeData.childsId[indice]] != undefined){
@@ -1181,6 +1207,7 @@ Components.WBSNode.prototype.createCopyTask = function(Padre){
 		}
 	}
 	this.listeners.oncreateCopyTask(CopyTask);
+	
 	return CopyTask;
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
