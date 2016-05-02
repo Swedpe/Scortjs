@@ -81,6 +81,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
                 this.config[i] = dataObj[i];
         }
     }
+		this.Cambio_B_a_C = false;						// se actiba cuando hay un cambio de bolita a cuadrado
 		this.newChild = false; 							// Nuevo nodo hijo fuerza  hacer drawChildLineas          
 		this.id=this.config.id;							//Id de nodo
 		this.idp=this.config.idp;						//Id del Nodo Padre
@@ -233,9 +234,9 @@ Components.WBSNode.prototype.aplicarTemplate = function() {
 			}else{
 				this.divTexto.show();
 			}
-			var alto = (this.divTexto[0].offsetHeight);
+			this.Alto = (this.divTexto[0].offsetHeight);
 			var ancho = (this.divTexto[0].clientWidth);
-			this.Alto=(alto>this.Alto?alto:this.Alto);
+			//this.Alto=(alto>this.Alto?alto:this.Alto);
 			// this.AnchoCajita = (this.dibujarActividades?250:ancho);
 			this.AnchoCajita = ancho;
 			
@@ -314,7 +315,7 @@ if(this.TextCajita==0){		//TextCajita = 0 cuando es la primera pasada,
 }	
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.draw = function(){	
-if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible){
+if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.nodos[this.idp].visible==true){
 	if(this.tipoObjeto!='WBSPARENT'){
 		if(this.newChild)
 		{
@@ -386,26 +387,34 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible){
 	}else{
 		//si las coordenadas X y Y son iguales no hacer nada, en caso contrario mover la caja a el nuevo lugar que corresponda
 		if ((this.TextCajita.posx==this.PosCajitaX)&&(this.TextCajita.posy==this.BasePosY)){
+			//console.log("Entro y no arregla el texto "+ this.id);
+			if(!this.bolita)
+				this.TextCajita.Move({x:this.PosCajitaX,y:this.BasePosY});
 		//1) no mover porque la caja esta en el mismo lugar calculado anteriormente
 		}else{
 		 //1)mover la caja a la poscicion correcta.
 			this.TextCajita.Move({x:this.PosCajitaX,y:this.BasePosY});
 		}
 		//la estructura de una flecha depende del atributo xDiff de la linea siempre y cuando el ancho de la caja no haya sido alterado
-		
+		if(this.childsId.length!=0 && this.Status=="minimizado")
+		{
+			this.fixChildLineControlBox();
+		}
 		 if(this.Padre.id!=-1){
 			var xDif = parseInt($(this.Padre.ChildLines[this.id]).attr('xdiff'));
 			var xDiff2 = parseInt(this.PosCajitaX-this.Padre.PosCajitaX);
 			var yDif = parseInt($(this.Padre.ChildLines[this.id]).attr('ydiff'));
 			var yDiff2 = parseInt(this.BasePosY-this.Padre.BasePosY);
 			if(Math.abs(xDif)!=Math.abs(xDiff2)||Math.abs(yDif)!=Math.abs(yDiff2)){
-				 console.log('fixline'+this.id);
+				//console.log('fixline'+this.id);
 				this.fixChildLine();
 			}
-			else if(this.bolita)
-				this.fixChildLine();
-			
-		} 
+			else if(this.Cambio_B_a_C){
+					this.Cambio_B_a_C=false;
+					this.fixChildLine();
+				}
+		}
+		
 						
 						/*if(this.id!=-1){
 							var xDif = parseInt($(this.ChildLines[this.id]).attr('xdiff'));
@@ -449,6 +458,9 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible){
 		// }
 	}
 	}
+	else{
+		this.visible = false;
+		}
 }
 //---------------------------------------------------------------------------------------------------------------------
 /*Components.WBSNode.prototype.fixChildLine = function(nodoHijo){
@@ -545,11 +557,54 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible){
 		}
 	}
 }*/
+//-----------------------------------------------------------------------------------------------------------------------------------
+Components.WBSNode.prototype.fixChildLineControlBox = function()
+{
+	var posX;
+	if(this.Status=="Maximizado")
+		posX=-2.5;
+	else
+		posX=-4;
+
+	if(this.tree.config.orientation=="top"){
+		if(this.bolita){
+			this.ControlBox.Box.setAttribute('x',-5);
+			this.ControlBox.Box.setAttribute('y',5);
+			this.ControlBox.Simbolo.setAttribute('x',posX);
+			this.ControlBox.Simbolo.setAttribute('y',13);
+		}else{
+			if(this.ControlBox){
+			posX=posX+this.AnchoCajita/2;
+			this.ControlBox.Box.setAttribute('x',this.AnchoCajita/2-5);
+			this.ControlBox.Box.setAttribute('y',this.Alto);
+			this.ControlBox.Simbolo.setAttribute('x',posX);
+			this.ControlBox.Simbolo.setAttribute('y',this.Alto+8);
+			}
+		}
+	}
+	else if(this.tree.config.orientation=="left"){
+		if(this.bolita){
+			this.ControlBox.Box.setAttribute('x',5);
+			this.ControlBox.Box.setAttribute('y',-5);
+			this.ControlBox.Simbolo.setAttribute('x',posX+10);
+			this.ControlBox.Simbolo.setAttribute('y',13-10);
+		}else{
+			if(this.ControlBox){
+			posX=posX+this.AnchoCajita+5;
+			this.ControlBox.Box.setAttribute('x',this.AnchoCajita);
+			this.ControlBox.Box.setAttribute('y',this.Alto/2-5);
+			this.ControlBox.Simbolo.setAttribute('x',posX);
+			this.ControlBox.Simbolo.setAttribute('y',this.Alto/2+3);
+			}
+		}
+	}
+}
 //---------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.fixChildLine = function(){
 	//ajustar los parametros de la linea cuando hay minimizacion o maximizacion
 	//una childline esta definida por 4 puntos.
 		var aumento=this.bolita?15:10;
+		console.log(this.id);
 	if(this.tree.config.orientation=="top"){
 		var point1 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita/2, this.Padre.BasePosY-this.BasePosY+this.Padre.Alto+aumento];
 		var point2 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita/2, -this.tree.config.iLevelSeparation/2];
@@ -574,12 +629,14 @@ Components.WBSNode.prototype.fixChildLine = function(){
 			// console.log(this.Padre.ChildArrow);
 			$(this.Padre.ChildArrow[this.id]).attr('points',cord);
 		}
+		this.Padre.fixChildLineControlBox();
 		//ahora se procede a analizar el controlBox.
-		var posX;
+		/*var posX;
 		if(this.Padre.Status=="Maximizado")
 			posX=-2.5;
 		else
 			posX=-4;
+
 		if(this.Padre.bolita){
 			this.Padre.ControlBox.Box.setAttribute('x',-5);
 			this.Padre.ControlBox.Box.setAttribute('y',5);
@@ -593,7 +650,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 			this.Padre.ControlBox.Simbolo.setAttribute('x',posX);
 			this.Padre.ControlBox.Simbolo.setAttribute('y',this.Padre.Alto+8);
 			}
-		}
+		}*/
 	}else if(this.tree.config.orientation=="left"){
 		var point1 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita+aumento, this.Padre.BasePosY-this.BasePosY+this.Padre.Alto/2];
 		var point2 = [-this.tree.config.iLevelSeparation/2, this.Padre.BasePosY-this.BasePosY+this.Padre.Alto/2];
@@ -618,8 +675,10 @@ Components.WBSNode.prototype.fixChildLine = function(){
 			// console.log(this.Padre.ChildArrow);
 			$(this.Padre.ChildArrow[this.id]).attr('points',cord);
 		}
+		this.Padre.fixChildLineControlBox();
+		
 		//ahora se procede a analizar el controlBox.
-		var posX;
+		/*var posX;
 		if(this.Padre.Status=="Maximizado")
 			posX=-2.5;
 		else
@@ -637,7 +696,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 			this.Padre.ControlBox.Simbolo.setAttribute('x',posX);
 			this.Padre.ControlBox.Simbolo.setAttribute('y',this.Padre.Alto/2+3);
 			}
-		}
+		}*/
 	}
 }
 //---------------------------------------------------------------------------------------------------------------------
@@ -772,7 +831,8 @@ Components.WBSNode.prototype.calcActividades = function(){
 Components.WBSNode.prototype.drawActividades = function(){
 			for(var indice in this.actividades){
 				this.actividades[indice].grupo = this.grupo;
-				this.actividades[indice].calcActividad();						//aca se hace el ultimo calculo con datos finales
+				this.actividades[indice].indice=indice;
+				this.actividades[indice].calcActividad();			//aca se hace el ultimo calculo con datos finales
 				this.actividades[indice].draw();
 			}
 		// }
@@ -1223,8 +1283,10 @@ Components.WBSNode.prototype.bolizando = function(){
 		this.divTexto?this.divTexto.hide():{};
 		this.bolita=true;
 		this.aplicarTemplate();
-		if(this.TextCajita!=0)
+		if(this.TextCajita!=0){
 			this.TextCajita.changeShape('bolita');
+			this.Cambio_B_a_C=true;
+		}
 		//this.TextCajita.Caja.remove();
 		//this.TextCajita.Caja=this.TextCajita.svg.circle(this.TextCajita.grupo,this.TextCajita.posx, this.TextCajita.posy, 3,  {fill: this.stroke, stroke: this.stroke, strokeWidth: 3,class_: 'tarea'+this.id });
 		
@@ -1244,15 +1306,17 @@ Components.WBSNode.prototype.cuadrando = function(){
 	for (var indice in this.childsId){
 			this.tree.nodos[this.childsId[indice]].cuadrando();
 	}
-	if (this.bolita){
-		// console.log("cuadrando: "+this.id);
+	if (this.bolita && this.visible){
+		console.log("cuadrando: "+this.id);
 		this.config.iSiblingSeparation=40;
 		this.bolita=false;
 		//this.Alto =50;
 		if(!this.fakeChild)				//porque aca se crean las actividades del padre de nuevo
 			this.aplicarTemplate();
-		if(this.TextCajita!=0)
+		if(this.TextCajita!=0){
 			this.TextCajita.changeShape('cuadrado');
+			this.Cambio_B_a_C=true;
+		}
 		if(this.actividadesId.length!=0){
 			this.ControlBox.Box.setAttribute("visibility", "visible");
 			this.ControlBox.Simbolo.setAttribute("visibility", "visible");	
@@ -1275,6 +1339,7 @@ Components.WBSNode.prototype.ChangeStatus = function(){
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.hideNodo = function(){
+	if(this.visible){
 		this.visible=false;
 		if(this.TextCajita!=0)
 			this.TextCajita.Caja.setAttribute("visibility",'hidden');
@@ -1291,15 +1356,21 @@ Components.WBSNode.prototype.hideNodo = function(){
 		for (var indice in this.childsId){
 			this.tree.nodos[this.childsId[indice]].hideNodo();
 		}
-	// }
+	 }
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.showNodo = function(){
 		this.visible=true;
-
 		if(typeof(this.grupo)!='undefined'){
 			if(this.TextCajita!=0)
+			{
+				if(typeof(this.TextCajita.Caja)=="undefined")
+				{
+					this.draw();						//dibujar la cajita o bolita
+					this.Padre.DrawChildLines();
+				}
 				this.TextCajita.Caja.setAttribute("visibility",'visible');
+			}
 			// this.grupo.setAttribute("visibility", "visible");		
 			this.grupo.setAttribute("display", "block");		
 		}

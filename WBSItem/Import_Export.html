@@ -341,6 +341,25 @@ Components.create('Window',{
 			},
 			{
 				type: 'Button',
+				id : 'LeerProject',        
+				shape:'box',
+				scale:'minier',				
+				icon:{
+					type:'fontawesome',
+					class:'fa-file-powerpoint-o',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'Leer Project',
+				listeners: {
+				//falta  imprima en la pantalla
+					click: function() {
+						LeerProject();
+				}
+				}
+			},
+			{
+				type: 'Button',
 				id : 'pdf',        
 				shape:'box',
 				scale:'minier',
@@ -361,7 +380,67 @@ Components.create('Window',{
 	}]
 }).show();	
 	 
-});  
+});
+function LeerProject(){
+$.ajax({
+	type: "GET",
+	url: "importExport/ProjectFile.xml",
+	dataType: "xml",
+	success: function(xml) {
+		var data=new Array();
+	console.log("Lectura");
+			var data=new Array();
+			var ou = new Array();
+	$(xml).find("Tasks").each(function () {
+		//indice=$(this).find("UID").text();
+		//data[indice]=new Array();
+		//data[indice].id= parseInt($(this).find("UID").text());
+		/*data[indice].type=$(this).find("type").text();
+		data[indice].Descripcion=$(this).find("descripcion").text();
+		data[indice].background=$(this).find("background").text();
+		data[indice].stroke=$(this).find("stroke").text();
+		data[indice].idp=$(this).find("idp").text();
+		data[indice].childsId=new Array();*/
+		console.log('One By one');
+		TareasXML = this.getElementsByTagName('Task');
+			for (Tareas in TareasXML){
+			try {
+				if(typeof(TareasXML[Tareas])=='object'){
+					TareaId = parseInt(TareasXML[Tareas].getElementsByTagName('ID')[0].innerHTML);
+					data[TareaId] = {};
+					data[TareaId].type = 'WBSNode';
+					data[TareaId].tipoObjeto='Tarea';
+					data[TareaId].id = TareaId;
+					data[TareaId].datos = {};
+					data[TareaId].datos.Descripcion = TareasXML[Tareas].getElementsByTagName('Name')[0].innerHTML;
+					data[TareaId].datos.Cost = TareasXML[Tareas].getElementsByTagName('Cost')[0].innerHTML;	
+					data[TareaId].datos.OutlineNumber = TareasXML[Tareas].getElementsByTagName('OutlineNumber')[0].innerHTML;	
+					data[TareaId].childsId = [];
+					//********Extraer el padre ID
+					ou[data[TareaId].datos.OutlineNumber] = TareaId;
+					var TreeIndex = data[TareaId].datos.OutlineNumber.split(".");
+					if(TreeIndex.length>1){
+						var IdPadreT = TreeIndex.splice(0,TreeIndex.length-1);
+						data[TareaId].idp = ou[IdPadreT.join('.')];
+					}else{
+						data[TareaId].idp = 0;
+					}
+					data[data[TareaId].idp].childsId.push(TareaId);
+					//++++++++++++Leer Fechas
+					data[TareaId].datos.Start = TareasXML[Tareas].getElementsByTagName('Start')[0].innerHTML;	
+					data[TareaId].datos.End = TareasXML[Tareas].getElementsByTagName('Finish')[0].innerHTML;	
+					}
+			}
+			catch(err) {
+				console.log(err);
+			}		
+			}
+			console.log(data);
+			download('texto.json',JSON.stringify(data, undefined, 4));
+	  });
+	}
+  });
+}  
 </script>	
 </head>
 

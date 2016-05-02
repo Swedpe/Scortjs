@@ -79,7 +79,7 @@ Components.WBSActividad.prototype.init = function(dataObj) {
 	this.grupo = dataObj.grupo;
 	this.calculado = false;
 	// this.container = this.config.container;
-	
+	this.indice=0;
 	this.id=this.node.id+"-"+this.id;
 };
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -139,10 +139,12 @@ Components.WBSActividad.prototype.drawLines=function(){
 	
 	}else if(node.tree.config.orientation=="left"){
 		var separacion = this.node.tree.config.iLevelSeparation/2;
-		var partidaX = node.PosCajitaX+node.AnchoCajita;
-		var partidaY = node.BasePosY+node.Alto/2;
-		this.line = this.screenGrid.svg.polyline(this.grupo,[[partidaX,partidaY],[partidaX+separacion,partidaY],[partidaX+separacion,this.basePosY+this.alto/2],[this.posCajitaX,this.basePosY+this.alto/2]],
-		{fill: 'none', stroke: '#0000FF', strokeWidth: 1,class_: 'actividad'+this.id});
+		var partidaX = node.PosCajitaX - node.actividades[this.indice].posCajitaX/2 + node.AnchoCajita;
+		var partidaY = node.BasePosY - node.actividades[this.indice].basePosY + node.Alto;
+		if(typeof(this.line)=='undefined'){
+				this.line = this.screenGrid.svg.polyline(this.grupo,[[partidaX-165,32],[partidaX+separacion-175,32],[partidaX+separacion-175,node.actividades[this.indice].basePosY+this.alto/2],[this.posCajitaX/2-175,node.actividades[this.indice].basePosY+this.alto/2]],
+				{fill: 'none', stroke: '#0000FF', strokeWidth: 1,class_: 'actividad'+this.id});
+			}
 	}
 };
 //-----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -274,7 +274,7 @@ Components.WBSTree.prototype.crearGruposSVG = function() {
 //--------------------------------------------------------------------------------------------------------
 Components.WBSTree.prototype.crearCajasSVG = function() { 
 	//++++++++++++++++++++++++++++++++++++++++++++
-		var Xtime = new Date().getTime();
+		//var Xtime = new Date().getTime();
 		//++++++++++++++++++++++++++++++++++++++++++++
 	for (nodoid in this.nodos){
 		if(this.nodos[nodoid].config.tipoObjeto!="WBSPARENT"){
@@ -282,14 +282,14 @@ Components.WBSTree.prototype.crearCajasSVG = function() {
 		}
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++
-			var Ytime = new Date().getTime();
-			console.log('Crear textCajas');
-			console.log(Ytime-Xtime);
+			//var Ytime = new Date().getTime();
+			//console.log('Crear textCajas');
+			//console.log(Ytime-Xtime);
 	//+++++++++++++++++++++++++++++++++++++++++++++	
 }
 Components.WBSTree.prototype.dibujarCajasSVG = function() { 
 	//++++++++++++++++++++++++++++++++++++++++++++
-		var Xtime = new Date().getTime();
+		//ar Xtime = new Date().getTime();
 		//++++++++++++++++++++++++++++++++++++++++++++
 	for (nodoid in this.nodos){
 		if(this.nodos[nodoid].config.tipoObjeto!="WBSPARENT"){
@@ -298,9 +298,9 @@ Components.WBSTree.prototype.dibujarCajasSVG = function() {
 	}
 
 	//++++++++++++++++++++++++++++++++++++++++++++
-			var Ytime = new Date().getTime();
-			console.log('dibujar textCajas');
-			console.log(Ytime-Xtime);
+			//var Ytime = new Date().getTime();
+			//console.log('dibujar textCajas');
+			//console.log(Ytime-Xtime);
 	//+++++++++++++++++++++++++++++++++++++++++++++	
 }
 //--------------------------------------------------------------------------------------------------------
@@ -411,7 +411,7 @@ function aplicarTemplateX() {
 		contador++;
 	}
     }
-	 contador = contador +1;
+	 //contador = contador +1;
     requestAnimationFrame(step);
   }
   step();

@@ -178,6 +178,7 @@ actividadesTree=[
 					"descripcion": "Barrer",
 					"inicio":"fecha",
 					"fin":"fecha"},
+
 		];
 Components.create('Window',{
 	title: "WBS Eventos",		
@@ -795,6 +796,7 @@ Components.create('Window',{
 					 id:3,
 					 idp:1,
 					 tipoObjeto:'Tarea',
+					 Status:"minimizado",
 					 datos:{
 					 "name":"KRILIN",
 					 "title":"KRILIN",
@@ -824,10 +826,39 @@ Components.create('Window',{
 					 type: 'WBSNode', 
 					 id:5,
 					 idp:3,
+					  childsId:[6,7],
 					 tipoObjeto:'Tarea',
 					 datos:{
 					 "name":"KRILIN",
 					 "title":"KRILIN",
+					 "descripcion":"Boss: 2",
+					 "imagen": "images/krilin.jpg",
+					 },
+					 //Status : "minimizado",
+					 stroke:'purple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:6,
+					 idp:5,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"terminator",
+					 "title":"terminator",
+					 "descripcion":"Boss: 2",
+					 "imagen": "images/krilin.jpg",
+					 },
+					 //Status : "minimizado",
+					 stroke:'purple'
+				},
+				{	
+					 type: 'WBSNode', 
+					 id:7,
+					 idp:5,
+					 tipoObjeto:'Tarea',
+					 datos:{
+					 "name":"rambo",
+					 "title":"terminator",
 					 "descripcion":"Boss: 2",
 					 "imagen": "images/krilin.jpg",
 					 },
