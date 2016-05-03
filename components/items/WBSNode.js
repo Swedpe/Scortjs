@@ -34,6 +34,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
 		Seleccionado : false,
 		Status : "Maximizado",
 		visible: true,
+		salud:true,
 		TextCajita : 0,					//Aqui estara contenida la caja con su texto. que seran creadas con Draws
 		tipoObjeto : 'Tarea',
 		Background : '#FFFFFF',				//Color de fondo de cada nodo por defecto se usa el color blanco
@@ -111,7 +112,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
 		this.bolita = this.config.bolita;
 		this.screenGrid = this.config.screenGrid;
 		this.dibujado = false;
-		
+		this.salud=true;
 		this.PosCajitaX = this.config.PosCajitaX;	
 		this.AnchoCajita = this.config.AnchoCajita;
 		// this.BasePosX = this.config.BasePosX;			//posicion donde se comienza a dibujar
@@ -322,6 +323,11 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			this.DrawChildLines();
 			this.newChild=false;
 		}
+// Borrame luego-----------
+		if(this.id=="fake16"){
+		 		console.log("->"+this.BasePosY);
+		 	}
+//------------------------------		 	
 		if(this.TextCajita.dibujado==false){		//TextCajita = 0 cuando es la primera pasada, 
 			//this.createTexCajita();
 			this.TextCajita.draw();						//dibujar la cajita o bolita
@@ -386,6 +392,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 				// this.dibujado=true;
 	}else{
 		//si las coordenadas X y Y son iguales no hacer nada, en caso contrario mover la caja a el nuevo lugar que corresponda
+		
 		if ((this.TextCajita.posx==this.PosCajitaX)&&(this.TextCajita.posy==this.BasePosY)){
 			//console.log("Entro y no arregla el texto "+ this.id);
 			if(!this.bolita)
@@ -393,7 +400,9 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 		//1) no mover porque la caja esta en el mismo lugar calculado anteriormente
 		}else{
 		 //1)mover la caja a la poscicion correcta.
-			this.TextCajita.Move({x:this.PosCajitaX,y:this.BasePosY});
+		 	
+				this.TextCajita.Move({x:this.PosCajitaX,y:this.BasePosY});
+		 	
 		}
 		//la estructura de una flecha depende del atributo xDiff de la linea siempre y cuando el ancho de la caja no haya sido alterado
 		if(this.childsId.length!=0 && this.Status=="minimizado")
@@ -604,7 +613,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 	//ajustar los parametros de la linea cuando hay minimizacion o maximizacion
 	//una childline esta definida por 4 puntos.
 		var aumento=this.bolita?15:10;
-		console.log(this.id);
+		//console.log(this.id);
 	if(this.tree.config.orientation=="top"){
 		var point1 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita/2, this.Padre.BasePosY-this.BasePosY+this.Padre.Alto+aumento];
 		var point2 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita/2, -this.tree.config.iLevelSeparation/2];
@@ -1144,6 +1153,7 @@ Components.WBSNode.prototype.Edicion = function(NewData){
 		switch(i){
 			case 'Descripcion':
 				this.cambiarDescripcion(NewData[i]); 
+				this.tree.drawTree();
 				break;
 			case 'Background':
 				this.cambiarBackground(NewData[i]);
@@ -1153,7 +1163,7 @@ Components.WBSNode.prototype.Edicion = function(NewData){
 				break;
 		}
 	}
-	this.tree.drawTree();
+	
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.cambiarDescripcion = function(NewText){
@@ -1173,6 +1183,23 @@ newtext es el nuevo valor que se tomara en descripción
 		// this.AnchoCajita = this.TextCajita.varAncho;
 		// }
 	}
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Components.WBSNode.prototype.calcularSalud = function(NewText){
+/*Activa un calculo para calculo de salud,
+si salud es true, el nodo es azul
+si salud es false, el nodo es rojo y contagia a toda la cadena a partir de el hasta el nodo padre total.
+solo es aplicable a nodos sin hijos.
+*/
+if (this.childsId.length>0){
+this.salud = true;
+for(hijo in this.childsId){
+	if(this.tree.nodos[this.childsId[hijo]].salud==false){
+		this.salud = false;
+	}
+}
+
+}
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.cambiarBackground = function(NewBackground){
@@ -1331,11 +1358,13 @@ Components.WBSNode.prototype.ChangeStatus = function(){
 	var seleccionada = this.tree.nodoSeleccionado;
 	if (this.Status!="minimizado"){
 		this.Minimize();
-		if (seleccionada != -1)		
+		if (seleccionada != -1)		{
 			items[seleccionada.id].desSeleccionar();
+		}
 	}else
 		this.Maximize();
-		this.tree.drawTree();
+	this.tree.drawTree();
+	
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.hideNodo = function(){

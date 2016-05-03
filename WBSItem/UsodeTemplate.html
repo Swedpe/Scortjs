@@ -29,6 +29,7 @@
 <script src="../components/items/WBSActividad.js"></script>
 <script src="../components/items/WBSNode.js"></script>
 <script src="../components/items/WBSTree.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
 <script src="../components/items/FreeDivItem.js"></script>
 <script src="../components/items/ResizableGridItem.js"></script>
 <script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
@@ -172,19 +173,138 @@ actividadesTree=[
 		];
 
 Components.create('Window',{
-title: "WBS Eventos",	
-state:'active',	
-height:700, 
-width:1735,
-items:[
-	{
-		type: 'ToolBar',
-		id: 'ChartProyectoWindowsToolBar',
-		region: 'top',
-		items: [
+title: "WBS Eventos",		
+	width:1500,
+	height:650,
+	state:'active',
+	items:[
+		{
+			type: 'ToolBar',
+			id: 'ChartProyectoWindowsToolBar',
+			region: 'top',
+			items: [
+			{
+					type: 'Button',
+					id : 'PropBtn1',
+					shape:'box',
+					scale:'minier',
+					icon:{
+								type:'fontawesome',
+								class:'fa-pencil',
+								color:'#000099',
+								position:'left',
+					},
+					
+					tooltip:'PC_EditarNodo_00161',
+					listeners: {
+						click: function() {
+							//console.log(Components.getComponentById("Okno").nodoSeleccionado);
+							if(Components.getComponentById("Okno").nodoSeleccionado!=-1)
+							{
+								Components.getComponentById("windowEdicionNodos").show();
+								//Dar Formato para los datos de un FormContainer
+								var WinData = {
+												NodoId:Components.getComponentById("Okno").nodoSeleccionado.id,
+												Descripcion:Components.getComponentById("Okno").nodoSeleccionado.Descripcion,
+												Background:Components.getComponentById("Okno").nodoSeleccionado.Background,
+												stroke:Components.getComponentById("Okno").nodoSeleccionado.stroke,
+													};
+								//colocar los datos en el FormContainer
+								Components.getComponentById("formNodos").setValues(WinData);
+							}
+							else
+							{console.log("seleccione un nodo")}
+						}
+					}
+			},
 			{
 				type: 'Button',
-				id : 'bolita',
+				id : 'izquierdaBtn',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-left',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'PC_Agregar_Hermano_a_la_Izquierda_00359',
+				listeners: {
+					click: function() {							
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(1,0);
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'derechaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-right',
+					color:'#000099',
+					position:'left',
+				},
+				
+				tooltip:'PC_Agregar_Hermano_a_la_Derecha_00358',
+				listeners: {
+					click: function() {
+					   if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+							Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(0,0);
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'arribaBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-up',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'PC_Agregar_Nuevo_Padre_00357',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+								Components.getComponentById("Okno").nodoSeleccionado.AgregarPadre(null);
+							else
+								alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'abajoBtn',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-arrow-down',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'PC_Agregar_Hijo_00356',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+							Components.getComponentById("Okno").nodoSeleccionado.AddChild(null);
+						else
+							alert("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'izquierdaBtn',
 				shape:'box',
 				scale:'minier',
 				icon:{
@@ -198,7 +318,6 @@ items:[
 					click: function() {
 						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
 							Components.getComponentById("Okno").nodoSeleccionado.bolizando();
-							Components.getComponentById("Okno").calcTree();
 							Components.getComponentById("Okno").drawTree();
 						}else
 							console.log("Debe seleccionar un Nodo");
@@ -208,7 +327,7 @@ items:[
 			},
 			{
 				type: 'Button',
-				id : 'cuadrado',        
+				id : 'derechaBtn',        
 				shape:'box',
 				scale:'minier',
 				icon:{
@@ -222,7 +341,6 @@ items:[
 					click: function() {
 						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
 							Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
-							Components.getComponentById("Okno").calcTree();
 							Components.getComponentById("Okno").drawTree();
 						}else
 							console.log("Debe seleccionar un Nodo");
@@ -231,7 +349,7 @@ items:[
 			},
 			{
 				type: 'Button',
-				id : 'exchange',        
+				id : 'arribaBtn',        
 				shape:'box',
 				scale:'minier',
 				icon:{
@@ -247,12 +365,12 @@ items:[
 						if(seleccionado != -1){
 							if(seleccionado.bolita){
 								seleccionado.cuadrando();
-								//seleccionado.tree.calcTree();
+								Components.getComponentById("Okno").calcTree();
 								Components.getComponentById("Okno").drawTree();
 							}else{
 								seleccionado.bolizando();
-								//Components.getComponentById("Okno").calcTree();
-								seleccionado.tree.drawTree();
+								Components.getComponentById("Okno").calcTree();
+								Components.getComponentById("Okno").drawTree();
 								}
 						}else{
 							console.log("Debe seleccionar un Nodo");
@@ -260,8 +378,365 @@ items:[
 					}
 				}
 			},
+			{
+				type: 'Button',
+				id : 'nada1',
+				shape:'box',
+				scale:'minier',
+			},
+				{
+					type: 'Button',
+					id : 'PropBtn2',
+					shape:'box',
+					scale:'minier',
+					icon:{
+								type:'fontawesome',
+								class:'fa-pencil',
+								color:'#009900',
+								position:'left',
+					},
+					
+					tooltip:'PC_EditarActividad_00163',
+					listeners: {
+						click: function() {
+							//console.log(Components.getComponentById("Okno").actividadSeleccionada);
+							if(Components.getComponentById("Okno").actividadSeleccionada!=-1)
+							{
+								Components.getComponentById("windowEdicionActividades").show();
+								//Dar Formato para los datos de un FormContainer
+								var WinData = {
+												actividadId:Components.getComponentById("Okno").actividadSeleccionada.id,
+												descripcion:Components.getComponentById("Okno").actividadSeleccionada.descripcion,
+													};
+								//colocar los datos en el FormContainer
+								Components.getComponentById("formActividades").setValues(WinData);
+							}
+							else
+							{console.log("seleccione una actividad")}
+						}
+					}
+				},
+				{
+				type: 'Button',
+				id : 'cuadrado',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-eraser',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'eliminar actividad',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").actividadSeleccionada != -1){
+								Components.getComponentById("Okno").actividadSeleccionada.eliminar();
+						}else
+							console.log("Debe seleccionar un actividad");
+					}
+				}
+				},
+				{
+				type: 'Button',
+				id : 'cuadrado',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-plus-square-o',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'añadir actividad seleccionando el nodo',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+							Components.getComponentById("Okno").nodoSeleccionado.agregarActividad();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+				},
+			{
+				type: 'Button',
+				id : 'exp_activdades',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-list-ol',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'expandir actividades de subarbol',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							seleccionado.expandirActividades();
+							seleccionado.tree.drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exp_activdades',        
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-history',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'contraer actividades de subarbol',
+				listeners: {
+					click: function() {
+					var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+						if(seleccionado != -1){
+							seleccionado.contraerActividades();
+							seleccionado.tree.drawTree();
+						}else
+							console.log("Debe seleccionar un Nodo");
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'nada1',
+				shape:'box',
+				scale:'minier',
+			},
+				{
+				type: 'Button',
+				id : 'copyBtnWBS',    
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-files-o',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'Copiar',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Prepare("Copy");                               
+					}
+				}
+			},
+			{
+				type: 'Button',
+				 id : 'cutBtnWBS', 
+				 shape:'box',
+				 scale:'minier',
+				 
+				icon:{
+							type:'fontawesome',
+							class:'fa-cut',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Cortar_00349',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Prepare("Cortar");
+					}
+				}
+			},					
+			{
+				type: 'Button',
+				id : 'CancelCBtnWBS',  
+				shape:'box',
+				scale:'minier',
+				icon:{
+							type:'fontawesome',
+							class:'fa-times-circle',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Cancelar_Operaciones_00339',
+				listeners: {
+					click: function() {
+						Components.getComponentById('Okno').clipboard.Clear();
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'pasteBtnWBS',
+				shape:'box',
+				scale:'minier',
+				enabled: false,
+			   icon:{
+							type:'fontawesome',
+							class:'fa-paste',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Pegar_00338',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById('Okno').clipboard.Paste())
+							Components.getComponentById('Okno').drawTree();
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'nada1',
+				shape:'box',
+				scale:'minier',
+			},
+			{
+				type: 'Button',
+				id : 'LayoutWilliam',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-sitemap',
+					color:'red',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_a_basicWilliam_00359',
+				listeners: {
+					click: function() {	
+							Components.getComponentById("Okno").cambiarLayout('basicWilliam')
+							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'ecotree',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-sitemap',
+					color:'blue',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_a_ecotree_00360',
+				listeners: {
+					click: function() {	
+							Components.getComponentById("Okno").cambiarLayout('ecotree')
+							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-exchange',
+					color:'black',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_layout_00361',
+				listeners: {
+					click: function() {							
+							if (Components.getComponentById("Okno").algorithm == 'basicWilliam')
+							Components.getComponentById("Okno").cambiarLayout('ecotree');
+							else if (Components.getComponentById("Okno").algorithm == 'ecotree')
+							Components.getComponentById("Okno").cambiarLayout('basicWilliam');
+							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-tree',
+					color:'#000099',
+					position:'left',
+				},
+				tooltip:'RO_LEFT',
+				listeners: {
+					click: function() {
+						Components.getComponentById("Okno").cambiarOrientacion("left")
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'VerData',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa-tree',
+					color:'yellow',
+					position:'left',
+				},
+				tooltip:'RO_TOP',
+				listeners: {
+					click: function() {
+						Components.getComponentById("Okno").cambiarOrientacion("top")
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'exchange',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-exchange',
+					color:'black',
+					position:'left',
+				},
+				tooltip:'PC_Cambiar_orientacion',
+				listeners: {
+					click: function() {							
+							if (Components.getComponentById("Okno").config.orientation == "top")
+							Components.getComponentById("Okno").cambiarOrientacion("left");
+							else if (Components.getComponentById("Okno").config.orientation == "left")
+							Components.getComponentById("Okno").cambiarOrientacion("top");
+							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'nada1',
+				shape:'box',
+				scale:'minier',
+			},	
+		   {
+				type: 'Button',
+				id : 'pasteBtnWBS',
+				shape:'box',
+				scale:'minier',
+				enabled: false,
+			   icon:{
+							type:'fontawesome',
+							class:'fa-paste',
+							color:'#000099',
+							position:'left',
+				},
+				tooltip:'PC_Pegar_00338',
+				listeners: {
+					click: function() {
+						if(Components.getComponentById('Okno').clipboard.Paste())
+							Components.getComponentById('Okno').drawTree();
+					}
+				}
+			},
 		]
-	},
+	},,
 	{
 	 type: 'SvgContainer', 
 	 region: 'center',
@@ -270,6 +745,26 @@ items:[
 		{
 			type: 'WBSTree',						
 			id:'Okno',
+			clipboard:true,
+			 listeners: {
+					onNodeSelectForCopy: function() {
+						Components.getComponentById('copyBtnWBS').changeIcono(1,{color:'red'});
+						Components.getComponentById('pasteBtnWBS').enable();
+					},
+					onNodeSelectForCut: function() {
+						Components.getComponentById('pasteBtnWBS').enable();
+					},
+					onCancelClipoard: function() {
+						Components.getComponentById('copyBtnWBS').changeIcono(1,{color:'#000099'});	
+						Components.getComponentById('cutBtnWBS').changeIcono(1,{color:'#000099'});
+						Components.getComponentById('pasteBtnWBS').disable();
+					},
+					oncreateCopyTask: function(obj) {
+						console.log("se creo nueva tarea mediante copia");
+						console.log(obj);
+						
+					},
+				},
 			viewFormat:'"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:50px;height:60px;\'></center></td><td colspan=4><strong style=\'font-size:14px;\'>"+this.datos.name+"</strong></td></tr><tr><td colspan=4>Title: "+this.datos.title+"</td></tr><tr><td colspan=1>ID:"+this.id+"</td><td colspan=3>"+this.datos.descripcion+"</td></tr></table>"',
 			plugins:{ svgToolTip:{
 						type: 'svgToolTip',
@@ -362,7 +857,6 @@ items:[
 					 "descripcion":"Boss: 2",
 					 "imagen": "images/6.jpg",
 					 },
-					 childsId:[9],
 					 actividadesId:[0,1,2,3],
 					 stroke:'purple'
 				},

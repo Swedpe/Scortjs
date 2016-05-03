@@ -299,7 +299,7 @@ Components.WBSTree.prototype.dibujarCajasSVG = function() {
 
 	//++++++++++++++++++++++++++++++++++++++++++++
 			//var Ytime = new Date().getTime();
-			//console.log('dibujar textCajas');
+			console.log('dibujar textCajas');
 			//console.log(Ytime-Xtime);
 	//+++++++++++++++++++++++++++++++++++++++++++++	
 }
@@ -433,6 +433,7 @@ function dibuja_Paso1(partialResult,callbackFunction) {
 function dibuja_Paso2(partialResult, callbackFunction) {
 	$this.listeners.onDrawTree(this,70);
 	$this.calcTree();
+	console.log("hola");
   setTimeout(function(){ dibuja_Paso3(partialResult, callbackFunction); }, 10);
 }
 function dibuja_Paso3(partialResult, callbackFunction) {
@@ -809,13 +810,14 @@ Components.WBSTree.prototype._getLeftmost = function (node, level, maxlevel) {
 Components.WBSTree.prototype.resizeBody = function(){
 	if(this.Dibujado){
 		if(this.DESARREGLADO){
-			this.treeOffSetX = (-this.grupo.getBBox().x);     //+10 para q no este tan pegado a la izquierda||pero deberia haber un +10 desde el principio tmb
-			var movimiento = this.treeOffSetX;
-			$(this.grupo).attr('transform','translate('+movimiento+' '+0+')');		//hay q buscar la manera de q sea translateX para leugo ahcer un calculo en Y
-			$('.divActividades',this.svgContend).each(function( index ) {
+			//- Comentado se descuadra los cuadros de los div
+			//this.treeOffSetX = (-this.grupo.getBBox().x);     //+10 para q no este tan pegado a la izquierda||pero deberia haber un +10 desde el principio tmb
+			//var movimiento = this.treeOffSetX;
+			//$(this.grupo).attr('transform','translate('+movimiento+' '+0+')');		//hay q buscar la manera de q sea translateX para leugo ahcer un calculo en Y
+			/*$('.divActividades',this.svgContend).each(function( index ) {
 				var suma = parseFloat($(this).css('left').split('px')[0]) + movimiento;
 				$(this).css('left',suma+'px');
-			});
+			});*/
 			
 			this.DESARREGLADO=false;
 		}

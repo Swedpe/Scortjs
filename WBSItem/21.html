@@ -30,6 +30,7 @@
 <script src="../components/items/WBSActividad.js"></script>
 <script src="../components/items/WBSNode.js"></script>
 <script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/WBSNodePluginSalud.js"></script>
 <script src="../components/items/FreeDivItem.js"></script>
 <script src="../components/items/ResizableGridItem.js"></script>
 <script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
@@ -635,6 +636,26 @@ Components.create('Window',{
 							else if (Components.getComponentById("Okno").config.orientation == "left")
 							Components.getComponentById("Okno").cambiarOrientacion("top");
 							
+					}
+				}
+			},
+			{
+				type: 'Button',
+				id : 'Salud',
+				shape:'box',
+				scale:'minier',
+				icon:{
+					type:'fontawesome',
+					class:'fa fa-square',
+					color:'red',
+					position:'left',
+				},
+				tooltip:'Cambiar Salud',
+				listeners: {
+					click: function() {							
+							var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+							seleccionado.salud = !seleccionado.salud;
+							seleccionado.calcularSalud();
 					}
 				}
 			},
