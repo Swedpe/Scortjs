@@ -402,7 +402,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 		 //1)mover la caja a la poscicion correcta.
 		 	
 				this.TextCajita.Move({x:this.PosCajitaX,y:this.BasePosY});
-		 	
+		 		this.fixChildLineControlBox();
 		}
 		//la estructura de una flecha depende del atributo xDiff de la linea siempre y cuando el ancho de la caja no haya sido alterado
 		if(this.childsId.length!=0 && this.Status=="minimizado")
@@ -414,8 +414,9 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			var xDiff2 = parseInt(this.PosCajitaX-this.Padre.PosCajitaX);
 			var yDif = parseInt($(this.Padre.ChildLines[this.id]).attr('ydiff'));
 			var yDiff2 = parseInt(this.BasePosY-this.Padre.BasePosY);
+			
 			if(Math.abs(xDif)!=Math.abs(xDiff2)||Math.abs(yDif)!=Math.abs(yDiff2)){
-				//console.log('fixline'+this.id);
+				console.log('fixline'+this.id);
 				this.fixChildLine();
 			}
 			else if(this.Cambio_B_a_C){
@@ -715,6 +716,8 @@ if(this.childsId.length!=0){
 if(this.Status=='Maximizado'&&!this.tree.nodos[this.childsId[0]].fakeChild){
     // this.grupo= ((!this.tree.grupo)?'':$('#'+this.tree.grupo));
     //this.grupo= this.grupo;
+    if(this.id==1009)
+    	console.log("error");
 	var MiCentroX = 0;
 	var MiCentroY = 0;
 	var HijoCentroX = 0;

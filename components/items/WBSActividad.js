@@ -125,16 +125,24 @@ Components.WBSActividad.prototype.draw=function(){
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSActividad.prototype.drawLines=function(){
 	var node=this.node;
-	
 	if(node.tree.config.orientation=="top"){
 		var partidaX = node.AnchoCajita/2;
 		var diferencia = 10-this.distanciaNodo/2;
 		var partidaY = node.Alto+10+diferencia;
-		if(typeof(this.line)=='undefined'){
-			this.line = this.screenGrid.svg.polyline(this.grupo,[[partidaX,partidaY],[partidaX,partidaY+diferencia],[partidaX-125,partidaY+diferencia],[partidaX-125,this.basePosY-this.node.BasePosY+this.alto/2],[partidaX-115,this.basePosY-this.node.BasePosY+this.alto/2]],
+		if(typeof(this.line)=='undefined' ){
+			this.line = this.screenGrid.svg.polyline(this.grupo,[[partidaX,partidaY+diferencia],[partidaX-125,partidaY+diferencia],[partidaX-125,this.basePosY-this.node.BasePosY+this.alto/2],[partidaX-115,this.basePosY-this.node.BasePosY+this.alto/2]],
 			{fill: 'none', stroke: '#0000FF', strokeWidth: 1,class_: 'actividad'+this.id});
 		}else{
-			$(this.line).css('visibility', 'visible');	
+				this.line.points[0].x=partidaX;
+				this.line.points[0].y=partidaY+diferencia;
+				this.line.points[1].x=partidaX-125;
+				this.line.points[1].y=partidaX+diferencia+5;
+				this.line.points[2].x=partidaX-125;
+				this.line.points[2].y=this.basePosY-this.node.BasePosY+this.alto/2;
+				this.line.points[3].x=partidaX-115;
+				this.line.points[3].y=this.basePosY-this.node.BasePosY+this.alto/2;
+				$(this.line).css('visibility', 'visible');	
+			
 		}
 	
 	}else if(node.tree.config.orientation=="left"){
@@ -142,13 +150,23 @@ Components.WBSActividad.prototype.drawLines=function(){
 		var partidaX = node.AnchoCajita;
 		var partidaY = node.BasePosY + node.Alto/2;
 
-		if(typeof(this.line)=='undefined'){
+		if(typeof(this.line)=='undefined' ){
 				//console.log(node.actividades[this.indice].alto);
 				this.line = this.screenGrid.svg.polyline(this.grupo,[[partidaX+8,32],[partidaX+separacion,32],[partidaX+separacion,node.actividades[this.indice].basePosY-node.BasePosY+node.actividades[this.indice].alto/2],[partidaX+separacion*2,node.actividades[this.indice].basePosY-node.BasePosY+node.actividades[this.indice].alto/2]],
 				{fill: 'none', stroke: '#0000FF', strokeWidth: 1,class_: 'actividad'+this.id});
 			}
 			else{
+				
+				this.line.points[0].x=partidaX+8;
+				this.line.points[0].y=32;
+				this.line.points[1].x=partidaX+separacion;
+				this.line.points[1].y=32;
+				this.line.points[2].x=partidaX+separacion;
+				this.line.points[2].y=node.actividades[this.indice].basePosY-node.BasePosY+node.actividades[this.indice].alto/2;
+				this.line.points[3].x=partidaX+separacion*2;
+				this.line.points[3].y=node.actividades[this.indice].basePosY-node.BasePosY+node.actividades[this.indice].alto/2;
 				$(this.line).css('visibility', 'visible');	
+			
 			}
 	}
 };

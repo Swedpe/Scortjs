@@ -16,7 +16,7 @@ Components.WBSTree.prototype.init = function(dataObj) {
         container: $('body'),       
         id: "WBSTree-"+ Math.round(Math.random() * 2000),
 		iMaxDepth : 100,			//maximo nivel de profundidad que se calcula.			agregar para descargar
-		iLevelSeparation : 40,		//Numero de pixeles de separacion entre niveles			agregar para descargar
+		iLevelSeparation : 39,		//Numero de pixeles de separacion entre niveles			agregar para descargar
 		/*iSiblingSeparation paso a ser atributo del nodo xq depende de q el nodo sea bolita o no*/
 		// iSiblingSeparation : 40,	//numero de pixeles de separacion entre hermanos		agregar para descargar
 		iSubtreeSeparation : 60,	//numero de pixeles de separacion entre subarboles		agregar para descargar
@@ -29,6 +29,7 @@ Components.WBSTree.prototype.init = function(dataObj) {
         hidden: false,
         autoScroll: true,
 		actividades: [],
+		finalTaskToActividad:false,
         items: [],
 		nodoSeleccionado:-1,
 		actividadSeleccionada:-1,
@@ -95,6 +96,7 @@ Components.WBSTree.prototype.init = function(dataObj) {
 	this.rootXOffset = 0;
 	//----------------------------------------------------------
     this.algorithm = this.config.algorithm;
+	this.finalTaskToActividad = this.config.finalTaskToActividad;
     this.id = this.config.id;
     this.title = this.config.title;
     this.container = this.config.container;
@@ -180,6 +182,7 @@ Components.WBSTree.prototype.create = function() {
 		this.MakeItems(this.padres[i]);
 		// console.log(i);
 	}
+	this.procesarNodosComoActividades();
 	
 				this.grupo.remove();				//añadido aca para q despues de cada calcNodoEco pueda eliminar el grupo y todo siga normal
 				delete this.grupo;
@@ -246,6 +249,21 @@ Components.WBSTree.prototype.MakeItems = function(nodeId) {
 	
 
 	return true;
+}
+//-----------------------------------------------------------------------------------------------------------------------
+Components.WBSTree.prototype.procesarNodosComoActividades = function() {
+	//Esta funcion convertira todas las tareas de ultimo nivel que no tengan hermanos con hijos a actividades, para una visualizacion mas simple.
+	for(var x in this.nodos){
+			this.nodos[x].ContieneTareas = false;
+	}
+	for(var i in this.nodos){
+	if((i!=-1)&&this.nodos[i].childsId&&(this.nodos[i].childsId.length!=0)){
+		console.log(i+"**"+this.nodos[i].idp);
+		if(this.nodos[this.nodos[i].idp].ContieneTareas==false){
+				this.nodos[this.nodos[i].idp].ContieneTareas = true;
+		}
+	}
+	}
 }
 //--------------------------------------------------------------------------------------------------------
 Components.WBSTree.prototype.aplicarTemplate = function() { 
@@ -454,23 +472,24 @@ function dibuja_Paso5(partialResult, callbackFunction) {
   callbackFunction();
 }
 function finishtwo(){
- $this.listeners.onDrawTree(this,100);
-	if($this.nodoSeleccionado!=-1){
-		var tempN = $this.nodoSeleccionado;
-		tempN.desSeleccionar();
-		tempN.seleccionar();
-	}
-	if($this.actividadSeleccionada!=-1){
-		var tempA = this.actividadSeleccionada;
-		tempA.desSeleccionar();
-		tempA.seleccionar();
-	}
-$this.treeOffSetX=0;					// se setea de nuevo en 0 hasta que el this.resizeBody() calcule q debe tener otro valor
-if($this.grupo.getBBox().x<0)
-$this.DESARREGLADO=true;
-$this.Dibujado = true;
-$this.statusdiv?$this.listeners.onDrawTree(this,100):false;
-$this.resizeBody();
+	 $this.listeners.onDrawTree(this,100);
+		if($this.nodoSeleccionado!=-1){
+			var tempN = $this.nodoSeleccionado;
+			tempN.desSeleccionar();
+			tempN.seleccionar();
+		}
+		if($this.actividadSeleccionada!=-1){
+			var tempA = this.actividadSeleccionada;
+			tempA.desSeleccionar();
+			tempA.seleccionar();
+		}
+	$this.treeOffSetX=0;					// se setea de nuevo en 0 hasta que el this.resizeBody() calcule q debe tener otro valor
+	if($this.grupo.getBBox().x<0)
+	$this.DESARREGLADO=true;
+	$this.Dibujado = true;
+	$this.statusdiv?$this.listeners.onDrawTree(this,100):false;
+	$this.resizeBody();
+	console.log("fin");
 }	
 	
 
