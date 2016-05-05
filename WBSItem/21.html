@@ -23,7 +23,8 @@
 <script src="../components/containers/PanelContainer.js"></script>
 <script src="../components/containers/SvgContainer.js"></script>
 <script src="../components/containers/TabContainer.js"></script>
-
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/items/MenuItem.js"></script>	
 <script src="../components/containers/FormContainer.js"></script>
 <script src="../components/items/WBSItem.js"></script>
 <script src="../components/items/WBSMiniItem.js"></script>
@@ -86,16 +87,16 @@ $( document ).ready(function(){
 var fontLoader = new FontLoader(["Lato"], {
             "fontLoaded": function(font) {
                 // One of the fonts was loaded
-                console.log("font loaded: " + font.family);
+                //console.log("font loaded: " + font.family);
             },
             "complete": function(error) {
                 if (error !== null) {
                     // Reached the timeout but not all fonts were loaded
-                    console.log(error.message);
-                    console.log(error.notLoadedFonts);
+                    //console.log(error.message);
+                    //console.log(error.notLoadedFonts);
                 } else {
                     // All fonts were loaded
-                    console.log("all fonts were loaded");
+                    //console.log("all fonts were loaded");
 					dibujaejemplo();
                 }
 			}
@@ -128,7 +129,7 @@ Components.create('Window',{
 					tooltip:'PC_EditarNodo_00161',
 					listeners: {
 						click: function() {
-							//console.log(Components.getComponentById("Okno").nodoSeleccionado);
+							////console.log(Components.getComponentById("Okno").nodoSeleccionado);
 							if(Components.getComponentById("Okno").nodoSeleccionado!=-1)
 							{
 								Components.getComponentById("windowEdicionNodos").show();
@@ -142,8 +143,7 @@ Components.create('Window',{
 								//colocar los datos en el FormContainer
 								Components.getComponentById("formNodos").setValues(WinData);
 							}
-							else
-							{console.log("seleccione un nodo")}
+							//console.log("seleccione un nodo")}
 						}
 					}
 			},
@@ -249,8 +249,8 @@ Components.create('Window',{
 						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
 							Components.getComponentById("Okno").nodoSeleccionado.bolizando();
 							Components.getComponentById("Okno").drawTree();
-						}else
-							console.log("Debe seleccionar un Nodo");
+						}//else
+							//console.log("Debe seleccionar un Nodo");
 						
 					}
 				}
@@ -272,8 +272,8 @@ Components.create('Window',{
 						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
 							Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
 							Components.getComponentById("Okno").drawTree();
-						}else
-							console.log("Debe seleccionar un Nodo");
+						}
+							//console.log("Debe seleccionar un Nodo");
 					}
 				}
 			},
@@ -302,9 +302,9 @@ Components.create('Window',{
 								Components.getComponentById("Okno").calcTree();
 								Components.getComponentById("Okno").drawTree();
 								}
-						}else{
-							console.log("Debe seleccionar un Nodo");
 						}
+							//console.log("Debe seleccionar un Nodo");
+						
 					}
 				}
 			},
@@ -329,7 +329,7 @@ Components.create('Window',{
 					tooltip:'PC_EditarActividad_00163',
 					listeners: {
 						click: function() {
-							//console.log(Components.getComponentById("Okno").actividadSeleccionada);
+							////console.log(Components.getComponentById("Okno").actividadSeleccionada);
 							if(Components.getComponentById("Okno").actividadSeleccionada!=-1)
 							{
 								Components.getComponentById("windowEdicionActividades").show();
@@ -341,8 +341,8 @@ Components.create('Window',{
 								//colocar los datos en el FormContainer
 								Components.getComponentById("formActividades").setValues(WinData);
 							}
-							else
-							{console.log("seleccione una actividad")}
+							
+							//console.log("seleccione una actividad")}
 						}
 					}
 				},
@@ -362,8 +362,8 @@ Components.create('Window',{
 					click: function() {
 						if(Components.getComponentById("Okno").actividadSeleccionada != -1){
 								Components.getComponentById("Okno").actividadSeleccionada.eliminar();
-						}else
-							console.log("Debe seleccionar un actividad");
+						}
+							//console.log("Debe seleccionar un actividad");
 					}
 				}
 				},
@@ -383,8 +383,8 @@ Components.create('Window',{
 					click: function() {
 						if(Components.getComponentById("Okno").nodoSeleccionado != -1){
 							Components.getComponentById("Okno").nodoSeleccionado.agregarActividad();
-						}else
-							console.log("Debe seleccionar un Nodo");
+						}
+							//console.log("Debe seleccionar un Nodo");
 					}
 				}
 				},
@@ -406,8 +406,8 @@ Components.create('Window',{
 						if(seleccionado != -1){
 							seleccionado.expandirActividades();
 							seleccionado.tree.drawTree();
-						}else
-							console.log("Debe seleccionar un Nodo");
+						}
+							//console.log("Debe seleccionar un Nodo");
 					}
 				}
 			},
@@ -429,8 +429,8 @@ Components.create('Window',{
 						if(seleccionado != -1){
 							seleccionado.contraerActividades();
 							seleccionado.tree.drawTree();
-						}else
-							console.log("Debe seleccionar un Nodo");
+						}
+							//console.log("Debe seleccionar un Nodo");
 					}
 				}
 			},
@@ -639,27 +639,157 @@ Components.create('Window',{
 					}
 				}
 			},
-			{
-				type: 'Button',
-				id : 'Salud',
-				shape:'box',
-				scale:'minier',
-				icon:{
-					type:'fontawesome',
-					class:'fa fa-square',
-					color:'red',
-					position:'left',
-				},
-				tooltip:'Cambiar Salud',
-				listeners: {
-					click: function() {							
-							var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
-							seleccionado.salud = !seleccionado.salud;
-							seleccionado.calcularSalud();
-					}
-				}
-			},
-				
+			
+			 {  type: 'MenuScort',						//el menu principal
+                        id : 'MenuBotonesShape',        
+						menuType:'ButtonDropDown',
+						 items:[
+							{
+							type: 'MenuItem',						
+							id:'MenuSup',
+							enabled:true,
+							submenu:{
+									VisibleOnHover:true,
+									VisibleOnClick:false,		
+							},
+								items:[
+								{					
+									type: 'Button',				//el boton que estara visible en el toolbar
+									id : 'BotonMenuShapes',
+									enabled:true,				//inicialmente disabled		
+									scale:'minier',
+									shape:'box',
+									icon:{
+										color:'gray',
+										type:'fontawesome',
+										class:'fa fa-square',	
+									},	
+									tooltip:'Refresh',
+									listeners: {
+										click: function() {
+										}
+									}					
+								},
+								{type: 'MenuScort',			//el sub menu
+								id : 'SubMenuBotones',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa fa-square',
+									color:'blue'
+								},
+								items:[		
+								{
+								type: 'MenuItem',						
+								id:'Circleshape',
+									items:[
+									{													
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaCirculo', 
+									enabled:true,									
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa fa-square',	
+										color:'Blue'
+									},	
+									tooltip:'Blue',
+									listeners: {
+										click: function() {							
+											var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+											seleccionado.salud=3;
+											seleccionado.calcularSalud();
+										}
+									}
+									}
+									],
+								},									
+								{
+								type: 'MenuItem',						
+								id:'Circleshape',
+									items:[
+									{													
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaCirculo', 
+									enabled:true,									
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa fa-square',	
+										color:'green'
+									},	
+									tooltip:'Green',
+									listeners: {
+										click: function() {							
+											var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+											seleccionado.salud=1;
+											seleccionado.calcularSalud();
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'BoxShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParacuadrado',        
+									scale:'minier',
+									enabled:true,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa fa-square',
+										color:'Yellow',	
+									},	
+									tooltip:'Yellow',
+									listeners: {
+										click: function() {							
+											var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+											seleccionado.salud=2;
+											seleccionado.calcularSalud();
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'PoligonShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaHexagono',        
+									scale:'minier',
+									enabled:true,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa fa-square',
+										color:'Red',	
+									},	
+									tooltip:'Red',
+									listeners: {
+										click: function() {							
+											var seleccionado = Components.getComponentById("Okno").nodoSeleccionado;
+											seleccionado.salud=0;
+											seleccionado.calcularSalud();
+										}
+									}
+									}
+									],
+								}
+								],					
+								}
+								]
+							}
+							]
+					},	
 		   
 		]
 	},
@@ -686,8 +816,8 @@ Components.create('Window',{
 						Components.getComponentById('pasteBtnWBS').disable();
 					},
 					oncreateCopyTask: function(obj) {
-						console.log("se creo nueva tarea mediante copia");
-						console.log(obj);
+						//console.log("se creo nueva tarea mediante copia");
+						//console.log(obj);
 						
 					},
 				},
@@ -7141,7 +7271,7 @@ Components.create('Window',{
 								infoindow.setHtml('Los datos relevantes cargados <b>WBSTree.nodos</b>: <pre>'+data+'</pre><br>Notese que <b>position</b> se calcula segun la poscicion que ocupa el Id del nodo en la vista actual');
 								 for (i in data)
 								 {	
-									console.log(data[i])
+									//console.log(data[i])
 									Components.getComponentById('Okno').addNodo(data[i]);
 								 }
 								 Components.getComponentById('Okno').Dibujado = true; //  ¡¡¡¡¡FORZADO!!!!!
@@ -7191,7 +7321,7 @@ Components.create('Window',{
 							url: "WBSTree.xml",
 							dataType: "xml",
 							success: function(xml) {
-								console.log(xml);
+								//console.log(xml);
 								var data=new Array();
 
 							$(xml).find("nodo").each(function () {
@@ -7209,14 +7339,14 @@ Components.create('Window',{
 									data[indice].childsId.push( parseInt($(this).text()));
 									});
 							  });
-							console.log(data);
+							//console.log(data);
 							for (i in data)
 								 {	
-									//console.log(data[i])
+									////console.log(data[i])
 									Components.getComponentById('Okno').addNodo(data[i]);
-									//console.log(Components.getComponentById('Okno'));
+									////console.log(Components.getComponentById('Okno'));
 								 }
-							console.log(Components.getComponentById('Okno'));
+							//console.log(Components.getComponentById('Okno'));
 								 Components.getComponentById('Okno').Dibujado = true; //  ¡¡¡¡¡FORZADO!!!!!
 								 Components.getComponentById('Okno').drawTree();
 							}

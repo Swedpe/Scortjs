@@ -34,7 +34,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
 		Seleccionado : false,
 		Status : "Maximizado",
 		visible: true,
-		salud:true,
+		salud:1,  //rojo =0 , verde = 1 , amarillo = 2 , azul = 3
 		TextCajita : 0,					//Aqui estara contenida la caja con su texto. que seran creadas con Draws
 		tipoObjeto : 'Tarea',
 		Background : '#FFFFFF',				//Color de fondo de cada nodo por defecto se usa el color blanco
@@ -112,7 +112,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
 		this.bolita = this.config.bolita;
 		this.screenGrid = this.config.screenGrid;
 		this.dibujado = false;
-		this.salud=true;
+		this.salud=this.config.salud;
 		this.PosCajitaX = this.config.PosCajitaX;	
 		this.AnchoCajita = this.config.AnchoCajita;
 		// this.BasePosX = this.config.BasePosX;			//posicion donde se comienza a dibujar
@@ -161,7 +161,7 @@ Components.WBSNode.prototype.init = function(dataObj) {
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.create = function() {
-    //console.log("do nothing");//funcion vacia necesaria xk si no existe  llama al create generico de Components que agrega un div al contenedor
+    ////console.log("do nothing");//funcion vacia necesaria xk si no existe  llama al create generico de Components que agrega un div al contenedor
 
 	return this ;
 }
@@ -192,7 +192,7 @@ Components.WBSNode.prototype.aplicarTemplate = function() {
 		// this.divTexto.remove();
 		// delete this.divTexto;
 	// }
-	// console.log(this.id);
+	// //console.log(this.id);
 	
 	
 	if(this.tipoObjeto!='WBSPARENT'){
@@ -290,7 +290,7 @@ Components.WBSNode.prototype.setEvent1 = function(argumento){
 			});
 
 			$(argumento).bind("mouseleave", {OBJ:this}, function(event) {
-					//console.log('mouseleave');
+					////console.log('mouseleave');
 					event.data.OBJ.tree.toolTipOBJ.mouseleave();
 			});
 }
@@ -323,10 +323,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			this.DrawChildLines();
 			this.newChild=false;
 		}
-// Borrame luego-----------
-		if(this.id=="fake16"){
-		 		console.log("->"+this.BasePosY);
-		 	}
+
 //------------------------------		 	
 		if(this.TextCajita.dibujado==false){		//TextCajita = 0 cuando es la primera pasada, 
 			//this.createTexCajita();
@@ -394,7 +391,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 		//si las coordenadas X y Y son iguales no hacer nada, en caso contrario mover la caja a el nuevo lugar que corresponda
 		
 		if ((this.TextCajita.posx==this.PosCajitaX)&&(this.TextCajita.posy==this.BasePosY)){
-			//console.log("Entro y no arregla el texto "+ this.id);
+			////console.log("Entro y no arregla el texto "+ this.id);
 			if(!this.bolita)
 				this.TextCajita.Move({x:this.PosCajitaX,y:this.BasePosY});
 		//1) no mover porque la caja esta en el mismo lugar calculado anteriormente
@@ -416,7 +413,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			var yDiff2 = parseInt(this.BasePosY-this.Padre.BasePosY);
 			
 			if(Math.abs(xDif)!=Math.abs(xDiff2)||Math.abs(yDif)!=Math.abs(yDiff2)){
-				console.log('fixline'+this.id);
+				////console.log('fixline'+this.id);
 				this.fixChildLine();
 			}
 			else if(this.Cambio_B_a_C){
@@ -433,7 +430,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 								var xDiff2 = parseInt(this.tree.nodos[this.childsId[i]].PosCajitaX-this.PosCajitaX);
 								var yDiff2 = parseInt(this.tree.nodos[this.childsId[i]].BasePosY-this.BasePosY);
 								if(xDif!=xDiff2||yDif!=yDiff2){
-									console.log('fixline');
+									//console.log('fixline');
 									this.fixChildLine(this.tree.nodos[this.childsId[i]]);
 								}
 							}
@@ -498,7 +495,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			point3 = [nodoHijo.AnchoCajita/2-5,-10];
 			point4 = [nodoHijo.AnchoCajita/2,0];
 			cord = point1.join()+' '+point2.join()+' '+point3.join()+' '+point4.join();
-			// console.log(this.ChildArrow);
+			// //console.log(this.ChildArrow);
 			$(this.ChildArrow[nodoHijo.id]).attr('points',cord);
 		}
 		//ahora se procede a analizar el controlBox.
@@ -542,7 +539,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			point3 = [-10,nodoHijo.Alto/2-5];
 			point4 = [0, nodoHijo.Alto/2];
 			cord = point1.join()+' '+point2.join()+' '+point3.join()+' '+point4.join();
-			// console.log(this.ChildArrow);
+			// //console.log(this.ChildArrow);
 			$(this.ChildArrow[nodoHijo.id]).attr('points',cord);
 		}
 		//ahora se procede a analizar el controlBox.
@@ -614,7 +611,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 	//ajustar los parametros de la linea cuando hay minimizacion o maximizacion
 	//una childline esta definida por 4 puntos.
 		var aumento=this.bolita?15:10;
-		//console.log(this.id);
+		////console.log(this.id);
 	if(this.tree.config.orientation=="top"){
 		var point1 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita/2, this.Padre.BasePosY-this.BasePosY+this.Padre.Alto+aumento];
 		var point2 = [this.Padre.PosCajitaX -this.PosCajitaX+ this.Padre.AnchoCajita/2, -this.tree.config.iLevelSeparation/2];
@@ -636,7 +633,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 			point3 = [this.AnchoCajita/2-5,-10];
 			point4 = [this.AnchoCajita/2,0];
 			cord = point1.join()+' '+point2.join()+' '+point3.join()+' '+point4.join();
-			// console.log(this.Padre.ChildArrow);
+			// //console.log(this.Padre.ChildArrow);
 			$(this.Padre.ChildArrow[this.id]).attr('points',cord);
 		}
 		this.Padre.fixChildLineControlBox();
@@ -682,7 +679,7 @@ Components.WBSNode.prototype.fixChildLine = function(){
 			point3 = [-10,this.Alto/2-5];
 			point4 = [0, this.Alto/2];
 			cord = point1.join()+' '+point2.join()+' '+point3.join()+' '+point4.join();
-			// console.log(this.Padre.ChildArrow);
+			// //console.log(this.Padre.ChildArrow);
 			$(this.Padre.ChildArrow[this.id]).attr('points',cord);
 		}
 		this.Padre.fixChildLineControlBox();
@@ -717,7 +714,7 @@ if(this.Status=='Maximizado'&&!this.tree.nodos[this.childsId[0]].fakeChild){
     // this.grupo= ((!this.tree.grupo)?'':$('#'+this.tree.grupo));
     //this.grupo= this.grupo;
     if(this.id==1009)
-    	console.log("error");
+    	////console.log("error");
 	var MiCentroX = 0;
 	var MiCentroY = 0;
 	var HijoCentroX = 0;
@@ -851,7 +848,7 @@ Components.WBSNode.prototype.drawActividades = function(){
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.destroyActividades = function(){
-	console.log('destroyactividades');
+	//console.log('destroyactividades');
 	// if(Object.keys(this.items).length!=0){
 		if(this.divActividades){
 			this.divActividades.remove();
@@ -875,7 +872,7 @@ Components.WBSNode.prototype.ocultarActividades = function(){
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.agregarActividad = function(){
 	if(this.childsId.length==0 || this.tree.nodos[this.childsId[0]].fakeChild){
-		// console.log("se puede añadir actividades")
+		// //console.log("se puede añadir actividades")
 		// var idRecibido = Math.round(Math.random() * 2000);			//es un id recibido desde PHP
 		// var idRecibido = this.actividades.length;					//es un id recibido desde PHP
 		var idRecibido = this.tree.actividades.length;					//es un id recibido desde PHP
@@ -899,12 +896,11 @@ Components.WBSNode.prototype.agregarActividad = function(){
 		this.destroyActividades();
 		this.tree.drawTree();
 	}
-	else
-		console.log("El nodo ya tiene uno o mas nodos hijos")
+		//console.log("El nodo ya tiene uno o mas nodos hijos")
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.expandirActividades = function(){
-	console.log('maximizar actividades');
+	//console.log('maximizar actividades');
 	// if(Object.keys(this.items).length!=0 && !this.bolita){
 	if(this.actividadesId.length!=0 && !this.bolita){
 		this.Status ="Maximizado";
@@ -920,7 +916,7 @@ Components.WBSNode.prototype.expandirActividades = function(){
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.contraerActividades = function(){
-	console.log('minimizar actividades');
+	//console.log('minimizar actividades');
 	if(this.actividadesId.length!=0 && !this.bolita){
 		this.Status ="minimizado";
 		this.dibujarActividades=false;
@@ -936,7 +932,7 @@ Components.WBSNode.prototype.contraerActividades = function(){
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 // Components.WBSNode.prototype.showActividades = function(){
 	// if(Object.keys(this.items)==false)
-		// console.log("no hay actividades");
+		// //console.log("no hay actividades");
 	// else{
 		// for(var indice in this.actividades){
 			// this.actividades[indice].show();
@@ -946,7 +942,7 @@ Components.WBSNode.prototype.contraerActividades = function(){
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 // Components.WBSNode.prototype.hideActividades = function(){
 	// if(Object.keys(this.items)==false)
-		// console.log("no hay actividades");
+		// //console.log("no hay actividades");
 	// else{
 		// for(var indice in this.actividades){
 			// this.actividades[indice].hide();
@@ -1188,12 +1184,12 @@ newtext es el nuevo valor que se tomara en descripción
 	}
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Components.WBSNode.prototype.calcularSalud = function(NewText){
+/*Components.WBSNode.prototype.calcularSalud = function(NewText){
 /*Activa un calculo para calculo de salud,
 si salud es true, el nodo es azul
 si salud es false, el nodo es rojo y contagia a toda la cadena a partir de el hasta el nodo padre total.
 solo es aplicable a nodos sin hijos.
-*/
+
 if (this.childsId.length>0){
 this.salud = true;
 for(hijo in this.childsId){
@@ -1203,7 +1199,7 @@ for(hijo in this.childsId){
 }
 
 }
-}
+}*/
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.cambiarBackground = function(NewBackground){
 /*cambia el tipo de borde q contiene al nodo
@@ -1265,8 +1261,8 @@ Components.WBSNode.prototype.desSeleccionarClipBoard = function(/*Recursivo*/){
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.createCopyTask = function(Padre){
-	console.log("createCopyTask");
-	console.log(Padre)
+	//console.log("createCopyTask");
+	//console.log(Padre)
 	if(Padre.childsId.length==0)
 	{
 		Padre.ControlBox.Box.setAttribute("visibility", "visible");
@@ -1308,7 +1304,7 @@ Components.WBSNode.prototype.bolizando = function(){
 	}
 	// if (!this.bolita && !this.fakeChild){
 	if (!this.bolita){
-		// console.log("bolizando: "+this.id);
+		// //console.log("bolizando: "+this.id);
 		this.config.iSiblingSeparation=10;
 		this.divTexto?this.divTexto.hide():{};
 		this.bolita=true;
@@ -1337,7 +1333,7 @@ Components.WBSNode.prototype.cuadrando = function(){
 			this.tree.nodos[this.childsId[indice]].cuadrando();
 	}
 	if (this.bolita && this.visible){
-		console.log("cuadrando: "+this.id);
+		//console.log("cuadrando: "+this.id);
 		this.config.iSiblingSeparation=40;
 		this.bolita=false;
 		//this.Alto =50;
@@ -1441,7 +1437,7 @@ Components.WBSNode.prototype.Minimize = function(){
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.Maximize = function(){
-	console.log('maximize');
+	//console.log('maximize');
 	if (this.Status=="minimizado"){
 		this.Status = "Maximizado";
 		
@@ -1507,7 +1503,7 @@ Components.WBSNode.prototype._getChildrenCount = function () {
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.show = function() {
-    console.log("do nothing");//funcion vacia necesaria xk si no existe  llama al show generico de Components que muestra un div al contenedor
+    //console.log("do nothing");//funcion vacia necesaria xk si no existe  llama al show generico de Components que muestra un div al contenedor
       return this;
 	}
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1520,7 +1516,7 @@ Components.WBSNode.prototype.removeGraphics = function(){
 	5)destruir la punta de la flecha 
 	6)Calcular de nuevo la posicion de sus padres*/
 	//Paso 0:
-	//console.log(this.id)
+	////console.log(this.id)
 	if (this.dibujado==true)
 	{
 	for (var indice in this.childsId){

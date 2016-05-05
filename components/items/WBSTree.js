@@ -180,7 +180,7 @@ Components.WBSTree.prototype.create = function() {
 	for(var i in this.padres){
 		// this.nodos[element.id].childs[i]=this.nodos[this.padres[i]];
 		this.MakeItems(this.padres[i]);
-		// console.log(i);
+		// //console.log(i);
 	}
 	this.procesarNodosComoActividades();
 	
@@ -189,7 +189,7 @@ Components.WBSTree.prototype.create = function() {
 				
 	//-----------------------------------------------------------------------
 /* 	for(var e in this.nodos){
-	// console.log("Nodo:"+this.nodos[e].id+" "+"Level:"+this.nodos[e].Level)
+	// //console.log("Nodo:"+this.nodos[e].id+" "+"Level:"+this.nodos[e].Level)
 		if(this.nodos[e].fakeChild){
 			this.nodos[e].Alto=this.nodos[e].Alto-(this.maxLevelHeight[this.nodos[this.nodos[e].idp].Level]-this.nodos[this.nodos[e].idp].Alto);
 			this.nodos[e].Alto=this.nodos[e].Alto<0?0:this.nodos[e].Alto;
@@ -258,7 +258,7 @@ Components.WBSTree.prototype.procesarNodosComoActividades = function() {
 	}
 	for(var i in this.nodos){
 	if((i!=-1)&&this.nodos[i].childsId&&(this.nodos[i].childsId.length!=0)){
-		console.log(i+"**"+this.nodos[i].idp);
+		//console.log(i+"**"+this.nodos[i].idp);
 		if(this.nodos[this.nodos[i].idp].ContieneTareas==false){
 				this.nodos[this.nodos[i].idp].ContieneTareas = true;
 		}
@@ -285,8 +285,8 @@ Components.WBSTree.prototype.crearGruposSVG = function() {
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++
 			var Ytime = new Date().getTime();
-			console.log('Aplicar Template');
-			console.log(Ytime-Xtime);
+			//console.log('Aplicar Template');
+			//console.log(Ytime-Xtime);
 	//+++++++++++++++++++++++++++++++++++++++++++++	
 }
 //--------------------------------------------------------------------------------------------------------
@@ -301,8 +301,8 @@ Components.WBSTree.prototype.crearCajasSVG = function() {
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++
 			//var Ytime = new Date().getTime();
-			//console.log('Crear textCajas');
-			//console.log(Ytime-Xtime);
+			////console.log('Crear textCajas');
+			////console.log(Ytime-Xtime);
 	//+++++++++++++++++++++++++++++++++++++++++++++	
 }
 Components.WBSTree.prototype.dibujarCajasSVG = function() { 
@@ -317,8 +317,8 @@ Components.WBSTree.prototype.dibujarCajasSVG = function() {
 
 	//++++++++++++++++++++++++++++++++++++++++++++
 			//var Ytime = new Date().getTime();
-			console.log('dibujar textCajas');
-			//console.log(Ytime-Xtime);
+			//console.log('dibujar textCajas');
+			////console.log(Ytime-Xtime);
 	//+++++++++++++++++++++++++++++++++++++++++++++	
 }
 //--------------------------------------------------------------------------------------------------------
@@ -330,7 +330,7 @@ Components.WBSTree.prototype.calcTree = function() {
 	}
 			//para setear una correcta altura a los fakechilds despues de tener el maxLevelHeight
 	for(var e in this.nodos){
-	// console.log("Nodo:"+this.nodos[e].id+" "+"Level:"+this.nodos[e].Level)
+	// //console.log("Nodo:"+this.nodos[e].id+" "+"Level:"+this.nodos[e].Level)
 		// if(this.nodos[e].fakeChild && this.nodos[e].Padre.dibujarActividades){
 		// if(Object.keys(this.nodos[e].items).length!=0 && this.nodos[e].childsId.length==0){
 			// this..nodos[e]createFakeChild();
@@ -365,11 +365,11 @@ Components.WBSTree.prototype.calcTree = function() {
 	}
 			//++++++++++++++++++++++++++++++++++++++++++++
 			var Ytime = new Date().getTime();
-			console.log('tiempo algoritmo');
-			console.log(Ytime-Xtime);
+			//console.log('tiempo algoritmo');
+			//console.log(Ytime-Xtime);
 			//+++++++++++++++++++++++++++++++++++++++++++++	
-	//console.log(this.nodoDerechaMax);
-	//console.log(this.nodoizquierdaMax);
+	////console.log(this.nodoDerechaMax);
+	////console.log(this.nodoizquierdaMax);
 	break
 	}
 	//this.drawTree();	
@@ -436,7 +436,7 @@ function aplicarTemplateX() {
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 function dibuja_Paso0(callbackFunction) {
- console.log('iniciando dibujo maestro')	
+ //console.log('iniciando dibujo maestro')	
   var partialResult = {};
   $this.listeners.onDrawTree(this,55);
   
@@ -451,7 +451,7 @@ function dibuja_Paso1(partialResult,callbackFunction) {
 function dibuja_Paso2(partialResult, callbackFunction) {
 	$this.listeners.onDrawTree(this,70);
 	$this.calcTree();
-	console.log("hola");
+	//console.log("hola");
   setTimeout(function(){ dibuja_Paso3(partialResult, callbackFunction); }, 10);
 }
 function dibuja_Paso3(partialResult, callbackFunction) {
@@ -489,7 +489,7 @@ function finishtwo(){
 	$this.Dibujado = true;
 	$this.statusdiv?$this.listeners.onDrawTree(this,100):false;
 	$this.resizeBody();
-	console.log("fin");
+	//console.log("fin");
 }	
 	
 

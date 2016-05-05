@@ -151,7 +151,7 @@ Components.WBSActividad.prototype.drawLines=function(){
 		var partidaY = node.BasePosY + node.Alto/2;
 
 		if(typeof(this.line)=='undefined' ){
-				//console.log(node.actividades[this.indice].alto);
+				////console.log(node.actividades[this.indice].alto);
 				this.line = this.screenGrid.svg.polyline(this.grupo,[[partidaX+8,32],[partidaX+separacion,32],[partidaX+separacion,node.actividades[this.indice].basePosY-node.BasePosY+node.actividades[this.indice].alto/2],[partidaX+separacion*2,node.actividades[this.indice].basePosY-node.BasePosY+node.actividades[this.indice].alto/2]],
 				{fill: 'none', stroke: '#0000FF', strokeWidth: 1,class_: 'actividad'+this.id});
 			}
@@ -203,7 +203,7 @@ Components.WBSActividad.prototype.edicion = function(newData){
 - Descripción
 //luego aumentar mas posibilidades
 */	
-	// console.log("hola");
+	// //console.log("hola");
 	for (var i in newData){
 		switch(i){
 			case 'descripcion':
@@ -237,7 +237,7 @@ newtext es el nuevo valor que se tomara en descripción
 Components.WBSActividad.prototype.eliminar = function(){
 /* eliminar la actividad
 */	
-	// console.log("hola");
+	// //console.log("hola");
 	this.desSeleccionar();
 	delete this.node.tree.actividades[this.id.split('-')[1]];
 	// delete this.node.actividadesId[this.node.actividadesId.indexOf(parseInt(this.id.split('-')[1]))];
@@ -261,12 +261,12 @@ Components.WBSActividad.prototype.eliminar = function(){
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSActividad.prototype.seleccionarCopy = function(){
-	console.log("actividad "+this.id+" seleccionada del nodo "+this.node.id+" para copiar")
+	//console.log("actividad "+this.id+" seleccionada del nodo "+this.node.id+" para copiar")
 
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSActividad.prototype.seleccionarCut = function(){
-	console.log("actividad "+this.id+" seleccionada del nodo "+this.node.id+" para cortar")
+	//console.log("actividad "+this.id+" seleccionada del nodo "+this.node.id+" para cortar")
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSActividad.prototype.desSeleccionarClipBoard = function(){
@@ -276,8 +276,8 @@ Components.WBSActividad.prototype.desSeleccionarClipBoard = function(){
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSActividad.prototype.createCopyTask = function(Padre){
-	console.log("createCopyTask");
-	console.log(Padre)
+	//console.log("createCopyTask");
+	//console.log(Padre)
 	var newActivityData ={};
 	// jQuery.extend(true,newActivityData,this.node.items[this.id.split('-')[1]]);
 	jQuery.extend(true,newActivityData,this.node.tree.actividades[this.id.split('-')[1]]);
