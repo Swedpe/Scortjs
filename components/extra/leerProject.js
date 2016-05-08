@@ -24,13 +24,13 @@ $.ajax({
 			//try {
 				if(typeof(TareasXML[Tareas])=='object'){
 					TareaId = parseInt(TareasXML[Tareas].getElementsByTagName('ID')[0].innerHTML);
-					if(!data[TareaId]){
+					if(typeof(data[TareaId])=='undefined'){
 						data[TareaId] = {};
 					}
 					data[TareaId].type = 'WBSNode';
 					data[TareaId].tipoObjeto='Tarea';
 					data[TareaId].id = TareaId;
-					if(!data[TareaId].datos){
+					if(typeof(data[TareaId].datos)=='undefined'){
 						data[TareaId].datos = {};
 					}
 					
@@ -59,14 +59,14 @@ $.ajax({
 						predelink.id = $(this).find('PredecessorUID').text();
 						predelink.lag = $(this).find('LinkLag').text();
 						data[TareaId].datos.predecesorLink.push(predelink);
-						if(!data[predelink.id]){
+						if(typeof(data[predelink.id])=='undefined'){
 							data[predelink.id] = {};
 						}
-						if(!data[predelink.id.datos){
+						if(typeof(data[predelink.id].datos)=='undefined'){
 							data[predelink.id].datos = {};
 						}
-						if(!data[predelink.id.datos.Sucesoras){
-							data[predelink.id].datos.Sucesoras = {};
+						if(typeof(data[predelink.id].datos.Sucesoras)=='undefined'){
+							data[predelink.id].datos.Sucesoras = [];
 						}
 						data[predelink.id].datos.Sucesoras.push(TareaId);
 						
@@ -77,7 +77,6 @@ $.ajax({
 			//	console.log(err);
 			//}		
 			}
-			console.log(data);
 			download('texto.json',JSON.stringify(data, undefined, 4));
 	  });
 	}

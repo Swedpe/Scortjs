@@ -1,0 +1,6593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 1</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/Image.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/FileFieldItem.js"></script>
+<script src="../components/items/easypiechart.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/Separator.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+		<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/Slider.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/items/On-Off.js"></script>
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/AcordeonContainer.js"></script> 	
+<script src="../components/items/AccordeonItem.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/items/TextArea.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
+
+
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/OnOff.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_accordeon.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+
+<script src="../components/svg/SvgToolTip.js"></script>
+
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<script src="../components/items/MenuItem.js"></script>	
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+		<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+console.log("no work");
+Components.create('Window',{
+		title: "Scortjs WBS Pert Component SWEDPE",		
+        state:'active',
+		height:800, 
+        width:1500,
+		x:19,
+		y:30,
+        items:[
+			{
+                type: 'ToolBar',
+                id: 'ChartProyectoWindowsToolBar',
+                state:'active',
+				region: 'top',
+                items: [
+                   {
+                        type: 'Button',
+                        id : 'BtnCritical',
+                        scale:'minier',
+                        shape:'box',                      
+						icon:{
+							type:'fontawesome',
+							class:'fa-sitemap',		
+						},
+                        tooltip:'Critical',
+                        listeners: {
+                            click: function() {
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        id : 'BtnRefresh',        
+                        scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-refresh',	
+						},	
+                        tooltip:'Refresh',
+                        listeners: {
+                            click: function() {
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        id : 'BtnArrastre',
+						enabled:false,								
+						scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-toggle-off',	
+						},
+                        tooltip:'Enable Drag',
+                        listeners: {
+                            click: function(e) {
+							if((Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].DragStatus==false)){
+									Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].enableDrag();
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].disableDrag();
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+                               
+							   
+                            }
+                        }
+                    },
+					 {  type: 'MenuScort',						//el menu principal
+                        id : 'MenuBotonesShape',        
+						menuType:'ButtonDropDown',
+						 items:[
+							{
+							type: 'MenuItem',						
+							id:'MenuSup',
+							enabled:false,
+							submenu:{
+									VisibleOnHover:true,
+									VisibleOnClick:false,		
+							},
+								items:[
+								{					
+									type: 'Button',				//el boton que estara visible en el toolbar
+									id : 'BotonMenuShapes',
+									enabled:false,				//inicialmente disabled		
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-connectdevelop',	
+									},	
+									tooltip:'Refresh',
+									listeners: {
+										click: function() {
+										}
+									}					
+								},
+								{type: 'MenuScort',			//el sub menu
+								id : 'SubMenuBotones',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-toggle-off',	
+								},
+								items:[											
+								{
+								type: 'MenuItem',						
+								id:'Circleshape',
+									items:[
+									{													
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaCirculo', 
+									enabled:false,									
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-genderless',	
+									},	
+									tooltip:'Circular',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('circulo');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'BoxShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParacuadrado',        
+									scale:'minier',
+									enabled:false,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-square-o',	
+									},	
+									tooltip:'Rectangular',
+									listeners: {
+										click: function() {
+										var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('cuadrado');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'PoligonShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParacircle',        
+									scale:'minier',
+									enabled:false,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-codepen',	
+									},	
+									tooltip:'Hexagon',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('circle');
+										}
+									}
+									}
+									],
+								}
+								],					
+								tooltip:'Hexagon',
+								}
+								]
+							}
+							]
+					},
+                    {
+                        type: 'Button',
+                        id : 'BtnZoom',        
+                        scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-search',	
+						},
+                        tooltip:'Zoom',
+                        listeners: {
+                            click: function() {
+                                BarraAbajoTareaSVG();
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'PertSVG',
+				 items:[
+						{
+						type: 'Pert',						
+						id:'PertTree',
+						scale:50,
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParacircle').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						viewFormat:'"<p class=\'pNodoSvg\'>"+this.PertId+" "+this.internalData.descripcion+"</p>"',
+				//orientation:'left',
+				plugins:{ svgToolTip:{
+					type: 'svgToolTip',
+					orientacion:'abajo',
+					parentType: 'WBSTree',
+					//viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.name+"</strong></td></tr><tr><td colspan=2>Title: "+this.datos.title+"</td></tr><tr><td colspan=2>ID:"+this.id+"</td></tr></table>"',
+					viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'sdf.jpg\' style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.internalData.descripcion+"</strong></td></tr></table>"',
+				}},
+						items:[
+						{
+PertId	:0,
+	X:2040,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:1,
+	X:1990,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:2,
+	X:1940,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:3,
+	X:1890,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:4,
+	X:1840,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:5,
+	X:1550,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:6,
+	X:1790,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:7,
+	X:1740,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:8,
+	X:1510,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:9,
+	X:1550,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:10,
+	X:1510,
+	Y:1983,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:11,
+	X:1590,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:12,
+	X:1690,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:13,
+	X:1640,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:14,
+	X:1590,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:15,
+	X:1540,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:16,
+	X:1490,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:17,
+	X:1440,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:18,
+	X:1390,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:19,
+	X:1340,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:20,
+	X:1290,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:21,
+	X:1240,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:22,
+	X:1190,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:23,
+	X:1140,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:24,
+	X:1090,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:25,
+	X:1040,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:26,
+	X:990,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:27,
+	X:940,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:28,
+	X:890,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:29,
+	X:840,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:30,
+	X:790,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:31,
+	X:740,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:32,
+	X:690,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:33,
+	X:640,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:34,
+	X:590,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:35,
+	X:540,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:36,
+	X:490,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:37,
+	X:440,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:38,
+	X:390,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:39,
+	X:340,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:40,
+	X:290,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:41,
+	X:240,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:42,
+	X:190,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:43,
+	X:140,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:44,
+	X:90,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:45,
+	X:40,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:46,
+	X:2700,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:47,
+	X:2690,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:48,
+	X:2690,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:49,
+	X:2690,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:50,
+	X:2680,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:51,
+	X:2640,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:52,
+	X:2590,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:53,
+	X:2540,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:54,
+	X:2490,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:55,
+	X:2440,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:56,
+	X:2390,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:57,
+	X:2340,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:58,
+	X:2290,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:59,
+	X:2240,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:60,
+	X:2190,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:61,
+	X:2140,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:62,
+	X:2090,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:63,
+	X:2040,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:64,
+	X:1990,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:65,
+	X:1940,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:66,
+	X:1890,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:67,
+	X:1840,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:68,
+	X:1790,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:69,
+	X:1740,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:70,
+	X:2180,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:71,
+	X:2250,
+	Y:140,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:72,
+	X:2150,
+	Y:140,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:73,
+	X:2180,
+	Y:190,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:74,
+	X:2270,
+	Y:240,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:75,
+	X:2180,
+	Y:240,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:76,
+	X:2290,
+	Y:296,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:77,
+	X:2290,
+	Y:346,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:78,
+	X:2256,
+	Y:418,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:79,
+	X:2410,
+	Y:418,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:80,
+	X:2380,
+	Y:480,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:81,
+	X:2090,
+	Y:596,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:82,
+	X:2380,
+	Y:596,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:83,
+	X:2070,
+	Y:720,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:84,
+	X:2070,
+	Y:770,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:85,
+	X:2500,
+	Y:933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:86,
+	X:2350,
+	Y:140,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:87,
+	X:2210,
+	Y:140,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:88,
+	X:1690,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:89,
+	X:1420,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:90,
+	X:1460,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:91,
+	X:1440,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:92,
+	X:1440,
+	Y:1983,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:93,
+	X:1425,
+	Y:2033,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:94,
+	X:1440,
+	Y:2083,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:95,
+	X:1440,
+	Y:2133,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:96,
+	X:2470,
+	Y:418,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:97,
+	X:2470,
+	Y:480,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:98,
+	X:2470,
+	Y:596,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:99,
+	X:2470,
+	Y:720,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:100,
+	X:2470,
+	Y:770,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:101,
+	X:1640,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:102,
+	X:1590,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:103,
+	X:1540,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:104,
+	X:2470,
+	Y:346,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:105,
+	X:1490,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:106,
+	X:2030,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:107,
+	X:1090,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:108,
+	X:1070,
+	Y:1984,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:109,
+	X:1070,
+	Y:2034,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:110,
+	X:1070,
+	Y:2084,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:111,
+	X:1070,
+	Y:2134,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:112,
+	X:1070,
+	Y:2184,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:113,
+	X:1070,
+	Y:2234,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:114,
+	X:1070,
+	Y:2284,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:115,
+	X:1980,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:116,
+	X:1350,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:117,
+	X:1350,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:118,
+	X:1350,
+	Y:1983,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:119,
+	X:1330,
+	Y:2033,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:120,
+	X:1330,
+	Y:2183,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:121,
+	X:1370,
+	Y:2033,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:122,
+	X:1370,
+	Y:2083,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:123,
+	X:1370,
+	Y:2133,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:124,
+	X:1370,
+	Y:2183,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:125,
+	X:1980,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:126,
+	X:1330,
+	Y:2233,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:127,
+	X:1370,
+	Y:2233,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:128,
+	X:2030,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:129,
+	X:1440,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:130,
+	X:1930,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:131,
+	X:1390,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:132,
+	X:1340,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:133,
+	X:2690,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:134,
+	X:1930,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:135,
+	X:2640,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:136,
+	X:2590,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:137,
+	X:2540,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:138,
+	X:2490,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:139,
+	X:2440,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:140,
+	X:2390,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:141,
+	X:2340,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:142,
+	X:2290,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:143,
+	X:2240,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:144,
+	X:2190,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:145,
+	X:2140,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:146,
+	X:2090,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:147,
+	X:2040,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:148,
+	X:1990,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:149,
+	X:1940,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:150,
+	X:1890,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:151,
+	X:2230,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:152,
+	X:2230,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:153,
+	X:1840,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:154,
+	X:1790,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:155,
+	X:1740,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:156,
+	X:1690,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:157,
+	X:1640,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:158,
+	X:1590,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:159,
+	X:1540,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:160,
+	X:1490,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:161,
+	X:1440,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:162,
+	X:1390,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:163,
+	X:1340,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:164,
+	X:1290,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:165,
+	X:1240,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:166,
+	X:1190,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:167,
+	X:1140,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:168,
+	X:1090,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:169,
+	X:1040,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:170,
+	X:990,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:171,
+	X:940,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:172,
+	X:890,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:173,
+	X:840,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:174,
+	X:790,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:175,
+	X:740,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:176,
+	X:690,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:177,
+	X:640,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:178,
+	X:590,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:179,
+	X:540,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:180,
+	X:490,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:181,
+	X:440,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:182,
+	X:390,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:183,
+	X:340,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:184,
+	X:290,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:185,
+	X:240,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:186,
+	X:190,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:187,
+	X:140,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:188,
+	X:90,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:189,
+	X:2180,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:190,
+	X:40,
+	Y:2771,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:191,
+	X:2750,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:192,
+	X:2280,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:193,
+	X:2740,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:194,
+	X:2740,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:195,
+	X:2740,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:196,
+	X:2740,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:197,
+	X:2730,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:198,
+	X:2690,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:199,
+	X:2130,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:200,
+	X:1730,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:201,
+	X:180,
+	Y:2390,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:202,
+	X:220,
+	Y:2390,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:203,
+	X:260,
+	Y:2390,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:204,
+	X:300,
+	Y:2390,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:205,
+	X:220,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:206,
+	X:180,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:207,
+	X:900,
+	Y:2390,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:208,
+	X:900,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:209,
+	X:260,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:210,
+	X:300,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:211,
+	X:340,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:212,
+	X:380,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:213,
+	X:420,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:214,
+	X:460,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:215,
+	X:500,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:216,
+	X:540,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:217,
+	X:580,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:218,
+	X:620,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:219,
+	X:660,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:220,
+	X:700,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:221,
+	X:740,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:222,
+	X:780,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:223,
+	X:820,
+	Y:2106,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:224,
+	X:1730,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:225,
+	X:1660,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:226,
+	X:1640,
+	Y:1983,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:227,
+	X:1660,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:228,
+	X:2640,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:229,
+	X:508,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:230,
+	X:420,
+	Y:1940,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:231,
+	X:460,
+	Y:1940,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:232,
+	X:534,
+	Y:1940,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:233,
+	X:619,
+	Y:1940,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:234,
+	X:2080,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:235,
+	X:1680,
+	Y:1983,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:236,
+	X:2080,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:237,
+	X:2590,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:238,
+	X:2540,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:239,
+	X:2490,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:240,
+	X:2440,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:241,
+	X:2390,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:242,
+	X:2340,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:243,
+	X:2290,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:244,
+	X:2240,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:245,
+	X:2190,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:246,
+	X:2140,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:247,
+	X:2090,
+	Y:2721,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:248,
+	X:1290,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:249,
+	X:1730,
+	Y:1983,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:250,
+	X:180,
+	Y:2450,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:251,
+	X:220,
+	Y:2450,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:252,
+	X:260,
+	Y:2450,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:253,
+	X:240,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:254,
+	X:190,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:255,
+	X:140,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:256,
+	X:90,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:257,
+	X:40,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:258,
+	X:2600,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:259,
+	X:2590,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:260,
+	X:2130,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:261,
+	X:300,
+	Y:2450,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:262,
+	X:302,
+	Y:2521,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:263,
+	X:340,
+	Y:2450,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:264,
+	X:2580,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:265,
+	X:2540,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:266,
+	X:2490,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:267,
+	X:2440,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:268,
+	X:2390,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:269,
+	X:2340,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:270,
+	X:2290,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:271,
+	X:2240,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:272,
+	X:2190,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:273,
+	X:2140,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:274,
+	X:2090,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:275,
+	X:2040,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:276,
+	X:1990,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:277,
+	X:1940,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:278,
+	X:1890,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:279,
+	X:1840,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:280,
+	X:1790,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:281,
+	X:1740,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:282,
+	X:1690,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:283,
+	X:1640,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:284,
+	X:1590,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:285,
+	X:1540,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:286,
+	X:1490,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:287,
+	X:1440,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:288,
+	X:1390,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:289,
+	X:1340,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:290,
+	X:1290,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:291,
+	X:1240,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:292,
+	X:1190,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:293,
+	X:1140,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:294,
+	X:1090,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:295,
+	X:1040,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:296,
+	X:990,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:297,
+	X:2280,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:298,
+	X:2330,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:299,
+	X:2380,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:300,
+	X:2430,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:301,
+	X:2480,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:302,
+	X:2530,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:303,
+	X:2550,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:304,
+	X:40,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:305,
+	X:90,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:306,
+	X:140,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:307,
+	X:190,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:308,
+	X:240,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:309,
+	X:290,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:310,
+	X:340,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:311,
+	X:390,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:312,
+	X:440,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:313,
+	X:490,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:314,
+	X:540,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:315,
+	X:590,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:316,
+	X:1130,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:317,
+	X:670,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:318,
+	X:1400,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:319,
+	X:1160,
+	Y:1613,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:320,
+	X:1120,
+	Y:1613,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:321,
+	X:1160,
+	Y:1293,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:322,
+	X:1180,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:323,
+	X:1280,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:324,
+	X:1410,
+	Y:1833,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:325,
+	X:1370,
+	Y:1613,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:326,
+	X:1020,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:327,
+	X:1060,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:328,
+	X:690,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:329,
+	X:1740,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:330,
+	X:120,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:331,
+	X:160,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:332,
+	X:430,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:333,
+	X:550,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:334,
+	X:280,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:335,
+	X:320,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:336,
+	X:620,
+	Y:1293,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:337,
+	X:220,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:338,
+	X:405,
+	Y:1293,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:339,
+	X:620,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:340,
+	X:740,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:341,
+	X:1220,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:342,
+	X:430,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:343,
+	X:1390,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:344,
+	X:1440,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:345,
+	X:1560,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:346,
+	X:1350,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:347,
+	X:1180,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:348,
+	X:700,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:349,
+	X:1446,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:350,
+	X:1390,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:351,
+	X:680,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:352,
+	X:270,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:353,
+	X:1520,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:354,
+	X:1560,
+	Y:1293,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:355,
+	X:1520,
+	Y:1293,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:356,
+	X:520,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:357,
+	X:200,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:358,
+	X:140,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:359,
+	X:100,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:360,
+	X:460,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:361,
+	X:620,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:362,
+	X:1852,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:363,
+	X:1840,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:364,
+	X:1885,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:365,
+	X:1880,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:366,
+	X:1700,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:367,
+	X:1800,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:368,
+	X:1740,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:369,
+	X:1780,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:370,
+	X:1840,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:371,
+	X:970,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:372,
+	X:820,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:373,
+	X:780,
+	Y:936,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:374,
+	X:40,
+	Y:1136,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:375,
+	X:1300,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:376,
+	X:1280,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:377,
+	X:1180,
+	Y:360,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:378,
+	X:1220,
+	Y:616,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:379,
+	X:790,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:380,
+	X:840,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:381,
+	X:890,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:382,
+	X:940,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:383,
+	X:1880,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:384,
+	X:1880,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:385,
+	X:1780,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:386,
+	X:640,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:387,
+	X:290,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:388,
+	X:1203,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:389,
+	X:1240,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:390,
+	X:1780,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:391,
+	X:1150,
+	Y:1984,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:392,
+	X:1190,
+	Y:1984,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:393,
+	X:1230,
+	Y:1984,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:394,
+	X:1230,
+	Y:2034,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:395,
+	X:1110,
+	Y:1984,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:396,
+	X:1190,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:397,
+	X:1280,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:398,
+	X:1830,
+	Y:1933,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:399,
+	X:1830,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:400,
+	X:1140,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:401,
+	X:1090,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:402,
+	X:1040,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:403,
+	X:990,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:404,
+	X:940,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:405,
+	X:890,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:406,
+	X:840,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:407,
+	X:790,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:408,
+	X:740,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:409,
+	X:690,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:410,
+	X:640,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:411,
+	X:590,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:412,
+	X:540,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:413,
+	X:490,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:414,
+	X:440,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:415,
+	X:390,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:416,
+	X:340,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:417,
+	X:290,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:418,
+	X:240,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:419,
+	X:190,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:420,
+	X:140,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:421,
+	X:90,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:422,
+	X:40,
+	Y:2671,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:423,
+	X:2650,
+	Y:40,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:424,
+	X:2640,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:425,
+	X:2640,
+	Y:2571,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:426,
+	X:2630,
+	Y:1883,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:427,
+	X:2590,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:428,
+	X:2540,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:429,
+	X:2490,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:430,
+	X:2440,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:431,
+	X:2390,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:432,
+	X:2340,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:433,
+	X:2290,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:434,
+	X:2240,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:435,
+	X:2190,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:436,
+	X:2140,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:437,
+	X:2090,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:438,
+	X:2040,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:439,
+	X:1990,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:440,
+	X:1940,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:441,
+	X:1890,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:442,
+	X:1840,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:443,
+	X:1790,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:444,
+	X:1740,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:445,
+	X:1690,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:446,
+	X:1640,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:447,
+	X:1590,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:448,
+	X:1540,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:449,
+	X:1490,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:450,
+	X:1440,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:451,
+	X:1390,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:452,
+	X:1340,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:453,
+	X:1290,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:454,
+	X:1240,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:455,
+	X:1190,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:456,
+	X:1140,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:457,
+	X:1090,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:458,
+	X:1040,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:459,
+	X:990,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:460,
+	X:940,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:461,
+	X:890,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:462,
+	X:840,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:463,
+	X:790,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:464,
+	X:740,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:465,
+	X:690,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:466,
+	X:640,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:467,
+	X:590,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:468,
+	X:540,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:469,
+	X:490,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:470,
+	X:440,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:471,
+	X:390,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+},
+{
+PertId	:472,
+	X:340,
+	Y:2621,
+	type: 'GrafoNodo',
+	shape:'circle',
+	internalData:{
+		descripcion:'Swedpe ScortJs',
+		duracion:'10h',
+		holgura:'10d',
+		visibleId:'10'
+	},
+}
+							]
+						}
+						]
+			
+			}
+            ]
+        
+    }).show();
+});  
+</script>	
+</head>
+
+</html>

@@ -25,6 +25,9 @@ Components.GrafoNodo.prototype.init = function(dataObj) {
 		PredecesorasObj: new Array(),							//objeto referencia
 		SucesorasObj: new Array(),								//objeto referencia
 		shape:'circle',											//forma en la cual se representaran inicialmente los nodos.
+		scale:100,
+		viewToolTip:'',
+		grupoPadre:'',
 		template:{
 			shape: 'circle',
 			zones: [1,1,3],										//Primera Fila 1 texto, segunda fila 1 texto, tercera fila 3 textos, Datazones por defecto = 1+1+3 = 5, numero de filas de 1 a 3	
@@ -37,13 +40,6 @@ Components.GrafoNodo.prototype.init = function(dataObj) {
 			critico:false,
 			duracion:0,
 			holgura:0,
-			},
-		DataZones: {											//Este numero de zonas se extrae de el template, el template por defecto tiene 
-			0:'visibleId',
-			3:'descripcion',
-			6:'duracion',
-			7:'holgura',
-			8:'holgura',
 			},	
 		X : 0,								//posicion donde se comienza a dibujar X, calculado por un algoritmo de graphos
 		Y : 0,								//posicion donde se comienza a dibujar Y, calculado por un algoritmo de graphos
@@ -76,14 +72,15 @@ Components.GrafoNodo.prototype.init = function(dataObj) {
                 this.config[i] = dataObj[i];
         }
     } 
+	this.grupoPadre = this.config.grupoPadre;
 	this.PertId = this.config.PertId;
 	this.tree = this.config.tree;
 	this.internalData = this.config.internalData;
 	this.AnchoShape = this.config.AnchoShape;
 	this.grupo= $('#perttareasgroupsvg'); 	
-		
-	this.BasePosX = (this.config.X*this.config.Xmultiplicador);
-	this.BasePosY = (this.config.Y*this.config.Ymultiplicador);
+    this.scale = this.config.scale;		
+	this.BasePosX = (this.config.X*this.config.Xmultiplicador)*this.scale/100;
+	this.BasePosY = (this.config.Y*this.config.Ymultiplicador)*this.scale/100;
 	this.SeleccionBox = "";							//Caja que se dibuja alrrededor del nodo cuando se selecciona
 	this.Seleccionado = false;						//inicialmente ninguno esta seleccionado.	 			 
     this.Predecesoras = this.config.Predecesoras;	//Ids Numericos
@@ -115,9 +112,11 @@ Components.GrafoNodo.prototype.draw = function() {
 	//se dibujan directamente las 3 formas que podrían mostrarse, pero todas en modo oculto, luego se hace visible la forma que la configuración indica.
 	//para finalizar la función se llama a las funciones de dibujar rejilla y dibujar textos.
 		//this.svg.group({id:"perttareasgroupsvg"});						//creando grupo que contendra todos los nodos
-		this.g = this.svg.group(this.grupo, {id:this.dataid }); 
+		console.log(this.grupoPadre);
+		this.g = this.svg.group(this.grupoPadre, {id:this.dataid }); 
 		//el borde circular
-		this.ShapesSvg['circulo'] = this.svg.circle(this.g,this.BasePosX, this.BasePosY , this.AnchoShape/2, { id:this.dataid ,fill: 'white', stroke:'blue', strokeWidth: 2, 'style':'display:none','drag:enable':'true','class':'visibleshape shape circulo'} ); 		
+		console.log(this.scale);
+		this.ShapesSvg['circulo'] = this.svg.circle(this.g,this.BasePosX, this.BasePosY , (this.AnchoShape/2)*(this.scale/100), { id:this.dataid ,fill: 'white', stroke:'blue', strokeWidth: 2, 'style':'display:none','drag:enable':'true','class':'visibleshape shape circulo'} ); 		
 		//el borde cuadrado
 		this.ShapesSvg['cuadrado'] = this.svg.rect(this.g,this.BasePosX-(this.AnchoShape/2), this.BasePosY-(this.AnchoShape/2), this.AnchoShape, this.AnchoShape ,{ id:this.dataid ,fill: 'white', stroke:     'blue', strokeWidth: 2, 'style':'display:none',id:this.dataid,'class':'shape cuadrado', 'drag:enable':'true'}); 		
 		//el borde hexagonal
@@ -152,53 +151,91 @@ Components.GrafoNodo.prototype.draw = function() {
 		$(this.ShapesSvg['hexagono']).bind('click', {Obj:this}, function(event) {
             event.data.Obj.Seleccionar();
 		});
-		this.drawTemplateGrid();
-		this.drawTexts();	
+		console.log(this.tree);
+		if(this.tree.toolTipOBJ){
+					this.setEvent1($(this.ShapesSvg['circulo']));
+				} 
+				this.tree.svgContend.append(this.divTexto);
+				
+		this.drawTemplate();
 return this;
 }
-Components.GrafoNodo.prototype.drawTemplateGrid = function() {
+
+Components.GrafoNodo.prototype.setEvent1 = function(argumento){	
+	var texto = eval(this.config.viewToolTip);
+			$(argumento).bind('mouseenter',{OBJ:this}, function(event) {
+				thos=event.data.OBJ;
+				console.log(thos.tree.toolTipOBJ.orientacion);
+				switch(thos.tree.toolTipOBJ.orientacion){
+				case 'derecha':
+					var x=thos.BasePosX+thos.AnchoShape/2;
+					var y=thos.BasePosY;
+					break;
+				case 'izquierda':
+					var x=thos.BasePosX-thos.AnchoShape/2;;
+					var y=thos.BasePosY
+					break;
+				case 'abajo':
+					var x=thos.BasePosX;
+					var y=thos.BasePosY+40;
+					break;
+				case 'arriba':
+					var x=thos.BasePosX+thos.AnchoShape/2;
+					var y=thos.BasePosY;
+					break;
+				}
+				// var dataToolTip={texto: thos.id+" "+thos.Descripcion,x:x,y:y,color:thos.stroke};
+				var dataToolTip={texto: texto,x:x,y:y,color:thos.stroke};
+				thos.tree.toolTipOBJ.mouseenter(event,dataToolTip);
+					
+					///cuando el tree hace translate xq la posicion de un nodo lo puso en negativo
+					var suma = parseFloat($('.svgToolTip').css('left').split('px')[0]) + event.data.OBJ.tree.treeOffSetX;
+					//$('.svgToolTip').css('left',suma+'px');
+					//$(event.data.OBJ.tree.svgcontainer.svg.grupo123).attr('transform','translate('+event.data.OBJ.tree.treeOffSetX+' '+0+')'); //buscar un translate solo de X para luego poder hacer un traslado independiente de Y
+			});
+
+			$(argumento).bind("mouseleave", {OBJ:this}, function(event) {
+					////console.log('mouseleave');
+					event.data.OBJ.tree.toolTipOBJ.mouseleave();
+			});
+}
+Components.GrafoNodo.prototype.drawTemplate = function() {
 	/*
 	funcion que se encarga de dibujar una regilla o tabla para poder mostrar de forma ordenada los datos
 	ademas calculal las coordenadas X,Y del origen de cada dato(texto) que sera dibujado
 	Maximo se procesa una tabla de 3x3, lo cual da un total de 9 zonas de datos.
 	Ejemplo:   this.config.template  [1,1,3]
-	
-	|            DataZones[0]                 |
-	------------------------------------------
-	|            DataZones[3]                 |
-	-------------------------------------------
-	| DataZones[6]| DataZones[7]| DataZones[8]|
 	*/
-	this.divTexto=$('<div id="nodoPert'+ this.PertId+'" class="caja_Pert_Node" >'+ eval(this.config.viewFormat)+ '</div>');
+	this.divTexto=$('<div id="nodoPert'+ this.PertId+'" class="caja_Pert_Node'+this.scale+'" >'+ eval(this.config.viewFormat)+ '</div>');
 	$('body').append(this.divTexto);
 	this.tree.svgContend.append(this.divTexto);
 
 	$("#nodoPert"+this.PertId).css("word-wrap","break-word");
 	switch(this.config.shape){
 			case 'circle':
-				$("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape*0.35);
-				$("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape*0.35);
-				$("#nodoPert"+this.PertId).css("width",this.AnchoShape*0.7);
-				$("#nodoPert"+this.PertId).css("height",this.AnchoShape*0.7);
-				$("#nodoPert"+this.PertId).css("max-width",this.AnchoShape*0.7);
-				$("#nodoPert"+this.PertId).css("max-height",this.AnchoShape*0.7);
+				$("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape*0.35*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape*0.35*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("width",this.AnchoShape*0.7*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("height",this.AnchoShape*0.7*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("max-width",this.AnchoShape*0.7*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("max-height",this.AnchoShape*0.7*(this.scale/100));
 			break;
 			case 'cuadrado':
-				$("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape/2);
-				$("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape/2);
-				$("#nodoPert"+this.PertId).css("width",this.AnchoShape);
-				$("#nodoPert"+this.PertId).css("height",this.AnchoShape);
-				$("#nodoPert"+this.PertId).css("max-width",this.AnchoShape);
-				$("#nodoPert"+this.PertId).css("max-height",this.AnchoShape);
+				$("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape/2*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape/2*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("width",this.AnchoShape*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("height",this.AnchoShape*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("max-width",this.AnchoShape*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("max-height",this.AnchoShape*(this.scale/100));
 			break;
 			case 'hexagono':
 				//faltan calculos para hexagono
-				$("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape*0.35);
-				$("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape*0.35);
-				$("#nodoPert"+this.PertId).css("width",this.AnchoShape*0.7);
-				$("#nodoPert"+this.PertId).css("height",this.AnchoShape*0.7);
-				$("#nodoPert"+this.PertId).css("max-width",this.AnchoShape*0.7);
-				$("#nodoPert"+this.PertId).css("max-height",this.AnchoShape*0.7);
+				$("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape*0.35*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape*0.35*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("width",this.AnchoShape*0.7*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("height",this.AnchoShape*0.7*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("max-width",this.AnchoShape*0.7*(this.scale/100));
+				$("#nodoPert"+this.PertId).css("max-height",this.AnchoShape*0.7*(this.scale/100));
 			break;
 		}
 	$("#nodoPert"+this.PertId).css("visibility","visible");
@@ -206,106 +243,14 @@ Components.GrafoNodo.prototype.drawTemplateGrid = function() {
 	$("#nodoPert"+this.PertId).bind('click', {OBJ:this}, function(event) {
 				event.data.OBJ.Seleccionar();
 	});
+	//$("#nodoPert"+this.PertId).setEvent1
+	this.setEvent1($("#nodoPert"+this.PertId));
 	
 	this.grid = this.svg.group(this.g, {id:"grid"+this.dataid,strokeWidth: 1,stroke: '#000' }); 
-	/* var anchoaltogrilla = this.AnchoShape -(this.AnchoShape*0.3);
-			
-	//dibujamos el borde de la zona de la grilla pero lo mantenemos invisible, los puntos BasePosX y BasePosY, están posicionados en el centro de la grilla.
-	this.svg.rect(this.grid, this.BasePosX-(anchoaltogrilla/2), this.BasePosY-(anchoaltogrilla/2), anchoaltogrilla, anchoaltogrilla, {id:' fondogrilla' +this.dataid,  fill: 'none',     stroke: '#000', strokeWidth: 0}); 
-	var NumeroFilas = this.config.template.zones.length;		//Numero de filas soportado = 1 - 2- 3
-	var AlturaFilas = anchoaltogrilla/NumeroFilas;
-	//preparando coordenadas para los textos, el primero es calculado fuera de su bucle
-	AnchoColumnas = anchoaltogrilla/this.config.template.zones[0];
-	this.TextDataZonesCoord[0]= new Array();
-	//dibujando separadores de filas
-	for (i=0;i<NumeroFilas;i++){								//las coordenadas que varian son las Y, las coordenadas X son fijas
-		if(i>0){
-			Y_separador = (this.BasePosY-(anchoaltogrilla/2))+AlturaFilas*i;
-			Y_separador1 = (this.BasePosY-(anchoaltogrilla/2))+AlturaFilas*(i+1);
-			this.svg.line(this.grid,  this.BasePosX-(anchoaltogrilla/2), Y_separador, this.BasePosX-(anchoaltogrilla/2)+anchoaltogrilla, Y_separador); 
-			}
-		AnchoColumnas = anchoaltogrilla/this.config.template.zones[i];
-		this.TextDataZonesCoord[i]?'nada':this.TextDataZonesCoord[i] = new Array();
-		for (j=0;j<this.config.template.zones[i];j++){
-			this.TextDataZonesCoord[i][j]?'nada':this.TextDataZonesCoord[i][j]= new Array();	
-			console.log('aqui');
-			console.log(this.config.internalData);
-			this.TextDataZonesCoord[i][j]['text'] = this.config.internalData[this.config.DataZones[i*3+j]];
-			this.TextDataZonesCoord[i][j]['x'] = this.BasePosX-anchoaltogrilla/2 + AnchoColumnas*j+AnchoColumnas/2-this.AjusteCentrado(String(this.config.internalData[this.config.DataZones[i*3+j]]));
-			this.TextDataZonesCoord[i][j]['y'] = this.BasePosY - anchoaltogrilla/2 +AlturaFilas/2*(1) +AlturaFilas*i;
-			if((i>0)&&(j>0)){
-				X_separador = (this.BasePosX-(anchoaltogrilla/2))+AnchoColumnas*j;	
-				this.svg.line(this.grid,  X_separador, Y_separador, X_separador, Y_separador1); 
-			}
-		}
-	}
-	console.log(this.TextDataZonesCoord);  */
+
 }
 Components.GrafoNodo.prototype.drawTexts = function() {
-	/*
-	Se procesa como dato de multiple lineas con textProcesor = 2, la descripción.
-    los demás datos se dibujan basados en coordenadas ya calculadas por la función drawTemplateGrid(); 
-	*/
-	
-	// $("#nodoPert"+this.PertId).css("left",this.BasePosX-this.AnchoShape/2);
-	// $("#nodoPert"+this.PertId).css("top",this.BasePosY-this.AnchoShape/4);
-	// $("#nodoPert"+this.PertId).css("visibility","visible");
-	
-	
-	
-	/*this.Textprocesor = new TextProcesor(this.config.internalData.descripcion,{"NumMaxLetras": 10});	//si el texto es muy largo textProcesor corta el texto de la mejor manera posible, si aun no encaja, no lo muestra.
-		var arrayTexto = new Array();
-		this.ArrayTextos = new Array();    
-		for (indicet in this.Textprocesor.ArrayTextosResultado)	{
-			if(indicet>=2) break; 
-			arrayTexto[indicet] = this.Textprocesor.ArrayTextosResultado[indicet];
-			switch (this.Textprocesor.NumPartes){
-			case 1:
-			this.ArrayTextos[indicet] = this.svg.text(this.grid,this.BasePosX- this.AjusteCentrado(arrayTexto[indicet].trim()),   this.BasePosY+indicet*15, arrayTexto[indicet].trim(),{fontFamily: "Verdana", fontSize: "10", fill: "black",class_: this.dataid+"_" +"DescripcionResumen" } );
-			break;
-			case 2:
-			this.ArrayTextos[indicet] = this.svg.text(this.grid,this.BasePosX- this.AjusteCentrado(arrayTexto[indicet].trim()),  this.BasePosY+indicet*10, arrayTexto[indicet].trim(),{fontFamily: "Verdana", fontSize: "10", fill: "black",class_: this.dataid+"_" +"DescripcionResumen"   } );
-			break;
-			}
-		}*/
-	//this.svg.text( grid,this.BasePosX - Ajuste(this.Descripcion),  this.BasePosY+5 , this.Descripcion,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"});
-	//this.TextDataZonesCoord[0][0]['svg']== "right" ?
-	//(typeof(this.TextDataZonesCoord[0][0]['x']!='undefined'))?
-	
-	
-	 /* if(typeof(this.TextDataZonesCoord[0][0])!="undefined"){
-	this.TextDataZonesCoord[0][0]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[0][0]['x'],  this.TextDataZonesCoord[0][0]['y']+5, String(this.TextDataZonesCoord[0][0]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"});}
-	else {
-	'nada';}
-	
-	//(typeof(this.TextDataZonesCoord[0][1]!='undefined'))?
-	if(typeof(this.TextDataZonesCoord[0][1])!="undefined"){
-	this.TextDataZonesCoord[0][1]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[0][1]['x'],  this.TextDataZonesCoord[0][1]['y']+5 , String(this.TextDataZonesCoord[0][1]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"});}
-	else {
-	'nada';}
-	
-	
-	(typeof(this.TextDataZonesCoord[0][2])!='undefined')?
-	this.TextDataZonesCoord[0][2]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[0][2]['x'],  this.TextDataZonesCoord[0][2]['y']+5 , String(this.TextDataZonesCoord[0][2]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada';
-	
-	(typeof(this.TextDataZonesCoord[1][0])!='undefined')?
-	this.TextDataZonesCoord[1][0]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[1][0]['x'],  this.TextDataZonesCoord[1][0]['y']+5 , String(this.TextDataZonesCoord[1][0]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada';
-	
-	(typeof(this.TextDataZonesCoord[1][1])!='undefined')?
-	this.TextDataZonesCoord[1][1]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[1][1]['x'],  this.TextDataZonesCoord[1][1]['y']+5 , String(this.TextDataZonesCoord[1][1]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada';
-	
-	(typeof(this.TextDataZonesCoord[1][2])!='undefined')?
-	this.TextDataZonesCoord[1][2]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[1][2]['x'],  this.TextDataZonesCoord[1][2]['y']+5 , String(this.TextDataZonesCoord[1][2]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada';
-	
-	(typeof(this.TextDataZonesCoord[2][0])!='undefined')?
-	this.TextDataZonesCoord[2][0]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[2][0]['x'],  this.TextDataZonesCoord[2][0]['y']+5 , String(this.TextDataZonesCoord[2][0]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada';
-	
-	(typeof(this.TextDataZonesCoord[2][1])!='undefined')?
-	this.TextDataZonesCoord[2][1]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[2][1]['x'],  this.TextDataZonesCoord[2][1]['y']+5 , String(this.TextDataZonesCoord[2][1]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada';
-	
-	(typeof(this.TextDataZonesCoord[2][2])!='undefined')?
-	this.TextDataZonesCoord[2][2]['svg']=this.svg.text( this.grid,this.TextDataZonesCoord[2][2]['x'],  this.TextDataZonesCoord[2][2]['y']+5 , String(this.TextDataZonesCoord[2][2]['text']) ,{fontFamily: 'Verdana', fontSize: '10px', fill: 'black', visibility: "visible", style:"user-select: none;"}):'nada'; */
-	 
+ 
 }
 
 Components.GrafoNodo.prototype.show = function() {
@@ -333,9 +278,12 @@ Components.GrafoNodo.prototype.Seleccionar = function() {
     if (this.tree.nodoSeleccionado != 0){            
 		this.tree.nodos[this.tree.nodoSeleccionado].DesSeleccionar();}     
 		this.tree.nodoSeleccionado = this.PertId;       
-  
-            var ancho =10;           
-            this.SeleccionBox =  this.svg.rect(this.grid ,this.BasePosX-(this.AnchoShape/2)-5, this.BasePosY-(this.AnchoShape/2)-5, this.AnchoShape+10, this.AnchoShape+10, 10, 10, {fill: "none", stroke: "red", strokeWidth: 2,class_: 'Seleccion'+this.PertId });
+            var ancho =10;
+			var Xini = this.BasePosX-this.AnchoShape/2*(this.scale/100)-5;
+			var Xfin = this.AnchoShape*(this.scale/100)+10;
+			var Yini = this.BasePosY-(this.AnchoShape/2)*(this.scale/100)-5;
+			var Yfin = this.AnchoShape*(this.scale/100)+10;
+            this.SeleccionBox =  this.svg.rect(this.grid ,Xini, Yini, Xfin,Yfin , 10, 10, {fill: "none", stroke: "red", strokeWidth: 2,class_: 'Seleccion'+this.PertId });
             this.Seleccionado = true;
 			/*if(this.dragable)
 				Components.getComponentById('PertTaskDragEnabler_' + windowContenedor.id).setIcon('images/crozico.png');	

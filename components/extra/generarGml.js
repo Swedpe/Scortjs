@@ -8,8 +8,8 @@ for(nodo in tree.nodos){
 	nodosTxt = nodosTxt + crearNodoGML(TareaX);
 	verticesTxt = verticesTxt + CrearVericesGML(TareaX);
 }
-salida = "directed 1"+
-"graph [";
+salida = "directed 1\n"+
+"graph [\n";
 
 salida = salida +  nodosTxt;
 salida = salida + verticesTxt;
@@ -18,11 +18,11 @@ return salida;
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------
 function crearNodoGML(TareaData){
-$nodo = 'node ['+
-'id '+TareaData.Id+
+$nodo = 'node [\n'+
+'id '+TareaData.id+'\n'+
 'template "oreas:std:rect simple"\n'+
-'label "'+TareaData.Id+
-'graphics ['+
+'label "'+TareaData.id+'"\n'+
+'graphics [\n'+
 'w 33.00000000\n'+
 'h 23.00000000\n'+
 'fill "#add8e6"\n'+
@@ -37,20 +37,20 @@ return $nodo;
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function CrearVericesGML(TareaData){
-$vertices = "";	
-for(Sucesora in TareaData.Sucesoras){
-	suc =  TareaData.Sucesoras[Sucesora];
-	vertices = vertices + 'edge ['+
-	'source '+TareaData.Id+ 
-	'target '+suc.Id+
-	'graphics ['+
-	'type "line"'+
-	'arrow "none"'+
-	'stipple 1'+
-	'lineWidth 2.000000000'+
-	'fill "#000000"'+
-	']'+
-	']';
+vertices = "";	
+for(Sucesora in TareaData.datos.Sucesoras){
+	suc =  TareaData.datos.Sucesoras[Sucesora];
+	vertices = vertices + 'edge [\n'+
+	'source '+TareaData.id+'\n'+ 
+	'target '+suc+'\n'+ 
+	'graphics [\n'+
+	'type "line"\n'+
+	'arrow "none"\n'+
+	'stipple 1\n'+
+	'lineWidth 2.000000000\n'+
+	'fill "#000000"\n'+
+	']\n'+
+	']\n';
 	}
-return $vertices;
+return vertices;
 }

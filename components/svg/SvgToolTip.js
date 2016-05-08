@@ -149,6 +149,7 @@ Components.svgToolTip.prototype.draw=function(x,y){
 		var x2=x+this.svg._container.getBoundingClientRect().left+document.body.scrollLeft;								//posicion de div de texto
 		var y2=y+this.svg._container.getBoundingClientRect().top+document.body.scrollTop;								//posicion de div de texto
 	}else{
+		console.log('problemas');
 	/**
 		this.target.getBoundingClientRect().left/top			posicion del target en el body HTML
 		this.target.getBoundingClientRect().width/2				ancho del target

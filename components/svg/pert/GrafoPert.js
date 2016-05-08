@@ -23,14 +23,20 @@ Components.Pert.prototype.init = function(dataObj) {
         hidden: false,
         autoScroll: true,
         items: [],
+		scale:100,
 		nodoSeleccionado:-1,
 		svgcontainer:'',
+		viewToolTip:'"<p class=\'TestSvg\'>"+this.id+"</p>"',
 		styleNode:{
 			Background:'#FFFFFF',
             Linecolor: '#FFFFFF'			
 		},
+		plugins:{
+			pdf:false,
+			svgToolTip: false,
+		},
 		clipboard:false,
-		viewFormat:'"<div><table class=\'tablePertNodeExample\' ><tr><td colspan=3 ><strong>"+this.internalData.visibleId+"</strong></td></tr><tr><td colspan=3 style=\'border-top: solid; border-bottom: solid;\'><strong style=\'font-size:13px;\'>"+this.internalData.descripcion+"</strong></td></tr><tr><td ><strong>"+this.internalData.duracion+"</strong></td><td style=\'border-left: solid; border-right: solid;\'><strong>"+this.internalData.holgura+"</strong></td><td><strong >"+this.internalData.holgura+"</strong></td></tr></table></div>"',
+		viewFormat:'"<div><table class=\'tablePertNodeExample\' ><tr><td colspan=3 ><strong>"+this.internalData.visibleId+"</strong></td></tr><tr><td colspan=3 style=\'border-top: solid; border-bottom: solid;\'><strong>"+this.internalData.descripcion+"</strong></td></tr><tr><td ><strong>"+this.internalData.duracion+"</strong></td><td style=\'border-left: solid; border-right: solid;\'><strong>"+this.internalData.holgura+"</strong></td><td><strong >"+this.internalData.holgura+"</strong></td></tr></table></div>"',
 		group:Math.round(Math.random()*999999),
         listeners: {
             show: function(){},
@@ -52,6 +58,9 @@ Components.Pert.prototype.init = function(dataObj) {
         }
     }    
     this.countEdge = 0;												//para mantener el correcto funcionamiento de los EDGE
+
+	this.scale = this.config.scale;
+		console.log(this.scale);
     this.id = this.config.id;
     this.title = this.config.title;
     this.container = this.config.container;
@@ -68,12 +77,19 @@ Components.Pert.prototype.getNextEdgeId = function(){
 	 this.countEdge++;
 	 return this.countEdge;
 }
-Components.Pert.prototype.create = function() {        
+Components.Pert.prototype.create = function() { 
+	console.log(this.svgcontainer.svg);
+		if(this.config.plugins.svgToolTip){
+		this.config.plugins.svgToolTip.svg=this.svgcontainer.svg;
+		this.toolTipOBJ = Components.create('svgToolTip',this.config.plugins.svgToolTip);
+		if(this.toolTipOBJ.orientacion==null)
+			this.toolTipOBJ.orientacion=="arriba";
+	}         
 	this.root = this.svgcontainer.root;									//El elemento padre - root de todas las imagenes SVG en el inspector es el elemento  <svg>
 	this.screenGrid = this.svgcontainer.screenGrid;
 	this.svgContend = this.svgcontainer.svgContend;						//es el div que contiene el elemento SVG
     if(this.grupo != false)
-	this.svgcontainer.svg.group({id: this.grupo});
+	this.grupo = this.svgcontainer.svg.group({id: this.grupo});
 	this.MakeItems();
 	this.DrawItems();
 	this.RecalcSize();
@@ -88,7 +104,16 @@ Components.Pert.prototype.MakeItems = function() {
 			item.viewFormat = this.config.viewFormat;
 		item.svg = this.svgcontainer.svg;
 		item.screenGrid = this.screenGrid;
+		if(this.toolTipOBJ){
+			if(item.viewToolTip){}
+			else if(this.config.plugins.svgToolTip.viewToolTip)
+				item.viewToolTip = this.config.plugins.svgToolTip.viewToolTip;
+			else
+				item.viewToolTip = this.config.viewToolTip;
+		}
 		item.tree = this;
+		item.grupoPadre = this.grupo;
+		item.scale = this.scale;
 		var element = Components.create(item.type, item);
         this.nodos[element.PertId] = element;
     }
@@ -106,9 +131,36 @@ Components.Pert.prototype.DrawItems = function() {
 }
 Components.Pert.prototype.RecalcSize = function() { 
 //forzando un tamaño grande para primeras pruebas
-$(this.root).attr('width', 800);		
-	$(this.root).attr('height', 450);
+console.log(this.grupo);
+var ancho=this.grupo.getBBox().x+this.grupo.getBBox().width;
+		var alto=this.grupo.getBBox().y+this.grupo.getBBox().height;
+		this.svgContend.width(ancho);
+		this.svgContend.height(alto);
+$(this.root).attr({'width':ancho+10,'height':alto+10});
+	
 }
 Components.Pert.prototype.show = function(){
 return this;
+}
+function aplicarTemplateX() {
+  var step = function() {
+     if(contador >=  totalIndices) {
+		//cuando ya estan aplicados los templates llamar al flujo de dibujo      
+	  dibuja_Paso0(finishtwo);		//-->>continuar con el resto de partes.
+	  return;
+    } else {
+		$this.listeners.onDrawTree(this,parseInt(50*contador/totalIndices))
+	var limit = contador + 300;
+	for (; contador < limit; ){ 
+		 if(contador >=  totalIndices){
+			break; 
+		 }
+		$this.nodos[indices[contador]].aplicarTemplate();
+		contador++;
+	}
+    }
+	 //contador = contador +1;
+    requestAnimationFrame(step);
+  }
+  step();
 }
