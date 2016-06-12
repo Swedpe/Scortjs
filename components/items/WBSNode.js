@@ -12,6 +12,7 @@
     * William Uria Martinez[Williamuriamartinez@hotmail.com], Angela Mayhua[], Cesar Cardenas[ccardenashq@gmail.com], Fritz Velarde-Alvarez Aguilar (f.velardealvarez@gmail.com).
 */
 Components.WBSNode.prototype.init = function(dataObj) {
+	this.tipo = 'NodoWBS';
 	this.config = {	
 		container: $('body'),
 		id: "WBSNode-"+ Math.round(Math.random() * 2000),		//no deberia ser asignado un ip por este metodo aleatorio, de preferencia siempre envie los ids.
@@ -223,15 +224,13 @@ Components.WBSNode.prototype.aplicarTemplate = function() {
 	}else{
 			if(!this.divTexto){
 				// this.divTexto=$('<div id="testNodo'+ this.id+'" class="cajita_WBS_Node" ><p class="pNodoSvg" >'+texto+'</p></div>');
-				this.divTexto=$('<div id="testNodo'+ this.id+'" class="cajita_WBS_Node" >'+eval(this.config.viewFormat)+'</div>');
+				this.divTexto=$('<div  class="cajita_WBS_Node testNodo'+ this.id+'" >'+eval(this.config.viewFormat)+'</div>');
 				$('body').append(this.divTexto);
 				// style="max-width:'+250+'px; font-size:'+11+'px; visibility:hidden;position: absolute;height: auto;width: auto; 
 				// var test = document.getElementById("testNodo"+this.id);
 				// this.tree.svgContend.append(test);
 				// this.tree.svgContend.append(this.divTexto);
-				$("#testNodo"+this.id).bind('click', {OBJ:this}, function(event) {
-					event.data.OBJ.seleccionar();
-				});
+				
 			}else{
 				this.divTexto.show();
 			}
@@ -243,9 +242,16 @@ Components.WBSNode.prototype.aplicarTemplate = function() {
 			
 			// this.AnchoCajita = (Object.keys(this.items)==false&&this.Status=='minimizado'?ancho:250);
 			this.tree.svgContend.append(this.divTexto);		/// se hace append al final xq si todo es bolita y el svg es pequeño, se hacen mal los calculos
+			console.log("template");
+			$(".testNodo"+this.id,this.tree.svgcontainer.svgContend).unbind('click');
 			
+			$(".testNodo"+this.id,this.tree.svgcontainer.svgContend).bind('click', {OBJ:this}, function(event) {
+					event.data.OBJ.seleccionar();
+				});
+				
+				
 			if(this.tree.toolTipOBJ){
-				this.setEvent1("#testNodo"+this.id);
+				this.setEvent1(".testNodo"+this.id,this.tree.svgcontainer.svgContend);
 			}
 		}
 		}else{
@@ -318,6 +324,7 @@ if(this.TextCajita==0){		//TextCajita = 0 cuando es la primera pasada,
 Components.WBSNode.prototype.draw = function(){	
 if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.nodos[this.idp].visible==true){
 	if(this.tipoObjeto!='WBSPARENT'){
+		/// si hay un nuevo elemnto a dibujar 
 		if(this.newChild)
 		{
 			this.DrawChildLines();
@@ -330,12 +337,12 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 			this.TextCajita.draw();						//dibujar la cajita o bolita
 			this.DrawChildLines();
 			//el div que va centrado en el area que ocupa una caja css
-			$("#testNodo"+this.id).css("left",this.PosCajitaX);
-			$("#testNodo"+this.id).css("top",this.BasePosY);
-			//$("#testNodo"+this.id).css("width",this.AnchoCajita);
-			//$("#testNodo"+this.id).css("height",this.Alto);
-			$("#testNodo"+this.id).css("visibility",'visible');
-			// $("#testNodo"+this.id).css("z-Index",9000);
+			$(".testNodo"+this.id,this.tree.svgcontainer.svgContend).css("left",this.PosCajitaX);
+			$(".testNodo"+this.id,this.tree.svgcontainer.svgContend).css("top",this.BasePosY);
+			//$(".testNodo"+this.id).css("width",this.AnchoCajita);
+			//$(".testNodo"+this.id).css("height",this.Alto);
+			$(".testNodo"+this.id,this.tree.svgcontainer.svgContend).css("visibility",'visible');
+			// $(".testNodo"+this.id).css("z-Index",9000);
 			//---------------
 			if(!this.bolita){						//si no es bolita
 			// if(Object.keys(this.items).length!=0){
@@ -441,7 +448,7 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 						//var xDiffNow = this.p
 		//ahora para las actividades
 		if(!this.bolita){						//si no es bolita
-			$("#testNodo"+this.id).css("visibility",'visible');
+			$(".testNodo"+this.id,this.tree.svgcontainer.svgContend).css("visibility",'visible');
 			// if(Object.keys(this.items).length!=0){
 			if(this.actividadesId.length!=0){
 					// if(this.dibujarActividades&&this.Status=="Maximizado"){
@@ -565,6 +572,10 @@ if(this.tree.nodos[this.idp].Status=='Maximizado' && this.visible && this.tree.n
 	}
 }*/
 //-----------------------------------------------------------------------------------------------------------------------------------
+/**
+* fixChildLineControlBox esta funcion colocara los cuadritos de maximizado y minimizado 
+* dependiendo a como este el nodo corregira su direccion
+**/
 Components.WBSNode.prototype.fixChildLineControlBox = function()
 {
 	var posX;
@@ -607,6 +618,10 @@ Components.WBSNode.prototype.fixChildLineControlBox = function()
 	}
 }
 //---------------------------------------------------------------------------------------------------------------------
+/**
+* fixChildLine esta funcion se encargara de dibujar las lineas hacia sus elementos
+* corregira las lineas al cambio de orientacion que presenten 
+**/
 Components.WBSNode.prototype.fixChildLine = function(){
 	//ajustar los parametros de la linea cuando hay minimizacion o maximizacion
 	//una childline esta definida por 4 puntos.
@@ -837,6 +852,10 @@ Components.WBSNode.prototype.calcActividades = function(){
 			}
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* drawActividades esta funcion se invocara a calcActividad para que encuentre una posicion 
+* y draw para que se visualize la actividad serca al nodo actual
+**/
 Components.WBSNode.prototype.drawActividades = function(){
 			for(var indice in this.actividades){
 				this.actividades[indice].grupo = this.grupo;
@@ -847,6 +866,9 @@ Components.WBSNode.prototype.drawActividades = function(){
 		// }
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* destroyActividades esta funcion removera y eliminara la actividad 
+**/
 Components.WBSNode.prototype.destroyActividades = function(){
 	//console.log('destroyactividades');
 	// if(Object.keys(this.items).length!=0){
@@ -861,6 +883,9 @@ Components.WBSNode.prototype.destroyActividades = function(){
 	// }
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* ocultarActividades esta funcion ocultara las actividades del nodo actual
+**/
 Components.WBSNode.prototype.ocultarActividades = function(){
 		if(this.divActividades){
 			this.divActividades.hide();
@@ -870,6 +895,9 @@ Components.WBSNode.prototype.ocultarActividades = function(){
 		}
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* agregarActividad esta funcion se encargara de crear la actividad con un valor por defecto 
+**/
 Components.WBSNode.prototype.agregarActividad = function(){
 	if(this.childsId.length==0 || this.tree.nodos[this.childsId[0]].fakeChild){
 		// //console.log("se puede añadir actividades")
@@ -899,6 +927,10 @@ Components.WBSNode.prototype.agregarActividad = function(){
 		//console.log("El nodo ya tiene uno o mas nodos hijos")
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* expandirActividades esta funcion se encargar de expandir las actividades del nodo actual 
+* si el elemento es una bolita no se dibujara las actividades 
+**/
 Components.WBSNode.prototype.expandirActividades = function(){
 	//console.log('maximizar actividades');
 	// if(Object.keys(this.items).length!=0 && !this.bolita){
@@ -915,6 +947,10 @@ Components.WBSNode.prototype.expandirActividades = function(){
 	}
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* contraerActividades esta funcion se encargara de invocar a ocultarActividades para que desaparescan todas las 
+* actividades relacionadas al nodo actual
+**/
 Components.WBSNode.prototype.contraerActividades = function(){
 	//console.log('minimizar actividades');
 	if(this.actividadesId.length!=0 && !this.bolita){
@@ -954,16 +990,29 @@ Components.WBSNode.prototype.contraerActividades = function(){
 	
 // }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* seleccionar esta funcion se encargara de visualizar que el lemento seleccionado 
+* agregara un marco rojo al nodo si es bolita o cuadrado 
+* y mostrara el menu flotante
+**/
 Components.WBSNode.prototype.seleccionar = function(){
     // this.grupo= ((!this.tree.grupo)?'':$('#'+this.tree.grupo));
     // this.grupo= this.grupo;
 	var wbstree = this.tree;
+	
 	if(wbstree.nodoSeleccionado==this){
 		wbstree.nodoSeleccionado.desSeleccionar();
 	}else{
 		if (wbstree.nodoSeleccionado != -1)	
 			wbstree.nodoSeleccionado.desSeleccionar();
-		
+		console.log('->'+this.bolita);
+		if(this.bolita)
+			$('#BtnBolita').children('i').removeClass().addClass('buttonItem-icon-left fa fa-square-o');
+		else
+			$('#BtnBolita').children('i').removeClass().addClass('buttonItem-icon-left fa fa-circle');
+		if(this.tree.floatingMenuNode){
+			this.tree.floatingMenuNode.objectSelection(this,event,'Tree');
+		}
 		wbstree.nodoSeleccionado = this;
 		// this.SeleccionBox =  this.screenGrid.svg.rect(this.grupo,-5, -5, this.TextCajita.varAncho+10, this.TextCajita.varAlto+10, 10, 10, {fill: "none", stroke: "red", strokeWidth: 2,class_: 'tarea'+this.id });		
 		if(!this.bolita)
@@ -976,12 +1025,19 @@ Components.WBSNode.prototype.seleccionar = function(){
 	}
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* desSeleccionar esta funcion removera el contorno rojo y ocultara el menu flotante
+**/
 Components.WBSNode.prototype.desSeleccionar = function(){
 	var wbstree = this.tree;
 	if(this.SeleccionBox.parentElement != undefined) //Caso especial de cortado
 		this.screenGrid.svg.remove(this.SeleccionBox);
 	wbstree.nodoSeleccionado = -1;
 	this.listeners.deselect (this);
+	
+	if(this.tree.floatingMenuNode){
+		this.tree.floatingMenuNode.ocultar(this);
+	}
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSNode.prototype.AddChild = function(nodo){
@@ -1413,6 +1469,9 @@ Components.WBSNode.prototype.showNodo = function(){
 		}
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* Minimize esta funcion hara que los elementos o hijos del nodo se oculten
+**/
 Components.WBSNode.prototype.Minimize = function(){
 	if (this.Status!="minimizado"){
 		this.Status = "minimizado";
@@ -1436,6 +1495,9 @@ Components.WBSNode.prototype.Minimize = function(){
 	}
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* Maximize esta funcion hara que sus elementos o hijos se dibujen
+**/
 Components.WBSNode.prototype.Maximize = function(){
 	//console.log('maximize');
 	if (this.Status=="minimizado"){

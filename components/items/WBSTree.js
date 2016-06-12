@@ -12,6 +12,7 @@
     * William Uria Martinez[Williamuriamartinez@hotmail.com], Angela Mayhua[], Cesar Cardenas[ccardenashq@gmail.com], Fritz Velarde-Alvarez Aguilar (f.velardealvarez@gmail.com).
 */
 Components.WBSTree.prototype.init = function(dataObj) {
+	this.tipo = 'WBSTree';
 	this.config = {
         container: $('body'),       
         id: "WBSTree-"+ Math.round(Math.random() * 2000),
@@ -136,7 +137,22 @@ Components.WBSTree.prototype.create = function() {
 		if(this.toolTipOBJ.orientacion==null)
 			this.toolTipOBJ.orientacion=="arriba";
 	}         
-	
+	if(this.config.plugins.floatingMenuNode){
+		console.log("--");
+		this.config.plugins.floatingMenuNode.svg=this.svgcontainer.svg;
+		this.config.plugins.floatingMenuNode.parentComponent=this;
+		this.floatingMenuNode = Components.create('svgFloatingMenu',this.config.plugins.floatingMenuNode);
+		if(this.floatingMenuNode.orientacion==null)
+			this.floatingMenuNode.orientacion=="arriba";
+	} 
+	if(this.config.plugins.floatingMenuEdge){
+		console.log("--");
+		this.config.plugins.floatingMenuEdge.svg=this.svgcontainer.svg;
+		this.config.plugins.floatingMenuEdge.parentComponent=this;
+		this.floatingMenuEdge = Components.create('svgFloatingMenu',this.config.plugins.floatingMenuEdge);
+		if(this.floatingMenuEdge.orientacion==null)
+			this.floatingMenuEdge.orientacion=="arriba";
+	} 
 	this.root = this.svgcontainer.root;						//El elemento padre - root de todas las imagenes SVG en el inspector es el elemento  <svg>
 	this.screenGrid = this.svgcontainer.screenGrid;
 	this.svgContend = this.svgcontainer.svgContend;
@@ -182,6 +198,13 @@ Components.WBSTree.prototype.create = function() {
 		this.MakeItems(this.padres[i]);
 		// //console.log(i);
 	}
+	if(this.floatingMenuNode){
+			this.floatingMenuNode.draw();
+		}
+		if(this.floatingMenuEdge){
+			this.floatingMenuEdge.draw();
+		}
+
 	this.procesarNodosComoActividades();
 	
 				this.grupo.remove();				//añadido aca para q despues de cada calcNodoEco pueda eliminar el grupo y todo siga normal
@@ -247,7 +270,6 @@ Components.WBSTree.prototype.MakeItems = function(nodeId) {
 		this.MakeItems(this.items[nodeId].childsId[i])
 	}
 	
-
 	return true;
 }
 //-----------------------------------------------------------------------------------------------------------------------
@@ -665,6 +687,11 @@ Components.WBSTree.prototype._getNodeSize = function (node) {
     return 0;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* CambiarLayout 
+* @param algoritmo 
+* 
+**/
 Components.WBSTree.prototype.cambiarLayout=function(algoritmo){
 	if (this.algorithm == algoritmo){return;}
 	else{
@@ -685,6 +712,10 @@ Components.WBSTree.prototype.cambiarLayout=function(algoritmo){
 	}
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* cambiarOrientacion esta funcion cambiara el arbol de vertical o horizontal
+* @param orientacion dependiendo a esta variable hara el cambio respectivo de orientacion 
+**/
 Components.WBSTree.prototype.cambiarOrientacion=function(orientacion){
 	if (this.config.orientation == orientacion){return;}
 	else{
@@ -753,61 +784,61 @@ Components.WBSTree.prototype.prepareForSave=function(format){
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSTree.prototype.downloadPdf=function(pdfName){
 	var doc = new jsPDF("landscape","pt", 'a3');
-//Creando cajas.
-for (var i in this.nodos){						
-	doc.setDrawColor(parseInt(this.nodos[i].stroke[1])*16+parseInt(this.nodos[i].stroke[2]),142,58);
-	doc.setFillColor(255,255,255);
-	// doc.setLineWidth(parseFloat(this.nodos[0].TextCajita.Caja.getAttribute("stroke-width"))); //FORAZANDO nodos[i] ---> nodos[0]
-	doc.setLineWidth(parseFloat(this.nodos[parseInt(Object.keys(this.nodos)[0])].TextCajita.Caja.getAttribute("stroke-width"))); //FORAZANDO nodos[i] ---> nodos[0]
-	doc.rect(this.nodos[i].PosCajitaX, this.nodos[i].BasePosY, this.nodos[i].AnchoCajita, this.nodos[i].Alto,'FD');
-	
-		var specialElementHandlers = {
-				// id="testNodo'+ this.id+'"
-				'#editor': function (element, renderer) {
-					return true;
-				}
-			}
-			doc.fromHTML($("#testNodo"+this.nodos[i].id).html(), 15, 15, {
-			'width': 170,
-            'elementHandlers': specialElementHandlers
-    });
-			
-	// for (var t in this.nodos[i].TextCajita.ArrayTextos)
-	// {
-		// doc.setFont("times");
-		// doc.setFontType("normal");
-		// doc.setFontSize(parseInt(this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("font-size")));
+	//Creando cajas.
+	for (var i in this.nodos){						
+		doc.setDrawColor(parseInt(this.nodos[i].stroke[1])*16+parseInt(this.nodos[i].stroke[2]),142,58);
+		doc.setFillColor(255,255,255);
+		// doc.setLineWidth(parseFloat(this.nodos[0].TextCajita.Caja.getAttribute("stroke-width"))); //FORAZANDO nodos[i] ---> nodos[0]
+		doc.setLineWidth(parseFloat(this.nodos[parseInt(Object.keys(this.nodos)[0])].TextCajita.Caja.getAttribute("stroke-width"))); //FORAZANDO nodos[i] ---> nodos[0]
+		doc.rect(this.nodos[i].PosCajitaX, this.nodos[i].BasePosY, this.nodos[i].AnchoCajita, this.nodos[i].Alto,'FD');
 		
-		// doc.setTextColor(0, 0, 255);
-		// doc.text(parseFloat(this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("x")),parseFloat(this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("y")),this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("class"));
-	// }
-}
-//Creando lineas entre cajas.
-for (var e in this.nodos){
-	for (var w in this.nodos[e].ChildLines){
-		var nuevalista = $.map((this.nodos[e].ChildLines[w].getAttribute("points").replace(/ /g,",")).split(','), function(value){
-			return parseFloat(value, 10);
+			var specialElementHandlers = {
+					// id="testNodo'+ this.id+'"
+					'#editor': function (element, renderer) {
+						return true;
+					}
+				}
+				doc.fromHTML($(".testNodo"+this.nodos[i].id).html(), 15, 15, {
+				'width': 170,
+				'elementHandlers': specialElementHandlers
 		});
-		doc.setDrawColor(0,0,255);
-		doc.setLineWidth(parseFloat(this.nodos[e].ChildLines[w].getAttribute("stroke-width")));
-		doc.line(nuevalista[0], nuevalista[1], nuevalista[2], nuevalista[3]);
-		doc.line(nuevalista[2], nuevalista[3], nuevalista[4], nuevalista[5]);
-		doc.line(nuevalista[4], nuevalista[5], nuevalista[6], nuevalista[7]);
+				
+		// for (var t in this.nodos[i].TextCajita.ArrayTextos)
+		// {
+			// doc.setFont("times");
+			// doc.setFontType("normal");
+			// doc.setFontSize(parseInt(this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("font-size")));
+			
+			// doc.setTextColor(0, 0, 255);
+			// doc.text(parseFloat(this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("x")),parseFloat(this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("y")),this.nodos[i].TextCajita.ArrayTextos[t].getAttribute("class"));
+		// }
 	}
-}
-//Creando puntas de flechas.
-for (var a in this.nodos){
-	for (var v in this.nodos[a].ChildArrow){
-		var nuevalista = $.map((this.nodos[a].ChildArrow[v].getAttribute("points").replace(/ /g,",")).split(','), function(value){
-			return parseFloat(value, 10);
-		});
-		doc.setDrawColor(0,0,255);
-		doc.setFillColor(255,0,0);
-		doc.setLineWidth(parseFloat(this.nodos[a].ChildArrow[v].getAttribute("stroke-width")));
-		doc.triangle(nuevalista[0], nuevalista[1], nuevalista[2], nuevalista[3],nuevalista[4], nuevalista[5],'FD');
+	//Creando lineas entre cajas.
+	for (var e in this.nodos){
+		for (var w in this.nodos[e].ChildLines){
+			var nuevalista = $.map((this.nodos[e].ChildLines[w].getAttribute("points").replace(/ /g,",")).split(','), function(value){
+				return parseFloat(value, 10);
+			});
+			doc.setDrawColor(0,0,255);
+			doc.setLineWidth(parseFloat(this.nodos[e].ChildLines[w].getAttribute("stroke-width")));
+			doc.line(nuevalista[0], nuevalista[1], nuevalista[2], nuevalista[3]);
+			doc.line(nuevalista[2], nuevalista[3], nuevalista[4], nuevalista[5]);
+			doc.line(nuevalista[4], nuevalista[5], nuevalista[6], nuevalista[7]);
+		}
 	}
-}
-doc.save(pdfName);
+	//Creando puntas de flechas.
+	for (var a in this.nodos){
+		for (var v in this.nodos[a].ChildArrow){
+			var nuevalista = $.map((this.nodos[a].ChildArrow[v].getAttribute("points").replace(/ /g,",")).split(','), function(value){
+				return parseFloat(value, 10);
+			});
+			doc.setDrawColor(0,0,255);
+			doc.setFillColor(255,0,0);
+			doc.setLineWidth(parseFloat(this.nodos[a].ChildArrow[v].getAttribute("stroke-width")));
+			doc.triangle(nuevalista[0], nuevalista[1], nuevalista[2], nuevalista[3],nuevalista[4], nuevalista[5],'FD');
+		}
+	}
+	doc.save(pdfName);
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.WBSTree.prototype._getLeftmost = function (node, level, maxlevel) {

@@ -152,9 +152,9 @@ Components.ProgressBar.prototype.setControls = function() {
 		this.divContainer.bind("mousemove", {OBJ:this}, function(event) {
 				if(event.data.OBJ.enabled){
 				if(event.data.OBJ.Mdown){
-					var value = (event.offsetX / this.offsetWidth)*100;
+					var value = (event.offsetX / this.offsetWidth)*101;
 					if(event.data.OBJ.config.position=='right'){
-						value = 100-(event.offsetX / this.offsetWidth)*100;
+						value = 100-(event.offsetX / this.offsetWidth)*101;
 					}
 					event.data.OBJ.setValue(parseInt(value));
 				}
@@ -172,8 +172,7 @@ Components.ProgressBar.prototype.setControls = function() {
 				event.data.OBJ.Mdown=false;
 				}
 		});
-	}
-	this.divContainer.bind("click", {OBJ:this}, function(event) {
+		this.divContainer.bind("click", {OBJ:this}, function(event) {
 			if(event.data.OBJ.enabled){
 				var value = (event.offsetX / this.offsetWidth)*100;
 					if(event.data.OBJ.config.position=='right'){
@@ -183,6 +182,8 @@ Components.ProgressBar.prototype.setControls = function() {
             event.data.OBJ.config.listeners.click(event);
 			}
     })
+	}
+	
 }
 //##############################################################################
 Components.ProgressBar.prototype.changeScale = function(newScale) {

@@ -81,7 +81,7 @@ Components.NumberField.prototype.create = function() {
 			name:this.config.name,
 			css:this.config.css,
 			container:this.config.container,
-			width: '100%',
+			width: '100px',
 			state:this.config.state,
 			addon:{
 						addonType: 'spinner',

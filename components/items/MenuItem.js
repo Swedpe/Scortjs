@@ -25,7 +25,6 @@ Components.MenuItem.prototype.init = function(dataObj) {
 		menuType:'',
 		parent:0,
         hidden: false,
-        enabled: true,
 		subMenu:{
 			requireClick:false,		
 				},
@@ -225,12 +224,19 @@ Components.MenuItem.prototype.destroy = function() {
 }
 //##############################################################################
 Components.MenuItem.prototype.enable = function() {
-	if(!this.config.enable){
+	/*if(!this.config.enable){
 		this.divContainer.removeClass('MenuItem-disabled');
 		if (this.config.submenu.VisibleOnHover == true) {
 			this.divContainer.addClass('menuHover');
 		}
-	}
-	this.config.enable = true;
+	}*/
+	if(this.config.enable == true){
+		this.divContainer.addClass('MenuItem-disabled');
+		this.config.enable = false;
+		}
+	else{
+		this.divContainer.removeClass('MenuItem-disabled');
+		this.config.enable = true;
+		}
 }
 

@@ -100,8 +100,11 @@ Components.Window.prototype.init = function(dataObj) {
  */
 Components.Window.prototype.create = function() {
     Components.Component.prototype.create.call(this);
-	this.divContainer.show();
-    if(this.config.behavior=='panel'){
+	//esta linea aqui esta sospechosa, porque hacerlo visible siempre sin tomar en cuenta los parametros?
+	if (this.config.autoShow){
+		this.divContainer.show();
+    }
+	if(this.config.behavior=='panel'){
 	this.divContainer.addClass('panel');
 	}
 	if(this.config.behavior=='window'){

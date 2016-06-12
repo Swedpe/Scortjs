@@ -76,6 +76,7 @@ Components.GridColumn.prototype.create = function() {
 		icon:{
 			type:'fontawesome',
 			class:'fa-sort',
+			color:'black'
 		},
 		tooltip:'Ordenar',
 		handler: function(event) {
@@ -94,16 +95,24 @@ Components.GridColumn.prototype.create = function() {
 		icon:{
 			type:'fontawesome',
 			class:'fa-search',
+			color:'black'
 		},
 		tooltip:'Buscar',
 		handler: function(event) {			//este segmento de codigo se va repetir en los demas tipos de columnas, asi que pasarlo al parent
 			//si esta en un panel o un window vamos a encontrar un windowcontainer 
-			var refX = parseInt(event.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['left']);
-			var refY = parseInt(event.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['top']);
+			var refX=8;
+			var refY=8;
+			var searchContainer=$('body');
+			if(event.data.OBJ.parent.parent.divContainer.closest('.windowContainer').length!=0)
+			{
+				refX = parseInt(event.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['left']);
+				refY = parseInt(event.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['top']);
+				searchContainer=event.data.OBJ.parent.parent.divContainer.closest('.windowBody');
+			}
 			//console.log(event);
 			if(event.data.OBJ.parent.searchWindow==''){
 			event.data.OBJ.parent.searchWindow = Components.create('Window',{
-				container:event.data.OBJ.parent.parent.divContainer.closest('.windowBody'),
+				container:searchContainer,
 				title: "Search", 
 				draggable:false,
 				CodeHelper:event.data.OBJ.parent,
@@ -128,7 +137,7 @@ Components.GridColumn.prototype.create = function() {
 						var field = event.data.OBJ.CodeHelper.divContainer.attr('id').split("_")[1];
 						var text = event.data.OBJ.getValue();
 						event.data.OBJ.CodeHelper.parent.filterVisibles(field, text);
-						console.log('keyup');
+						console.log(field);
 						} 
                         
 						}
@@ -140,6 +149,8 @@ Components.GridColumn.prototype.create = function() {
 						text = '';
 						event.data.OBJ.CodeHelper.CodeHelper.parent.filterVisibles(field, text);
 						event.data.OBJ.CodeHelper.CodeHelper.searchWindow = '';
+						var tb = event.data.OBJ.CodeHelper.CodeHelper.parent.pagingToolbar;
+						tb.updateToolbar(tb.currentPage);
 							} 
 						}
 				}

@@ -22,14 +22,15 @@ Components.PagingToolbar.prototype.init = function(dataObj) {
         displayInfo: true,
         displayMsg: 'Displaying {0} - {1} de {2}',
         emptyMsg: 'No data to display',
-        items: []
+        items: [],
+		position:'up'
     };
     
     for(var i in dataObj) {
         if(this.config[i] != undefined)
             this.config[i] = dataObj[i];
     }
-    
+    this.position=this.config.position;
     this.id = this.config.id;
     this.container = this.config.container;
     this.data = this.config.data;
@@ -110,7 +111,21 @@ Components.PagingToolbar.prototype.create = function() {
             hideTrigger: true,
             minValue: 0,
             value: $this.currentPage,
+			parent:this,
             listeners: {
+				change:function(event,page)
+				{_this=event.data.OBJ.parent.parent.parent;
+					console.log(_this);
+					if(page!=0)
+					{
+						if(page<=_this.lastPage)
+							_this.updateToolbar(page);
+						else
+							_this.textCurrentPage.setValue(_this.lastPage);
+					}
+					else
+						_this.textCurrentPage.setValue(1);
+				},
                 specialKey: function(obj, event) {
                     if(event.charCode == 13) {      // 13 = ENTER
 					console.log("hola")
@@ -208,7 +223,8 @@ Components.PagingToolbar.prototype.create = function() {
 	{
 		this.btnNextPage.setDisabled(true);
         this.btnLastPage.setDisabled(true);
-	}	
+	}
+	
 	return this ;
 }
 //##############################################################################

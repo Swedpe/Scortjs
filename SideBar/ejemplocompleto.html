@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="../../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
-<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<link rel="stylesheet" href="../fonts/font-awesome-4.6.3/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
 
 <script src="../jqfu/vendor/jquery.ui.widget.js"></script>
 <script src="../components/Components.js"></script>	
@@ -120,6 +120,9 @@
 <script src="../components/tab/tabContainer.js"></script>
 <script src="../components/tab/tabItemView.js"></script>
 
+<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/svg/svgFloatingMenu.js"></script>
+
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
 <link rel="stylesheet" href="../css_components/css_panel.css" />
@@ -129,10 +132,10 @@
 <link rel="stylesheet" href="../css_components/css_sliderItem.css" />
 <link rel="stylesheet" href="../css_components/css_buttonItem.css" />
 
-
-
-
-
+<link rel="stylesheet" href="../css_components/css_pert.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
 
 
 
@@ -169,7 +172,7 @@
 <script src="../jqfu/jquery.fileupload.js"></script>
 <script src="../jqfu/jquery.iframe-transport.js"></script>
 <script src="jqfu/jquery.fileupload-process.js"></script>	
-
+<script src="../components/items/ECOTree.js"></script>
 
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
@@ -185,7 +188,17 @@
 		
 		<script src="../components/items/fontawesomegrid.js"></script>
 		<script src="../components/items/HtmlScreenGrid.js"></script>
-		
+
+		<link rel="stylesheet" href="../css_components/colorPicker.css">
+
+<script src="../components/items/colorPicker/tinycolor.js"></script>
+<script src="../components/items/colorPicker/colorPicker.js"></script>
+<script src="../components/items/WBSActividad.js"></script>
+<script src="../components/svg/3dpie/3dpieSvg.js"></script>
+<script src="../components/svg/polar/polar.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svgfilter.js"></script>
 <style type="text/css">
 
 
@@ -193,6 +206,13 @@ body {
 font-family: Arial, Helvetica, sans-serif;
 font-size: 11px;
 
+}
+.svgFloatingMenu{
+	font-family: Lato;
+    font-size: 12px;
+	z-index:100;
+    position: absolute;
+    display: table;
 }
 </style>	
 <script id="customscript">
@@ -901,58 +921,401 @@ Components.create('Sidebar',{
 				text: 'Vistas WBS',
 				name: 'Cst1-0',
 				canActivate: true,
-				listeners: {
-				 activate: function() {
-					 EliminarVisibles();
-					if (typeof (ejemploWBS) == 'undefined'){
-					$.getScript("../SideBar/fomularios/wbsEjemplo.js", function(){
-					ejemploWBS();
-					});
-					}
-					else{
-					  ejemploWBS();
-					}
-				 }
-				},
+				items:[
+						{
+							type: 'SidebarItem',
+							text: 'New Elements',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBSControlEventos) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbsControlEventos.js", function(){
+											WBSControlEventos();
+										});
+									}
+									else{
+										WBSControlEventos();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'change form',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBSCambioForma) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbsCambioForma.js", function(){
+											WBSCambioForma();
+										});
+									}
+									else{
+										WBSCambioForma();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Activity',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBSActividades) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbsActividades.js", function(){
+											WBSActividades();
+										});
+									}
+									else{
+										WBSActividades();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Tree Lateral',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBSArbolLateral) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbsArbolLateral.js", function(){
+											WBSArbolLateral();
+										});
+									}
+									else{
+										WBSArbolLateral();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Operations',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBSOperaciones) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbsOperaciones.js", function(){
+											WBSOperaciones();
+										});
+									}
+									else{
+										WBSOperaciones();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: '3000 Nodos',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBS3000Nodos) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbs3000Nodos.js", function(){
+											WBS3000Nodos();
+										});
+									}
+									else{
+										WBS3000Nodos();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Multiple',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (WBSMultiple) == 'undefined'){
+										$.getScript("../SideBar/fomularios/wbsMultiple.js", function(){
+											WBSMultiple();
+										});
+									}
+									else{
+										WBSMultiple();
+									}	
+								}
+							},
+						},
+				]
 			},
 			{
 				type: 'SidebarItem',
 				text: 'WBS Pert',
 				name: 'Cst1-1',
 				canActivate: true,
-				listeners: {
-				 activate: function() {
-					 EliminarVisibles();
-					if (typeof (ejemploPert) == 'undefined'){
-					$.getScript("../SideBar/fomularios/pertEjemplo.js", function(){
-					ejemploPert();
-					});
-					}
-					else{
-					  ejemploPert();
-					}
-				 }
-				},
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Basic',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PertBasicoBotones) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PertBasicoBotones.js", function(){
+											PertBasicoBotones();
+										});
+									}
+									else{
+										PertBasicoBotones();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Scale',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PertScale) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PertScale.js", function(){
+											PertScale();
+										});
+									}
+									else{
+										PertScale();
+									}	
+								}
+
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Edit Enlaces',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PertAvanzado) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PertAvanzado.js", function(){
+											PertAvanzado();
+										});
+									}
+									else{
+										PertAvanzado();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Floating Menu',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PertMenuFlotante) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PertMenuFlotante.js", function(){
+											PertMenuFlotante();
+										});
+									}
+									else{
+										PertMenuFlotante();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Edit',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PertEditar) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PertEditar.js", function(){
+											PertEditar();
+										});
+									}
+									else{
+										PertEditar();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Node ToolTip',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PertContenidoFlotante) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PertContenidoFlotante.js", function(){
+											PertContenidoFlotante();
+										});
+									}
+									else{
+										PertContenidoFlotante();
+									}	
+								}
+							},
+						},
+				]
 			},
 			{
 				type: 'SidebarItem',
-				text: 'SVG Pert Ejemplos',
-				name: 'Cst1-2',
+				text: 'Polar',
+				name: 'Cst1-1',
 				canActivate: true,
-				listeners: {
-				 activate: function() {
-					 EliminarVisibles();
-					if (typeof (ejemploPert) == 'undefined'){
-					$.getScript("../SideBar/fomularios/pertEjemplo.js", function(){
-					ejemploPert();
-					});
-					}
-					else{
-					  ejemploPert();
-					}
-				 }
-				},
-			}
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Selection',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PolarSeleccion) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PolarSeleccion.js", function(){
+											PolarSeleccion();
+										});
+									}
+									else{
+										PolarSeleccion();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Agregar',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PolarAgregar) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PolarAgregar.js", function(){
+											PolarAgregar();
+										});
+									}
+									else{
+										PolarAgregar();
+									}	
+								}
+
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'ComboBox',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (PolarComboBox) == 'undefined'){
+										$.getScript("../SideBar/fomularios/PolarComboBox.js", function(){
+											PolarComboBox();
+										});
+									}
+									else{
+										PolarComboBox();
+									}	
+								}
+							},
+						},
+						
+						
+						
+				]
+			},
+			{
+				type: 'SidebarItem',
+				text: '3dpie',
+				name: 'Cst1-1',
+				canActivate: true,
+				items: [
+						{
+							type: 'SidebarItem',
+							text: 'Simple',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (ThreedpieSimple) == 'undefined'){
+										$.getScript("../SideBar/fomularios/3dpieSimple.js", function(){
+											ThreedpieSimple();
+										});
+									}
+									else{
+										ThreedpieSimple();
+									}	
+								}
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Leyenda',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (ThreedpieLeyenda) == 'undefined'){
+										$.getScript("../SideBar/fomularios/3dpieLeyenda.js", function(){
+											ThreedpieLeyenda();
+										});
+									}
+									else{
+										ThreedpieLeyenda();
+									}	
+								}
+
+							},
+						},
+						{
+							type: 'SidebarItem',
+							text: 'Combinado',
+							name: 'st1-1',
+							canActivate: true,
+							listeners: {
+								activate: function() {
+									EliminarVisibles();
+									if (typeof (ThreedpieCombinado) == 'undefined'){
+										$.getScript("../SideBar/fomularios/3dpieCombinado.js", function(){
+											ThreedpieCombinado();
+										});
+									}
+									else{
+										ThreedpieCombinado();
+									}	
+								}
+
+							},
+						},
+				]
+			},
 		]			
 },
 {

@@ -112,7 +112,7 @@ border: 1px solid rgb(144, 102, 33);
     color: white;
 }
 .toolBar.default,.toolBar.default .buttonItem{
-   background: rgb(213, 206, 206);
+   background: #DCDCDC;
   color: black;
 }
 .toolBar .inputSpan select {

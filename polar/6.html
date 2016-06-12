@@ -75,6 +75,7 @@ personal={
 	"imagen":"Cesar Peña.png",
 },
 proyectos = {
+		
 		10:{
             "criterio":0,
 			"Id": 10,
@@ -531,7 +532,12 @@ $( document ).ready(function(){
 						readOnly: false	,								
 						listeners: {
 									select: function(combo, record, index){
+									//--------------------------------------------------
+										console.log(combo);
+										console.log(record.Id);
+										console.log(index);
 										
+										Components.getComponentById('polarid').Select_Deselect(record.Id);
 										//alert("succes");
 									}
 								}
@@ -574,17 +580,69 @@ $( document ).ready(function(){
 							var polarData=Components.getComponentById('polarid').proyectos;
 							Components.getComponentById('micombo').setStore(polarData).drawRows();
 							//alert(succes);
-						}
+						},
+						onSelectProyect: function (event,proyectoId)
+						{
+							var i = 0;
+							for(var elementos in event.data.OBJ.ElementosSeleccionados)
+							{
+								i++;
+							}
+							if(i==1)
+								Components.getComponentById('micombo').setValue(proyectoId);
+							else
+								Components.getComponentById('micombo').setValue(3);
+						},
+						onDeselectProyect: function (event,proyectoId)
+						{
+							var i = 0;
+							for(var elementos in event.data.OBJ.ElementosSeleccionados)
+							{
+								i++;
+							}
+							switch(i)
+							{
+								case 0: Components.getComponentById('micombo').setValue(1);
+									break;
+								case 1: Components.getComponentById('micombo').setValue(Object.keys(event.data.OBJ.ElementosSeleccionados));
+									break;
+								default: 
+										Components.getComponentById('micombo').setValue(3);
+									break;
+							}
+						},
 					}
                   }
                 ]
 
             }]
   }).show();
+  // primero sacar una copia de la lista de proyectos y colocar a polar data
+  // agregar elementos a polar data tales como ninguno mutiple y seleccione un proyecto
+  // extends
   var polarData=Components.getComponentById('polarid').proyectos;
-	Components.getComponentById('micombo').setStore(polarData).drawRows();
+  var agregados=
+  {
+	1:{
+		"Id":"1",
+		"Descripcion":"Ninguno",
+	},
+	2:{
+		"Id":"2",
+		"Descripcion":"Seleccione un Proyecto",
+	},
+	3:{
+		"Id":"3",
+		"Descripcion":"Multiple",
+	},
+  }
+  var NewPolarData= $.extend(agregados,polarData);
+  console.log(NewPolarData);
+	Components.getComponentById('micombo').setStore(NewPolarData).drawRows().setValue(2);
 });
-
+function ControlComboBox(proyectoId,status)
+{
+}
 </script>
 </head>
 

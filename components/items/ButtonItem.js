@@ -179,7 +179,7 @@ Components.Button.prototype.create = function() {
 }
 //##############################################################################
 Components.Button.prototype.setControls = function() {
-    this.divContainer.bind("click", {OBJ:this}, function(event) {
+    this.clickFunction=function(event) {
         if(event.data.OBJ.config.enabled){
             if(event.data.OBJ.config.enableToggle) {
                 event.data.OBJ.toggle();
@@ -187,7 +187,9 @@ Components.Button.prototype.setControls = function() {
             event.data.OBJ.config.listeners.click(event);
             event.data.OBJ.handler(event);
         }   
-    });
+    };
+	
+	this.divContainer.bind("click", {OBJ:this}, this.clickFunction);
 }
 //##############################################################################
 Components.Button.prototype.toggle = function() {

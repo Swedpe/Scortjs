@@ -18,6 +18,7 @@ Components.Slider.prototype.init = function(dataObj) {
         label: "",
         labelWidth: -1,
         value: -1,
+		css:new Array(),
         tooltip: "",
         icon: {
 				type:'none',		//tipos posibles fontawesome y image
@@ -67,7 +68,7 @@ Components.Slider.prototype.init = function(dataObj) {
 //##############################################################################
 Components.Slider.prototype.create = function() {
     Components.Component.prototype.create.call(this);
-    this.divContainer.append('<span class="labelTextField">'+this.config.label+'</span><span class="tooltip"></span><div class="slider '+this.config.state+'"></div> ');   
+    this.divContainer.append('<span class="labelTextField">'+this.config.label+'</span><span class="tooltip">'+this.config.value+'%</span><div class="slider '+this.config.state+'"></div> ');   
     this.divLabel = $('.labelTextField', this.divContainer); 
     this.divSlaider= $('.slider', this.divContainer); 
     this.tooltip = $('.tooltip', this.divContainer); 
@@ -85,19 +86,19 @@ Components.Slider.prototype.create = function() {
                var value = (ui.value*$this.divSlaider.width())/100; 
                 $this.config.value= ui.value;
                 if(ui.value!=0)
-                       $this.tooltip.css('left', value+50).text(ui.value+"%");           
+                       $this.tooltip.text(ui.value+"%");           
                 else
-                       $this.tooltip.css('left', value+35).text(ui.value+"%");                
+                       $this.tooltip.text(ui.value+"%");                
             },
 			//event.data.OBJ.config.listeners.slide(event);
 			
 			orientation: "horizontal",
              range: "min",
             start: function(event,ui) {
-                $this.tooltip.fadeIn('fast');
+               // $this.tooltip.fadeIn('fast');
             },
             stop: function(event,ui) {
-                $this.tooltip.fadeOut('fast');
+                //$this.tooltip.fadeOut('fast');
             }
         }
      ); 
@@ -121,7 +122,10 @@ Components.Slider.prototype.create = function() {
     if(this.config.tooltip != "") {
         this.divContainer.prop("alt", this.config.tooltip);
         this.divContainer.prop("title", this.config.tooltip);
-    }    
+    }   
+	for(var i in this.config.css) {
+		this.divContainer.css(i, this.config.css[i]);
+	}	
     //this.config.enabled ? this.enable() : this.disable();    
     this.setControls();
 	return this;

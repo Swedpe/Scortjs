@@ -5067,10 +5067,31 @@ vertical-align: middle;
 text-align: center;
 line-height: 1em;
 } 
-/*.hasSVG*/ .caja_Pert_Node{	/*se quito el .hasSVG xq al crearse se agrega al body, al no pertenecer a un .hasSVG no le da estilos y se hacen mal los calculos*/
+
+.caja_Pert_Node100{	/*se quito el .hasSVG xq al crearse se agrega al body, al no pertenecer a un .hasSVG no le da estilos y se hacen mal los calculos*/
 font-family: Lato;
 max-width: 250px; 
 font-size: 11px; 
+visibility:hidden;		/*hidden mientras aparece, luego cuando se ubica se hace visible mediante codigo */
+position: absolute;
+display:table;
+height: auto;
+width: auto; 
+}
+.caja_Pert_Node50{	/*se quito el .hasSVG xq al crearse se agrega al body, al no pertenecer a un .hasSVG no le da estilos y se hacen mal los calculos*/
+font-family: Lato;
+max-width: 125px; 
+font-size: 6px; 
+visibility:hidden;		/*hidden mientras aparece, luego cuando se ubica se hace visible mediante codigo */
+position: absolute;
+display:table;
+height: auto;
+width: auto; 
+}
+.caja_Pert_Node10{	/*se quito el .hasSVG xq al crearse se agrega al body, al no pertenecer a un .hasSVG no le da estilos y se hacen mal los calculos*/
+font-family: Lato;
+max-width: 125px; 
+font-size: 6px; 
 visibility:hidden;		/*hidden mientras aparece, luego cuando se ubica se hace visible mediante codigo */
 position: absolute;
 display:table;

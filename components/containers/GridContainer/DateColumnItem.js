@@ -100,8 +100,6 @@ Components.DateColumn.prototype.drawData = function(row, contentField) {
         elemTd = $('<td class="'+this.id+'" style="display:none;">' + contentField + '</td>');
     else
         elemTd = $('<td class="'+this.id+'">' + contentField + '</td>');
-    
-    elemTd.data('dataIndex', this.dataIndex);
     row.append(elemTd);
 }
 //##############################################################################

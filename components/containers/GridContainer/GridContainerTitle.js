@@ -39,14 +39,14 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
 			tooltip:'Agregar Registro',	
 			CodeHelper:	dataObj.parent,		
 			handler: function(e) {		
-						if($this.ventanaeditor == undefined){
-								$this.createform(e,'create');
+						if($this.parent.ventanaeditor == undefined){
+								$this.parent.createform(e,'create');
 						}else{
-							$this.OkButton.CodeHelper = 'create';
-							$this.ventanaeditor.setTitle('Crear Nuevo Registro')
+							$this.parent.OkButton.CodeHelper = 'create';
+							$this.parent.ventanaeditor.setTitle('Crear Nuevo Registro')
 							}
-						Components.getComponentById($this.formdef.id).Clear();						
-						$this.ventanaeditor.show();
+						Components.getComponentById($this.parent.formdef.id).Clear();						
+						$this.parent.ventanaeditor.show();
 			
 				}
 			}, 
@@ -65,15 +65,15 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
 							alert("Debe seleccionar 1 un registro")
 							return;
 						}else{
-							if($this.ventanaeditor == undefined){
-								$this.createform(e,'update');	
+							if($this.parent.ventanaeditor == undefined){
+								$this.parent.createform(e,'update');	
 							}else {
-								$this.OkButton.CodeHelper = 'update';
-								$this.ventanaeditor.setTitle('Actualizar Registro')
+								$this.parent.OkButton.CodeHelper = 'update';
+								$this.parent.ventanaeditor.setTitle('Actualizar Registro')
 								}
 								e.data.OBJ.parent.itemSeleccionado = seleccion[0].position;				//almacenar la poscicion de el ítem seleccionado
-								Components.getComponentById($this.formdef.id).setValues(seleccion[0]);	//colocar los valores de la grilla en el formulario							
-								$this.ventanaeditor.show();
+								Components.getComponentById($this.parent.formdef.id).setValues(seleccion[0]);	//colocar los valores de la grilla en el formulario							
+								$this.parent.ventanaeditor.show();
 						}
 					}
 			},
@@ -154,24 +154,6 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
  
 }
 //######################################################################################################################################################################################################
-Components.GridContainerTitle.prototype.createNewReg = function(e) {
-	//crear un nuevo registro en la tabla y colocarla al final de todos los demas items
-	var storegrid =  this.config.parent.store;
-	var frmvalues =this.form.getValues();
-	storegrid.add(frmvalues);
-	this.ventanaeditor.hide();
-	this.form.Clear();
-}
-//######################################################################################################################################################################################################
-Components.GridContainerTitle.prototype.updateReg = function(e) {
-	//actualizar un registro de la grilla padre,
-	var storegrid =  this.config.parent.store;
-	var frmvalues = this.form.getValues();
-	console.log(this.itemSeleccionado);
-	storegrid.updaterecord(frmvalues,this.itemSeleccionado);
-	this.ventanaeditor.hide();
-	this.form.Clear();
-}
 
 //########################################################################################################################################################################################################
 Components.GridContainerTitle.prototype.create = function() {
@@ -209,107 +191,4 @@ Components.GridContainerTitle.prototype.updatedata = function() {
 //##############################################################################
 Components.GridContainerTitle.prototype.setTotalData = function(totalData) {
 
-}
-Components.GridContainerTitle.prototype.createform = function(e,accion) {
-	//accion [create, update]
-	var refX = parseInt(e.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['left']);
-	var refY = parseInt(e.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['top']);
-	
-	this.ventanaeditor = Components.create('Window', {
-									container:e.data.OBJ.parent.parent.divContainer.closest('.windowBody'),
-									title: accion+'Registro',
-									state:this.config.state,
-									height: 168,
-									width: 340,
-									//x:24,
-									//y:34,
-									//x:refX-e.clientX,
-									y:e.clientY-refY,
-									minimizable: false,
-									closeAction: 'hide',
-									id: 'WindowEditorGrid'+e.data.OBJ.id,
-									items: []
-						});
-	this.formdef = {													//definicion del formulario, basico solo una grid HTML para acomodar botones
-		type: 'Form',
-		id: 'FormEditorGrid'+e.data.OBJ.id,
-		border: false,
-		defaultType: "textfield",
-		modal: false,										
-		items: [
-		],
-	 };	
-	//a partir de la definición de la tabla se crean campos para el formulario, dinamicamente
-	var gridcolumns = e.data.OBJ.config.CodeHelper.config.columns;
-						var str =  e.data.OBJ.config.CodeHelper.store;
-						var i = 0;
-						for(var col in gridcolumns){
-							
-							if(gridcolumns[col].isselmodel||(gridcolumns[col].editor == undefined)||(gridcolumns[col].dataIndex==undefined))  continue;	
-							i = i+1;
-							var field = {
-										type: 'InputField',
-										label: {html:(gridcolumns[col].text =="")?'Campo '+col:gridcolumns[col].text,
-										cols:2},
-										input: gridcolumns[col].editor,
-										State:'active',
-									};
-							if(i==1){				//margen para el primer input
-							field.css={'margin-top': 10};}
-							field.input.name = gridcolumns[col].dataIndex;
-							this.formdef.items.push(field);
-						}
-	//se agregan al formulario los campos creados dinamicamente					
-	this.form = this.ventanaeditor.add(this.formdef);			//se crea y se dibuja el form.
-	var buttonsContainer = {
-			id:'BtContainer',
-			type:'FreeDiv',	
-			freeHtml:true,
-			html:'<div class="form-group" id="ButtonsMid"><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
-		};
-	this.form.add(buttonsContainer);
-//Los 2 botones se crean por separado pero se agregan al formulario gracias a la propiedad container de los 2 botones.
-this.OkButton = Components.create('Button',{
-	container:$('.btnAceptar'),
-	parent:this,
-	CodeHelper:accion,
-	scale: 'medium',
-	state:'active',
-	text:'Guardar',
-	icon:{
-		type:'fontawesome',
-		class:'fa-save',
-		color:'white',
-		position:'left'
-	},
-	tooltip:'Tamaño Personalizado',	  
-	handler: function(e) {
-				switch(e.data.OBJ.CodeHelper){
-					case 'create':
-					e.data.OBJ.parent.createNewReg(e);
-					break;
-					case 'update':
-					e.data.OBJ.parent.updateReg(e);
-					break;
-				}
-				}  
-})
-	//insertar los botones, boton de cancelar
-this.CancelButton = Components.create('Button',{
-	container:$('.btnCancelar'),		 		
-	parent:this.ventanaeditor,
-	scale: 'medium',
-	text:'Cancelar',
-	state:'error',
-	icon:{
-		type:'fontawesome',
-		class:'fa-remove',
-		color:'white',
-		position:'left'
-	},
-	tooltip:'Leer toda la data',	  
-	handler: function(e) {
-		e.data.OBJ.parent.hide();				
-				}  
-})
 }

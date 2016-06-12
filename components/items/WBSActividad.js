@@ -123,6 +123,10 @@ Components.WBSActividad.prototype.draw=function(){
 	this.drawLines();
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* drawLines esta funcion dibujara las lineas para relacionar la actividad con el nodo
+* corregira las direcciones de las lineas al cambio de orientacion
+**/
 Components.WBSActividad.prototype.drawLines=function(){
 	var node=this.node;
 	if(node.tree.config.orientation=="top"){
@@ -171,6 +175,10 @@ Components.WBSActividad.prototype.drawLines=function(){
 	}
 };
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* seleccionada esta funcion se encargar de agregar un marco rojo a la actividad para la vizalizacion 
+* si hay otra actividad selecionada se desmarcara y si es el mismo elemeto se desmarcara 
+**/
 Components.WBSActividad.prototype.seleccionar = function(){
     // this.grupo= ((!this.tree.grupo)?'':$('#'+this.tree.grupo));
     // this.grupo= this.tree.grupo;
@@ -190,6 +198,9 @@ Components.WBSActividad.prototype.seleccionar = function(){
 	}
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**
+* desSeleccionar esta funcion se encargara de remover el marco rojo
+**/
 Components.WBSActividad.prototype.desSeleccionar = function(){
 	var wbstree = this.node.tree;
 	if(this.SeleccionBox.parentElement != undefined) //Caso especial de cortado
@@ -314,6 +325,9 @@ Components.WBSActividad.prototype.createCopyTask = function(Padre){
 	// $(this.divTexto).show();
 };*/
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ /**
+ * Ocultar esta funcion pondra en hidden la actividad 
+ **/
  Components.WBSActividad.prototype.ocultar=function(){
 	//$(this.divTexto).hide();
 	$(this.line).css("visibility",'hidden');

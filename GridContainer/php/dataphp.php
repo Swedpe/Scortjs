@@ -150,7 +150,13 @@ switch($_REQUEST['dataset'])
 			// Check connection
 			if ($conn->connect_error) 
 				die("Connection failed: " . $conn->connect_error);
-			$sql="INSERT INTO `samplelivedataset`(`ID`, `Nombre`, `Apellido`) VALUES ('".escapeHTML($_REQUEST['ID'])."','".escapeHTML($_REQUEST['Nombre'])."','".escapeHTML($_REQUEST['Apellido'])."')";
+			
+			if($_REQUEST['ID']==''){				
+				$sql="INSERT INTO `samplelivedataset`( `Nombre`, `Apellido`) VALUES ('".escapeHTML($_REQUEST['Nombre'])."','".escapeHTML($_REQUEST['Apellido'])."')";
+			}
+			else{
+				$sql="INSERT INTO `samplelivedataset`(`ID`, `Nombre`, `Apellido`) VALUES ('".escapeHTML($_REQUEST['ID'])."','".escapeHTML($_REQUEST['Nombre'])."','".escapeHTML($_REQUEST['Apellido'])."')";
+			}
 			$response = $conn->query($sql);
 			$sql="Select * from samplelivedataset where `ID` = ".mysqli_insert_id($conn);
 			$response2 = $conn->query($sql);

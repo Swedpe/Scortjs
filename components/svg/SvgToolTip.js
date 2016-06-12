@@ -16,6 +16,7 @@ Components.svgToolTip.prototype.init = function(dataObj){
 	 * @param dataObj.offset espacio entre el target y el pico
 	 * @param dataObj.orientacion si va arriba o hacia abajo
 	 */
+	 this.tipo = 'SvgToolTip';
 this.config = {
 	container: $('body'),
 	id: "svgToolTip"+ Math.round(Math.random() * 2000),

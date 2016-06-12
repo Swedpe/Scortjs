@@ -51,6 +51,9 @@
 <script src="../components/extra/jspdf/jspdf.min.js"></script>
 <script src="../components/svg/SvgToolTip.js"></script>
 <script src="../components/extra/FontLoader.js"></script>
+<script src="../components/svg/svgFloatingMenu.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/items/MenuItem.js"></script>	
 
 <link rel="stylesheet" href="../css_components/css_window.css" />
 <link rel="stylesheet" href="../css_components/css_gridpanel.css" />
@@ -77,6 +80,13 @@
 body {
 font-family: Arial, Helvetica, sans-serif;
 font-size: 11px;
+}
+.svgFloatingMenu{
+	font-family: Lato;
+    font-size: 12px;
+	z-index:100;
+    position: absolute;
+    display: table;
 }
 </style>	
 
@@ -676,9 +686,166 @@ Components.create('Window',{
 					type: 'svgToolTip',
 					orientacion:'abajo',
 					parentType: 'WBSTree',
-					viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=images/tanque.jpg style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.Descripcion+"</strong></td></tr><tr><td colspan=2>Costo: $"+this.datos.Cost+"</td></tr><tr><td colspan=2>ID:"+this.id+"</td></tr></table>"',
-					//viewToolTip: '"<p>"+this.datos.Descripcion+"<p>"',
-				}},
+					//viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.name+"</strong></td></tr><tr><td colspan=2>Title: "+this.datos.title+"</td></tr><tr><td colspan=2>ID:"+this.id+"</td></tr></table>"',
+					viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=\'"+this.datos.imagen+"\' style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.name+"</strong></td></tr></table>"',
+				},
+						
+				floatingMenuNode:{
+							triger:'node',
+							type: 'svgFloatingMenu',
+							orientacion:'abajo',
+							parentType: 'WBSTree',
+							items:[
+								
+								{
+									type: 'Button',
+									id : 'BtnEditar',
+									scale:'windowHead',
+									shape:'box',                      
+									icon:{
+										type:'fontawesome',
+										class:'fa-pencil-square-o',	
+										color:'blue',
+									},
+									tooltip:'Editar Contenido!',
+									listeners: {
+										click: function(e) {
+											//console.log($('#nodoPert'+Components.getComponentById('PertTree').nodoSeleccionado));
+											if(Components.getComponentById("Okno").nodoSeleccionado!=-1)
+											{
+												Components.getComponentById("windowEdicionNodos").show();
+												//Dar Formato para los datos de un FormContainer
+												var WinData = {
+																NodoId:Components.getComponentById("Okno").nodoSeleccionado.id,
+																Descripcion:Components.getComponentById("Okno").nodoSeleccionado.Descripcion,
+																Background:Components.getComponentById("Okno").nodoSeleccionado.Background,
+																stroke:Components.getComponentById("Okno").nodoSeleccionado.stroke,
+																	};
+												//colocar los datos en el FormContainer
+												Components.getComponentById("formNodos").setValues(WinData);
+											}
+											else
+											{console.log("seleccione un nodo")}
+											
+										}
+									}
+								},
+								{
+									type: 'Button',
+									id : 'Btnizquierda',
+									shape:'box',
+									scale:'windowHead',
+									icon:{
+										type:'fontawesome',
+										class:'fa-arrow-left',
+										color:'#000099',
+										position:'left',
+									},
+									tooltip:'PC_Agregar_Hermano_a_la_Izquierda_00359',
+									listeners: {
+										click: function() {							
+											if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+												Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(1,0);
+											else
+												alert("Debe seleccionar un Nodo");
+										}
+									}
+								},
+								{
+									type: 'Button',
+									id : 'Btnderecha',        
+									shape:'box',
+									scale:'windowHead',
+									icon:{
+										type:'fontawesome',
+										class:'fa-arrow-right',
+										color:'#000099',
+										position:'left',
+									},
+									
+									tooltip:'PC_Agregar_Hermano_a_la_Derecha_00358',
+									listeners: {
+										click: function() {
+										   if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+												Components.getComponentById("Okno").nodoSeleccionado.AgregaHermano(0,0);
+											else
+												alert("Debe seleccionar un Nodo");
+										}
+									}
+								},
+								{
+									type: 'Button',
+									id : 'Btnarriba',        
+									shape:'box',
+									scale:'windowHead',
+									icon:{
+										type:'fontawesome',
+										class:'fa-arrow-up',
+										color:'#000099',
+										position:'left',
+									},
+									tooltip:'PC_Agregar_Nuevo_Padre_00357',
+									listeners: {
+										click: function() {
+											if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+													Components.getComponentById("Okno").nodoSeleccionado.AgregarPadre(null);
+												else
+													alert("Debe seleccionar un Nodo");
+										}
+									}
+								},
+								{
+									type: 'Button',
+									id : 'Btnabajo',        
+									shape:'box',
+									scale:'windowHead',
+									icon:{
+										type:'fontawesome',
+										class:'fa-arrow-down',
+										color:'#000099',
+										position:'left',
+									},
+									tooltip:'PC_Agregar_Hijo_00356',
+									listeners: {
+										click: function() {
+											if(Components.getComponentById("Okno").nodoSeleccionado != -1)
+												Components.getComponentById("Okno").nodoSeleccionado.AddChild(null);
+											else
+												alert("Debe seleccionar un Nodo");
+										}
+									}
+								},
+								{
+									type: 'Button',
+									id : 'BtnBolita',
+									shape:'box',
+									scale:'windowHead',
+									icon:{
+										type:'fontawesome',
+										class:'fa-circle',
+										color:'#000099',
+										position:'left',
+									},
+									tooltip:'bolita',
+									listeners: {
+										click: function() {
+											console.log(Components.getComponentById("Okno").nodoSeleccionado);
+											if(Components.getComponentById("Okno").nodoSeleccionado != -1){
+												if(Components.getComponentById("Okno").nodoSeleccionado.bolita)
+													Components.getComponentById("Okno").nodoSeleccionado.cuadrando();
+												else
+													Components.getComponentById("Okno").nodoSeleccionado.bolizando();
+												Components.getComponentById("Okno").drawTree();
+											}else
+												console.log("Debe seleccionar un Nodo");
+											
+										}
+									}
+								},
+								
+							]
+						},
+						},
 				items:[
 				
 				
@@ -9901,7 +10068,7 @@ Components.create('Window',{
         tipoObjeto: "Tarea",
         id: 604,
         datos: {
-            "Descripcion": "TENDIDO DE TUBERÍA 16\" SCH 30, ANSI/ASME 36.10M, ASTM A 53 GR B SIN COSTURA",
+            "Descripcion": "TENDIDO DE TUBERÍA 16 SCH 30, ANSI/ASME 36.10M, ASTM A 53 GR B SIN COSTURA",
             "Cost": "34558",
             "OutlineNumber": "1.3.7.1.1.1",
             "Start": "2015-06-20T08:00:00",
@@ -15249,8 +15416,7 @@ Components.create('Window',{
     {
         type: "WBSNode",
         tipoObjeto: "Tarea",
-        viewToolTip: '"<table class=\'tableWbsNodeExample\' ><tr><td rowspan=\'3\'><center><img src=images/electrical.jpg style=\'width:100px;height:120px;\'></center></td><td colspan=2><strong style=\'font-size:16px;\'>"+this.datos.Descripcion+"</strong></td></tr><tr><td colspan=2>Costo: $"+this.datos.Cost+"</td></tr><tr><td colspan=2>ID:"+this.id+"</td></tr></table>"',
-		id: 957,
+        id: 957,
         datos: {
             "Descripcion": "OBRAS ELECTRICAS",
             "Cost": "8159592",

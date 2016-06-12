@@ -17,12 +17,13 @@ Components.SvgContainer.prototype.init = function(dataObj) {
         id: "SvgContainer-"+ Math.round(Math.random() * 2000),
         width: -1,
 		height:-1,
-	   closeAction: 'destroy',
+		closeAction: 'destroy',
 		css:new Array(),       
         title: "",       
         hidden: false, 
 		autoScroll: true,
 		parent:-1,//winparent
+		handDrag: false,
         items: [],
         listeners: {
             show: function(){},
@@ -48,6 +49,7 @@ Components.SvgContainer.prototype.init = function(dataObj) {
 	this.css = this.config.css; 
 	this.title = this.config.title;
 	this.className = "SVGContainer";
+	this.handDrag = this.config.handDrag;
     this.items = this.config.items;
 	this.winparent = this.config.parent;//id de la ventana parent
     this.scrolliniX = 0 ;
@@ -169,9 +171,10 @@ Components.SvgContainer.prototype.AllowDrag = function() {
 			clearInterval(evt.data.OBJ.myTimer);
 			evt.data.OBJ.divContainer.unbind('mousemove');		
 	});
+	this.handDrag = true;
 }
 Components.SvgContainer.prototype.destroy = function() {
-  
+	 Components.Component.prototype.destroy.call(this);
 }
 
 Components.SvgContainer.prototype.DisallowDrag = function() {
@@ -182,7 +185,8 @@ Components.SvgContainer.prototype.DisallowDrag = function() {
 	this.scrolliniY=0;
 	this.scrollingWindow.css('cursor',' default');
 	this.svg.remove(this.blocker);
-	this.blocker =-1;	
+	this.blocker =-1;
+	this.handDrag = false;	
 }
 Components.SvgContainer.prototype.CreateMiniview = function(ctrl) { 
 	

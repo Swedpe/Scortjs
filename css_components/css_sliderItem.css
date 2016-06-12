@@ -17,6 +17,7 @@
     overflow: hidden;
     white-space: nowrap;
     float: left;
+	position:relative;
 }
 .sliderItem .slider {
     padding: 0px 10px;
@@ -25,13 +26,13 @@
 
 }
 .sliderItem  .tooltip {
-	position: absolute;
+	position: reltive;
 	display: block;
 	top: 20px;
 	width: 35px;
 	height: 20px;	
 	text-align: center;
-	
+	float:right;
 }
 
 .ui-slider-range.ui-widget-header

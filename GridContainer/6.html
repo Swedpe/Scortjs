@@ -8,7 +8,7 @@
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
 <link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
-<link rel="stylesheet" href="../../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
 
 <script src="../jqfu/vendor/jquery.ui.widget.js"></script>
 <script src="../components/Components.js"></script>		
@@ -83,12 +83,14 @@ columns: [
 {
 type: "GridColumn",
 text: "ID",
+
 dataIndex: "ID",
 width:"20%",
 unique:true,						
 editor: {
 		type: 'TextField',
-		allowBlank: false
+		allowBlank: false,
+		enabled: false,
 }
 },
 {

@@ -27,7 +27,7 @@ Components.TextField.prototype.init = function(dataObj) {
         value: "",
 		name:'',
         allowBlank: true,
-        enabled: null,					//controlar el atributo  disabled/enabled del text input
+        enabled: -1,					//controlar el atributo  disabled/enabled del text input
         readOnly: false,
         CodeHelper:'',
         hidden: false,
@@ -70,7 +70,7 @@ Components.TextField.prototype.init = function(dataObj) {
         }
     }
 	//control de enabled desde el componente hacia los padres
-	if(this.config.enabled==null){
+	if(this.config.enabled==-1){
 		if(this.config.parent!=''){
 			this.enabled=this.config.parent.getConfig('enabled');
 			if(this.enabled==null){
@@ -80,7 +80,9 @@ Components.TextField.prototype.init = function(dataObj) {
 			this.enabled=true;
 		}
 	}
-	//console.log(this.enabled);
+	else
+		this.enabled=this.config.enabled;
+	console.log(this.enabled);
     //cuando el input tiene un addon, obligatoriamente tiene que ser del 100% de su contenedor,sino se descuadran los estilos.
 	if(this.config.addon.addonType!='none'){
 		this.config.width = '100%';
@@ -256,9 +258,9 @@ Components.TextField.prototype.createSpinerAddon= function(){
 			this.config.addon.scale = 'spiner';
 			this.config.addon.parent = this;
 			this.addon= new Array();
-			this.config.addon.icon= {type:'fa',class:'fa-angle-up',color:'white'};			//up
+			this.config.addon.icon= {type:'fa',class:'fa-angle-up'};			//up
 			this.addon[0] = Components.create('Button',this.config.addon);
-			this.config.addon.icon= {type:'fa',class:'fa-angle-down',color:'white'};		//down
+			this.config.addon.icon= {type:'fa',class:'fa-angle-down'};		//down
 			this.addon[1] = Components.create('Button',this.config.addon);
             this.addon[1].divContainer.css('margin-top','2px');
             $('.buttonItem-icon-left',this.config.addon.container).removeClass('buttonItem-icon-left'); 
@@ -281,14 +283,14 @@ Components.TextField.prototype.setReadOnly = function(readOnly) {
 Components.TextField.prototype.disable = function() {
 	//change input state to disable, el componente ya no sera editable
 	this.enabled=false;
-	this.divInput.prop('disabled', true);
+	this.divInput.attr('disabled', true);
 	//console.log("funcion disable "+this.enabled);
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 Components.TextField.prototype.enable = function() {
 	//change input state to enable, el componente sera editable
 	this.enabled=true;
-	this.divInput.prop('disabled', false);
+	this.divInput.attr('disabled', false);
 	//console.log("funcion enable "+this.enabled);
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	

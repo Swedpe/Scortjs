@@ -56,6 +56,8 @@ Components.PolarSvg.prototype.init = function(dataObj){
             hide: function(){},
 			onRequestDeleteProyect: function(succes){},
 			onRequestAddProyect: function(succes){},
+			onSelectProyect: function(event,proyectoId){},
+			onDeselectProyect: function(event,proyectoId){},
         }
     };
 
@@ -69,6 +71,9 @@ Components.PolarSvg.prototype.init = function(dataObj){
                 this.config[i] = dataObj[i];
         }
     }
+	this.ElementosSeleccionados=[];
+	this.ElementosSeleccionados[-1]=-1;
+	this.multipleActivo=0;
 	this.poligonStrokeWidth = this.config.poligonStrokeWidth;
 	this.radialFontSize = this.config.radialFontSize;
 	this.legendDistance = this.config.legendDistance;
@@ -504,19 +509,55 @@ Components.PolarSvg.prototype.savePolygonsData=function(){
         this.polygonsGraphics[calificador]["text"] = this.SVG.text(this.saveGroup,text, {id: calificador, x:iniX, y: iniY, fontFamily: 'Arial', fontSize: '11', fill: '#dddddd'});
         $(this.polygonsGraphics[calificador]["text"]).css('cursor','pointer');
         $(this.polygonsGraphics[calificador]["text"]).bind('click',{OBJ:this,calificador:calificador}, function(event) {
+				
                         if(event.data.OBJ.polygonsGraphics[event.data.calificador]["polygon"]!=undefined){
 							for(var i in event.data.OBJ.polygonsGraphics){
 								if(event.data.OBJ.polygonsGraphics[event.data.calificador]["polygon"]==event.data.OBJ.polygonsGraphics[i]["polygon"]){
 									event.data.OBJ.hideCurrentPolygon(event.data.calificador)
 									$(event.data.OBJ.polygonsGraphics[event.data.calificador]["text"]).attr("fill",'#dddddd')
 									$(event.data.OBJ.polygonsGraphics[event.data.calificador]["cuadradito"]).attr("fill",'#dddddd')
+									
 						}}
+						delete event.data.OBJ.ElementosSeleccionados[event.data.calificador];
+						event.data.OBJ.config.listeners.onDeselectProyect(event,event.data.calificador);
 						}else{
 							event.data.OBJ.reDraw(event.data.calificador);
-							}			
+							event.data.OBJ.ElementosSeleccionados[event.data.calificador]=parseInt(event.data.calificador);
+							event.data.OBJ.config.listeners.onSelectProyect(event,event.data.calificador);
+						}			
         });
 	}
 }
+
+Components.PolarSvg.prototype.Select_Deselect=function(calificador){
+	
+		for(var cali in this.ElementosSeleccionados)
+		{
+			if(this.polygonsGraphics[cali]["polygon"]!=undefined){
+				for(var i in this.polygonsGraphics){
+					if(this.polygonsGraphics[cali]["polygon"]==this.polygonsGraphics[i]["polygon"]){
+						this.hideCurrentPolygon(cali)
+						$(this.polygonsGraphics[cali]["text"]).attr("fill",'#dddddd')
+						$(this.polygonsGraphics[cali]["cuadradito"]).attr("fill",'#dddddd')
+										//OBJ.multipleActivo--; 
+										/*
+										this.multipleActivo++;
+										if(this.multipleActivo<2)
+											se marque el elemento seleccionado
+										 */
+					}
+				}
+				
+			}
+			delete this.ElementosSeleccionados[cali];
+		}
+		if(calificador>4)
+		{
+			this.reDraw(calificador);
+			this.ElementosSeleccionados[calificador]=calificador;
+		}
+}
+
 Components.PolarSvg.prototype.setControls=function(){
 	$(".imagenPersonal",this.root).mouseenter({OBJ:this}, function(event) {
 				event.data.OBJ.imagenPersonal.borde.setAttribute('stroke-width','8');
