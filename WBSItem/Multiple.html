@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WbsItem Ejemplo 18</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<!--font-family: lato	-->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/containers/TabContainer.js"></script>
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/items/WBSItem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/items/WBSNode.js"></script>
+<script src="../components/items/WBSTree.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/TabItem.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/extra/Validacion.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/tab/tabContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<script src="../components/items/LayoutWilliam.js"></script>
+<script src="../components/items/ECOTree.js"></script>
+<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/items/ProgressBarItem.js"></script>
+
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+title: "carga de 3000 elementos",	
+state:'active',
+x:50,
+y:50,
+height:400, 
+width:700,
+items:[
+	{
+		type: 'ToolBar',
+		id:'statusbar001',
+		region: 'bottom',
+		 items:[
+		   {
+				type: 'ProgressBar',	
+				x:0,
+				y:70,
+				align: "left",
+				width: 250,
+				value:0,
+				id:'progressload',
+				state:'active',
+				scale:'minier',
+				animate:false,
+				css:{
+				    'margin-top': '2px',
+					'margin-left': '2px'
+				}				
+            },
+		 ]
+    },
+	{
+	 type: 'SvgContainer', 
+	 region: 'center',
+	 id:'mysvg',
+	 items:[
+		{
+			type: 'WBSTree',						
+			id:'Okno',
+			plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+						parentType: 'WBSTree',
+			}},
+			listeners: {
+							onDrawTree: function(obj,paso){						
+								  Components.getComponentById('progressload').setValue(paso);
+							}
+						 },
+			items:[
+			
+					
+  
+    {
+        "id": 1,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Implementación de Equipos RF para las Sub-Estaciones de SPCC ",
+        "WBS": "1",
+        "childsId": [
+            2,
+            7
+        ],
+    },
+    {
+        "id": 2,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Inicio de Proyecto",
+        "WBS": "1.1",
+        "childsId": [
+            3,
+            6
+        ],
+        "idp": 1
+    },
+    {
+        "id": 3,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "KOM - Reunión de Inicio del Proyecto",
+        "WBS": "1.1.1",
+        "childsId": [
+            4,
+            5
+        ],
+        "idp": 2
+    },
+    {
+        "id": 4,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Traslado del Personal a Ilo",
+        "WBS": "1.1.1.1",
+        "childsId": [],
+        "idp": 3
+    },
+    {
+        "id": 5,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Reunión de Inicio y Defición del Acta",
+        "WBS": "1.1.1.2",
+        "childsId": [],
+        "idp": 3
+    },
+    {
+        "id": 6,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Acta de constitución aprobada",
+        "WBS": "1.1.2",
+        "childsId": [],
+        "idp": 2
+    },
+    {
+        "id": 7,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Ingeniería",
+        "WBS": "1.2",
+        "childsId": [
+            8
+        ],
+        "idp": 1
+    },
+    {
+        "id": 8,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Común - Consolidado",
+        "WBS": "1.2.1",
+        "childsId": [
+            9
+        ],
+        "idp": 7
+    },
+    {
+        "id": 9,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Planificación",
+        "WBS": "1.2.1.1",
+        "childsId": [
+        ],
+        "idp": 8
+    },
+    {
+        "id": 10,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Transferencia de información",
+        "WBS": "1.2.1.1.1",
+        "childsId": [
+            11,
+        ],
+        "idp": 9
+    },
+    {
+        "id": 11,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Entrega de los planos por parte de SPCC (proyecto SCADA)",
+        "WBS": "1.2.1.1.1.1",
+        "childsId": [],
+        "idp": 10,
+		"bolita":true,
+    },
+]
+	    }
+	  ]
+	
+	}
+  ]      
+}).show();
+Components.getComponentById('Okno').drawTree();
+Components.create('Window',{
+title: "carga de 3000 elementos",	
+state:'active',
+x:780,
+y:50,
+height:400, 
+width:700,
+items:[
+	{
+		type: 'ToolBar',
+		id:'statusbar001',
+		region: 'bottom',
+		 items:[
+		   {
+				type: 'ProgressBar',	
+				x:0,
+				y:70,
+				align: "left",
+				width: 250,
+				value:0,
+				id:'progressload2',
+				state:'active',
+				scale:'minier',
+				animate:false,
+				css:{
+				    'margin-top': '2px',
+					'margin-left': '2px'
+				}				
+            },
+		 ]
+    },
+	{
+	 type: 'SvgContainer', 
+	 region: 'center',
+	 id:'mysvg',
+	 items:[
+		{
+			type: 'WBSTree',						
+			id:'Okno2',
+			plugins:{ svgToolTip:{
+						type: 'svgToolTip',
+						orientacion:'abajo',
+						parentType: 'WBSTree',
+			}},
+			listeners: {
+							onDrawTree: function(obj,paso){						
+								  Components.getComponentById('progressload2').setValue(paso);
+							}
+						 },
+			items:[
+			
+					
+  
+    {
+        "id": 1,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Implementación de Equipos RF para las Sub-Estaciones de SPCC ",
+        "WBS": "1",
+        "childsId": [
+            2,
+            7
+        ],
+    },
+    {
+        "id": 2,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Inicio de Proyecto",
+        "WBS": "1.1",
+        "childsId": [
+            3,
+            6
+        ],
+        "idp": 1
+    },
+    {
+        "id": 3,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "KOM - Reunión de Inicio del Proyecto",
+        "WBS": "1.1.1",
+        "childsId": [
+            4,
+            5
+        ],
+        "idp": 2
+    },
+    {
+        "id": 4,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Traslado del Personal a Ilo",
+        "WBS": "1.1.1.1",
+        "childsId": [],
+        "idp": 3
+    },
+    {
+        "id": 5,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Reunión de Inicio y Defición del Acta",
+        "WBS": "1.1.1.2",
+        "childsId": [],
+        "idp": 3
+    },
+    {
+        "id": 6,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Acta de constitución aprobada",
+        "WBS": "1.1.2",
+        "childsId": [],
+        "idp": 2
+    },
+    {
+        "id": 7,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Ingeniería",
+        "WBS": "1.2",
+        "childsId": [
+            8
+        ],
+        "idp": 1
+    },
+    {
+        "id": 8,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Común - Consolidado",
+        "WBS": "1.2.1",
+        "childsId": [
+            9
+        ],
+        "idp": 7
+    },
+    {
+        "id": 9,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Planificación",
+        "WBS": "1.2.1.1",
+        "childsId": [
+        ],
+        "idp": 8
+    },
+    {
+        "id": 10,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Transferencia de información",
+        "WBS": "1.2.1.1.1",
+        "childsId": [
+            11,
+        ],
+        "idp": 9
+    },
+    {
+        "id": 11,
+        "type": "WBSNode",
+        "tipoObjeto": "Tarea",
+        "Descripcion": "Entrega de los planos por parte de SPCC (proyecto SCADA)",
+        "WBS": "1.2.1.1.1.1",
+        "childsId": [],
+        "idp": 10,
+		"bolita":true,
+    },
+]
+	    }
+	  ]
+	
+	}
+  ]      
+}).show();
+Components.getComponentById('Okno2').drawTree();
+});  
+</script>	
+</head>
+
+</html>

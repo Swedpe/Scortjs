@@ -114,7 +114,9 @@ Components = {
 	EasyPieChart: function(dataObj) {
         this.init(dataObj);
     },
-
+	svgFloatingMenu: function(dataObj) {
+        this.init(dataObj);
+    },
 	AutoCompleteInputField: function(dataObj) {
         this.init(dataObj);
     },
@@ -140,7 +142,9 @@ Components = {
     DateColumn: function(dataObj) {
         this.init(dataObj);
     },
-
+	ToolsColumn: function(dataObj) {
+        this.init(dataObj);
+    },
     DateField: function(dataObj) {
         this.init(dataObj);
     },
@@ -452,11 +456,13 @@ Components.FreeDiv.prototype = new Components.Component();
 Components.ProgressBar.prototype = new Components.Component();
 Components.colorPicker.prototype = new Components.Component();
 Components.EasyPieChart.prototype= new Components.Component();
+Components.svgFloatingMenu.prototype= new Components.Component();
 Components.AutoCompleteInputField.prototype = new Components.Component();
 Components.CheckboxField.prototype = new Components.Component();
 Components.CheckColumn.prototype = new Components.Component();
 Components.ComboBox.prototype = new Components.Component();
 Components.DateColumn.prototype = new Components.Component();
+Components.ToolsColumn.prototype = new Components.Component();
 Components.FileField.prototype = new Components.Component();
 Components.Form.prototype = new Components.Component();
 Components.GridColumn.prototype = new Components.Component();

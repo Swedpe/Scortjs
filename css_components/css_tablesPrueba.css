@@ -1,0 +1,176 @@
+/* 
+    Document   : css_gridpanel
+    Created on : 29-mar-2014, 11:16:16
+    Linked in  : BPT/top.php
+    Description:
+        Este archivo contiene los estilos para la creacion de un grid
+*/
+
+.gridContainer.table-simple .gridhead th{
+	color: black;
+	border-collapse: separate;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-size:14.4px;
+}
+.gridContainer.table-simple .gridhead th:hover{
+	border: 1px solid black;
+	background:gray !important;
+	border-top:none;
+}
+.gridContainer.table-simple th{
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-size:14.4px;
+	border-bottom:1px solid black;
+	background:none;
+}
+
+/*FIN fondo de la columna de cabecera*/
+
+/*------------------------Inicio de Cabecera de botones para CRUD--------------------*/
+
+.gridContainer.table-simple  .toolBar .buttonItem.btn-circle:hover{
+background: white;
+border: 1px solid rgb(107, 200, 87);
+}
+
+
+/*------------------------Fin de Cabecera de botones para CRUD------------------------/*/
+
+
+
+.gridbody.simple .scort-row.rowGrid-selected:hover{
+  background: white url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") 50% 50% repeat-x;
+}
+
+.gridbody.simple  tr.TrTitleGrid {
+    color: black;
+	border-collapse: separate;
+	border-top: 2px solid black;
+}
+.gridbody.simple .TrTitleGrid .gridColumnItem:hover{
+}
+.gridbody.simple  tr.scort-row td {
+	border:none;
+	padding: 8px 10px 8px 10px;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-size:14.4px;
+   border-bottom:1px solid #ddd;
+}
+
+/*-----------------CheckboxGrid-----------------*/
+
+/*------------- Action Column -------------------*/
+/*--------------------------------------------------------------------------------------------------*/
+.toolBar.simple,.toolBar.simple .buttonItem {
+  background: #DCDCDC;
+  border: 1px solid black;
+  color: #2F4F4F;
+}
+.toolBar.simple{
+	padding:2px;
+	top:-1px;
+}
+.toolBar.simple .buttonItem:hover{
+    background: #A9A9A9;
+    color: black;
+}
+/**/
+
+
+
+
+
+
+
+
+
+
+
+.gridContainer {
+	border-color: #C0C0C0 ;
+}
+.windowHead.simple2, .buttonItem{
+	background: #C0C0C0 ;
+	color:white;
+}
+.windowHead.simple2 .buttonItem:hover{
+	background:#808080 ;
+}
+.gridContainer.table-simple2 .gridhead tr:hover 
+{
+	background:none;
+}
+.gridContainer.simple2 .gridhead:hover{
+	background:black;
+}
+.gridContainer.table-simple2 th{
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-size:14.4px;
+	border:none;
+}
+.gridContainer.table-simple2 .gridhead th{
+	color: black;
+	border-collapse: separate;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-size:14.4px;
+	border-bottom:1px solid black;
+}
+.gridContainer.table-simple2 .gridhead th:hover{
+	border: 1px solid black;
+	border-top:none;
+}
+
+
+/*FIN fondo de la columna de cabecera*/
+
+/*------------------------Inicio de Cabecera de botones para CRUD--------------------*/
+
+.gridContainer.table-simple2  .toolBar .buttonItem.btn-circle:hover{
+background: white;
+border: 1px solid rgb(107, 200, 87);
+}
+
+
+/*------------------------Fin de Cabecera de botones para CRUD------------------------/*/
+
+
+.gridbody.simple2 .scort-row.rowGrid-selected{
+  background: #DCDCDC url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") 50% 50% repeat-x;
+}
+.gridbody.simple2 .scort-row.rowGrid-selected:hover{
+  background: #DCDCDC url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") 50% 50% repeat-x;
+}
+
+.gridbody.simple2  tr.TrTitleGrid {
+    color: black;
+	border-collapse: separate;
+	border-top: 2px solid black;
+}
+.gridbody.simple2 .TrTitleGrid .gridColumnItem:hover{
+	background:#69aa46 !important;
+}
+.gridbody.simple2  tr.scort-row td {
+	border:none;
+	padding: 8px 10px 8px 10px;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
+	font-size:14.4px;
+	border-bottom:1px solid #ddd;
+}
+
+/*-----------------CheckboxGrid-----------------*/
+
+/*------------- Action Column -------------------*/
+/*--------------------------------------------------------------------------------------------------*/
+.toolBar.simple2,.toolBar.simple2 .buttonItem {
+  background: #DCDCDC;
+  color: #2F4F4F;
+}
+.toolBar.simple2{
+	padding:2px;
+	top:-1px;
+	top:2px;
+}
+.toolBar.simple2 .buttonItem:hover{
+    background: #A9A9A9;
+    color: black;
+}

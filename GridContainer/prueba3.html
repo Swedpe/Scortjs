@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridContainer Ejemplo 5</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../functions.js"></script>
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/containers/GridContainer/ToolsColumn.js"></script>
+<script src="../components/containers/GridContainer/DateColumnItem.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+
+<!--------------------------CSS	------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_tablesPrueba.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+
+Components.create('GridContainer',{
+	
+			container: $('#ejemplo2'),
+			region: "center",
+			id: "GridPrueba",
+			state:'simple2',
+			cellEditing: {clicksToEdit: 2},
+			autoScroll: true,
+			verticalScroll:true,
+			selModel: {
+							type: "checkboxmodel",
+							checkOnly: false,
+						   
+			},	
+			columns: [
+			
+				
+				{
+					type: "GridColumn",
+					text: "NOMBRE",
+					dataIndex: "nombreData",
+					width: "20%",
+					editor: {
+										type: 'TextField',
+										allowBlank: false
+					}
+				},
+				{
+					type: "GridColumn",
+					text: "EDAD",
+					dataIndex: "edadData",
+				   // typeData: "number",
+				   // sortable: true,
+					//filter: true,
+					 width: "25%",
+					 editor: {
+										type: 'TextField',
+										allowBlank: false
+									}
+				},					
+				{
+						type: 'GridColumn',                            
+						text: 'NICKNAME',							
+						width: "25%",
+						  editor: {
+										type: 'TextField',
+										allowBlank: false
+									},
+						renderer: function(value, metaData, record, row, col, store, gridView){                               
+							return record.nombreData+record.edadData;
+						}
+				 },
+			   {
+					type: "ToolsColumn",
+					text: "OnOff",
+					width: "10%",
+					items:[
+									{
+										type: 'Button',
+										id : 'BtnEditar',
+										shape:'box',
+										scale:'windowHead',
+										icon:{
+											type:'fontawesome',
+											class:'fa fa-pencil',
+											color:'blue',
+											position:'left',
+										},
+										tooltip:'Editar',
+										listeners: {
+											click: function(e) {
+												var datosFila= e.data.row.data('record');
+												var grid = e.data.grid;
+												grid.selectRow(e.data.row,false)		
+												if(grid.ventanaeditor == undefined){
+													grid.createform(e,'update');	
+												}else {
+													grid.OkButton.CodeHelper = 'update';
+													grid.ventanaeditor.setTitle('Actualizar Registro')
+													}
+													Components.getComponentById(grid.formdef.id).setValues(datosFila);	//colocar los valores de la grilla en el formulario							
+													grid.ventanaeditor.show();
+											}
+										}
+									},
+									{
+										type: 'Button',
+										id : 'Btn',
+										shape:'box',
+										scale:'windowHead',
+										icon:{
+											type:'fontawesome',
+											class:'fa fa-undo',
+											color:'green',
+											position:'left',
+										},
+										tooltip:'Cortar enlace',
+										listeners: {
+											click: function(e) {
+												console.log("Actualizar");
+											}
+										}
+									},
+									{
+										type: 'Button',
+										id : 'BtnEliminar',
+										shape:'box',
+										scale:'windowHead',
+										icon:{
+											type:'fontawesome',
+											class:'fa fa-times',
+											color:'red',
+											position:'left',
+										},
+										tooltip:'Eliminar',
+										listeners: {
+											click: function(e) {
+												var datosFila= e.data.row.data('record');
+												var grid = e.data.grid;
+												grid.selectRow(e.data.row,false);	
+												var selection = grid.getSelection();					
+												grid.store.deleterecord(selection[0],selection[0].position);
+											}
+										}
+									},
+					]
+				},
+			
+			 
+			],
+			store: {
+				pageSize:10,
+				fields: ["nombreData", "pos2", "edadData","OnData"],
+				data: [
+					{ nombreData: "Cesar", pos2: true, edadData:21, OnData:false},
+					{ nombreData: "abelardo", pos2: false, edadData:19, OnData:false},
+					{ nombreData: "geanfranco", pos2: true, edadData:10, OnData:true},
+					{ nombreData: "ernesto", pos2: false,  edadData:40, OnData:false},
+					{ nombreData: "roberto", pos2: true, edadData:50, OnData:true},
+					{ nombreData: "luis", pos2: true, edadData:50, OnData:false},
+					{ nombreData: "jose", pos2: true, edadData:50, OnData:false},
+					{ nombreData: "daniel", pos2: true, edadData:50, OnData:false},
+					{ nombreData: "luis", pos2: true, edadData:50, OnData:false},
+					{ nombreData: "Cesar", pos2: true, edadData:21, OnData:false},
+					{ nombreData: "abelardo", pos2: false, edadData:19, OnData:false},
+					{ nombreData: "geanfranco", pos2: true, edadData:10, OnData:true},
+					{ nombreData: "ernesto", pos2: false,  edadData:40, OnData:false},
+					{ nombreData: "roberto", pos2: true, edadData:50, OnData:true},
+					{ nombreData: "luis", pos2: true, edadData:60, OnData:false},
+					{ nombreData: "jose", pos2: true, edadData:100, OnData:false},
+					{ nombreData: "daniel", pos2: true, edadData:80, OnData:false},
+					{ nombreData: "Willian", pos2: true, edadData:70, OnData:false},
+				]
+			},
+			bbar: { //determina la barra de paginacion
+			//barra de paginacion,  los parametros [1,2,3] -> [Elemento de inicio de grupo,Elemento Final de grupo, Total de elementos]
+						displayInfo: true,
+						displayMsg: 'Mostrando  {0} - {1} de {2}',
+						emptyMsg: "No hay temas a mostrar",
+						position:'down'
+					},
+			
+					gridviewtittle: {
+					   displayInfo:  true,
+					},
+					resizable: {													//este se considera plugin, ya que puede o no ser incluido, permite cambiar el ancho de las filas
+					liveDrag:true,   
+				},					
+		
+	
+}).show();
+});  
+</script>	
+</head>
+<body>
+<div id="parte2" class="col-sm-12">
+	<strong>
+		<FONT FACE="arial">
+			<p style="color: #BD133D; font-size: 14pt">BOTONES E ICONOS SCORT</P>
+		</font>
+	</strong>
+	<div class="row">
+		<div  id="ejemplo1" class="col-sm-4"  >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> Botones con diferentes estados</P>
+				</font>
+			</strong>
+			<br><br>
+		</div>
+		<div id="ejemplo2" class="col-sm-4">
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> Botones con diferentes tamaños</P>
+				</font>
+			</strong> 
+		</div>
+		<div id="ejemplo4" class="col-sm-4" >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt">Botones de distintos tamaños + iconos</P>
+				</font>
+			</strong> 
+		</div>
+	</div><!--El ancho es de 12 columnas, una vez ocupadas las 12 se cierra el row-->	
+	
+</div>
+</body>
+</html>

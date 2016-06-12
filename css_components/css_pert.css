@@ -1,0 +1,113 @@
+.Formato
+{
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   max-width:50px;
+}
+.caja_Pert_Node10{	/*se quito el .hasSVG xq al crearse se agrega al body, al no pertenecer a un .hasSVG no le da estilos y se hacen mal los calculos*/
+	font-family: Lato;
+	max-width: 125px; 
+	font-size: 6px; 
+	visibility:hidden;		/*hidden mientras aparece, luego cuando se ubica se hace visible mediante codigo */
+	position: absolute;
+	display:table;
+	height: auto;
+	width: auto;
+	padding:0 0 0 2px;
+}
+.caja_Pert_Node20{	/*se quito el .hasSVG xq al crearse se agrega al body, al no pertenecer a un .hasSVG no le da estilos y se hacen mal los calculos*/
+	font-family: Lato;
+	max-width: 125px; 
+	font-size: 10px; 
+	visibility:hidden;		/*hidden mientras aparece, luego cuando se ubica se hace visible mediante codigo */
+	position: absolute;
+	display:table;
+	height: auto;
+	width: auto;
+	padding:2px 0 0 2px;
+}
+.caja_Pert_Node30 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 12px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+	padding:3px 0 0 3px;
+}
+.caja_Pert_Node40 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 16px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+	padding:4px 0 0 4px;
+}
+.caja_Pert_Node50 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 6px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+	
+}
+.caja_Pert_Node60 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 6.5px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+}
+.caja_Pert_Node70 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 8px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+}
+.caja_Pert_Node80 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 9px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+}
+.caja_Pert_Node90 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 11px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+}
+.caja_Pert_Node100 {
+    font-family: Lato;
+    max-width: 125px;
+    font-size: 11px;
+    visibility: hidden;
+    position: absolute;
+    display: table;
+    height: auto;
+    width: auto;
+}

@@ -1,0 +1,7458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pert Ejemplo Proyecto agua potable</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="../fonts/font-awesome-4.6.3/css/font-awesome.min.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svg.js"></script>
+<script src="../jqfu/JquerySVG/jquery.svganim.js"></script>
+<script src="../components/Components.js"></script>	
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../functions.js"></script>	
+<script src="../components/containers/MenuContainer.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/containers/GridContainer/NumberColumnItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/containers/SvgContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/items/SplitButtonItem.js"></script>
+<link rel="stylesheet" href="../css_components/css_menupanel.css" />
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../components/containers/SidebarContainer.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/sidebaritem.js"></script>
+<script src="../components/items/WBSMiniItem.js"></script>
+<script src="../components/svg/ClipBoardSVG.js"></script>
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<script src="../components/items/SplitButtonItem.js"></script>
+<script src="../components/items/SplitterItem.js"></script>
+<link rel="stylesheet" href="../css_components/sidebar.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_tabpanel.css" />
+<script src="../components/svg/SvgToolTip.js"></script>
+<script src="../components/items/MenuScort.js"></script>
+<script src="../components/svg/ControlBox.js"></script>
+<script src="../components/svg/ScreenGrid.js"></script>
+<script src="../components/svg/TextCajita.js"></script>
+<script src="../components/svg/TextProcesor.js"></script>
+<script src="../components/svg/pert/GrafoPert.js"></script> 
+<script src="../components/svg/pert/grafoNodo.js"></script> 
+<script src="../components/svg/pert/grafoedge.js"></script> 
+<script src="../components/svg/pert/DragSvg.js"></script> 
+<link rel="stylesheet" href="../css_components/css_buttonmenu.css" />
+<script src="../components/items/MenuItem.js"></script>	
+<script src="../components/items/Slider.js"></script>
+<script src="../components/containers/PanelContainer.js"></script>
+<script src="../components/tab/tabItemView.js"></script>
+<link rel="stylesheet" href="../css_components/css_panel.css" />
+<link rel="stylesheet" href="../css_components/css_principal.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+<link rel="stylesheet" href="../css_components/css_sliderItem.css" />
+<link rel="stylesheet" href="../css_components/css_pert.css" />
+<style type="text/css">
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+
+</style>	
+
+<script id="customscript">
+$( document ).ready(function(){
+console.log("no work");
+Components.create('Window',{
+		title: "Scortjs WBS Pert Component SWEDPE",		
+        state:'active',
+		height:850, 
+        width:1600,
+		x:19,
+		y:30,
+        items:[
+			{
+                type: 'ToolBar',
+                id: 'ChartProyectoWindowsToolBar',
+                state:'active',
+				region: 'top',
+                items: [
+                   {
+                        type: 'Button',
+                        id : 'BtnCritical',
+                        scale:'minier',
+                        shape:'box',                      
+						icon:{
+							type:'fontawesome',
+							class:'fa-sitemap',	
+							color:'red',
+						},
+                        tooltip:'Critical',
+                        listeners: {
+                            click: function(e) {
+								Components.getComponentById('PertTree').DisplayCritical();
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        id : 'BtnRefresh',        
+                        scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-refresh',	
+						},	
+                        tooltip:'Refresh',
+                        listeners: {
+                            click: function() {
+                            }
+                        }
+                    },
+                    {
+                        type: 'Button',
+                        id : 'BtnArrastre',
+						enabled:false,								
+						scale:'minier',
+						shape:'box',
+						icon:{
+							type:'fontawesome',
+							class:'fa-toggle-off',	
+						},
+                        tooltip:'Enable Drag',
+                        listeners: {
+                            click: function(e) {
+							if((Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].DragStatus==false)){
+									Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].enableDrag();
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									Components.getComponentById('PertTree').nodos[Components.getComponentById('PertTree').nodoSeleccionado].disableDrag();
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+                               
+							   
+                            }
+                        }
+                    },
+					 {  type: 'MenuScort',						//el menu principal
+                        id : 'MenuBotonesShape',        
+						menuType:'ButtonDropDown',
+						 items:[
+							{
+							type: 'MenuItem',						
+							id:'MenuSup',
+							enabled:false,
+							submenu:{
+									VisibleOnHover:true,
+									VisibleOnClick:false,		
+							},
+								items:[
+								{					
+									type: 'Button',				//el boton que estara visible en el toolbar
+									id : 'BotonMenuShapes',
+									enabled:false,				//inicialmente disabled		
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-connectdevelop',	
+									},	
+									tooltip:'Refresh',
+									listeners: {
+										click: function() {
+										}
+									}					
+								},
+								{type: 'MenuScort',			//el sub menu
+								id : 'SubMenuBotones',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-toggle-off',	
+								},
+								items:[											
+								{
+								type: 'MenuItem',						
+								id:'Circleshape',
+									items:[
+									{													
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaCirculo', 
+									enabled:false,									
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-genderless',	
+									},	
+									tooltip:'Circular',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('circulo');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'BoxShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParacuadrado',        
+									scale:'minier',
+									enabled:false,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-square-o',	
+									},	
+									tooltip:'Rectangular',
+									listeners: {
+										click: function() {
+										var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('cuadrado');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'PoligonShape',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaHexagono',        
+									scale:'minier',
+									enabled:false,
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-codepen',	
+									},	
+									tooltip:'Hexagon',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('hexagono');
+											
+										}
+									}
+									}
+									],
+								}
+								],					
+								tooltip:'Hexagon',
+								}
+								]
+							}
+							]
+					},
+					{
+						type: 'Button',
+						id : 'exchange',
+						shape:'box',
+						scale:'minier',
+						icon:{
+							type:'fontawesome',
+							class:'fa fa-hand-rock-o',
+							color:'black',
+							position:'left',
+						},
+						tooltip:'PC_Cambiar_orientacion',
+						listeners: {
+							click: function(e) {
+									console.log(e.data.OBJ);
+									
+									if(!Components.getComponentById('PertSVG').handDrag){							
+										Components.getComponentById('PertSVG').AllowDrag();	
+										e.data.OBJ.divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+										console.log('ee');
+									}else{
+										Components.getComponentById('PertSVG').DisallowDrag();	
+										$('.layerIcon2',e.data.OBJ.divContainer).remove();
+									}
+							}
+						}
+					},
+					{  type: 'MenuScort',						//el menu principal
+                        id : 'edicion',        
+						menuType:'ButtonDropDown',
+						 items:[
+							{
+							type: 'MenuItem',						
+							id:'Menuedit',
+							submenu:{
+									VisibleOnHover:true,
+									VisibleOnClick:false,		
+							},
+								items:[
+								{					
+									type: 'Button',				//el boton que estara visible en el toolbar
+									id : 'editButton',
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-pencil',
+										color:'black'
+									},	
+									tooltip:'Activar Edicion de Enlaces',
+									listeners: {
+										click: function() {
+										}
+									}					
+								},
+								{type: 'MenuScort',			//el sub menu
+								id : 'breakEnlace',        
+								scale:'minier',
+								shape:'box',
+								icon:{
+									type:'fontawesome',
+									class:'fa-compress',
+									color:'red'
+								},
+								items:[											
+								{
+								type: 'MenuItem',						
+								id:'newEnlace',
+									items:[
+									{													
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaCirculo', 							
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-mars-stroke',	
+									},	
+									tooltip:'Crear Nuevo Enlace',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('circulo');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'pasteLink',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParacuadrado',        
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-compress',
+										color:'red'
+									},	
+									tooltip:'Romper Enlace',
+									listeners: {
+										click: function() {
+										var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('cuadrado');
+										}
+									}
+									}
+									],
+								},
+								{
+								type: 'MenuItem',						
+								id:'cancelB',
+									items:[
+									{
+									type: 'Button',				//el Primer boton oculto del menu
+									id : 'BotonParaHexagono',        
+									scale:'minier',
+									shape:'box',
+									icon:{
+										type:'fontawesome',
+										class:'fa-ban',	
+										color:'red'
+									},	
+									tooltip:'Cancel',
+									listeners: {
+										click: function() {
+											var NodoId = Components.getComponentById('PertTree').nodoSeleccionado;
+											Components.getComponentById('PertTree').nodos[NodoId].ChangeShape('hexagono');
+											
+										}
+									}
+									}
+									],
+								}
+								],					
+								tooltip:'Hexagon',
+								}
+								]
+							}
+							]
+					}	
+	
+                ]
+            },
+            {
+				 type: 'SvgContainer', 
+				 region: 'center',
+				 id:'PertSVG',
+				 items:[
+						{
+						type: 'Pert',						
+						id:'PertTree',
+						scale:20,
+						 listeners: {
+                            onNodeSelect: function(e) {
+								//activar los controles de un nodo. este listener afecta a todos los nodos.
+								Components.getComponentById('MenuSup').enable();
+								Components.getComponentById('BotonMenuShapes').enable();
+								Components.getComponentById('BotonParaCirculo').enable();
+								Components.getComponentById('BotonParaHexagono').enable();
+								Components.getComponentById('BotonParacuadrado').enable();
+								//el botón que habilita el arrastre
+								Components.getComponentById('BtnArrastre').enable();
+								console.log()
+								if((e.DragStatus==true)&&($('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).length==0)){
+									Components.getComponentById('BtnArrastre').divContainer.append('<i class="layerIcon2 buttonItem-icon-left   fa fa-ban" style="top: 5%;color: rgba(255, 0, 0, 0.55);position: absolute;z-index: 1;left: 17%;font-size: 27px;"></i>');
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Disable Drag');
+
+								}
+								else{
+									$('.layerIcon2',Components.getComponentById('BtnArrastre').divContainer).remove();
+									Components.getComponentById('BtnArrastre').divContainer.prop('title', 'Enable Drag');
+								}
+								
+								
+                            }
+                        },
+						plugins:{ svgToolTip:{
+							type: 'svgToolTip',
+							orientacion:'arriba',
+							parentType: 'WBSTree',
+							viewToolTip: '"<div><table class=\'tablePertNodeExample\' ><tr><td colspan=3 ><strong>"+this.internalData.visibleId+"</strong></td></tr><tr><td colspan=3 style=\'border-top: solid; border-bottom: solid;\'><strong style=\'font-size:13px;\'>"+this.internalData.descripcion+"</strong></td></tr><tr><td ><strong>"+this.internalData.duracion+"</strong></td><td style=\'border-left: solid; border-right: solid;\'><strong>"+this.internalData.holgura+"</strong></td><td><strong >"+this.internalData.holgura+"</strong></td></tr></table></div>"',
+						}},
+						items:
+							[
+							
+    {
+        "PertId": "0",
+        "type": "GrafoNodo",
+        "Y": "2040",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": "SANEAMIENTO - CHICHAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 0
+        },
+		
+    },
+    {
+        "PertId": "1",
+        "type": "GrafoNodo",
+        "Y": "1990",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": "INICIO DE PROYECTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 1
+			
+        }
+    },
+    {
+        "PertId": "2",
+        "type": "GrafoNodo",
+        "Y": "1940",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": "TOTAL PROYECTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 2
+        }
+    },
+    {
+        "PertId": "3",
+        "type": "GrafoNodo",
+        "Y": "1890",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": "SISTEMA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 3
+        }
+    },
+    {
+        "PertId": "4",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " OBRAS PROVISIONALES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 4
+        }
+    },
+    {
+        "PertId": "5",
+        "type": "GrafoNodo",
+        "Y": "1550",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " OBRAS PROVISIONALES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 5
+        },
+        "Sucesoras": [
+            "8",
+            "9",
+            "11"
+        ]
+    },
+    {
+        "PertId": "6",
+        "type": "GrafoNodo",
+        "Y": "1790",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CARTEL DE IDENTIFICACION DE OBRA DE 3.60 X 4,80M",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 6
+        }
+    },
+    {
+        "PertId": "7",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAPTACION - ANEXOS DE CHICHAS (04 UND)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 7
+        }
+    },
+    {
+        "PertId": "8",
+        "type": "GrafoNodo",
+        "Y": "1510",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES Y RESANE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 8
+        },
+        "Predecesoras": [
+            "5"
+        ],
+        "Sucesoras": [
+            "10"
+        ]
+    },
+    {
+        "PertId": "9",
+        "type": "GrafoNodo",
+        "Y": "1550",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES Y RESANE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 9
+        },
+        "Predecesoras": [
+            "5"
+        ]
+    },
+    {
+        "PertId": "10",
+        "type": "GrafoNodo",
+        "Y": "1510",
+        "X": "1983.33",
+        "internalData": {
+            "descripcion": " INSTALACION DE ACCESORIOS DE CAPTACION",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 10
+        },
+        "Predecesoras": [
+            "8"
+        ]
+    },
+    {
+        "PertId": "11",
+        "type": "GrafoNodo",
+        "Y": "1590",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " INSTALACION DE ACCESORIOS DE CAPTACION",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 11
+        },
+        "Predecesoras": [
+            "5"
+        ]
+    },
+    {
+        "PertId": "12",
+        "type": "GrafoNodo",
+        "Y": "1690",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 12
+        }
+    },
+    {
+        "PertId": "13",
+        "type": "GrafoNodo",
+        "Y": "1640",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 13
+        }
+    },
+    {
+        "PertId": "14",
+        "type": "GrafoNodo",
+        "Y": "1590",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 14
+        }
+    },
+    {
+        "PertId": "15",
+        "type": "GrafoNodo",
+        "Y": "1540",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 15
+        }
+    },
+    {
+        "PertId": "16",
+        "type": "GrafoNodo",
+        "Y": "1490",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " RESERVORIO - SANTA CATALINA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 16
+        }
+    },
+    {
+        "PertId": "17",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 17
+        }
+    },
+    {
+        "PertId": "18",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 18
+        }
+    },
+    {
+        "PertId": "19",
+        "type": "GrafoNodo",
+        "Y": "1340",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 19
+        }
+    },
+    {
+        "PertId": "20",
+        "type": "GrafoNodo",
+        "Y": "1290",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 20
+        }
+    },
+    {
+        "PertId": "21",
+        "type": "GrafoNodo",
+        "Y": "1240",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 21
+        }
+    },
+    {
+        "PertId": "22",
+        "type": "GrafoNodo",
+        "Y": "1190",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 22
+        }
+    },
+    {
+        "PertId": "23",
+        "type": "GrafoNodo",
+        "Y": "1140",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=4 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 23
+        }
+    },
+    {
+        "PertId": "24",
+        "type": "GrafoNodo",
+        "Y": "1090",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 24
+        }
+    },
+    {
+        "PertId": "25",
+        "type": "GrafoNodo",
+        "Y": "1040",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 25
+        }
+    },
+    {
+        "PertId": "26",
+        "type": "GrafoNodo",
+        "Y": "990",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 26
+        }
+    },
+    {
+        "PertId": "27",
+        "type": "GrafoNodo",
+        "Y": "940",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 27
+        }
+    },
+    {
+        "PertId": "28",
+        "type": "GrafoNodo",
+        "Y": "890",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 28
+        }
+    },
+    {
+        "PertId": "29",
+        "type": "GrafoNodo",
+        "Y": "840",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 29
+        }
+    },
+    {
+        "PertId": "30",
+        "type": "GrafoNodo",
+        "Y": "790",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 30
+        }
+    },
+    {
+        "PertId": "31",
+        "type": "GrafoNodo",
+        "Y": "740",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 31
+        }
+    },
+    {
+        "PertId": "32",
+        "type": "GrafoNodo",
+        "Y": "690",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 32
+        }
+    },
+    {
+        "PertId": "33",
+        "type": "GrafoNodo",
+        "Y": "640",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 33
+        }
+    },
+    {
+        "PertId": "34",
+        "type": "GrafoNodo",
+        "Y": "590",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 34
+        }
+    },
+    {
+        "PertId": "35",
+        "type": "GrafoNodo",
+        "Y": "540",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 35
+        }
+    },
+    {
+        "PertId": "36",
+        "type": "GrafoNodo",
+        "Y": "490",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 36
+        }
+    },
+    {
+        "PertId": "37",
+        "type": "GrafoNodo",
+        "Y": "440",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 37
+        }
+    },
+    {
+        "PertId": "38",
+        "type": "GrafoNodo",
+        "Y": "390",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 38
+        }
+    },
+    {
+        "PertId": "39",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 39
+        }
+    },
+    {
+        "PertId": "40",
+        "type": "GrafoNodo",
+        "Y": "290",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " RESERVORIO - CHANCHALLAY",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 40
+        }
+    },
+    {
+        "PertId": "41",
+        "type": "GrafoNodo",
+        "Y": "240",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 41
+        }
+    },
+    {
+        "PertId": "42",
+        "type": "GrafoNodo",
+        "Y": "190",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 42
+        }
+    },
+    {
+        "PertId": "43",
+        "type": "GrafoNodo",
+        "Y": "140",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 43
+        }
+    },
+    {
+        "PertId": "44",
+        "type": "GrafoNodo",
+        "Y": "90",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 44
+        }
+    },
+    {
+        "PertId": "45",
+        "type": "GrafoNodo",
+        "Y": "40",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 45
+        }
+    },
+    {
+        "PertId": "46",
+        "type": "GrafoNodo",
+        "Y": "2700",
+        "X": "40",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 46
+        }
+    },
+    {
+        "PertId": "47",
+        "type": "GrafoNodo",
+        "Y": "2690",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=2 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 47
+        }
+    },
+    {
+        "PertId": "48",
+        "type": "GrafoNodo",
+        "Y": "2690",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 48
+        }
+    },
+    {
+        "PertId": "49",
+        "type": "GrafoNodo",
+        "Y": "2690",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 49
+        }
+    },
+    {
+        "PertId": "50",
+        "type": "GrafoNodo",
+        "Y": "2680",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 50
+        }
+    },
+    {
+        "PertId": "51",
+        "type": "GrafoNodo",
+        "Y": "2640",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 51
+        }
+    },
+    {
+        "PertId": "52",
+        "type": "GrafoNodo",
+        "Y": "2590",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 52
+        }
+    },
+    {
+        "PertId": "53",
+        "type": "GrafoNodo",
+        "Y": "2540",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 53
+        }
+    },
+    {
+        "PertId": "54",
+        "type": "GrafoNodo",
+        "Y": "2490",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 54
+        }
+    },
+    {
+        "PertId": "55",
+        "type": "GrafoNodo",
+        "Y": "2440",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 55
+        }
+    },
+    {
+        "PertId": "56",
+        "type": "GrafoNodo",
+        "Y": "2390",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 56
+        }
+    },
+    {
+        "PertId": "57",
+        "type": "GrafoNodo",
+        "Y": "2340",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 57
+        }
+    },
+    {
+        "PertId": "58",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 58
+        }
+    },
+    {
+        "PertId": "59",
+        "type": "GrafoNodo",
+        "Y": "2240",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 59
+        }
+    },
+    {
+        "PertId": "60",
+        "type": "GrafoNodo",
+        "Y": "2190",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 60
+        }
+    },
+    {
+        "PertId": "61",
+        "type": "GrafoNodo",
+        "Y": "2140",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 61
+        }
+    },
+    {
+        "PertId": "62",
+        "type": "GrafoNodo",
+        "Y": "2090",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 62
+        }
+    },
+    {
+        "PertId": "63",
+        "type": "GrafoNodo",
+        "Y": "2040",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 63
+        }
+    },
+    {
+        "PertId": "64",
+        "type": "GrafoNodo",
+        "Y": "1990",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " RESERVORIO - YANQUE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 64
+        }
+    },
+    {
+        "PertId": "65",
+        "type": "GrafoNodo",
+        "Y": "1940",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 65
+        }
+    },
+    {
+        "PertId": "66",
+        "type": "GrafoNodo",
+        "Y": "1890",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 66
+        }
+    },
+    {
+        "PertId": "67",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 67
+        }
+    },
+    {
+        "PertId": "68",
+        "type": "GrafoNodo",
+        "Y": "1790",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 68
+        }
+    },
+    {
+        "PertId": "69",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 69
+        }
+    },
+    {
+        "PertId": "70",
+        "type": "GrafoNodo",
+        "Y": "2180",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 70
+        },
+        "Predecesoras": [
+            "189"
+        ]
+    },
+    {
+        "PertId": "71",
+        "type": "GrafoNodo",
+        "Y": "2250",
+        "X": "140",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=8 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 71
+        },
+        "Sucesoras": [
+            "73"
+        ],
+        "Predecesoras": [
+            "192"
+        ]
+    },
+    {
+        "PertId": "72",
+        "type": "GrafoNodo",
+        "Y": "2150",
+        "X": "140",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 72
+        },
+        "Sucesoras": [
+            "73"
+        ],
+        "Predecesoras": [
+            "192"
+        ]
+    },
+    {
+        "PertId": "73",
+        "type": "GrafoNodo",
+        "Y": "2180",
+        "X": "190",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 73
+        },
+        "Predecesoras": [
+            "71",
+            "72",
+            "192"
+        ],
+        "Sucesoras": [
+            "74",
+            "75"
+        ]
+    },
+    {
+        "PertId": "74",
+        "type": "GrafoNodo",
+        "Y": "2270",
+        "X": "240",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 74
+        },
+        "Predecesoras": [
+            "73",
+            "192"
+        ],
+        "Sucesoras": [
+            "76"
+        ]
+    },
+    {
+        "PertId": "75",
+        "type": "GrafoNodo",
+        "Y": "2180",
+        "X": "240",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 75
+        },
+        "Predecesoras": [
+            "73",
+            "192"
+        ],
+        "Sucesoras": [
+            "76"
+        ]
+    },
+    {
+        "PertId": "76",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "296.667",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 76
+        },
+        "Predecesoras": [
+            "74",
+            "75",
+            "192"
+        ],
+        "Sucesoras": [
+            "77"
+        ]
+    },
+    {
+        "PertId": "77",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "346.667",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 77
+        },
+        "Predecesoras": [
+            "76",
+            "192"
+        ],
+        "Sucesoras": [
+            "78"
+        ]
+    },
+    {
+        "PertId": "78",
+        "type": "GrafoNodo",
+        "Y": "2256.67",
+        "X": "418.889",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 78
+        },
+        "Predecesoras": [
+            "77",
+            "192"
+        ],
+        "Sucesoras": [
+            "80"
+        ]
+    },
+    {
+        "PertId": "79",
+        "type": "GrafoNodo",
+        "Y": "2410",
+        "X": "418.889",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 79
+        },
+        "Sucesoras": [
+            "80"
+        ],
+        "Predecesoras": [
+            "104",
+            "192"
+        ]
+    },
+    {
+        "PertId": "80",
+        "type": "GrafoNodo",
+        "Y": "2380",
+        "X": "480",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 80
+        },
+        "Predecesoras": [
+            "78",
+            "79",
+            "192"
+        ],
+        "Sucesoras": [
+            "81",
+            "82"
+        ]
+    },
+    {
+        "PertId": "81",
+        "type": "GrafoNodo",
+        "Y": "2090",
+        "X": "596.667",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 81
+        },
+        "Predecesoras": [
+            "80",
+            "192"
+        ],
+        "Sucesoras": [
+            "83"
+        ]
+    },
+    {
+        "PertId": "82",
+        "type": "GrafoNodo",
+        "Y": "2380",
+        "X": "596.667",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 82
+        },
+        "Predecesoras": [
+            "80",
+            "192"
+        ],
+        "Sucesoras": [
+            "83"
+        ]
+    },
+    {
+        "PertId": "83",
+        "type": "GrafoNodo",
+        "Y": "2070",
+        "X": "720",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 83
+        },
+        "Predecesoras": [
+            "81",
+            "82",
+            "192"
+        ],
+        "Sucesoras": [
+            "84"
+        ]
+    },
+    {
+        "PertId": "84",
+        "type": "GrafoNodo",
+        "Y": "2070",
+        "X": "770",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 84
+        },
+        "Predecesoras": [
+            "83",
+            "192"
+        ],
+        "Sucesoras": [
+            "85"
+        ]
+    },
+    {
+        "PertId": "85",
+        "type": "GrafoNodo",
+        "Y": "2500",
+        "X": "933.333",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 85
+        },
+        "Predecesoras": [
+            "84",
+            "192"
+        ]
+    },
+    {
+        "PertId": "86",
+        "type": "GrafoNodo",
+        "Y": "2350",
+        "X": "140",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 86
+        },
+        "Predecesoras": [
+            "192"
+        ]
+    },
+    {
+        "PertId": "87",
+        "type": "GrafoNodo",
+        "Y": "2210",
+        "X": "140",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 87
+        },
+        "Predecesoras": [
+            "192"
+        ]
+    },
+    {
+        "PertId": "88",
+        "type": "GrafoNodo",
+        "Y": "1690",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " RESERVORIO - CAHUANOTA 1",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 88
+        }
+    },
+    {
+        "PertId": "89",
+        "type": "GrafoNodo",
+        "Y": "1420",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 89
+        },
+        "Sucesoras": [
+            "91"
+        ]
+    },
+    {
+        "PertId": "90",
+        "type": "GrafoNodo",
+        "Y": "1460",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 90
+        },
+        "Sucesoras": [
+            "91"
+        ]
+    },
+    {
+        "PertId": "91",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 91
+        },
+        "Predecesoras": [
+            "89",
+            "90"
+        ],
+        "Sucesoras": [
+            "92"
+        ]
+    },
+    {
+        "PertId": "92",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "1983.33",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 92
+        },
+        "Predecesoras": [
+            "91"
+        ],
+        "Sucesoras": [
+            "93",
+            "94"
+        ]
+    },
+    {
+        "PertId": "93",
+        "type": "GrafoNodo",
+        "Y": "1425",
+        "X": "2033.33",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 93
+        },
+        "Predecesoras": [
+            "92"
+        ],
+        "Sucesoras": [
+            "94"
+        ]
+    },
+    {
+        "PertId": "94",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2083.33",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 94
+        },
+        "Predecesoras": [
+            "92",
+            "93"
+        ],
+        "Sucesoras": [
+            "95"
+        ]
+    },
+    {
+        "PertId": "95",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2133.33",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=2 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 95
+        },
+        "Predecesoras": [
+            "94"
+        ]
+    },
+    {
+        "PertId": "96",
+        "type": "GrafoNodo",
+        "Y": "2470",
+        "X": "418.889",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 96
+        },
+        "Sucesoras": [
+            "97"
+        ],
+        "Predecesoras": [
+            "104"
+        ]
+    },
+    {
+        "PertId": "97",
+        "type": "GrafoNodo",
+        "Y": "2470",
+        "X": "480",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 97
+        },
+        "Predecesoras": [
+            "96"
+        ],
+        "Sucesoras": [
+            "98"
+        ]
+    },
+    {
+        "PertId": "98",
+        "type": "GrafoNodo",
+        "Y": "2470",
+        "X": "596.667",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 98
+        },
+        "Predecesoras": [
+            "97"
+        ],
+        "Sucesoras": [
+            "99"
+        ]
+    },
+    {
+        "PertId": "99",
+        "type": "GrafoNodo",
+        "Y": "2470",
+        "X": "720",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 99
+        },
+        "Predecesoras": [
+            "98"
+        ],
+        "Sucesoras": [
+            "100"
+        ]
+    },
+    {
+        "PertId": "100",
+        "type": "GrafoNodo",
+        "Y": "2470",
+        "X": "770",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 100
+        },
+        "Predecesoras": [
+            "99"
+        ]
+    },
+    {
+        "PertId": "101",
+        "type": "GrafoNodo",
+        "Y": "1640",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 101
+        }
+    },
+    {
+        "PertId": "102",
+        "type": "GrafoNodo",
+        "Y": "1590",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 102
+        }
+    },
+    {
+        "PertId": "103",
+        "type": "GrafoNodo",
+        "Y": "1540",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 103
+        }
+    },
+    {
+        "PertId": "104",
+        "type": "GrafoNodo",
+        "Y": "2470",
+        "X": "346.667",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 104
+        },
+        "Sucesoras": [
+            "79",
+            "96"
+        ]
+    },
+    {
+        "PertId": "105",
+        "type": "GrafoNodo",
+        "Y": "1490",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 105
+        }
+    },
+    {
+        "PertId": "106",
+        "type": "GrafoNodo",
+        "Y": "2030",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 106
+        },
+        "Sucesoras": [
+            "128"
+        ]
+    },
+    {
+        "PertId": "107",
+        "type": "GrafoNodo",
+        "Y": "1090",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 107
+        },
+        "Sucesoras": [
+            "108",
+            "395"
+        ]
+    },
+    {
+        "PertId": "108",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "1984.44",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 108
+        },
+        "Predecesoras": [
+            "107"
+        ],
+        "Sucesoras": [
+            "109"
+        ]
+    },
+    {
+        "PertId": "109",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "2034.44",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 109
+        },
+        "Predecesoras": [
+            "108"
+        ],
+        "Sucesoras": [
+            "110"
+        ]
+    },
+    {
+        "PertId": "110",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "2084.44",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 110
+        },
+        "Predecesoras": [
+            "109"
+        ],
+        "Sucesoras": [
+            "111"
+        ]
+    },
+    {
+        "PertId": "111",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "2134.44",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 111
+        },
+        "Predecesoras": [
+            "110"
+        ],
+        "Sucesoras": [
+            "112"
+        ]
+    },
+    {
+        "PertId": "112",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "2184.44",
+        "internalData": {
+            "descripcion": " RESERVORIO - CAHUANOTA 2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 112
+        },
+        "Predecesoras": [
+            "111"
+        ],
+        "Sucesoras": [
+            "113"
+        ]
+    },
+    {
+        "PertId": "113",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "2234.44",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 113
+        },
+        "Predecesoras": [
+            "112"
+        ],
+        "Sucesoras": [
+            "114"
+        ]
+    },
+    {
+        "PertId": "114",
+        "type": "GrafoNodo",
+        "Y": "1070",
+        "X": "2284.44",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 114
+        },
+        "Predecesoras": [
+            "113"
+        ]
+    },
+    {
+        "PertId": "115",
+        "type": "GrafoNodo",
+        "Y": "1980",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 115
+        },
+        "Sucesoras": [
+            "125"
+        ]
+    },
+    {
+        "PertId": "116",
+        "type": "GrafoNodo",
+        "Y": "1350",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 116
+        },
+        "Sucesoras": [
+            "117"
+        ]
+    },
+    {
+        "PertId": "117",
+        "type": "GrafoNodo",
+        "Y": "1350",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 117
+        },
+        "Predecesoras": [
+            "116"
+        ],
+        "Sucesoras": [
+            "118"
+        ]
+    },
+    {
+        "PertId": "118",
+        "type": "GrafoNodo",
+        "Y": "1350",
+        "X": "1983.33",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 118
+        },
+        "Predecesoras": [
+            "117"
+        ],
+        "Sucesoras": [
+            "119",
+            "121"
+        ]
+    },
+    {
+        "PertId": "119",
+        "type": "GrafoNodo",
+        "Y": "1330",
+        "X": "2033.33",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=0.5 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 119
+        },
+        "Predecesoras": [
+            "118"
+        ],
+        "Sucesoras": [
+            "120"
+        ]
+    },
+    {
+        "PertId": "120",
+        "type": "GrafoNodo",
+        "Y": "1330",
+        "X": "2183.33",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 120
+        },
+        "Predecesoras": [
+            "119"
+        ],
+        "Sucesoras": [
+            "126",
+            "127"
+        ]
+    },
+    {
+        "PertId": "121",
+        "type": "GrafoNodo",
+        "Y": "1370",
+        "X": "2033.33",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 121
+        },
+        "Predecesoras": [
+            "118"
+        ],
+        "Sucesoras": [
+            "122"
+        ]
+    },
+    {
+        "PertId": "122",
+        "type": "GrafoNodo",
+        "Y": "1370",
+        "X": "2083.33",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 122
+        },
+        "Predecesoras": [
+            "121"
+        ],
+        "Sucesoras": [
+            "123"
+        ]
+    },
+    {
+        "PertId": "123",
+        "type": "GrafoNodo",
+        "Y": "1370",
+        "X": "2133.33",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 123
+        },
+        "Predecesoras": [
+            "122"
+        ],
+        "Sucesoras": [
+            "124"
+        ]
+    },
+    {
+        "PertId": "124",
+        "type": "GrafoNodo",
+        "Y": "1370",
+        "X": "2183.33",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 124
+        },
+        "Predecesoras": [
+            "123"
+        ],
+        "Sucesoras": [
+            "126",
+            "127"
+        ]
+    },
+    {
+        "PertId": "125",
+        "type": "GrafoNodo",
+        "Y": "1980",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 125
+        },
+        "Predecesoras": [
+            "115"
+        ]
+    },
+    {
+        "PertId": "126",
+        "type": "GrafoNodo",
+        "Y": "1330",
+        "X": "2233.33",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 126
+        },
+        "Predecesoras": [
+            "120",
+            "124"
+        ]
+    },
+    {
+        "PertId": "127",
+        "type": "GrafoNodo",
+        "Y": "1370",
+        "X": "2233.33",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 127
+        },
+        "Predecesoras": [
+            "120",
+            "124"
+        ]
+    },
+    {
+        "PertId": "128",
+        "type": "GrafoNodo",
+        "Y": "2030",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 128
+        },
+        "Predecesoras": [
+            "106"
+        ]
+    },
+    {
+        "PertId": "129",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 129
+        }
+    },
+    {
+        "PertId": "130",
+        "type": "GrafoNodo",
+        "Y": "1930",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 130
+        },
+        "Sucesoras": [
+            "134"
+        ]
+    },
+    {
+        "PertId": "131",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 131
+        }
+    },
+    {
+        "PertId": "132",
+        "type": "GrafoNodo",
+        "Y": "1340",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 132
+        }
+    },
+    {
+        "PertId": "133",
+        "type": "GrafoNodo",
+        "Y": "2690",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 133
+        }
+    },
+    {
+        "PertId": "134",
+        "type": "GrafoNodo",
+        "Y": "1930",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 134
+        },
+        "Predecesoras": [
+            "130"
+        ]
+    },
+    {
+        "PertId": "135",
+        "type": "GrafoNodo",
+        "Y": "2640",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 135
+        }
+    },
+    {
+        "PertId": "136",
+        "type": "GrafoNodo",
+        "Y": "2590",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " RESERVORIO - ACCHAPUNA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 136
+        }
+    },
+    {
+        "PertId": "137",
+        "type": "GrafoNodo",
+        "Y": "2540",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 137
+        }
+    },
+    {
+        "PertId": "138",
+        "type": "GrafoNodo",
+        "Y": "2490",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 138
+        }
+    },
+    {
+        "PertId": "139",
+        "type": "GrafoNodo",
+        "Y": "2440",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 139
+        }
+    },
+    {
+        "PertId": "140",
+        "type": "GrafoNodo",
+        "Y": "2390",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 140
+        }
+    },
+    {
+        "PertId": "141",
+        "type": "GrafoNodo",
+        "Y": "2340",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 141
+        }
+    },
+    {
+        "PertId": "142",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 142
+        }
+    },
+    {
+        "PertId": "143",
+        "type": "GrafoNodo",
+        "Y": "2240",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=2 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 143
+        }
+    },
+    {
+        "PertId": "144",
+        "type": "GrafoNodo",
+        "Y": "2190",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 144
+        }
+    },
+    {
+        "PertId": "145",
+        "type": "GrafoNodo",
+        "Y": "2140",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 145
+        }
+    },
+    {
+        "PertId": "146",
+        "type": "GrafoNodo",
+        "Y": "2090",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 146
+        }
+    },
+    {
+        "PertId": "147",
+        "type": "GrafoNodo",
+        "Y": "2040",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 147
+        }
+    },
+    {
+        "PertId": "148",
+        "type": "GrafoNodo",
+        "Y": "1990",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 148
+        }
+    },
+    {
+        "PertId": "149",
+        "type": "GrafoNodo",
+        "Y": "1940",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 149
+        }
+    },
+    {
+        "PertId": "150",
+        "type": "GrafoNodo",
+        "Y": "1890",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 150
+        }
+    },
+    {
+        "PertId": "151",
+        "type": "GrafoNodo",
+        "Y": "2230",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 151
+        },
+        "Sucesoras": [
+            "152"
+        ]
+    },
+    {
+        "PertId": "152",
+        "type": "GrafoNodo",
+        "Y": "2230",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 152
+        },
+        "Predecesoras": [
+            "151"
+        ]
+    },
+    {
+        "PertId": "153",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 153
+        }
+    },
+    {
+        "PertId": "154",
+        "type": "GrafoNodo",
+        "Y": "1790",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 154
+        }
+    },
+    {
+        "PertId": "155",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 155
+        }
+    },
+    {
+        "PertId": "156",
+        "type": "GrafoNodo",
+        "Y": "1690",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 156
+        }
+    },
+    {
+        "PertId": "157",
+        "type": "GrafoNodo",
+        "Y": "1640",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 157
+        }
+    },
+    {
+        "PertId": "158",
+        "type": "GrafoNodo",
+        "Y": "1590",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 158
+        }
+    },
+    {
+        "PertId": "159",
+        "type": "GrafoNodo",
+        "Y": "1540",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 159
+        }
+    },
+    {
+        "PertId": "160",
+        "type": "GrafoNodo",
+        "Y": "1490",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " RESERVORIO - YACHANGUILLO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 160
+        }
+    },
+    {
+        "PertId": "161",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 161
+        }
+    },
+    {
+        "PertId": "162",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 162
+        }
+    },
+    {
+        "PertId": "163",
+        "type": "GrafoNodo",
+        "Y": "1340",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE TERRENO SEMI ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 163
+        }
+    },
+    {
+        "PertId": "164",
+        "type": "GrafoNodo",
+        "Y": "1290",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 10cm T.NORMAL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 164
+        }
+    },
+    {
+        "PertId": "165",
+        "type": "GrafoNodo",
+        "Y": "1240",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO 15cm T.ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 165
+        }
+    },
+    {
+        "PertId": "166",
+        "type": "GrafoNodo",
+        "Y": "1190",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ELIMINACION DE MATERIAL DE CORTE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 166
+        }
+    },
+    {
+        "PertId": "167",
+        "type": "GrafoNodo",
+        "Y": "1140",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " RESERVORIO (R=3 M3)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 167
+        }
+    },
+    {
+        "PertId": "168",
+        "type": "GrafoNodo",
+        "Y": "1090",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 168
+        }
+    },
+    {
+        "PertId": "169",
+        "type": "GrafoNodo",
+        "Y": "1040",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 169
+        }
+    },
+    {
+        "PertId": "170",
+        "type": "GrafoNodo",
+        "Y": "990",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 170
+        }
+    },
+    {
+        "PertId": "171",
+        "type": "GrafoNodo",
+        "Y": "940",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 171
+        }
+    },
+    {
+        "PertId": "172",
+        "type": "GrafoNodo",
+        "Y": "890",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 172
+        }
+    },
+    {
+        "PertId": "173",
+        "type": "GrafoNodo",
+        "Y": "840",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 173
+        }
+    },
+    {
+        "PertId": "174",
+        "type": "GrafoNodo",
+        "Y": "790",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " SOLADO PARA ZAPATAZ E=4 \" , 1:12 CEM/HORM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 174
+        }
+    },
+    {
+        "PertId": "175",
+        "type": "GrafoNodo",
+        "Y": "740",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ACERO EN MUROS REFORZADOS GRADO 60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 175
+        }
+    },
+    {
+        "PertId": "176",
+        "type": "GrafoNodo",
+        "Y": "690",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=210 kg/cm2 PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 176
+        }
+    },
+    {
+        "PertId": "177",
+        "type": "GrafoNodo",
+        "Y": "640",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO PARA MUROS REFORZADOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 177
+        }
+    },
+    {
+        "PertId": "178",
+        "type": "GrafoNodo",
+        "Y": "590",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS PARA RESERVORIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 178
+        }
+    },
+    {
+        "PertId": "179",
+        "type": "GrafoNodo",
+        "Y": "540",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 179
+        }
+    },
+    {
+        "PertId": "180",
+        "type": "GrafoNodo",
+        "Y": "490",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA TERRENO SEMIRROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 180
+        }
+    },
+    {
+        "PertId": "181",
+        "type": "GrafoNodo",
+        "Y": "440",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CONCRETO EN SOLERA 1:18 CEM/HORM 25% PM",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 181
+        }
+    },
+    {
+        "PertId": "182",
+        "type": "GrafoNodo",
+        "Y": "390",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " CERCO PERIMETRICO CON ALAMBRE DE PUAS (6 FILAS) Y PALOS DE EUCALIPTO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 182
+        }
+    },
+    {
+        "PertId": "183",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " PUERTA DE MADERA CON MALLA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 183
+        }
+    },
+    {
+        "PertId": "184",
+        "type": "GrafoNodo",
+        "Y": "290",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 01 - ANEXO YANQUE 567.96 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 184
+        }
+    },
+    {
+        "PertId": "185",
+        "type": "GrafoNodo",
+        "Y": "240",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 185
+        }
+    },
+    {
+        "PertId": "186",
+        "type": "GrafoNodo",
+        "Y": "190",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 186
+        }
+    },
+    {
+        "PertId": "187",
+        "type": "GrafoNodo",
+        "Y": "140",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 187
+        }
+    },
+    {
+        "PertId": "188",
+        "type": "GrafoNodo",
+        "Y": "90",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 188
+        }
+    },
+    {
+        "PertId": "189",
+        "type": "GrafoNodo",
+        "Y": "2180",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 189
+        },
+        "Sucesoras": [
+            "70"
+        ]
+    },
+    {
+        "PertId": "190",
+        "type": "GrafoNodo",
+        "Y": "40",
+        "X": "2771.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 190
+        }
+    },
+    {
+        "PertId": "191",
+        "type": "GrafoNodo",
+        "Y": "2750",
+        "X": "40",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 191
+        }
+    },
+    {
+        "PertId": "192",
+        "type": "GrafoNodo",
+        "Y": "2280",
+        "X": "40",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 192
+        },
+        "Sucesoras": [
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87"
+        ]
+    },
+    {
+        "PertId": "193",
+        "type": "GrafoNodo",
+        "Y": "2740",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 193
+        }
+    },
+    {
+        "PertId": "194",
+        "type": "GrafoNodo",
+        "Y": "2740",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 194
+        }
+    },
+    {
+        "PertId": "195",
+        "type": "GrafoNodo",
+        "Y": "2740",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 195
+        }
+    },
+    {
+        "PertId": "196",
+        "type": "GrafoNodo",
+        "Y": "2740",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:20 09",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 196
+        }
+    },
+    {
+        "PertId": "197",
+        "type": "GrafoNodo",
+        "Y": "2730",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 197
+        }
+    },
+    {
+        "PertId": "198",
+        "type": "GrafoNodo",
+        "Y": "2690",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 02 - ANEXO ACHAPUNA 1,277.27 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 198
+        }
+    },
+    {
+        "PertId": "199",
+        "type": "GrafoNodo",
+        "Y": "2130",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 199
+        },
+        "Sucesoras": [
+            "260"
+        ]
+    },
+    {
+        "PertId": "200",
+        "type": "GrafoNodo",
+        "Y": "1730",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 200
+        },
+        "Sucesoras": [
+            "249"
+        ],
+        "Predecesoras": [
+            "224"
+        ]
+    },
+    {
+        "PertId": "201",
+        "type": "GrafoNodo",
+        "Y": "180",
+        "X": "2390.2",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 201
+        },
+        "Predecesoras": [
+            "205",
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "202",
+        "type": "GrafoNodo",
+        "Y": "220",
+        "X": "2390.2",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 202
+        },
+        "Sucesoras": [
+            "250",
+            "251",
+            "252",
+            "261",
+            "262",
+            "263"
+        ],
+        "Predecesoras": [
+            "205",
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "203",
+        "type": "GrafoNodo",
+        "Y": "260",
+        "X": "2390.2",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 203
+        },
+        "Sucesoras": [
+            "250",
+            "251",
+            "252",
+            "261",
+            "262",
+            "263"
+        ],
+        "Predecesoras": [
+            "205",
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "204",
+        "type": "GrafoNodo",
+        "Y": "300",
+        "X": "2390.2",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 204
+        },
+        "Sucesoras": [
+            "250",
+            "251",
+            "252",
+            "261",
+            "262",
+            "263"
+        ],
+        "Predecesoras": [
+            "205",
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "205",
+        "type": "GrafoNodo",
+        "Y": "220",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 205
+        },
+        "Sucesoras": [
+            "201",
+            "202",
+            "203",
+            "204"
+        ],
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "206",
+        "type": "GrafoNodo",
+        "Y": "180",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 206
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "207",
+        "type": "GrafoNodo",
+        "Y": "900",
+        "X": "2390.2",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 207
+        },
+        "Predecesoras": [
+            "208",
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "208",
+        "type": "GrafoNodo",
+        "Y": "900",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 208
+        },
+        "Sucesoras": [
+            "207"
+        ],
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "209",
+        "type": "GrafoNodo",
+        "Y": "260",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 209
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "210",
+        "type": "GrafoNodo",
+        "Y": "300",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 210
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "211",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 211
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "212",
+        "type": "GrafoNodo",
+        "Y": "380",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 03 - ANEXO CAHUANOTA 01 173.73 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 212
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "213",
+        "type": "GrafoNodo",
+        "Y": "420",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 213
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "214",
+        "type": "GrafoNodo",
+        "Y": "460",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 214
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "215",
+        "type": "GrafoNodo",
+        "Y": "500",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 215
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "216",
+        "type": "GrafoNodo",
+        "Y": "540",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 216
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "217",
+        "type": "GrafoNodo",
+        "Y": "580",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 217
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "218",
+        "type": "GrafoNodo",
+        "Y": "620",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 218
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "219",
+        "type": "GrafoNodo",
+        "Y": "660",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 219
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "220",
+        "type": "GrafoNodo",
+        "Y": "700",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 220
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "221",
+        "type": "GrafoNodo",
+        "Y": "740",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 221
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "222",
+        "type": "GrafoNodo",
+        "Y": "780",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 222
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "223",
+        "type": "GrafoNodo",
+        "Y": "820",
+        "X": "2106.86",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 223
+        },
+        "Predecesoras": [
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "224",
+        "type": "GrafoNodo",
+        "Y": "1730",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 224
+        },
+        "Sucesoras": [
+            "200"
+        ]
+    },
+    {
+        "PertId": "225",
+        "type": "GrafoNodo",
+        "Y": "1660",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 225
+        },
+        "Sucesoras": [
+            "227"
+        ]
+    },
+    {
+        "PertId": "226",
+        "type": "GrafoNodo",
+        "Y": "1640",
+        "X": "1983.33",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 03 - ANEXO CAHUANOTA 02 900.52 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 226
+        },
+        "Predecesoras": [
+            "227"
+        ]
+    },
+    {
+        "PertId": "227",
+        "type": "GrafoNodo",
+        "Y": "1660",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 227
+        },
+        "Predecesoras": [
+            "225"
+        ],
+        "Sucesoras": [
+            "226",
+            "235"
+        ]
+    },
+    {
+        "PertId": "228",
+        "type": "GrafoNodo",
+        "Y": "2640",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 228
+        }
+    },
+    {
+        "PertId": "229",
+        "type": "GrafoNodo",
+        "Y": "508.511",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 229
+        },
+        "Sucesoras": [
+            "230",
+            "231",
+            "232",
+            "233"
+        ]
+    },
+    {
+        "PertId": "230",
+        "type": "GrafoNodo",
+        "Y": "420",
+        "X": "1940.2",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 230
+        },
+        "Predecesoras": [
+            "229"
+        ]
+    },
+    {
+        "PertId": "231",
+        "type": "GrafoNodo",
+        "Y": "460",
+        "X": "1940.2",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 231
+        },
+        "Predecesoras": [
+            "229"
+        ],
+        "Sucesoras": [
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "209",
+            "210",
+            "211",
+            "212",
+            "213",
+            "214",
+            "215",
+            "216",
+            "217",
+            "218",
+            "219",
+            "220",
+            "221",
+            "222",
+            "223"
+        ]
+    },
+    {
+        "PertId": "232",
+        "type": "GrafoNodo",
+        "Y": "534.938",
+        "X": "1940.2",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 232
+        },
+        "Predecesoras": [
+            "229"
+        ],
+        "Sucesoras": [
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "209",
+            "210",
+            "211",
+            "212",
+            "213",
+            "214",
+            "215",
+            "216",
+            "217",
+            "218",
+            "219",
+            "220",
+            "221",
+            "222",
+            "223"
+        ]
+    },
+    {
+        "PertId": "233",
+        "type": "GrafoNodo",
+        "Y": "619.105",
+        "X": "1940.2",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 233
+        },
+        "Predecesoras": [
+            "229"
+        ],
+        "Sucesoras": [
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "209",
+            "210",
+            "211",
+            "212",
+            "213",
+            "214",
+            "215",
+            "216",
+            "217",
+            "218",
+            "219",
+            "220",
+            "221",
+            "222",
+            "223"
+        ]
+    },
+    {
+        "PertId": "234",
+        "type": "GrafoNodo",
+        "Y": "2080",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 234
+        },
+        "Sucesoras": [
+            "236"
+        ]
+    },
+    {
+        "PertId": "235",
+        "type": "GrafoNodo",
+        "Y": "1680",
+        "X": "1983.33",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 235
+        },
+        "Predecesoras": [
+            "227"
+        ]
+    },
+    {
+        "PertId": "236",
+        "type": "GrafoNodo",
+        "Y": "2080",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 236
+        },
+        "Predecesoras": [
+            "234"
+        ]
+    },
+    {
+        "PertId": "237",
+        "type": "GrafoNodo",
+        "Y": "2590",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 237
+        }
+    },
+    {
+        "PertId": "238",
+        "type": "GrafoNodo",
+        "Y": "2540",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 238
+        }
+    },
+    {
+        "PertId": "239",
+        "type": "GrafoNodo",
+        "Y": "2490",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 239
+        }
+    },
+    {
+        "PertId": "240",
+        "type": "GrafoNodo",
+        "Y": "2440",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 04 - ANEXO CHANCHALLAY 4305.43 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 240
+        }
+    },
+    {
+        "PertId": "241",
+        "type": "GrafoNodo",
+        "Y": "2390",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 241
+        }
+    },
+    {
+        "PertId": "242",
+        "type": "GrafoNodo",
+        "Y": "2340",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 242
+        }
+    },
+    {
+        "PertId": "243",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 243
+        }
+    },
+    {
+        "PertId": "244",
+        "type": "GrafoNodo",
+        "Y": "2240",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 244
+        }
+    },
+    {
+        "PertId": "245",
+        "type": "GrafoNodo",
+        "Y": "2190",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 245
+        }
+    },
+    {
+        "PertId": "246",
+        "type": "GrafoNodo",
+        "Y": "2140",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 246
+        }
+    },
+    {
+        "PertId": "247",
+        "type": "GrafoNodo",
+        "Y": "2090",
+        "X": "2721.03",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 247
+        }
+    },
+    {
+        "PertId": "248",
+        "type": "GrafoNodo",
+        "Y": "1290",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 248
+        }
+    },
+    {
+        "PertId": "249",
+        "type": "GrafoNodo",
+        "Y": "1730",
+        "X": "1983.33",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 249
+        },
+        "Predecesoras": [
+            "200"
+        ]
+    },
+    {
+        "PertId": "250",
+        "type": "GrafoNodo",
+        "Y": "180",
+        "X": "2450.2",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 250
+        },
+        "Predecesoras": [
+            "202",
+            "203",
+            "204"
+        ]
+    },
+    {
+        "PertId": "251",
+        "type": "GrafoNodo",
+        "Y": "220",
+        "X": "2450.2",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 251
+        },
+        "Predecesoras": [
+            "202",
+            "203",
+            "204"
+        ]
+    },
+    {
+        "PertId": "252",
+        "type": "GrafoNodo",
+        "Y": "260",
+        "X": "2450.2",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 252
+        },
+        "Predecesoras": [
+            "202",
+            "203",
+            "204"
+        ]
+    },
+    {
+        "PertId": "253",
+        "type": "GrafoNodo",
+        "Y": "240",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 253
+        }
+    },
+    {
+        "PertId": "254",
+        "type": "GrafoNodo",
+        "Y": "190",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 04 - ANEXO SANTA CATALINA 287.55 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 254
+        }
+    },
+    {
+        "PertId": "255",
+        "type": "GrafoNodo",
+        "Y": "140",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 255
+        }
+    },
+    {
+        "PertId": "256",
+        "type": "GrafoNodo",
+        "Y": "90",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 256
+        }
+    },
+    {
+        "PertId": "257",
+        "type": "GrafoNodo",
+        "Y": "40",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 257
+        }
+    },
+    {
+        "PertId": "258",
+        "type": "GrafoNodo",
+        "Y": "2600",
+        "X": "40",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 258
+        }
+    },
+    {
+        "PertId": "259",
+        "type": "GrafoNodo",
+        "Y": "2590",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 259
+        }
+    },
+    {
+        "PertId": "260",
+        "type": "GrafoNodo",
+        "Y": "2130",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 260
+        },
+        "Predecesoras": [
+            "199"
+        ]
+    },
+    {
+        "PertId": "261",
+        "type": "GrafoNodo",
+        "Y": "300",
+        "X": "2450.2",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 261
+        },
+        "Predecesoras": [
+            "202",
+            "203",
+            "204"
+        ],
+        "Sucesoras": [
+            "262"
+        ]
+    },
+    {
+        "PertId": "262",
+        "type": "GrafoNodo",
+        "Y": "302.5",
+        "X": "2521.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 262
+        },
+        "Predecesoras": [
+            "202",
+            "203",
+            "204",
+            "261"
+        ]
+    },
+    {
+        "PertId": "263",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2450.2",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 263
+        },
+        "Predecesoras": [
+            "202",
+            "203",
+            "204"
+        ]
+    },
+    {
+        "PertId": "264",
+        "type": "GrafoNodo",
+        "Y": "2580",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 264
+        }
+    },
+    {
+        "PertId": "265",
+        "type": "GrafoNodo",
+        "Y": "2540",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 265
+        }
+    },
+    {
+        "PertId": "266",
+        "type": "GrafoNodo",
+        "Y": "2490",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 266
+        }
+    },
+    {
+        "PertId": "267",
+        "type": "GrafoNodo",
+        "Y": "2440",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 267
+        }
+    },
+    {
+        "PertId": "268",
+        "type": "GrafoNodo",
+        "Y": "2390",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " LINEA DE CONDUCCION (SISTEMA 04 - ANEXO YACHANGUILLO 513.72 ML)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 268
+        }
+    },
+    {
+        "PertId": "269",
+        "type": "GrafoNodo",
+        "Y": "2340",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 269
+        }
+    },
+    {
+        "PertId": "270",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 270
+        }
+    },
+    {
+        "PertId": "271",
+        "type": "GrafoNodo",
+        "Y": "2240",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 271
+        }
+    },
+    {
+        "PertId": "272",
+        "type": "GrafoNodo",
+        "Y": "2190",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TN.",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 272
+        }
+    },
+    {
+        "PertId": "273",
+        "type": "GrafoNodo",
+        "Y": "2140",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 273
+        }
+    },
+    {
+        "PertId": "274",
+        "type": "GrafoNodo",
+        "Y": "2090",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 274
+        }
+    },
+    {
+        "PertId": "275",
+        "type": "GrafoNodo",
+        "Y": "2040",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 275
+        }
+    },
+    {
+        "PertId": "276",
+        "type": "GrafoNodo",
+        "Y": "1990",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 276
+        }
+    },
+    {
+        "PertId": "277",
+        "type": "GrafoNodo",
+        "Y": "1940",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 277
+        }
+    },
+    {
+        "PertId": "278",
+        "type": "GrafoNodo",
+        "Y": "1890",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR PARA TUBERIA AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 278
+        }
+    },
+    {
+        "PertId": "279",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIAS PVC DN 1 \" NTP ISO 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 279
+        }
+    },
+    {
+        "PertId": "280",
+        "type": "GrafoNodo",
+        "Y": "1790",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 280
+        }
+    },
+    {
+        "PertId": "281",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 281
+        }
+    },
+    {
+        "PertId": "282",
+        "type": "GrafoNodo",
+        "Y": "1690",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " LINEA DE ADUCION Y REDES DE DISTRIBUCION",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 282
+        }
+    },
+    {
+        "PertId": "283",
+        "type": "GrafoNodo",
+        "Y": "1640",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 283
+        }
+    },
+    {
+        "PertId": "284",
+        "type": "GrafoNodo",
+        "Y": "1590",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " TRAZO NIVELACION Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 284
+        }
+    },
+    {
+        "PertId": "285",
+        "type": "GrafoNodo",
+        "Y": "1540",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 285
+        }
+    },
+    {
+        "PertId": "286",
+        "type": "GrafoNodo",
+        "Y": "1490",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 286
+        }
+    },
+    {
+        "PertId": "287",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO SEMIROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 287
+        }
+    },
+    {
+        "PertId": "288",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20 TERRENO ROCOSO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 288
+        }
+    },
+    {
+        "PertId": "289",
+        "type": "GrafoNodo",
+        "Y": "1340",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " RELLENO COMPACTADO ZANJA P/TUBERIA DE AGUA POTABLE CON MATERIAL PROPIO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 289
+        }
+    },
+    {
+        "PertId": "290",
+        "type": "GrafoNodo",
+        "Y": "1290",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS (T. ROCOSO)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 290
+        }
+    },
+    {
+        "PertId": "291",
+        "type": "GrafoNodo",
+        "Y": "1240",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS (T. SEMIROCOSO)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 291
+        }
+    },
+    {
+        "PertId": "292",
+        "type": "GrafoNodo",
+        "Y": "1190",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " REFINE Y NIVELACION DE ZANJAS (T. NORMAL)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 292
+        }
+    },
+    {
+        "PertId": "293",
+        "type": "GrafoNodo",
+        "Y": "1140",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " CAMA DE APOYO PARA TUEBRIA DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 293
+        }
+    },
+    {
+        "PertId": "294",
+        "type": "GrafoNodo",
+        "Y": "1090",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " RELLENO PROTECTOR P/TUBERIA DE Ø73mm , 2 \" , 1 1/2 \" , 1 \" , 1/2 \" , 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 294
+        }
+    },
+    {
+        "PertId": "295",
+        "type": "GrafoNodo",
+        "Y": "1040",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACIONES DE TUBERIA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 295
+        }
+    },
+    {
+        "PertId": "296",
+        "type": "GrafoNodo",
+        "Y": "990",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 73mm C-5 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 296
+        }
+    },
+    {
+        "PertId": "297",
+        "type": "GrafoNodo",
+        "Y": "2280",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 2 \" C-5 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 297
+        }
+    },
+    {
+        "PertId": "298",
+        "type": "GrafoNodo",
+        "Y": "2330",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 1/2 \" C-5 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 298
+        }
+    },
+    {
+        "PertId": "299",
+        "type": "GrafoNodo",
+        "Y": "2380",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 299
+        }
+    },
+    {
+        "PertId": "300",
+        "type": "GrafoNodo",
+        "Y": "2430",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 1/2 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 300
+        }
+    },
+    {
+        "PertId": "301",
+        "type": "GrafoNodo",
+        "Y": "2480",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INSTALACION DE TUBERIA PVC DN 3/4 \" C-10 NTP 399.002:2009",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 301
+        }
+    },
+    {
+        "PertId": "302",
+        "type": "GrafoNodo",
+        "Y": "2530",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " PRUEBA HIDRAULICA + DESINFECCION TUBERIA DE AGUA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 302
+        }
+    },
+    {
+        "PertId": "303",
+        "type": "GrafoNodo",
+        "Y": "2550",
+        "X": "40",
+        "internalData": {
+            "descripcion": " SUMINISTRO DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 303
+        }
+    },
+    {
+        "PertId": "304",
+        "type": "GrafoNodo",
+        "Y": "40",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE YEE PVC 73mm \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 304
+        }
+    },
+    {
+        "PertId": "305",
+        "type": "GrafoNodo",
+        "Y": "90",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE YEE PVC 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 305
+        }
+    },
+    {
+        "PertId": "306",
+        "type": "GrafoNodo",
+        "Y": "140",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE YEE PVC 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 306
+        }
+    },
+    {
+        "PertId": "307",
+        "type": "GrafoNodo",
+        "Y": "190",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TEE PVC 73mm \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 307
+        }
+    },
+    {
+        "PertId": "308",
+        "type": "GrafoNodo",
+        "Y": "240",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TEE PVC 2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 308
+        }
+    },
+    {
+        "PertId": "309",
+        "type": "GrafoNodo",
+        "Y": "290",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TEE PVC 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 309
+        }
+    },
+    {
+        "PertId": "310",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TEE PVC 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 310
+        }
+    },
+    {
+        "PertId": "311",
+        "type": "GrafoNodo",
+        "Y": "390",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TEE PVC 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 311
+        }
+    },
+    {
+        "PertId": "312",
+        "type": "GrafoNodo",
+        "Y": "440",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TEE PVC 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 312
+        }
+    },
+    {
+        "PertId": "313",
+        "type": "GrafoNodo",
+        "Y": "490",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 45° PVC 2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 313
+        }
+    },
+    {
+        "PertId": "314",
+        "type": "GrafoNodo",
+        "Y": "540",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 45° PVC 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 314
+        }
+    },
+    {
+        "PertId": "315",
+        "type": "GrafoNodo",
+        "Y": "590",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 45° PVC 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 315
+        }
+    },
+    {
+        "PertId": "316",
+        "type": "GrafoNodo",
+        "Y": "1130",
+        "X": "40",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 45° PVC 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 316,
+			critical:true
+        },
+		ColorBorde:'green',
+        "Sucesoras": [
+            "317",
+            "342",
+            "351",
+            "352",
+            "357",
+            "358",
+            "359",
+            "360",
+            "362",
+            "363",
+            "371",
+            "372",
+            "373",
+            "374",
+            "375",
+            "376",
+            "377",
+            "378",
+            "318",
+            "319",
+            "320",
+            "321",
+            "322",
+            "323",
+            "324",
+            "325",
+            "326",
+            "327",
+            "343",
+            "344",
+            "345",
+            "346",
+            "347",
+            "348",
+            "349",
+            "350",
+            "353",
+            "354",
+            "355"
+        ]
+    },
+    {
+        "PertId": "317",
+        "type": "GrafoNodo",
+        "Y": "670",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 45° PVC 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 317
+        },
+        "Predecesoras": [
+            "316",
+            "342",
+            "371"
+        ],
+        "Sucesoras": [
+            "333",
+            "336",
+            "339"
+        ]
+    },
+    {
+        "PertId": "318",
+        "type": "GrafoNodo",
+        "Y": "1400",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 90° PVC 73mm \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 318
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "371"
+        ],
+        "Sucesoras": [
+            "321",
+            "324",
+            "325"
+        ]
+    },
+    {
+        "PertId": "319",
+        "type": "GrafoNodo",
+        "Y": "1160",
+        "X": "1613.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 90° PVC 2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 319,
+			
+        },
+        "Predecesoras": [
+            "316",
+            "321",
+            "345",
+            "346",
+            "347",
+            "371"
+        ]
+    },
+    {
+        "PertId": "320",
+        "type": "GrafoNodo",
+        "Y": "1120",
+        "X": "1613.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 90° PVC 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 320
+        },
+        "Predecesoras": [
+            "316",
+            "321",
+            "345",
+            "346",
+            "347",
+            "358",
+            "371"
+        ]
+    },
+    {
+        "PertId": "321",
+        "type": "GrafoNodo",
+        "Y": "1160",
+        "X": "1293.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 90° PVC 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 321,
+			
+        },
+        "Predecesoras": [
+            "316",
+            "318",
+            "322",
+            "323",
+            "326",
+            "327",
+            "345",
+            "346",
+            "347",
+            "371"
+        ],
+        "Sucesoras": [
+            "319",
+            "320",
+            "324",
+            "325"
+        ]
+    },
+    {
+        "PertId": "322",
+        "type": "GrafoNodo",
+        "Y": "1180",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 90° PVC 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 322,
+			
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "371"
+        ],
+        "Sucesoras": [
+            "321"
+        ]
+    },
+    {
+        "PertId": "323",
+        "type": "GrafoNodo",
+        "Y": "1280",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE CODO 90° PVC 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 323
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "371"
+        ],
+        "Sucesoras": [
+            "321"
+        ]
+    },
+    {
+        "PertId": "324",
+        "type": "GrafoNodo",
+        "Y": "1410",
+        "X": "1833.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TAPON PVC 73mm \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 324
+        },
+        "Predecesoras": [
+            "316",
+            "318",
+            "321",
+            "325",
+            "345",
+            "346",
+            "347",
+            "371"
+        ]
+    },
+    {
+        "PertId": "325",
+        "type": "GrafoNodo",
+        "Y": "1370",
+        "X": "1613.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TAPON PVC 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 325
+        },
+        "Predecesoras": [
+            "316",
+            "318",
+            "321",
+            "345",
+            "346",
+            "347",
+            "371"
+        ],
+        "Sucesoras": [
+            "324"
+        ]
+    },
+    {
+        "PertId": "326",
+        "type": "GrafoNodo",
+        "Y": "1020",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TAPON PVC 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 326
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "371",
+            "373"
+        ],
+        "Sucesoras": [
+            "321"
+        ]
+    },
+    {
+        "PertId": "327",
+        "type": "GrafoNodo",
+        "Y": "1060",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TAPON PVC 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 327
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "371",
+            "372"
+        ],
+        "Sucesoras": [
+            "321"
+        ]
+    },
+    {
+        "PertId": "328",
+        "type": "GrafoNodo",
+        "Y": "690",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE TAPON PVC 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 328
+        }
+    },
+    {
+        "PertId": "329",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 73mm a 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 329
+        },
+        "Predecesoras": [
+            "368"
+        ]
+    },
+    {
+        "PertId": "330",
+        "type": "GrafoNodo",
+        "Y": "120",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 2 a 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 330
+        },
+        "Predecesoras": [
+            "342",
+            "352",
+            "357",
+            "358",
+            "359"
+        ]
+    },
+    {
+        "PertId": "331",
+        "type": "GrafoNodo",
+        "Y": "160",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 1 a 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 331
+        },
+        "Predecesoras": [
+            "342",
+            "357",
+            "359"
+        ]
+    },
+    {
+        "PertId": "332",
+        "type": "GrafoNodo",
+        "Y": "430",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 1 a 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 332
+        },
+        "Predecesoras": [
+            "342",
+            "357",
+            "358",
+            "360"
+        ]
+    },
+    {
+        "PertId": "333",
+        "type": "GrafoNodo",
+        "Y": "550",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 1 1/2 a 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 333
+        },
+        "Predecesoras": [
+            "317",
+            "342",
+            "352",
+            "357",
+            "361"
+        ]
+    },
+    {
+        "PertId": "334",
+        "type": "GrafoNodo",
+        "Y": "280",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 1 1/2 a 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 334
+        },
+        "Predecesoras": [
+            "342",
+            "352",
+            "357"
+        ]
+    },
+    {
+        "PertId": "335",
+        "type": "GrafoNodo",
+        "Y": "320",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE REDUCCION 1 1/2 a 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 335
+        },
+        "Predecesoras": [
+            "342",
+            "352",
+            "357"
+        ]
+    },
+    {
+        "PertId": "336",
+        "type": "GrafoNodo",
+        "Y": "620",
+        "X": "1293.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE CONTROL 73mm \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 336
+        },
+        "Predecesoras": [
+            "317",
+            "339",
+            "342",
+            "361"
+        ]
+    },
+    {
+        "PertId": "337",
+        "type": "GrafoNodo",
+        "Y": "220",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE CONTROL 2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 337
+        },
+        "Predecesoras": [
+            "342",
+            "352",
+            "357",
+            "358"
+        ]
+    },
+    {
+        "PertId": "338",
+        "type": "GrafoNodo",
+        "Y": "405",
+        "X": "1293.33",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE CONTROL 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 338,
+			critical:true
+        },
+        "Predecesoras": [
+            "339",
+            "342",
+            "352",
+            "357",
+            "358",
+            "372",
+            "373",
+            "374"
+        ]
+    },
+    {
+        "PertId": "339",
+        "type": "GrafoNodo",
+        "Y": "620",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE CONTROL 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 339
+        },
+        "Predecesoras": [
+            "317",
+            "342",
+            "361"
+        ],
+        "Sucesoras": [
+            "336",
+            "338"
+        ]
+    },
+    {
+        "PertId": "340",
+        "type": "GrafoNodo",
+        "Y": "740",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE CONTROL 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 340
+        }
+    },
+    {
+        "PertId": "341",
+        "type": "GrafoNodo",
+        "Y": "1220",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE CONTROL 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 341
+        },
+        "Predecesoras": [
+            "342",
+            "352",
+            "376",
+            "377",
+            "378"
+        ]
+    },
+    {
+        "PertId": "342",
+        "type": "GrafoNodo",
+        "Y": "430",
+        "X": "360",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE PURGA 73mm \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 342
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "317",
+            "330",
+            "331",
+            "332",
+            "333",
+            "334",
+            "335",
+            "336",
+            "337",
+            "338",
+            "339",
+            "341",
+            "352",
+            "356"
+        ]
+    },
+    {
+        "PertId": "343",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "360",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE PURGA 2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 343
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "344",
+            "345",
+            "346",
+            "349",
+            "350",
+            "351"
+        ]
+    },
+    {
+        "PertId": "344",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE PURGA 1 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 344
+        },
+        "Predecesoras": [
+            "316",
+            "343"
+        ],
+        "Sucesoras": [
+            "345",
+            "346",
+            "349",
+            "350"
+        ]
+    },
+    {
+        "PertId": "345",
+        "type": "GrafoNodo",
+        "Y": "1560",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE PURGA 1 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 345
+        },
+        "Predecesoras": [
+            "316",
+            "343",
+            "344"
+        ],
+        "Sucesoras": [
+            "318",
+            "319",
+            "320",
+            "321",
+            "322",
+            "323",
+            "324",
+            "325",
+            "326",
+            "327",
+            "353",
+            "354",
+            "355"
+        ]
+    },
+    {
+        "PertId": "346",
+        "type": "GrafoNodo",
+        "Y": "1350",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE PURGA 1/2 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 346
+        },
+        "Predecesoras": [
+            "316",
+            "343",
+            "344"
+        ],
+        "Sucesoras": [
+            "318",
+            "319",
+            "320",
+            "321",
+            "322",
+            "323",
+            "324",
+            "325",
+            "326",
+            "327",
+            "353",
+            "354",
+            "355"
+        ]
+    },
+    {
+        "PertId": "347",
+        "type": "GrafoNodo",
+        "Y": "1180",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " SUMINISTRO E INST. DE VALVULA DE PURGA 3/4 \"",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 347
+        },
+        "Predecesoras": [
+            "316",
+            "377",
+            "378"
+        ],
+        "Sucesoras": [
+            "318",
+            "319",
+            "320",
+            "321",
+            "322",
+            "323",
+            "324",
+            "325",
+            "326",
+            "327",
+            "353",
+            "354",
+            "355"
+        ]
+    },
+    {
+        "PertId": "348",
+        "type": "GrafoNodo",
+        "Y": "700",
+        "X": "360",
+        "internalData": {
+            "descripcion": " MARCO Y TAPA PARA VALVULA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 348
+        },
+        "Predecesoras": [
+            "316"
+        ]
+    },
+    {
+        "PertId": "349",
+        "type": "GrafoNodo",
+        "Y": "1446.67",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " CONEXIONES DOMICILIARIAS DE AGUA POTABLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 349
+        },
+        "Predecesoras": [
+            "316",
+            "343",
+            "344"
+        ]
+    },
+    {
+        "PertId": "350",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " CONEXION DOMICILARIA DE AGUA POTABLE 1/2 \" - MATRIZ DE 63MM -TN",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 350
+        },
+        "Predecesoras": [
+            "316",
+            "343",
+            "344"
+        ]
+    },
+    {
+        "PertId": "351",
+        "type": "GrafoNodo",
+        "Y": "680",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " VARIOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 351
+        },
+        "Predecesoras": [
+            "316",
+            "343"
+        ],
+        "Sucesoras": [
+            "356"
+        ]
+    },
+    {
+        "PertId": "352",
+        "type": "GrafoNodo",
+        "Y": "270",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " ANCLAJES DE CONCRETO PARA VALVULAS Y ACCESORIOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 352
+        },
+        "Predecesoras": [
+            "316",
+            "342"
+        ],
+        "Sucesoras": [
+            "330",
+            "333",
+            "334",
+            "335",
+            "337",
+            "338",
+            "341",
+            "356",
+            "357",
+            "358",
+            "359",
+            "360"
+        ]
+    },
+    {
+        "PertId": "353",
+        "type": "GrafoNodo",
+        "Y": "1520",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA DE AIRE (40 UND)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 353
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347"
+        ],
+        "Sucesoras": [
+            "354",
+            "355"
+        ]
+    },
+    {
+        "PertId": "354",
+        "type": "GrafoNodo",
+        "Y": "1560",
+        "X": "1293.33",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 354
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "353"
+        ]
+    },
+    {
+        "PertId": "355",
+        "type": "GrafoNodo",
+        "Y": "1520",
+        "X": "1293.33",
+        "internalData": {
+            "descripcion": " TRAZO REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 355
+        },
+        "Predecesoras": [
+            "316",
+            "345",
+            "346",
+            "347",
+            "353"
+        ]
+    },
+    {
+        "PertId": "356",
+        "type": "GrafoNodo",
+        "Y": "520",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 356
+        },
+        "Predecesoras": [
+            "342",
+            "351",
+            "352"
+        ]
+    },
+    {
+        "PertId": "357",
+        "type": "GrafoNodo",
+        "Y": "200",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 357
+        },
+        "Predecesoras": [
+            "316",
+            "352"
+        ],
+        "Sucesoras": [
+            "330",
+            "331",
+            "332",
+            "333",
+            "334",
+            "335",
+            "337",
+            "338"
+        ]
+    },
+    {
+        "PertId": "358",
+        "type": "GrafoNodo",
+        "Y": "140",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " CONCRETO SIMPLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 358
+        },
+        "Predecesoras": [
+            "316",
+            "352"
+        ],
+        "Sucesoras": [
+            "320",
+            "330",
+            "332",
+            "337",
+            "338"
+        ]
+    },
+    {
+        "PertId": "359",
+        "type": "GrafoNodo",
+        "Y": "100",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 359
+        },
+        "Predecesoras": [
+            "316",
+            "352"
+        ],
+        "Sucesoras": [
+            "330",
+            "331"
+        ]
+    },
+    {
+        "PertId": "360",
+        "type": "GrafoNodo",
+        "Y": "460",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 360
+        },
+        "Predecesoras": [
+            "316",
+            "352"
+        ],
+        "Sucesoras": [
+            "332"
+        ]
+    },
+    {
+        "PertId": "361",
+        "type": "GrafoNodo",
+        "Y": "620",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 361
+        },
+        "Sucesoras": [
+            "333",
+            "336",
+            "339"
+        ]
+    },
+    {
+        "PertId": "362",
+        "type": "GrafoNodo",
+        "Y": "1852.5",
+        "X": "360",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 362
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "363",
+            "364",
+            "365",
+            "367",
+            "370"
+        ]
+    },
+    {
+        "PertId": "363",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 363
+        },
+        "Predecesoras": [
+            "316",
+            "362"
+        ],
+        "Sucesoras": [
+            "364",
+            "367",
+            "370"
+        ]
+    },
+    {
+        "PertId": "364",
+        "type": "GrafoNodo",
+        "Y": "1885",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 364
+        },
+        "Predecesoras": [
+            "362",
+            "363"
+        ]
+    },
+    {
+        "PertId": "365",
+        "type": "GrafoNodo",
+        "Y": "1880",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.40 X 0.40",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 365
+        },
+        "Predecesoras": [
+            "362"
+        ]
+    },
+    {
+        "PertId": "366",
+        "type": "GrafoNodo",
+        "Y": "1700",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " CAMARA DE VALVULA DE PURGA (41 UNID)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 366
+        },
+        "Sucesoras": [
+            "367"
+        ]
+    },
+    {
+        "PertId": "367",
+        "type": "GrafoNodo",
+        "Y": "1800",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 367
+        },
+        "Predecesoras": [
+            "362",
+            "363",
+            "366"
+        ]
+    },
+    {
+        "PertId": "368",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "360",
+        "internalData": {
+            "descripcion": " TRAZO REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 368
+        },
+        "Sucesoras": [
+            "329",
+            "369"
+        ]
+    },
+    {
+        "PertId": "369",
+        "type": "GrafoNodo",
+        "Y": "1780",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 369
+        },
+        "Predecesoras": [
+            "368"
+        ],
+        "Sucesoras": [
+            "370"
+        ]
+    },
+    {
+        "PertId": "370",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " EXCAVACION DE ZANJA A = 0.60M H= 1.20",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 370
+        },
+        "Predecesoras": [
+            "362",
+            "363",
+            "369"
+        ]
+    },
+    {
+        "PertId": "371",
+        "type": "GrafoNodo",
+        "Y": "970",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " CONCRETO SIMPLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 371
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "317",
+            "318",
+            "319",
+            "320",
+            "321",
+            "322",
+            "323",
+            "324",
+            "325",
+            "326",
+            "327"
+        ]
+    },
+    {
+        "PertId": "372",
+        "type": "GrafoNodo",
+        "Y": "820",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 372
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "327",
+            "338"
+        ]
+    },
+    {
+        "PertId": "373",
+        "type": "GrafoNodo",
+        "Y": "780",
+        "X": "936.667",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 373
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "326",
+            "338"
+        ]
+    },
+    {
+        "PertId": "374",
+        "type": "GrafoNodo",
+        "Y": "40",
+        "X": "1136.67",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 374,
+			critical:true
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "338"
+        ]
+    },
+    {
+        "PertId": "375",
+        "type": "GrafoNodo",
+        "Y": "1300",
+        "X": "360",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 375
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "376"
+        ]
+    },
+    {
+        "PertId": "376",
+        "type": "GrafoNodo",
+        "Y": "1280",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 376
+        },
+        "Predecesoras": [
+            "316",
+            "375"
+        ],
+        "Sucesoras": [
+            "341"
+        ]
+    },
+    {
+        "PertId": "377",
+        "type": "GrafoNodo",
+        "Y": "1180",
+        "X": "360",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 377
+        },
+        "Predecesoras": [
+            "316"
+        ],
+        "Sucesoras": [
+            "341",
+            "347",
+            "378"
+        ]
+    },
+    {
+        "PertId": "378",
+        "type": "GrafoNodo",
+        "Y": "1220",
+        "X": "616.667",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.40 X 0.40",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 378
+        },
+        "Predecesoras": [
+            "316",
+            "377"
+        ],
+        "Sucesoras": [
+            "341",
+            "347"
+        ]
+    },
+    {
+        "PertId": "379",
+        "type": "GrafoNodo",
+        "Y": "790",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " CAMARA ROMPE PRESION TIPO 6 (07 UND)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 379
+        }
+    },
+    {
+        "PertId": "380",
+        "type": "GrafoNodo",
+        "Y": "840",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 380
+        }
+    },
+    {
+        "PertId": "381",
+        "type": "GrafoNodo",
+        "Y": "890",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 381
+        }
+    },
+    {
+        "PertId": "382",
+        "type": "GrafoNodo",
+        "Y": "940",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 382
+        }
+    },
+    {
+        "PertId": "383",
+        "type": "GrafoNodo",
+        "Y": "1880",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 383
+        },
+        "Sucesoras": [
+            "384"
+        ]
+    },
+    {
+        "PertId": "384",
+        "type": "GrafoNodo",
+        "Y": "1880",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " CONCRETO ARMADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 384
+        },
+        "Predecesoras": [
+            "383"
+        ]
+    },
+    {
+        "PertId": "385",
+        "type": "GrafoNodo",
+        "Y": "1780",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " ACERO DE REFUERZO fy=4,200 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 385
+        },
+        "Sucesoras": [
+            "390"
+        ]
+    },
+    {
+        "PertId": "386",
+        "type": "GrafoNodo",
+        "Y": "640",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 386
+        }
+    },
+    {
+        "PertId": "387",
+        "type": "GrafoNodo",
+        "Y": "290",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 387
+        }
+    },
+    {
+        "PertId": "388",
+        "type": "GrafoNodo",
+        "Y": "1203.33",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 388
+        },
+        "Sucesoras": [
+            "391",
+            "392",
+            "393",
+            "394",
+            "395"
+        ],
+        "Predecesoras": [
+            "397"
+        ]
+    },
+    {
+        "PertId": "389",
+        "type": "GrafoNodo",
+        "Y": "1240",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 389
+        }
+    },
+    {
+        "PertId": "390",
+        "type": "GrafoNodo",
+        "Y": "1780",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 390
+        },
+        "Predecesoras": [
+            "385"
+        ]
+    },
+    {
+        "PertId": "391",
+        "type": "GrafoNodo",
+        "Y": "1150",
+        "X": "1984.44",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 391
+        },
+        "Predecesoras": [
+            "388"
+        ],
+        "Sucesoras": [
+            "394"
+        ]
+    },
+    {
+        "PertId": "392",
+        "type": "GrafoNodo",
+        "Y": "1190",
+        "X": "1984.44",
+        "internalData": {
+            "descripcion": " CARPINTERIA METALICA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 392
+        },
+        "Predecesoras": [
+            "388"
+        ],
+        "Sucesoras": [
+            "394"
+        ]
+    },
+    {
+        "PertId": "393",
+        "type": "GrafoNodo",
+        "Y": "1230",
+        "X": "1984.44",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.60 X 0.60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 393
+        },
+        "Predecesoras": [
+            "388"
+        ],
+        "Sucesoras": [
+            "394"
+        ]
+    },
+    {
+        "PertId": "394",
+        "type": "GrafoNodo",
+        "Y": "1230",
+        "X": "2034.44",
+        "internalData": {
+            "descripcion": " CAMARA ROMPE PRESION TIPO 7 (04 UND)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 394
+        },
+        "Predecesoras": [
+            "388",
+            "391",
+            "392",
+            "393",
+            "397"
+        ]
+    },
+    {
+        "PertId": "395",
+        "type": "GrafoNodo",
+        "Y": "1110",
+        "X": "1984.44",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 395
+        },
+        "Predecesoras": [
+            "107",
+            "388"
+        ]
+    },
+    {
+        "PertId": "396",
+        "type": "GrafoNodo",
+        "Y": "1190",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 396
+        }
+    },
+    {
+        "PertId": "397",
+        "type": "GrafoNodo",
+        "Y": "1280",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 397
+        },
+        "Sucesoras": [
+            "388",
+            "394"
+        ]
+    },
+    {
+        "PertId": "398",
+        "type": "GrafoNodo",
+        "Y": "1830",
+        "X": "1933.33",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 398
+        },
+        "Predecesoras": [
+            "399"
+        ]
+    },
+    {
+        "PertId": "399",
+        "type": "GrafoNodo",
+        "Y": "1830",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " CONCRETO ARMADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 399
+        },
+        "Sucesoras": [
+            "398"
+        ]
+    },
+    {
+        "PertId": "400",
+        "type": "GrafoNodo",
+        "Y": "1140",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACERO DE REFUERZO fy=4,200 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 400
+        }
+    },
+    {
+        "PertId": "401",
+        "type": "GrafoNodo",
+        "Y": "1090",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 401
+        }
+    },
+    {
+        "PertId": "402",
+        "type": "GrafoNodo",
+        "Y": "1040",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 402
+        }
+    },
+    {
+        "PertId": "403",
+        "type": "GrafoNodo",
+        "Y": "990",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 403
+        }
+    },
+    {
+        "PertId": "404",
+        "type": "GrafoNodo",
+        "Y": "940",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 404
+        }
+    },
+    {
+        "PertId": "405",
+        "type": "GrafoNodo",
+        "Y": "890",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 405
+        }
+    },
+    {
+        "PertId": "406",
+        "type": "GrafoNodo",
+        "Y": "840",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 406
+        }
+    },
+    {
+        "PertId": "407",
+        "type": "GrafoNodo",
+        "Y": "790",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CARPINTERIA METALICA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 407
+        }
+    },
+    {
+        "PertId": "408",
+        "type": "GrafoNodo",
+        "Y": "740",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.60 X 0.60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 408
+        }
+    },
+    {
+        "PertId": "409",
+        "type": "GrafoNodo",
+        "Y": "690",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CAMARA DISTRIBUIDORA DE CAUDAL (01 UND) CAHUANOTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 409
+        }
+    },
+    {
+        "PertId": "410",
+        "type": "GrafoNodo",
+        "Y": "640",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 410
+        }
+    },
+    {
+        "PertId": "411",
+        "type": "GrafoNodo",
+        "Y": "590",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 411
+        }
+    },
+    {
+        "PertId": "412",
+        "type": "GrafoNodo",
+        "Y": "540",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 412
+        }
+    },
+    {
+        "PertId": "413",
+        "type": "GrafoNodo",
+        "Y": "490",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 413
+        }
+    },
+    {
+        "PertId": "414",
+        "type": "GrafoNodo",
+        "Y": "440",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CONCRETO ARMADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 414
+        }
+    },
+    {
+        "PertId": "415",
+        "type": "GrafoNodo",
+        "Y": "390",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACERO DE REFUERZO fy=4,200 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 415
+        }
+    },
+    {
+        "PertId": "416",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 416
+        }
+    },
+    {
+        "PertId": "417",
+        "type": "GrafoNodo",
+        "Y": "290",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 417
+        }
+    },
+    {
+        "PertId": "418",
+        "type": "GrafoNodo",
+        "Y": "240",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 418
+        }
+    },
+    {
+        "PertId": "419",
+        "type": "GrafoNodo",
+        "Y": "190",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 419
+        }
+    },
+    {
+        "PertId": "420",
+        "type": "GrafoNodo",
+        "Y": "140",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 420
+        }
+    },
+    {
+        "PertId": "421",
+        "type": "GrafoNodo",
+        "Y": "90",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 421
+        }
+    },
+    {
+        "PertId": "422",
+        "type": "GrafoNodo",
+        "Y": "40",
+        "X": "2671.03",
+        "internalData": {
+            "descripcion": " CARPINTERIA METALICA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 422
+        }
+    },
+    {
+        "PertId": "423",
+        "type": "GrafoNodo",
+        "Y": "2650",
+        "X": "40",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.60 X 0.60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 423
+        }
+    },
+    {
+        "PertId": "424",
+        "type": "GrafoNodo",
+        "Y": "2640",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CAMARA DISTRIBUIDORA DE CAUDAL (01 UND) SANTA CATALINA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 424
+        }
+    },
+    {
+        "PertId": "425",
+        "type": "GrafoNodo",
+        "Y": "2640",
+        "X": "2571.03",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 425
+        }
+    },
+    {
+        "PertId": "426",
+        "type": "GrafoNodo",
+        "Y": "2630",
+        "X": "1883.33",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 426
+        }
+    },
+    {
+        "PertId": "427",
+        "type": "GrafoNodo",
+        "Y": "2590",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 427
+        }
+    },
+    {
+        "PertId": "428",
+        "type": "GrafoNodo",
+        "Y": "2540",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 428
+        }
+    },
+    {
+        "PertId": "429",
+        "type": "GrafoNodo",
+        "Y": "2490",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CONCRETO ARMADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 429
+        }
+    },
+    {
+        "PertId": "430",
+        "type": "GrafoNodo",
+        "Y": "2440",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ACERO DE REFUERZO fy=4,200 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 430
+        }
+    },
+    {
+        "PertId": "431",
+        "type": "GrafoNodo",
+        "Y": "2390",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 431
+        }
+    },
+    {
+        "PertId": "432",
+        "type": "GrafoNodo",
+        "Y": "2340",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 432
+        }
+    },
+    {
+        "PertId": "433",
+        "type": "GrafoNodo",
+        "Y": "2290",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 433
+        }
+    },
+    {
+        "PertId": "434",
+        "type": "GrafoNodo",
+        "Y": "2240",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 434
+        }
+    },
+    {
+        "PertId": "435",
+        "type": "GrafoNodo",
+        "Y": "2190",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 435
+        }
+    },
+    {
+        "PertId": "436",
+        "type": "GrafoNodo",
+        "Y": "2140",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 436
+        }
+    },
+    {
+        "PertId": "437",
+        "type": "GrafoNodo",
+        "Y": "2090",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CARPINTERIA METALICA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 437
+        }
+    },
+    {
+        "PertId": "438",
+        "type": "GrafoNodo",
+        "Y": "2040",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.60 X 0.60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 438
+        }
+    },
+    {
+        "PertId": "439",
+        "type": "GrafoNodo",
+        "Y": "1990",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CAMARA DISTRIBUIDORA DE CAUDAL (01 UND) YACHANGUILLO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 439
+        }
+    },
+    {
+        "PertId": "440",
+        "type": "GrafoNodo",
+        "Y": "1940",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 440
+        }
+    },
+    {
+        "PertId": "441",
+        "type": "GrafoNodo",
+        "Y": "1890",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 441
+        }
+    },
+    {
+        "PertId": "442",
+        "type": "GrafoNodo",
+        "Y": "1840",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 442
+        }
+    },
+    {
+        "PertId": "443",
+        "type": "GrafoNodo",
+        "Y": "1790",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 443
+        }
+    },
+    {
+        "PertId": "444",
+        "type": "GrafoNodo",
+        "Y": "1740",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CONCRETO ARMADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 444
+        }
+    },
+    {
+        "PertId": "445",
+        "type": "GrafoNodo",
+        "Y": "1690",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ACERO DE REFUERZO fy=4,200 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 445
+        }
+    },
+    {
+        "PertId": "446",
+        "type": "GrafoNodo",
+        "Y": "1640",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 446
+        }
+    },
+    {
+        "PertId": "447",
+        "type": "GrafoNodo",
+        "Y": "1590",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 447
+        }
+    },
+    {
+        "PertId": "448",
+        "type": "GrafoNodo",
+        "Y": "1540",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 448
+        }
+    },
+    {
+        "PertId": "449",
+        "type": "GrafoNodo",
+        "Y": "1490",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 449
+        }
+    },
+    {
+        "PertId": "450",
+        "type": "GrafoNodo",
+        "Y": "1440",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 450
+        }
+    },
+    {
+        "PertId": "451",
+        "type": "GrafoNodo",
+        "Y": "1390",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 451
+        }
+    },
+    {
+        "PertId": "452",
+        "type": "GrafoNodo",
+        "Y": "1340",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CARPINTERIA METALICA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 452
+        }
+    },
+    {
+        "PertId": "453",
+        "type": "GrafoNodo",
+        "Y": "1290",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.60 X 0.60",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 453
+        }
+    },
+    {
+        "PertId": "454",
+        "type": "GrafoNodo",
+        "Y": "1240",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " VALVULA DE CONTROL (06 UND - DISTRIBUIDORA DE CAUDAL)",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 454
+        }
+    },
+    {
+        "PertId": "455",
+        "type": "GrafoNodo",
+        "Y": "1190",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " OBRAS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 455
+        }
+    },
+    {
+        "PertId": "456",
+        "type": "GrafoNodo",
+        "Y": "1140",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 456
+        }
+    },
+    {
+        "PertId": "457",
+        "type": "GrafoNodo",
+        "Y": "1090",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 457
+        }
+    },
+    {
+        "PertId": "458",
+        "type": "GrafoNodo",
+        "Y": "1040",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " EXCAVACION EN ROCA SUELTA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 458
+        }
+    },
+    {
+        "PertId": "459",
+        "type": "GrafoNodo",
+        "Y": "990",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CONCRETO SIMPLE",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 459
+        }
+    },
+    {
+        "PertId": "460",
+        "type": "GrafoNodo",
+        "Y": "940",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CONCRETO f'c=175 kg/cm2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 460
+        }
+    },
+    {
+        "PertId": "461",
+        "type": "GrafoNodo",
+        "Y": "890",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ENCOFRADO Y DESENCOFRADO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 461
+        }
+    },
+    {
+        "PertId": "462",
+        "type": "GrafoNodo",
+        "Y": "840",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " REVOQUES Y ENLUCIDOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 462
+        }
+    },
+    {
+        "PertId": "463",
+        "type": "GrafoNodo",
+        "Y": "790",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TARRAJEO CON IMPERMEABILIZANTES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 463
+        }
+    },
+    {
+        "PertId": "464",
+        "type": "GrafoNodo",
+        "Y": "740",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ACCESORIOS Y VALVULAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 464
+        }
+    },
+    {
+        "PertId": "465",
+        "type": "GrafoNodo",
+        "Y": "690",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " SUMIN. E. INST. DE ACCESORIOS Y VALVULAS CONTROL",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 465
+        }
+    },
+    {
+        "PertId": "466",
+        "type": "GrafoNodo",
+        "Y": "640",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " CARPINTERIA METALICA",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 466
+        }
+    },
+    {
+        "PertId": "467",
+        "type": "GrafoNodo",
+        "Y": "590",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TAPA METALICA 0.40 X 0.40",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 467
+        }
+    },
+    {
+        "PertId": "468",
+        "type": "GrafoNodo",
+        "Y": "540",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " PASE AEREO 01 - CAHUANOTA 2",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 468
+        }
+    },
+    {
+        "PertId": "469",
+        "type": "GrafoNodo",
+        "Y": "490",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " ESTRIBOS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 469
+        }
+    },
+    {
+        "PertId": "470",
+        "type": "GrafoNodo",
+        "Y": "440",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TRABAJOS PRELIMINARES",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 470
+        }
+    },
+    {
+        "PertId": "471",
+        "type": "GrafoNodo",
+        "Y": "390",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " TRAZO Y REPLANTEO",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 471
+        }
+    },
+    {
+        "PertId": "472",
+        "type": "GrafoNodo",
+        "Y": "340",
+        "X": "2621.03",
+        "internalData": {
+            "descripcion": " MOVIMIENTO DE TIERRAS",
+            "duracion": "Nah",
+            "holgura": "Nad",
+            "visibleId": 472
+        }
+    }
+]
+						}
+						]
+			
+			}
+            ]
+        
+    }).show();
+});  
+</script>	
+</head>
+
+</html>
