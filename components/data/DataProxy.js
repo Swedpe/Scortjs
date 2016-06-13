@@ -64,6 +64,32 @@ Components.DataProxy.prototype.init = function(dataObj) {
 			beforeSend: function(obj){ return true;},
 			complete: function(obj, exito){}
 		},
+		Sorter: {
+			type: 'ajax',
+			url: '',
+			extraParams: [],
+			readerinternalconfig: {
+				type: 'json',
+				totalProperty: 'total',
+				root:'items'
+			},
+			beforeSend: function(obj){ return true;},
+			complete: function(obj, exito){}
+			
+		},
+		Searcher: {
+			type: 'ajax',
+			url: '',
+			extraParams: [],
+			readerinternalconfig: {
+				type: 'json',
+				totalProperty: 'total',
+				root:'items'
+			},
+			beforeSend: function(obj){ return true;},
+			complete: function(obj, exito){}
+			
+		},
 		/*
         type: 'ajax',
         url: '',
@@ -144,6 +170,93 @@ Components.DataProxy.prototype.load = function(pageSize, pageNro,functions) {
             }
         },
         complete: $this.reader.complete		
+    });
+    return false;
+}
+Components.DataProxy.prototype.search = function(field, text,functions) {
+	/* Se genera una peticion ajax al servidor, la peticion es asincrona.
+	@Param pageSize Numero de elementos por pagina
+	@Param pageNro Numero de pagina
+	@Param functions, funcion que se ejecuta cada vez que los datos son retornados del servidor en el Evento success
+	*/
+    this.stringData = this.generateStringData("Searcher");
+    var stringData = this.stringData + "&field=" + field + "&text=" + text;
+    
+    var $this = this;   
+    $.ajax({
+        xhr:  (window.ActiveXObject) ?
+        function() {
+        try {
+        return new window.ActiveXObject("Microsoft.XMLHTTP");
+        } catch(e) {}
+        } :
+        function() {
+        return new window.XMLHttpRequest();
+        },
+        cache: false,
+        url: $this.config.Searcher.url,
+        type: $this.config.Searcher.type,
+        data: stringData,
+        beforeSend: $this.config.Searcher.beforeSend,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: $this.config.Searcher.readerinternalconfig.type,
+        success: function(data) {
+            if($this.storeContainer != null) {
+                $this.storeContainer.loadDataProxy(data);
+				if (functions!= undefined){
+					functions(data);
+				}
+            }
+            else {
+                alert('No se tiene un store container');
+            }
+        },
+        complete: $this.config.	Searcher.complete		
+    });
+    return false;
+}
+Components.DataProxy.prototype.sorter = function(field,nextState,functions) {
+	/* Se genera una peticion ajax al servidor, la peticion es asincrona.
+	@Param pageSize Numero de elementos por pagina
+	@Param pageNro Numero de pagina
+	@Param functions, funcion que se ejecuta cada vez que los datos son retornados del servidor en el Evento success
+	*/
+	console.log(field);
+    var start = (this.storeContainer.currentpage - 1) * this.storeContainer.pageSize;
+    var limit = this.storeContainer.pageSize;
+	this.stringData = this.generateStringData("Sorter");
+    var stringData = this.stringData + "&start=" + start + "&limit=" + limit+ "&field=" + field+ "&nextState=" + nextState;
+    
+    var $this = this;   
+    $.ajax({
+        xhr:  (window.ActiveXObject) ?
+        function() {
+        try {
+        return new window.ActiveXObject("Microsoft.XMLHTTP");
+        } catch(e) {}
+        } :
+        function() {
+        return new window.XMLHttpRequest();
+        },
+        cache: false,
+        url: $this.config.Sorter.url,
+        type: $this.config.Sorter.type,
+        data: stringData,
+        beforeSend: $this.config.Sorter.beforeSend,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: $this.config.Sorter.readerinternalconfig.type,
+        success: function(data) {
+            if($this.storeContainer != null) {
+                $this.storeContainer.loadDataProxy(data);
+				if (functions!= undefined){
+					functions(data);
+				}
+            }
+            else {
+                alert('No se tiene un store container');
+            }
+        },
+        complete: $this.config.Sorter.complete		
     });
     return false;
 }
@@ -309,6 +422,16 @@ Components.DataProxy.prototype.generateStringData = function(type) {
 			for(var label in this.config.deleterow.extraParams) {
 				stringData += (label + "=" + this.config.deleterow.extraParams[label] + "&");
 			}
+		break;	
+		case "Searcher":
+			for(var label in this.config.Searcher.extraParams) {
+				stringData += (label + "=" + this.config.Searcher.extraParams[label] + "&");
+			}
+		break;	
+		case "Sorter":
+			for(var label in this.config.Sorter.extraParams) {
+				stringData += (label + "=" + this.config.Sorter.extraParams[label] + "&");
+			}		
 		break;	
 	}
 	

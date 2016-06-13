@@ -331,7 +331,9 @@ Components.GridContainer.prototype.setControls = function() {
     $(".inputFilterGrid", this.rowTitle).keyup({'OBJ':this},function(event) {
         var field = $(event.currentTarget).closest('th').get(0).id.split("_")[1];
         var text = $(this).val();
-        event.data.OBJ.filterVisibles(field, text);
+		if(text!=''){
+			event.data.OBJ.buscarDato(field, text);
+		}
     });
 }
 //##############################################################################
@@ -406,15 +408,19 @@ Components.GridContainer.prototype.sort = function(currentTarget) {
     }
     currentTarget.sortbutton.changeIcono(1,ico1);   
 	th.attr("data-sort",nextState);
-    
-    var data = this.store.sortData(field, nextState);
-    for (var index in data){
-        this.TableBody.append($('#'+this.id+"_" + data[index].position));
-    }
-	console.log("");
-	var tb = this.pagingToolbar;
-	//tb.updateToolbar(tb.currentPage);
-	tb.storeContainer.container.drawRows();
+     if(this.store.proxy!=null){
+		 console.log(nextState);
+		this.store.proxy.sorter(field,nextState, function(){});
+	}else{
+		var data = this.store.sortData(field, nextState);
+		for (var index in data){
+			this.TableBody.append($('#'+this.id+"_" + data[index].position));
+		}
+		console.log("");
+		var tb = this.pagingToolbar;
+		//tb.updateToolbar(tb.currentPage);
+		tb.storeContainer.container.drawRows();
+	}
 }
 //##############################################################################
 Components.GridContainer.prototype.filterBy = function(field) {
@@ -426,8 +432,12 @@ Components.GridContainer.prototype.filterBy = function(field) {
     $('.btnFilterCancelGrid', contentColumn).show();
 }
 //##############################################################################
-Components.GridContainer.prototype.filterVisibles = function(field, text){
-    for (var index in this.store.data) {
+Components.GridContainer.prototype.buscarDato = function(field, text){
+    if(this.store.proxy!=null){
+		this.store.proxy.search(field, text,function(){});
+	}
+	else {
+	for (var index in this.store.data) {
         var str = unescapeHTML(this.store.getAt(index)[field]);
         if (str == ''){
             $('#'+this.id+'_'+this.store.data[index].position, this.TableBody).show();
@@ -445,7 +455,8 @@ Components.GridContainer.prototype.filterVisibles = function(field, text){
                 $('#'+this.id+'_'+this.store.data[index].position, this.TableBody).hide();
             }
         }
-    } //highlight
+    } 
+	}
 }
 //##############################################################################
 Components.GridContainer.prototype.filterCancel = function(field) {

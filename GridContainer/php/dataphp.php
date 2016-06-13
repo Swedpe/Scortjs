@@ -144,6 +144,57 @@ switch($_REQUEST['dataset'])
 			$respuesta['conteo'] = $rowcount;
 			$respuesta['Items'] = $items;			
 	break;
+	case 'Sortlivedata':
+			$conn = new mysqli($servername, $username, $password);
+			mysqli_select_db($conn,$scortsampledb);
+			// Check connection
+			if ($conn->connect_error) 
+				die("Connection failed: " . $conn->connect_error);
+			if($_REQUEST['nextState']=='sortedup'){
+				$orderVar = 'ASC';
+			}
+			else{
+				$orderVar = 'DESC';
+			}
+			$sql="select * from samplelivedataset ORDER BY `".$_REQUEST['field']."` ".$orderVar." LIMIT ".$_REQUEST['start'].",".$_REQUEST['limit'];
+                        $sql2="select * from samplelivedataset";                        
+                        $rowcount=mysqli_num_rows($conn->query($sql2));
+			$response = $conn->query($sql);
+			$items = array();
+			
+			while($row = $response->fetch_array()) {
+					$itemarray['ID']= $row['ID'];
+					$itemarray['Nombre']=$row['Nombre'];
+					$itemarray['Apellido']=$row['Apellido'];
+					$items[]=$itemarray;
+			}
+		
+			$respuesta['conteo'] = $rowcount;
+			$respuesta['Items'] = $items;			
+	break;
+		case 'Seachlivedata':
+			$conn = new mysqli($servername, $username, $password);
+			mysqli_select_db($conn,$scortsampledb);
+			// Check connection
+			if ($conn->connect_error) 
+				die("Connection failed: " . $conn->connect_error);
+			
+			$sql="select * from samplelivedataset WHERE `".$_REQUEST['field']."` LIKE '%".$_REQUEST['text']."%'";
+                        $sql2="select * from samplelivedataset";                        
+                        $rowcount=mysqli_num_rows($conn->query($sql2));
+			$response = $conn->query($sql);
+			$items = array();
+			
+			while($row = $response->fetch_array()) {
+					$itemarray['ID']= $row['ID'];
+					$itemarray['Nombre']=$row['Nombre'];
+					$itemarray['Apellido']=$row['Apellido'];
+					$items[]=$itemarray;
+			}
+		
+			$respuesta['conteo'] = $rowcount;
+			$respuesta['Items'] = $items;			
+	break;
 	case 'insertsamplelivedata':
 			$conn = new mysqli($servername, $username, $password);
 			mysqli_select_db($conn,$scortsampledb);

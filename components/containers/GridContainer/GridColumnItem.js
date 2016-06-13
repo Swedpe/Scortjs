@@ -136,7 +136,7 @@ Components.GridColumn.prototype.create = function() {
 						keyup: function(event) {
 						var field = event.data.OBJ.CodeHelper.divContainer.attr('id').split("_")[1];
 						var text = event.data.OBJ.getValue();
-						event.data.OBJ.CodeHelper.parent.filterVisibles(field, text);
+						event.data.OBJ.CodeHelper.parent.buscarDato(field, text);
 						console.log(field);
 						} 
                         
@@ -147,7 +147,7 @@ Components.GridColumn.prototype.create = function() {
 						beforeClose: function(event) {
 						var field = event.data.OBJ.CodeHelper.CodeHelper.divContainer.attr('id').split("_")[1];
 						text = '';
-						event.data.OBJ.CodeHelper.CodeHelper.parent.filterVisibles(field, text);
+						event.data.OBJ.CodeHelper.CodeHelper.parent.buscarDato(field, text);
 						event.data.OBJ.CodeHelper.CodeHelper.searchWindow = '';
 						var tb = event.data.OBJ.CodeHelper.CodeHelper.parent.pagingToolbar;
 						tb.updateToolbar(tb.currentPage);

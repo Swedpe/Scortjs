@@ -177,63 +177,63 @@ proxy: {											//para este tipo de componente tenemos un proxi definido con 
 			//alert("Evento al termino de leer");
 		}
 	},
-create:{
-	type: 'POST',
-	url: 'php/dataphp.php',
-	extraParams: {
-		dataset:'insertsamplelivedata'									
+	create:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'insertsamplelivedata'									
+		},
+		createinternalconfig: {
+			type: 'json',
+			succesProperty: 'succes',
+			succes:'data'
+		},
+		beforeSend: function(obj){ 
+			console.log(obj);
+			alert("Evento antes de agregar");
+		},
+		complete: function(obj, exito){
+			alert("Evento al termino de agregar");
+		}
 	},
-	createinternalconfig: {
-		type: 'json',
-		succesProperty: 'succes',
-		succes:'data'
+	update:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'updatesamplelivedata'									
+		},
+		createinternalconfig: {
+			type: 'json',
+			succesProperty: 'succes',
+			succes:'data'
+		},
+		beforeSend: function(obj){ 
+			console.log(obj);
+			alert("Evento antes de actualizar");
+		},
+		complete: function(obj, exito){
+			alert("Evento al termino de actualizar");
+		 }
 	},
-	beforeSend: function(obj){ 
-		console.log(obj);
-		alert("Evento antes de agregar");
-	},
-	complete: function(obj, exito){
-		alert("Evento al termino de agregar");
+	deleterow:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'deletesamplelivedata'									
+		},
+		createinternalconfig: {
+			type: 'json',
+			succesProperty: 'succes',
+			succes:'data'
+		},
+		beforeSend: function(obj){ 
+			console.log(obj);
+			alert("Evento antes de borrar");
+		},
+		complete: function(obj, exito){
+			alert("Evento al termino de borrar");
+		}
 	}
-},
-update:{
-	type: 'POST',
-	url: 'php/dataphp.php',
-	extraParams: {
-		dataset:'updatesamplelivedata'									
-	},
-createinternalconfig: {
-	type: 'json',
-	succesProperty: 'succes',
-	succes:'data'
-},
-beforeSend: function(obj){ 
-	console.log(obj);
-	alert("Evento antes de actualizar");
-},
-complete: function(obj, exito){
-	alert("Evento al termino de actualizar");
- }
-},
-deleterow:{
-	type: 'POST',
-	url: 'php/dataphp.php',
-	extraParams: {
-		dataset:'deletesamplelivedata'									
-	},
-	createinternalconfig: {
-		type: 'json',
-		succesProperty: 'succes',
-		succes:'data'
-	},
-	beforeSend: function(obj){ 
-		console.log(obj);
-		alert("Evento antes de borrar");
-	},
-	complete: function(obj, exito){
-		alert("Evento al termino de borrar");
-	}
-}
 					}
 				},
 		 bbar: {														//barra de paginacion,  los parametros [1,2,3] -> [Elemento de inicio de grupo,Elemento Final de grupo, Total de elementos]
