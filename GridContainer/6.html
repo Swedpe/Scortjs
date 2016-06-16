@@ -30,6 +30,7 @@
 <script src="../components/items/ToolBarItem.js"></script>
 <script src="../components/items/NumberFieldItem.js"></script>
 <script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
 <script src="../components/data/DataProxy.js"></script>
 <script src="../components/items/ComboBoxItem.js"></script>
 <script src="../components/items/TextFieldItem.js"></script>
@@ -80,39 +81,54 @@ selModel: {
    
 },	
 columns: [
-{
-type: "GridColumn",
-text: "ID",
+	{
+	type: "GridColumn",
+	text: "ID",
 
-dataIndex: "ID",
-width:"20%",
-unique:true,						
-editor: {
-		type: 'TextField',
-		allowBlank: false,
-		enabled: false,
-}
-},
-{
-type: "GridColumn",
-text: "Nombre",
-dataIndex: "Nombre",
-width:"36%",
-editor:{
-				type: 'TextField',
-				allowBlank: false
-}
-},
-{
-type: "GridColumn",
-text: "Apellido",
-dataIndex: "Apellido",
-width:"36%",
-editor: {
-				type: 'TextField',
-				allowBlank: false
-}
-}
+	dataIndex: "ID",
+	dataConfig:{type:'Text',
+				},
+	width:"20%",
+	unique:true,						
+	editor: {
+			type: 'TextField',
+			allowBlank: false,
+			enabled: false,
+	}
+	},
+	{
+	type: "GridColumn",
+	text: "Nombre",
+	dataIndex: "Nombre",
+	width:"36%",
+	editor:{
+					type: 'TextField',
+					allowBlank: false
+	}
+	},
+	{
+	type: "GridColumn",
+	text: "Apellido",
+	dataIndex: "Apellido",
+	width:"16%",
+	editor: {
+					type: 'TextField',
+					allowBlank: false
+	}
+	},
+	{
+	type: "GridColumn",
+	text: "Fecha",
+	dataIndex: "Fecha",
+	dataConfig:{type:'date',
+				 format: "yy/MM/dd",
+				},
+	width:"20%",
+	editor: {
+					type: 'DatePicker',
+					allowBlank: false
+	}
+	}
 ],
 store: {
 id: 'idStoredata',
@@ -122,7 +138,8 @@ pageSize: 15,
 fields: [
 	'ID', 
 	'Nombre', 
-	'Apellido'                               
+	'Apellido',
+	'Fecha'	
 ],
 proxy: {											//para este tipo de componente tenemos un proxi definido con las 4 operaciones [Read,Create,Update,Delete]
 	Searcher:{
@@ -344,16 +361,62 @@ Components.create('Button',{
   
 </head>
 <body>
-<br>
-	<br>
-	<br>
--GRIDCONTAINER BASICO6 <br>	
-- Se define una tabla con tres columnas.<br>
+<div id="parte2" class="col-sm-12">
+<div class="row">
+		<div  id="ejemplo1" class="col-sm-6"  >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> INFORMACION GENERAL</P>
+				</font>
+			</strong>
+			-GRIDCONTAINER <br>	
+- Se define una tabla con CUATRO columnas.<br>
 - Se llena la definicion de Store para permitir que se traigan datos desde servidor <br>
 - Se llena la propiedad pageSize(15) para obtener datos de 15 en 15 <br>
 - Se Define bbar para que se construya un paginador <br>
 - El modelo de seleccion se define para permitir seleccion multiple <br>
-- Se crea un primer boton para ejemplificar la lectura de las columnas seleccionadas. <br> 
-- Se crea un segundo boton para borrar los datos cargados en el  gridContainer. <br> 
+- Esta creado el archivo PHP que se encarga de responder las peticiones <br> 
+- La busqueda de registros y el ordenamiento de los mismos se realiza desde base de datos<br> 
+		</div>
+		<div id="ejemplo2" class="col-sm-6">
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> ERRORES PENDIENTES DE REPARAR</P>
+					1) Luego de el dibujado inicial no se cuadra exactamente la cabecera con las celdas.<br>
+					<img src="images/falla1.png" alt="falla1"><br>
+					2) La ventana de editar registro, no calcula su altura exacta al parecer por culpa de los botones.<br>
+					<img src="images/falla2.png" alt="falla2">
+				</font>
+			</strong> 
+		</div>
+</div>
+	<div class="row">
+		<div  id="ejemplo1" class="col-sm-4"  >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> Botones con diferentes estados</P>
+				</font>
+			</strong>
+			<br><br>
+		</div>
+		<div id="ejemplo2" class="col-sm-4">
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> Botones con diferentes tamaños</P>
+				</font>
+			</strong> 
+		</div>
+		<div id="ejemplo4" class="col-sm-4" >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt">Botones de distintos tamaños + iconos</P>
+				</font>
+			</strong> 
+		</div>
+	</div><!--El ancho es de 12 columnas, una vez ocupadas las 12 se cierra el row-->	
+	
+</div>
+
+
 </body>
 </html>

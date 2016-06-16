@@ -928,7 +928,6 @@ Components.GridContainer.prototype.createform = function(e,accion) {
 									container:e.data.OBJ.parent.parent.divContainer.closest('.windowBody'),
 									title: accion+'Registro',
 									state:this.config.state,
-									height: 168,
 									width: 340,
 									//x:24,
 									//y:34,
@@ -979,7 +978,7 @@ Components.GridContainer.prototype.createform = function(e,accion) {
 			id:'BtContainer',
 			type:'FreeDiv',	
 			freeHtml:true,
-			html:'<div class="form-group" id="ButtonsMid"><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
+			html:'<div class="form-group" id="ButtonsMid" ><div class="col-sm-2"></div><div class="btnAceptar col-sm-4"></div><div class="btnCancelar col-sm-4"></div><div class="col-sm-2"></div></div>',
 		};
 	this.form.add(buttonsContainer);
 //Los 2 botones se crean por separado pero se agregan al formulario gracias a la propiedad container de los 2 botones.
@@ -1038,7 +1037,6 @@ Components.GridContainer.prototype.createNewReg = function(e) {
 //######################################################################################################################################################################################################
 Components.GridContainer.prototype.updateReg = function(e) {
 	//actualizar un registro de la grilla padre,
-	
 	var storegrid =  this.store;
 	var frmvalues = this.form.getValues();
 	storegrid.updaterecord(frmvalues,this.getSelection()[0].position);

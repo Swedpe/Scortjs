@@ -138,6 +138,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
+					$itemarray['Fecha']=$row['Fecha'];
 					$items[]=$itemarray;
 			}
 		
@@ -166,6 +167,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
+					$itemarray['Fecha']=$row['Fecha'];		
 					$items[]=$itemarray;
 			}
 		
@@ -189,6 +191,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
+					$itemarray['Fecha']=$row['Fecha'];		
 					$items[]=$itemarray;
 			}
 		
@@ -229,7 +232,7 @@ switch($_REQUEST['dataset'])
 			// Check connection
 			if ($conn->connect_error) 
 				die("Connection failed: " . $conn->connect_error);
-			$sql = "UPDATE `samplelivedataset` SET `Nombre` = '".escapeHTML($_REQUEST['Nombre'])."',`Apellido`='".escapeHTML($_REQUEST['Apellido'])."'  WHERE  ID = '".$_REQUEST['ID']."'";			
+			$sql = "UPDATE `samplelivedataset` SET `Fecha` = '".escapeHTML($_REQUEST['Fecha'])."',`Nombre` = '".escapeHTML($_REQUEST['Nombre'])."',`Apellido`='".escapeHTML($_REQUEST['Apellido'])."'  WHERE  ID = '".$_REQUEST['ID']."'";			
 			$response = $conn->query($sql);
 			$sql="Select * from samplelivedataset where `ID` = ".$_REQUEST['ID'];
 			$response2 = $conn->query($sql);
@@ -239,7 +242,8 @@ switch($_REQUEST['dataset'])
 			while($row = $response2->fetch_array()) {
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
-					$itemarray['Apellido']=$row['Apellido'];					
+					$itemarray['Apellido']=$row['Apellido'];
+					$itemarray['Fecha']=$row['Fecha'];					
 			}
 			$respuesta['conteo'] = $rowcount;
 			$respuesta['Item'] = $itemarray;		

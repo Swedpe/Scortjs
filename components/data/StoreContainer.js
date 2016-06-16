@@ -138,6 +138,9 @@ Components.StoreContainer.prototype.remove = function(record, update) {
 }
 //##############################################################################
 Components.StoreContainer.prototype.updaterecord = function(record,position) {
+	//Actualizara los datos de el array local o de la base de datos dependiendo de si se configuro el proxy o no.
+	//@param record:   Son los nuevos valores del registo, en formato array de datos
+	//@param position: Es un valor entero que indica el indice del registro que sera modificado.
    if(this.proxy != null){	
 		if(record.conteo == undefined)
 			this.proxy.update(record,position);

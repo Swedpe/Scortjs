@@ -20,6 +20,8 @@ Components.GridColumn.prototype.init = function(dataObj) {
         width: -1,
         text: "",
         dataIndex: "",
+		dataConfig:{type:'Text',
+					},
         hidden: false,
         sortable: true,
         filter: true,
@@ -177,7 +179,7 @@ Components.GridColumn.prototype.create = function() {
 Components.GridColumn.prototype.drawData = function(row, contentField) {
 	var elemTd = null;
     //function(value, metaData, record, rowIndex, colIndex, store, gridView)
-    contentField = this.renderer(contentField, {}, $(row).data('record'), $(row).index(),0,0,this);
+    contentField = this.render(contentField, {}, $(row).data('record'), $(row).index(),0,0,this);
     
     if(contentField == '') contentField = "&nbsp;";
 	//this.renderResult = contentField;
@@ -188,6 +190,25 @@ Components.GridColumn.prototype.drawData = function(row, contentField) {
     
     elemTd.data('dataIndex', this.dataIndex);
     row.append(elemTd);
+}
+//##############################################################################
+Components.GridColumn.prototype.render = function(value, metaData, record, rowIndex, colIndex, store, gridView) {
+	//encargado de renderizar el contenido de una celda.
+	switch(this.config.dataConfig.type){
+		case 'Text':
+		return value;
+		break;
+		case 'date':
+		console.log(this.config.dataConfig.format);
+		var Xd = $.datepicker.formatDate(this.config.dataConfig.format, new Date(value));
+		return Xd;
+		break;
+		case 'custom':
+		return this.renderer(value, metaData, record, rowIndex, colIndex, store, gridView);
+		break;
+	}
+	console.log(this.config.dataConfig.type);
+	
 }
 //##############################################################################
 Components.GridColumn.prototype.showEditor = function(container) {
