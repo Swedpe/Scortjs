@@ -200,7 +200,9 @@ Components.GridColumn.prototype.render = function(value, metaData, record, rowIn
 		break;
 		case 'date':
 		console.log(this.config.dataConfig.format);
+		console.log(value);
 		var Xd = $.datepicker.formatDate(this.config.dataConfig.format, new Date(value));
+		console.log(Xd);
 		return Xd;
 		break;
 		case 'custom':

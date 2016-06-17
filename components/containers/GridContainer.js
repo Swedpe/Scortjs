@@ -959,12 +959,20 @@ Components.GridContainer.prototype.createform = function(e,accion) {
 							var inputEnabled = true;
 							if(gridcolumns[col].editor.enabled==false)
 								inputEnabled = false;
+							var inputComponent = gridcolumns[col].editor;
+							//para el caso del editor para fechas, un parametro muy importante es el formato de la fecha.
+							//este tiene que ser igual entre el format de la columna y del input que servira para editarlo, por lo cual se envia
+							if(gridcolumns[col].dataConfig){
+								if(gridcolumns[col].dataConfig.type=='date'&&gridcolumns[col].dataConfig.format){
+									inputComponent.format = gridcolumns[col].dataConfig.format;
+								}
+							}
 							var field = {
 										type: 'InputField',
 										enabled: inputEnabled,
 										label: {html:(gridcolumns[col].text =="")?'Campo '+col:gridcolumns[col].text,
 										cols:2},
-										input: gridcolumns[col].editor,
+										input: inputComponent,
 										State:'active',
 									};
 							if(i==1){				//margen para el primer input

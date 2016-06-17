@@ -1,4 +1,10 @@
 <?php
+/*
+todos los queries dentro de este archivo son solo de ejemplo, preparados especificamente para los ejemplos de scortjs
+ninguno tiene ningun tipo de verificacion de seguridad, ni representa un buen ejemplo de acceso a base de datos,
+se hizo con el fin de ser lo mas simple posible.
+
+*/
 include_once('DBconfig.php');
 $respuesta=array();
 $itemarray = array();
@@ -138,7 +144,8 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
-					$itemarray['Fecha']=$row['Fecha'];
+					//se formatea la fecha para ser compatible con el formato del ejemplo 
+					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
 					$items[]=$itemarray;
 			}
 		
@@ -167,7 +174,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
-					$itemarray['Fecha']=$row['Fecha'];		
+					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
 					$items[]=$itemarray;
 			}
 		
@@ -191,7 +198,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
-					$itemarray['Fecha']=$row['Fecha'];		
+					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
 					$items[]=$itemarray;
 			}
 		
@@ -221,6 +228,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
+					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
 					//$items[]=$itemarray;
 			}
 			$respuesta['conteo'] = $rowcount;
@@ -232,7 +240,8 @@ switch($_REQUEST['dataset'])
 			// Check connection
 			if ($conn->connect_error) 
 				die("Connection failed: " . $conn->connect_error);
-			$sql = "UPDATE `samplelivedataset` SET `Fecha` = '".escapeHTML($_REQUEST['Fecha'])."',`Nombre` = '".escapeHTML($_REQUEST['Nombre'])."',`Apellido`='".escapeHTML($_REQUEST['Apellido'])."'  WHERE  ID = '".$_REQUEST['ID']."'";			
+			$FechaFormato = date('Y-m-d', strtotime($_REQUEST['Fecha']));
+			$sql = "UPDATE `samplelivedataset` SET `Fecha` = '".escapeHTML($FechaFormato)."',`Nombre` = '".escapeHTML($_REQUEST['Nombre'])."',`Apellido`='".escapeHTML($_REQUEST['Apellido'])."'  WHERE  ID = '".$_REQUEST['ID']."'";			
 			$response = $conn->query($sql);
 			$sql="Select * from samplelivedataset where `ID` = ".$_REQUEST['ID'];
 			$response2 = $conn->query($sql);
@@ -243,7 +252,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['ID']= $row['ID'];
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
-					$itemarray['Fecha']=$row['Fecha'];					
+					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
 			}
 			$respuesta['conteo'] = $rowcount;
 			$respuesta['Item'] = $itemarray;		

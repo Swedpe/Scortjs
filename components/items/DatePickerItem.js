@@ -18,6 +18,7 @@ Components.DatePicker.prototype.init = function(dataObj) {
         container: $('body'),      
         value: "",
         alignText: "left",
+		format:'yy-mm-dd',    //formatos admitidos en: http://api.jqueryui.com/datepicker/#utility-formatDate
         name: "name-" + Math.round(Math.random() * 2000),
         width: -1,
         x: -1,
@@ -63,7 +64,6 @@ Components.DatePicker.prototype.init = function(dataObj) {
     this.TextField = '';
     this.name=this.config.name;
 	this.config.id = "DatePicker-"+ Math.round(Math.random() * 2000);
-    this.config.format = 'yy-mm-dd'; //formatos admitidos en: http://api.jqueryui.com/datepicker/#utility-formatDate
     this.config.listeners.select = function(field, date){};    
     this.className = "DatePicker";
 	this.isHide=true;
@@ -76,7 +76,7 @@ Components.DatePicker.prototype.create = function() {
 	//creamos  un input [textfield con addon]
 	var  Place = new Date();
 	this.TextField = Components.create('TextField',{
-			placeholder:'yyyy-MM-dd',
+			placeholder:this.config.format,
 			container:this.config.container,
 			width: '100%',
 			parent:this,
