@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GridContainer Ejemplo 6</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	-->
+<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.css" id="fontAwesome">
+<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
+
+<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
+<script src="../components/Components.js"></script>		
+<script src="../components/containers/WindowContainer.js"></script>
+<script src="../components/containers/FormContainer.js"></script>
+<script src="../functions.js"></script>
+
+<!--------------------------JS	------------------------------------------->
+<script src="../components/containers/GridContainer.js"></script>
+<script src="../components/data/StoreContainer.js"></script>
+<script src="../components/containers/GridContainer/CheckColumnItem.js"></script>
+<script src="../components/containers/GridContainer/ActionColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridColumnItem.js"></script>
+<script src="../components/containers/GridContainer/GridContainerTitle.js"></script>
+<script src="../components/items/FreeDivItem.js"></script>
+<script src="../components/items/ButtonItem.js"></script>
+<script src="../components/items/PagingToolbarItem.js"></script>
+<script src="../components/items/LabelItem.js"></script>
+<script src="../components/items/ToolBarItem.js"></script>
+<script src="../components/items/NumberFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/DatePickerItem.js"></script>
+<script src="../components/data/DataProxy.js"></script>
+<script src="../components/items/ComboBoxItem.js"></script>
+<script src="../components/items/TextFieldItem.js"></script>
+<script src="../components/items/InputFieldItem.js"></script>
+<script src="../components/items/ResizableGridItem.js"></script>
+<script src="../components/items/fontawesomegrid.js"></script>
+<script src="../components/items/HtmlScreenGrid.js"></script>
+<script src="../components/extra/jspdf/jspdf.min.js"></script>
+<script src="../components/containers/GridContainer/ToolsColumn.js"></script>
+<script src="../components/extra/jspdf/jspdf.plugin.autotable.js"></script>
+
+<!-------------------------- CSS------------------------------------------->
+<link rel="stylesheet" href="../css_components/css_window.css" />
+<link rel="stylesheet" href="../css_components/css_gridpanel.css" />
+<link rel="stylesheet" href="../css_components/css_buttonItem.css" />
+<link rel="stylesheet" href="../css_components/css_pagingtoolbar.css" />
+<link rel="stylesheet" href="../css_components/css_toolbar.css" />
+<link rel="stylesheet" href="../css_components/css_fieldItem.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/css_form.css" />
+<link rel="stylesheet" href="../css_components/css_htmlscreengrid.css" />
+<link rel="stylesheet" href="../css_components/fontawesomegrid.css" />
+
+
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>	
+<script id="customscript">
+$( document ).ready(function(){
+Components.create('Window',{
+title: "GridPrueba6", 
+state:'info',
+x:300,
+height:400, 
+width:700,
+items: [
+{
+type: "GridContainer",
+region: "center",
+state:'info',
+id: "GridPrueba",
+verticalScroll:true,									//la tabla crea la cabecera separada del cuerpo para permitir esta funcionalidad				
+selModel: {
+	type: "checkboxmodel",
+	checkOnly: false,
+   
+},	
+columns: [
+	{
+	type: "GridColumn",
+	text: "ID",
+
+	dataIndex: "ID",
+	dataConfig:{type:'Text',
+				},
+	width:"20%",
+	unique:true,						
+	editor: {
+			type: 'TextField',
+			allowBlank: false,
+			enabled: false,
+	}
+	},
+	{
+	type: "GridColumn",
+	text: "Nombre",
+	dataIndex: "Nombre",
+	width:"36%",
+	editor:{
+					type: 'TextField',
+					allowBlank: false
+	}
+	},
+	{
+	type: "GridColumn",
+	text: "Apellido",
+	dataIndex: "Apellido",
+	width:"16%",
+	editor: {
+					type: 'TextField',
+					allowBlank: false
+	}
+	},
+	{
+	type: "GridColumn",
+	text: "Fecha",
+	dataIndex: "Fecha",
+	dataConfig:{type:'date',
+				 format: "mm/dd/yy",
+				},
+	width:"20%",
+	editor: {
+					type: 'DatePicker',
+					allowBlank: false
+	}
+	},
+	{
+		type: "ToolsColumn",
+		text: "Tools",
+		width: "10%",
+		items:[
+						{
+							type: 'Button',
+							id : 'BtnEditar',
+							shape:'box',
+							scale:'windowHead',
+							icon:{
+								type:'fontawesome',
+								class:'fa fa-pencil',
+								color:'blue',
+								position:'left',
+							},
+							tooltip:'Editar',
+							listeners: {
+								click: function(e) {
+									var datosFila= e.data.row.data('record');
+									var grid = e.data.grid;
+									grid.selectRow(e.data.row,false)		
+									if(grid.ventanaeditor == undefined){
+										grid.createform(e,'update');	
+									}else {
+										grid.OkButton.CodeHelper = 'update';
+										grid.ventanaeditor.setTitle('Actualizar Registro')
+										}
+										Components.getComponentById(grid.formdef.id).setValues(datosFila);	//colocar los valores de la grilla en el formulario							
+										grid.ventanaeditor.show();
+								}
+							}
+						},
+						{
+							type: 'Button',
+							id : 'Btn',
+							shape:'box',
+							scale:'windowHead',
+							icon:{
+								type:'fontawesome',
+								class:'fa fa-undo',
+								color:'green',
+								position:'left',
+							},
+							tooltip:'Cortar enlace',
+							listeners: {
+								click: function(e) {
+									console.log("Actualizar");
+								}
+							}
+						},
+						{
+							type: 'Button',
+							id : 'BtnEliminar',
+							shape:'box',
+							scale:'windowHead',
+							icon:{
+								type:'fontawesome',
+								class:'fa fa-times',
+								color:'red',
+								position:'left',
+							},
+							tooltip:'Eliminar',
+							listeners: {
+								click: function(e) {
+									var datosFila= e.data.row.data('record');
+									var grid = e.data.grid;
+									grid.selectRow(e.data.row,false);	
+									var selection = grid.getSelection();					
+									grid.store.deleterecord(selection[0],selection[0].position);
+								}
+							}
+						},
+		]
+	},
+],
+store: {
+id: 'idStoredata',
+model: 'MyData',
+idProperty: 'keyword',
+pageSize: 15,
+fields: [
+	'ID', 
+	'Nombre', 
+	'Apellido',
+	'Fecha'	
+],
+proxy: {											//para este tipo de componente tenemos un proxi definido con las 4 operaciones [Read,Create,Update,Delete]
+	Searcher:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'Seachlivedata'									
+		},
+		readerinternalconfig: {
+			type: 'json',
+			root:'Items'
+		},
+		beforeSend: function(obj){ 										
+			//alert("Evento antes de leer");
+		},
+		complete: function(obj, exito){
+			//alert("Evento al termino de leer");
+		}
+	},
+	Sorter:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'Sortlivedata'									
+		},
+		readerinternalconfig: {
+			type: 'json',
+			root:'Items'
+		},
+		beforeSend: function(obj){ 										
+			//alert("Evento antes de leer");
+		},
+		complete: function(obj, exito){
+			//alert("Evento al termino de leer");
+		}
+	},
+	reader:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'readsamplelivedata'									
+		},
+		readerinternalconfig: {
+			type: 'json',
+			totalProperty: 'conteo',
+			root:'Items'
+		},
+		beforeSend: function(obj){ 										
+			//alert("Evento antes de leer");
+		},
+		complete: function(obj, exito){
+			//alert("Evento al termino de leer");
+		}
+	},
+	create:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'insertsamplelivedata'									
+		},
+		createinternalconfig: {
+			type: 'json',
+			succesProperty: 'succes',
+			succes:'data'
+		},
+		beforeSend: function(obj){ 
+			console.log(obj);
+			alert("Evento antes de agregar");
+		},
+		complete: function(obj, exito){
+			alert("Evento al termino de agregar");
+		}
+	},
+	update:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'updatesamplelivedata'									
+		},
+		createinternalconfig: {
+			type: 'json',
+			succesProperty: 'succes',
+			succes:'data'
+		},
+		beforeSend: function(obj){ 
+			console.log(obj);
+			alert("Evento antes de actualizar");
+		},
+		complete: function(obj, exito){
+			alert("Evento al termino de actualizar");
+		 }
+	},
+	deleterow:{
+		type: 'POST',
+		url: 'php/dataphp.php',
+		extraParams: {
+			dataset:'deletesamplelivedata'									
+		},
+		createinternalconfig: {
+			type: 'json',
+			succesProperty: 'succes',
+			succes:'data'
+		},
+		beforeSend: function(obj){ 
+			console.log(obj);
+			alert("Evento antes de borrar");
+		},
+		complete: function(obj, exito){
+			alert("Evento al termino de borrar");
+		}
+	}
+					}
+				},
+		 bbar: {														//barra de paginacion,  los parametros [1,2,3] -> [Elemento de inicio de grupo,Elemento Final de grupo, Total de elementos]
+					displayInfo: true,
+					displayMsg: 'Mostrando  {0} - {1} de {2}',
+					emptyMsg: "No hay temas a mostrar"
+				},
+		gridviewtittle: {
+				   displayInfo:  true,
+				},
+		resizable: {													//este se considera plugin, ya que puede o no ser incluido, permite cambiar el ancho de las filas
+					liveDrag:true,   
+				}
+	}
+],//Fin Windows Items
+listeners: {
+			activate: function(e1){		
+			   
+			}
+}
+}).show();					
+ console.log("cargando datos");	
+ Components.getComponentById('GridPrueba').getStore().loadPage(1);		
+
+ Components.create('Button',{		
+	x:650,
+	y:500,
+	scale: 'medium',
+	text:'getSelection',
+	width: 150,
+	tooltip:'Leer Columna Seleccionada',	  
+	handler: function() {
+					var res = '';
+					var Sel = Components.getComponentById('GridPrueba').getSelection()
+					for (i in Sel){				
+						if(Sel[i]) res+=Sel[i].ID+",";
+					}
+					alert(res);
+				}  
+    }).show(); 
+
+ Components.create('Button',{
+	x:700,
+	y:500,
+	scale: 'medium',
+	text:'Reset/Create DB',
+	width: 150,
+	tooltip:'Reset/Create DB',	  
+	handler: function() {
+					 $.ajax({
+						url: "php/dataphp.php",
+						data:"dataset=createsamplelivedata",
+						dataType:"json",
+						success: function(respuesta){							
+								alert(respuesta.mensaje);
+								console.log(respuesta.mensaje);
+								Components.getComponentById('GridPrueba').getStore().loadPage(1);	
+						},
+						error: function(jqXHR,error, errorThrown) {  
+						   if(jqXHR.status&&jqXHR.status==400)
+								alert(jqXHR.responseText); 
+						   else
+							   alert("Something went wrong");
+						}
+					});
+				}  
+    }).show(); 
+Components.create('Button',{		
+	x:30,
+	y:500,
+	scale: 'medium',
+	text:'Generar PDF',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-file-pdf-o',
+				position:'left',
+		},
+	state:'active',
+	tooltip:'Generar PDF',	  
+	handler: function() {					
+		Components.getComponentById('GridPrueba').downloadPdf('ejemplo6.pdf',2,9)
+	}
+ }).show();	
+Components.create('Button',{		
+	x:130,
+	y:500,
+	scale: 'medium',
+	text:'Generar XML',
+	width: 150,
+		icon:{
+				type:'fontawesome',
+				class:'fa-download',
+				position:'left',
+		},
+	state:'active',
+	
+	tooltip:'Generar PDF',	  
+	handler: function() {
+		var Xmlgenerado = Components.getComponentById('GridPrueba').generateXml('ejemplo6.xml',1,4);
+		//var Xmlgenerado = generateXml();
+		//download('ejemplo6.xml',Xmlgenerado);
+ 	}
+	}).show();	
+	})
+
+	</script>	
+  
+</head>
+<body>
+<div id="parte2" class="col-sm-12">
+<div class="row">
+		<div  id="ejemplo1" class="col-sm-6"  >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> INFORMACION GENERAL</P>
+				</font>
+			</strong>
+			-GRIDCONTAINER <br>	
+- Se define una tabla con CUATRO columnas.<br>
+- Se llena la definicion de Store para permitir que se traigan datos desde servidor <br>
+- Se llena la propiedad pageSize(15) para obtener datos de 15 en 15 <br>
+- Se Define bbar para que se construya un paginador <br>
+- El modelo de seleccion se define para permitir seleccion multiple <br>
+- Esta creado el archivo PHP que se encarga de responder las peticiones <br> 
+- La busqueda de registros y el ordenamiento de los mismos se realiza desde base de datos<br> 
+		</div>
+		<div id="ejemplo2" class="col-sm-6">
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> ERRORES PENDIENTES DE REPARAR</P>
+					1) Luego de el dibujado inicial no se cuadra exactamente la cabecera con las celdas.<br>
+					<img src="images/falla1.png" alt="falla1"><br>
+					2) La ventana de editar registro, no calcula su altura exacta al parecer por culpa de los botones.<br>
+					<img src="images/falla2.png" alt="falla2">
+				</font>
+			</strong> 
+		</div>
+</div>
+	<div class="row">
+		<div  id="ejemplo1" class="col-sm-4"  >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> Botones con diferentes estados</P>
+				</font>
+			</strong>
+			<br><br>
+		</div>
+		<div id="ejemplo2" class="col-sm-4">
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt"> Botones con diferentes tamaños</P>
+				</font>
+			</strong> 
+		</div>
+		<div id="ejemplo4" class="col-sm-4" >
+			<strong>
+				<FONT FACE="arial"> 
+					<p style="color: #BD133D; font-size: 12pt">Botones de distintos tamaños + iconos</P>
+				</font>
+			</strong> 
+		</div>
+	</div><!--El ancho es de 12 columnas, una vez ocupadas las 12 se cierra el row-->	
+	
+</div>
+
+
+</body>
+</html>
