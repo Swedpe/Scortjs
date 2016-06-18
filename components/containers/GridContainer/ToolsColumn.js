@@ -116,7 +116,7 @@ Components.ToolsColumn.prototype.setControls = function() {
 					var boton=event.data.button;
 					event.data.grid=event.data.OBJ.parent;
 					event.data.OBJ=boton;
-					event.data.row=$(boton.divContainer).closest('tr');
+					event.data.row=$(boton.divContainer).closest('tr');			
 					boton.clickFunction(event);
 					
 				};

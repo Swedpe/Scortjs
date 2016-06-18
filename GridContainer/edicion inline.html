@@ -59,6 +59,10 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
+
+}
+.gridbody .inputSpan input[type="text"]{
+	height: 20px;
 }
 </style>	
 <script id="customscript">
@@ -85,7 +89,7 @@ columns: [
 	{
 	type: "GridColumn",
 	text: "ID",
-
+	editable:false,
 	dataIndex: "ID",
 	dataConfig:{type:'Text',
 				},
@@ -129,80 +133,82 @@ columns: [
 					type: 'DatePicker',
 					allowBlank: false
 	}
-	},
+	},/*columna de herramientas puede estar compuesta por mas elementos de el framework en este caso seran botones*/
 	{
 		type: "ToolsColumn",
 		text: "Tools",
 		width: "10%",
-		items:[
-						{
-							type: 'Button',
-							id : 'BtnEditar',
-							shape:'box',
-							scale:'windowHead',
-							icon:{
-								type:'fontawesome',
-								class:'fa fa-pencil',
-								color:'blue',
-								position:'left',
-							},
-							tooltip:'Editar',
-							listeners: {
-								click: function(e) {
-									var datosFila= e.data.row.data('record');
-									var grid = e.data.grid;
-									grid.selectRow(e.data.row,false)		
-									if(grid.ventanaeditor == undefined){
-										grid.createform(e,'update');	
-									}else {
-										grid.OkButton.CodeHelper = 'update';
-										grid.ventanaeditor.setTitle('Actualizar Registro')
-										}
-										Components.getComponentById(grid.formdef.id).setValues(datosFila);	//colocar los valores de la grilla en el formulario							
-										grid.ventanaeditor.show();
-								}
-							}
-						},
-						{
-							type: 'Button',
-							id : 'Btn',
-							shape:'box',
-							scale:'windowHead',
-							icon:{
-								type:'fontawesome',
-								class:'fa fa-undo',
-								color:'green',
-								position:'left',
-							},
-							tooltip:'Cortar enlace',
-							listeners: {
-								click: function(e) {
-									console.log("Actualizar");
-								}
-							}
-						},
-						{
-							type: 'Button',
-							id : 'BtnEliminar',
-							shape:'box',
-							scale:'windowHead',
-							icon:{
-								type:'fontawesome',
-								class:'fa fa-times',
-								color:'red',
-								position:'left',
-							},
-							tooltip:'Eliminar',
-							listeners: {
-								click: function(e) {
-									var datosFila= e.data.row.data('record');
-									var grid = e.data.grid;
-									grid.selectRow(e.data.row,false);	
-									var selection = grid.getSelection();					
-									grid.store.deleterecord(selection[0],selection[0].position);
-								}
-							}
-						},
+items:[
+		{
+			type: 'Button',
+			id : 'BtnEditar',
+			shape:'box',
+			scale:'windowHead',
+			icon:{
+				type:'fontawesome',
+				class:'fa fa-pencil',
+				color:'blue',
+				position:'left',
+			},
+			tooltip:'Editar',
+			listeners: {
+				click: function(e) {
+					/*el controlador de ToolsColumn altera el comportamiento de los botones agregando elementos a la variable de evento tales como:
+					e.data.row  : El elemento html que controla la fila Tr mas cercano
+					e.data.grid : Apuntador al objeto maestro Gridcontainer   		
+					e.data.OBJ  : Apuntador al boton al cual se dio click, [este comportamiento es de todos los botones]
+					*/
+					var grid = e.data.grid;
+					var row = e.data.row;
+					grid.editarRow(e,row,'inline');
+				}
+			}
+		},
+		{
+			type: 'Button',
+			id : 'Btn',
+			shape:'box',
+			scale:'windowHead',
+			icon:{
+				type:'fontawesome',
+				class:'fa fa-undo',
+				color:'green',
+				position:'left',
+			},
+			tooltip:'Cortar enlace',
+			listeners: {
+				click: function(e) {
+					console.log("Actualizar");
+				}
+			}
+		},
+		{
+			type: 'Button',
+			id : 'BtnEliminar',
+			shape:'box',
+			scale:'windowHead',
+			icon:{
+				type:'fontawesome',
+				class:'fa fa-times',
+				color:'red',
+				position:'left',
+			},
+			tooltip:'Eliminar',
+			listeners: {
+				click: function(e) {
+					/*el controlador de ToolsColumn altera el comportamiento de los botones agregando elementos a la variable de evento tales como:
+					e.data.row  : El elemento html que controla la fila Tr mas cercano
+					e.data.grid : Apuntador al objeto maestro Gridcontainer   		
+					e.data.OBJ  : Apuntador al boton al cual se dio click, [este comportamiento es de todos los botones]
+					*/
+					var datosFila= e.data.row.data('record');
+					var grid = e.data.grid;
+					grid.selectRow(e.data.row,false);	
+					var selection = grid.getSelection();					
+					grid.store.deleterecord(selection[0],selection[0].position);
+				}
+			}
+		},
 		]
 	},
 ],
@@ -457,11 +463,20 @@ Components.create('Button',{
 		<div id="ejemplo2" class="col-sm-6">
 			<strong>
 				<FONT FACE="arial"> 
-					<p style="color: #BD133D; font-size: 12pt"> ERRORES PENDIENTES DE REPARAR</P>
+					<p style="color: #BD133D; font-size: 12pt"> ERRORES Y PENDIENTES Para perfeccionar GridContainer</P>
 					1) Luego de el dibujado inicial no se cuadra exactamente la cabecera con las celdas.<br>
 					<img src="images/falla1.png" alt="falla1"><br>
 					2) La ventana de editar registro, no calcula su altura exacta al parecer por culpa de los botones.<br>
-					<img src="images/falla2.png" alt="falla2">
+					<img src="images/falla2.png" alt="falla2"><br>
+					3) Hover sobre los botones de la columna de herramientas hace temblar toda la tabla, css para no permitir que ganen pixeles en hover, mantener el mismo ancho, y mantener el efecto grafico<br>
+					4) los estilos del modo edicion inline no convencen, intentar mejorar estos.<br>
+					5) Intentar mantener el calculo porcentual proporcional cuando la tabla ya esta cuadrada.<br>
+					6) Agregar la funcionalidad de trabajar con Local Store<br>
+					7) Crear un ejemplo en el cual se pueda alterar el numero de elementos por pagina en vivo<br>
+					8) Crear Funciones para Tabla Infinita Cargando Elementos Poco a poco<br>
+					8) Crear Ejemplo con columna Con multiples columnas Ocultas.<br>
+					9) Crear Ejemplo con Columna con controles en toolbar.<br>
+					10) Documentar lo mejor posible en el codigo<br>
 				</font>
 			</strong> 
 		</div>

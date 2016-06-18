@@ -274,7 +274,7 @@ Components.GridContainer.prototype.drawRowData = function(data) {
         this.itemsObjs[col].drawData($("#" + idrow), contentField);
     }
 
-    this.setControlsRow(idrow);
+    //this.setControlsRow(idrow);									//
 }
 //##############################################################################
 Components.GridContainer.prototype.setControlsRow = function(idrow) {
@@ -287,29 +287,13 @@ Components.GridContainer.prototype.setControlsRow = function(idrow) {
 				}
             });
         }
-    }
-    
+    }    
     switch(this.config.selModel.type) {
         case "default":
             $('#'+idrow, this.TableBody).bind("click", {OBJ:this}, function(event) {
                 event.data.OBJ.selectRow($(this), false);
-                //$('tr', event.data.OBJ.TableBody).removeClass('rowGrid-selected');
-                //$(this).addClass('rowGrid-selected');
             });
-            break;
-       /* case "checkboxmodel":
-            $($('.checkboxGrid', '#'+idrow)[0]).bind("click", {OBJ:this}, function(event) {
-                var info = event.currentTarget.className.split(' ');
-                var objRow = $(this).closest('tr');
-
-                if(info[1] == "off") {
-                    event.data.OBJ.selectRow(objRow, true);
-                }
-                else {
-                    objRow.removeClass('rowGrid-selected');
-                }
-            });            
-            break;*/
+        break;
     }
 }
 //##############################################################################
@@ -346,6 +330,10 @@ Components.GridContainer.prototype.setControlResize = function(classCol) {
 * @param cellCurrent
 **/
 Components.GridContainer.prototype.setEditor = function(cellCurrent) {
+	/*
+	@param cellCurrent 
+	*/
+	console.log('edicion inline');
     if(this.editorCurrent != null) {
         var dataCellOld = this.editorCurrent.getValue();
         this.editorCurrent.destroy();
@@ -918,20 +906,56 @@ Components.GridContainer.prototype.generateXml = function(xmlName,pag_inicial,pa
 	return downloadchar;*/
 
 }
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+Components.GridContainer.prototype.editarRow = function(e,fila,metodo) {
+	/*Editar una fila [row]
+ 	@param fila, Tr de la fila en edicion 
+	@param e: en funcionamiento normal esta funcion va a ser llamada desde algun evento, y el controlador de ese evento es pasado en esta variable.
+	@param metodo: si metodo es 'form' se crea un formulario para editar el dato, 
+				   si metodo es inline se realiza una edicion en linea con los campos que tengan definido en el atributo editor.
+	e.data.row  : El elemento html que controla la fila Tr mas cercano
+	e.data.grid : Apuntador al objeto maestro Gridcontainer   		
+	e.data.OBJ  : Apuntador al objeto que recepciono el evento
+	*/
+	switch(metodo){
+	case 'form':
+		var datosFila= fila.data('record');
+		this.selectRow(fila,false)		
+		if(this.ventanaeditor == undefined){
+			this.createform(e,'update');	
+		}else {
+			this.OkButton.CodeHelper = 'update';				//configurando el boton OK del formulario que se creo
+			this.ventanaeditor.setTitle('Actualizar Registro');
+			}
+		this.form.setValues(datosFila);		//colocar los valores obtenidos de la fila al formulario dentro de la ventana de edicion							
+		this.ventanaeditor.show();      	//mostrar el formulario*/
+			break;
+	case 'inline':
+		var datosFila = fila.data('record');
+		for(var i in this.itemsObjs){
+				if(this.itemsObjs[i].editable){
+					this.itemsObjs[i].showEditor(fila);
+				}		
+			}
+	break;
+	
+	}	
+return true;	
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.GridContainer.prototype.createform = function(e,accion) {
-	//accion [create, update]
+	/* Crear un formulario flotante para operaciones de actualizacion y creacion de nuevos registros
+	@param accion: Indica que accion realizar las opciones soportadas actualmente son [create, update]
+	@param e: en funcionamiento normal esta funcion va a ser llamada desde algun evento, y el controlador de ese evento es pasado en esta variable.
+	
+	*/
 	var refX = parseInt(e.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['left']);
 	var refY = parseInt(e.data.OBJ.parent.parent.divContainer.closest('.windowContainer').position()['top']);
-	
 	this.ventanaeditor = Components.create('Window', {
 									container:e.data.OBJ.parent.parent.divContainer.closest('.windowBody'),
 									title: accion+'Registro',
 									state:this.config.state,
 									width: 340,
-									//x:24,
-									//y:34,
-									//x:refX-e.clientX,
 									y:e.clientY-refY,
 									minimizable: false,
 									closeAction: 'hide',

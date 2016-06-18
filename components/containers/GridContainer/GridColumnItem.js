@@ -184,25 +184,31 @@ Components.GridColumn.prototype.drawData = function(row, contentField) {
     if(contentField == '') contentField = "&nbsp;";
 	//this.renderResult = contentField;
     if(this.config.hidden == true)
-        elemTd = $('<td class="'+this.id+'" style="display:none;">' + contentField + '</td>');
+        elemTd = $('<td data-index = "'+this.dataIndex+'" class="'+this.id+'" style="display:none;">' + contentField + '</td>');
     else
-        elemTd = $('<td class="'+this.id+'">' + contentField + '</td>');
+        elemTd = $('<td data-index = "'+this.dataIndex+'" class="'+this.id+'">' + contentField + '</td>');
     
-    elemTd.data('dataIndex', this.dataIndex);
+    //elemTd.data('dataIndex', this.dataIndex);
     row.append(elemTd);
 }
 //##############################################################################
 Components.GridColumn.prototype.render = function(value, metaData, record, rowIndex, colIndex, store, gridView) {
-	//encargado de renderizar el contenido de una celda.
+	/*encargado de renderizar el contenido de una celda.
+	@param value valor en crudo de la celda.
+	@param metaData parametro opcional array donde se envian variables multiples que podrian controlar el render.
+	@param record valores completos de todas las columnas de la fila en forma de array, es un apuntador si es alterado se cambia el valor de store
+	@param rowIndex OPCIONAL indice (hasta ahora no usado posiblemente sera nesesario retirarlo)
+	@param colIndex OPCIONAL indice (hasta ahora no usado posiblemente sera nesesario retirarlo)
+	@param Store OPCIONAL apuntador al objeto store
+	@param gridView OPCIONAL apuntador a el objeto GridColumn que controla el comportamiento de la columna
+	*/
 	switch(this.config.dataConfig.type){
 		case 'Text':
+		case 'text':
 		return value;
 		break;
 		case 'date':
-		console.log(this.config.dataConfig.format);
-		console.log(value);
 		var Xd = $.datepicker.formatDate(this.config.dataConfig.format, new Date(value));
-		console.log(Xd);
 		return Xd;
 		break;
 		case 'custom':
@@ -213,13 +219,19 @@ Components.GridColumn.prototype.render = function(value, metaData, record, rowIn
 	
 }
 //##############################################################################
-Components.GridColumn.prototype.showEditor = function(container) {
-    this.config.editor.container = container;
-    return Components.create(this.config.editor.type, this.config.editor);
+Components.GridColumn.prototype.showEditor = function(fila) {
+	/*crear el componente editor, que se envio en la configuracion
+	@param fila, la fila donde se tiene que activar el editor [DOM Element TR]
+	*/
+    container = $('*[data-index="'+this.dataIndex+'"]',fila);
+	container.html('');
+	this.config.editor.container = container;
+    this.editorComponent = Components.create(this.config.editor.type, this.config.editor);
+	return this.editorComponent;
 }
 //##############################################################################
 Components.GridColumn.prototype.destroyEditor = function() {
-    this.editor.destroy();
+    this.editorComponent.destroy();
 }
 //##############################################################################
 Components.GridColumn.prototype.show = function() {
@@ -239,6 +251,10 @@ Components.GridColumn.prototype.hide = function() {
 }
 //##############################################################################
 Components.GridColumn.prototype.createRecord = function(cellDiv) {
+	/* crea 
+	@param cellDiv lugar donde crear el elemento editable, 
+	creara un objeto que representa a la 
+	*/
     var rowData = cellDiv.closest('tr').data('record');
     var objRecord = {};
     objRecord.colIdx = cellDiv.index();
