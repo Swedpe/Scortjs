@@ -135,6 +135,7 @@ Components.DatePicker.prototype.create = function() {
 		}
 		//se activa el funcionamiento de datepicker
 		this.TextField.divInput.data('DatePicker',this);
+		//creacion de jqueryUI Datepicker
 		this.TextField.divInput.datepicker({      
 			showButtonPanel: true,
 			dateFormat:this.config.format,			
@@ -155,6 +156,9 @@ Components.DatePicker.prototype.create = function() {
 }
 //##############################################################################
 Components.DatePicker.prototype.Seleccionar=function(dateText,pickerObj)
+/*@param dateText: es para adasdasdasd 
+
+*/
 {
 	$(pickerObj.input).data('DatePicker').isVisiblePicker =!$(pickerObj.input).data('DatePicker').isVisiblePicker ;
 	console.log("seleccionar");
@@ -236,6 +240,13 @@ Components.DatePicker.prototype.setReadOnly = function(readOnly) {
 		$.datepicker.setDefaults($.datepicker.regional["es"]);		
       
     }*/
+}
+//##############################################################################
+Components.DatePicker.prototype.destroy=function(){
+this.TextField.divInput.datepicker( "destroy" );
+this.TextField.divInput.removeClass("hasDatepicker").removeAttr('id');
+this.TextField.destroy();
+Components.Component.prototype.destroy(this);	
 }
 //enviando configuraciones personalizadas directamente al widget
 $.datepicker.regional['es'] = {

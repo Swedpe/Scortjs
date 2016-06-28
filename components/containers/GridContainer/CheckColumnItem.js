@@ -145,6 +145,10 @@ Components.CheckColumn.prototype.drawData = function(row, contentField) {
     }
     this.setControls();
 }
+Components.CheckColumn.prototype.reDrawData = function(row) {
+	console.log('aqui falta programar');
+	return this;
+}
 //##############################################################################
 //##############################################################################
 

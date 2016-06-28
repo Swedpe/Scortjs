@@ -139,7 +139,7 @@ columns: [
 		text: "Tools",
 		width: "10%",
 items:[
-		{
+		{				//boton con indice 0 en los objetos de toolscolumn
 			type: 'Button',
 			id : 'BtnEditar',
 			shape:'box',
@@ -160,11 +160,24 @@ items:[
 					*/
 					var grid = e.data.grid;
 					var row = e.data.row;
-					grid.editarRow(e,row,'inline');
+					var column = e.data.OBJ.parent;
+					var nroRow = row.index() - 1;
+					/*para lograr esta zona hay que entender primero que los items de la columna tools estan un un array bidimencional
+					column.itemsObjs[nroRow], son los elementos que le corresponden a una fila especifica
+					*/
+					//m
+					if (grid.editarRow(e,row,'inline')){	//si se crean correctamente los controles de edicion inline
+						column.itemsObjs[nroRow][3].show(); //hacer visible el boton4 osea el de cancelar
+						column.itemsObjs[nroRow][4].show(); //hacer visible el boton5 osea el de guardar
+						column.itemsObjs[nroRow][0].hide(); //Ocultar el boton 0, el boton de editar.
+						column.itemsObjs[nroRow][2].hide(); //Ocultar el boton 2, el boton de borrar.
+					}
+					
+					
 				}
 			}
 		},
-		{
+		{					//boton con indice 1 en los objetos de toolscolumn
 			type: 'Button',
 			id : 'Btn',
 			shape:'box',
@@ -182,14 +195,14 @@ items:[
 				}
 			}
 		},
-		{
+		{						//boton con indice 2 en los objetos de toolscolumn
 			type: 'Button',
 			id : 'BtnEliminar',
 			shape:'box',
 			scale:'windowHead',
 			icon:{
 				type:'fontawesome',
-				class:'fa fa-times',
+				class:'fa fa-trash',
 				color:'red',
 				position:'left',
 			},
@@ -206,6 +219,74 @@ items:[
 					grid.selectRow(e.data.row,false);	
 					var selection = grid.getSelection();					
 					grid.store.deleterecord(selection[0],selection[0].position);
+				}
+			}
+		},
+		{						//boton con indice 3 en los objetos de toolscolumn
+			type: 'Button',
+			id : 'BtnCancel',
+			shape:'box',
+			hidden:true,
+			scale:'windowHead',
+			icon:{
+				type:'fontawesome',
+				class:'fa fa-ban',
+				color:'red',
+				position:'left',
+			},
+			tooltip:'Cancelar',
+			listeners: {
+				click: function(e) {
+					/*el controlador de ToolsColumn altera el comportamiento de los botones agregando elementos a la variable de evento tales como:
+					e.data.row  : El elemento html que controla la fila Tr mas cercano
+					e.data.grid : Apuntador al objeto maestro Gridcontainer   		
+					e.data.OBJ  : Apuntador al boton al cual se dio click, [este comportamiento es de todos los botones]
+					*/
+					var datosFila= e.data.row.data('record');
+					var grid = e.data.grid;
+					var column = e.data.OBJ.parent;
+					var row = e.data.row;
+					var nroRow = row.index() - 1;
+					grid.cancelEditarRow(e,row,'inline');//hacer que el grid cancele la edicion inline
+					column.itemsObjs[nroRow][3].hide(); 
+					column.itemsObjs[nroRow][4].hide(); 
+					column.itemsObjs[nroRow][0].show();				
+					column.itemsObjs[nroRow][2].show();				
+					
+				}
+			}
+		},
+		{						//boton con indice 3 en los objetos de toolscolumn
+			type: 'Button',
+			id : 'BtnGuardar',
+			shape:'box',
+			hidden:true,
+			scale:'windowHead',
+			icon:{
+				type:'fontawesome',
+				class:'fa fa-floppy-o',
+				color:'blue',
+				position:'left',
+			},
+			tooltip:'Guardar',
+			listeners: {
+				click: function(e) {
+					/*el controlador de ToolsColumn altera el comportamiento de los botones agregando elementos a la variable de evento tales como:
+					e.data.row  : El elemento html que controla la fila Tr mas cercano
+					e.data.grid : Apuntador al objeto maestro Gridcontainer   		
+					e.data.OBJ  : Apuntador al boton al cual se dio click, [este comportamiento es de todos los botones]
+					*/
+					var datosFila= e.data.row.data('record');
+					var grid = e.data.grid;
+					var row = e.data.row;
+					var column = e.data.OBJ.parent;
+					var nroRow = row.index() - 1;
+					grid.updateReg(row,'inline');					
+					column.itemsObjs[nroRow][3].hide(); 
+					column.itemsObjs[nroRow][4].hide(); 
+					column.itemsObjs[nroRow][0].show();				
+					column.itemsObjs[nroRow][2].show();	
+					
 				}
 			}
 		},

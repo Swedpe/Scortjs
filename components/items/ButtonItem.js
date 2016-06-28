@@ -173,7 +173,8 @@ Components.Button.prototype.create = function() {
 		this.divContainer.css(i, this.config.css[i]);
 	}
     this.config.enabled ? this.enable() : this.disable();
-    
+        this.config.hidden ? this.hide() : this.show();
+		this.visible = !this.config.hidden;
     this.setControls();
 	return this;
 }
@@ -207,12 +208,19 @@ Components.Button.prototype.getText = function(text) {
 }
 //##############################################################################
 Components.Button.prototype.show = function() {
-   !this.config.hidden ? Components.Component.prototype.show.call(this) : this.hide();
+	/*funcion encargada de hacer visible el boton y cambiar la variable visible a el valor que representa en este momento el boton
+	retorna el objeto boton para poder realizar varias operaciones en cadena.
+	*/
+	this.visible = true;
+    this.divContainer.show();
    return this;
 }
 //##############################################################################
-Components.Button.prototype.setVisible = function(visible) {
- visible ? this.divContainer.show() : this.divContainer.hide();
+Components.Button.prototype.hide = function() {
+	//funcion encargada de ocultar el boton y cambiar la variable visible a el valor que representa en este momento el boton
+	this.visible = false;
+    this.divContainer.hide();
+    return this;
 }
 //##############################################################################
 Components.Button.prototype.setDisabled = function(disabled) {

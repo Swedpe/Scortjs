@@ -169,7 +169,7 @@ Components.GridContainer.prototype.drawRows = function() {
 		hasta =(desde+this.store.pageSize)-1;
 		}
 	}
-	
+	//este for recorre fila por fila
 	for (var index = desde; index < this.store.data.length; index++) {
 			if(index>=desde && index<=hasta){
 				if(typeof(this.store.data[index]) == "string") {
@@ -255,11 +255,17 @@ Components.GridContainer.prototype.drawColumn = function(item) {
 }
 //##############################################################################
 Components.GridContainer.prototype.drawRowData = function(data) {
+	/*
+	   Esta funcion es llamada por una funcion que recorre fila por fila
+	  Asi que devemos considerar que es una funcion que esta indicada para dibujar una fila completa.
+	  cuando se esta procesando la primera columna se crea el TR para toda la Fila.
+	  @param data: seran los datos a usar en toda la fila tomados directamente del store.
+	  */
     var row ="";
 	var contentField = "";
     var idrow = this.id + "_" + data.position;
     if($("#"+idrow,this.TableBody).length==0){			
-		row = $('<tr id="'+idrow+'" class="scort-row"></tr>');
+		row = $('<tr id="'+idrow+'" data-index="'+data.position+'" class="scort-row"></tr>');
 		this.TableBody.append(row);  
 	}	
 	else{
@@ -270,11 +276,20 @@ Components.GridContainer.prototype.drawRowData = function(data) {
     
 	
     for(var col in this.itemsObjs) {
+		//este for es el encargado de dibujar el contenido celda por celda
         contentField = data[this.itemsObjs[col].dataIndex];
         this.itemsObjs[col].drawData($("#" + idrow), contentField);
     }
 
     //this.setControlsRow(idrow);									//
+}
+//##############################################################################
+Components.GridContainer.prototype.reDrawRowData = function(row) {
+	//redibujar una fila,
+	for(var col in this.itemsObjs) {
+		//este for es el encargado de dibujar el contenido celda por celda
+        this.itemsObjs[col].reDrawData(row);
+    }
 }
 //##############################################################################
 Components.GridContainer.prototype.setControlsRow = function(idrow) {
@@ -474,12 +489,14 @@ Components.GridContainer.prototype.setTotalData = function(totalData) {
 //##############################################################################
 // Verifica que una fila esta seleccionada en el grid
 Components.GridContainer.prototype.getSelection = function() {
+	//retorna el objeto del DOM html que representa la fila seleccionada
     if($('.rowGrid-selected', this.TableBody).length == 0)
         return [];
     else {
         var rowsSelected = [];
         $('.rowGrid-selected', this.TableBody).each(function(index, row){
-            rowsSelected.push($(row).data('record'));
+            //rowsSelected.push($(row).data('record'));
+			rowsSelected.push($(row));
         });
         return rowsSelected;
     }
@@ -909,7 +926,7 @@ Components.GridContainer.prototype.generateXml = function(xmlName,pag_inicial,pa
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 Components.GridContainer.prototype.editarRow = function(e,fila,metodo) {
 	/*Editar una fila [row]
- 	@param fila, Tr de la fila en edicion 
+ 	@param fila, Tr de la fila en edicion
 	@param e: en funcionamiento normal esta funcion va a ser llamada desde algun evento, y el controlador de ese evento es pasado en esta variable.
 	@param metodo: si metodo es 'form' se crea un formulario para editar el dato, 
 				   si metodo es inline se realiza una edicion en linea con los campos que tengan definido en el atributo editor.
@@ -937,6 +954,33 @@ Components.GridContainer.prototype.editarRow = function(e,fila,metodo) {
 					this.itemsObjs[i].showEditor(fila);
 				}		
 			}
+	break;
+	
+	}	
+return true;	
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+Components.GridContainer.prototype.cancelEditarRow = function(e,fila,metodo) {
+	/*cancelar la edicion de una fila [row]
+ 	@param fila, Tr de la fila en edicion 
+	@param e: en funcionamiento normal esta funcion va a ser llamada desde algun evento, y el controlador de ese evento es pasado en esta variable.
+	@param metodo: si metodo es 'form' se cerrara simplemente el formulario, 
+				   si metodo es inline se calcela la edicion restaurando la columna a su estado original.
+	e.data.row  : El elemento html que controla la fila Tr mas cercano
+	e.data.grid : Apuntador al objeto maestro Gridcontainer   		
+	e.data.OBJ  : Apuntador al objeto que recepciono el evento[posiblemente un boton]
+	*/
+	switch(metodo){
+	case 'form':
+		console.log('cancela editor form');
+	case 'inline':
+		var datosFila = fila.data('record');
+		for(var i in this.itemsObjs){
+				if(this.itemsObjs[i].editable){
+					this.itemsObjs[i].destroyEditor(fila);
+				}		
+			}
+		this.reDrawRowData(fila);	
 	break;
 	
 	}	
@@ -1034,7 +1078,7 @@ this.OkButton = Components.create('Button',{
 					e.data.OBJ.parent.createNewReg(e);
 					break;
 					case 'update':
-					e.data.OBJ.parent.updateReg(e);
+					e.data.OBJ.parent.updateReg(null,'form');
 					break;
 				}
 				}  
@@ -1067,13 +1111,33 @@ Components.GridContainer.prototype.createNewReg = function(e) {
 	this.form.Clear();
 }
 //######################################################################################################################################################################################################
-Components.GridContainer.prototype.updateReg = function(e) {
+Components.GridContainer.prototype.updateReg = function(row,metodo) {
 	//actualizar un registro de la grilla padre,
 	var storegrid =  this.store;
-	var frmvalues = this.form.getValues();
-	storegrid.updaterecord(frmvalues,this.getSelection()[0].position);
-	this.ventanaeditor.hide();
-	this.form.Clear();
+	switch(metodo){
+		case 'form':
+		var frmvalues = this.form.getValues();
+		console.log(frmvalues);
+		console.log(this.getSelection()[0]);
+		storegrid.updaterecord(frmvalues,this.getSelection()[0].data('record').position);
+		this.ventanaeditor.hide();
+		this.form.Clear();
+	break;
+		case 'inline':
+		var frmvalues = {};
+		for(var i in this.itemsObjs){
+				//los elementos que son editables
+				if(this.itemsObjs[i].editable){					
+					var fIndex = this.itemsObjs[i].dataIndex;
+					frmvalues[fIndex] = this.itemsObjs[i].editorComponent.getValue()
+				}
+				else if (typeof(this.itemsObjs[i].editor)=='object'){
+					var fIndex = this.itemsObjs[i].dataIndex;
+					frmvalues[fIndex] = row.data('record')[this.itemsObjs[i].dataIndex];
+				}		
+			}
+		storegrid.updaterecord(frmvalues,row.data('record').position);		
+	}
 }
 
 

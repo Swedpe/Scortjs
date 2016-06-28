@@ -176,7 +176,7 @@ Components.GridColumn.prototype.create = function() {
 	return this;
 }
 //##############################################################################
-Components.GridColumn.prototype.drawData = function(row, contentField) {
+Components.GridColumn.prototype.drawData = function(row,contentField) {
 	var elemTd = null;
     //function(value, metaData, record, rowIndex, colIndex, store, gridView)
     contentField = this.render(contentField, {}, $(row).data('record'), $(row).index(),0,0,this);
@@ -191,6 +191,15 @@ Components.GridColumn.prototype.drawData = function(row, contentField) {
     //elemTd.data('dataIndex', this.dataIndex);
     row.append(elemTd);
 }
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+Components.GridColumn.prototype.reDrawData = function(row) {
+	var celda = $('*[data-index="'+this.dataIndex+'"]',row);
+	var contentField = this.render($(row).data('record')[this.dataIndex], {}, $(row).data('record'), $(row).index(),0,0,this);
+	celda.empty();
+	celda.append(contentField);
+	return this;
+}
+
 //##############################################################################
 Components.GridColumn.prototype.render = function(value, metaData, record, rowIndex, colIndex, store, gridView) {
 	/*encargado de renderizar el contenido de una celda.
@@ -223,9 +232,11 @@ Components.GridColumn.prototype.showEditor = function(fila) {
 	/*crear el componente editor, que se envio en la configuracion
 	@param fila, la fila donde se tiene que activar el editor [DOM Element TR]
 	*/
+	var valorActual = fila.data('record')[this.dataIndex];
     container = $('*[data-index="'+this.dataIndex+'"]',fila);
 	container.html('');
 	this.config.editor.container = container;
+	this.config.editor.value = valorActual;
     this.editorComponent = Components.create(this.config.editor.type, this.config.editor);
 	return this.editorComponent;
 }

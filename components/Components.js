@@ -404,7 +404,7 @@ Components.Component.prototype.destroy = function() {
     var pos = Components.idsObjsAndPosition[this.id].indexOf(this.position);
     Components.idsObjsAndPosition[this.id].splice(pos, 1);//se remueve el elemento de el array idsObjsAndPosition
 	if(this.divContainer)		//la mayoria de componentes tienen this.divContainer, como elemento visual principal, 
-		this.divContainer.remove();	//eliminamos el divcontainer.
+		this.divContainer.empty();	//eliminamos el divcontainer.
 }
 //##############################################################################
 Components.Component.prototype.setPosition = function(posX, posY) {

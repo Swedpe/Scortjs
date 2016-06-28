@@ -57,6 +57,10 @@ Components.ToolsColumn.prototype.init = function(dataObj) {
 }
 
 Components.ToolsColumn.prototype.drawItems = function(row) {
+	/*dibujar los items que estan configurados como hijos de la columna.
+	*/
+	var nroRow = row.index() - 1;
+	this.itemsObjs[nroRow]=[];
     for(var i in this.items) {
         this.drawItem(this.items[i],row);
     }
@@ -70,7 +74,9 @@ Components.ToolsColumn.prototype.drawItem = function(item,row) {
     itemData.parent = this;
 	itemData.CodeHelper = this.parent;
     var newItem = Components.create(itemData.type, itemData);
-    this.itemsObjs.push(newItem);
+    //el comportamiento en esta fase del dibujado difiere de los demas contenedores de componentes al introducir
+	//un array de 2 dimenciones para poder controlar los componentes indibidualmente por fila.	
+	this.itemsObjs[nroRow].push(newItem);
     //this.resizeBody();
     return newItem;
 }
@@ -101,27 +107,31 @@ Components.ToolsColumn.prototype.create = function() {
 /**
 * setControls esta funcion le dara a los elementos dentro de la comuna un evento 
 **/
-Components.ToolsColumn.prototype.setControls = function() {
-
+Components.ToolsColumn.prototype.setControls = function(row) {
+//Esta funcion tiene un terrible problema actualmente, se llama una y otra vez y se realiza la misma operacion en cada fila
+//problema:
+//1) Lentitud
+//2) Mala asignacion de eventos
+	var nroRow = row.index() - 1;
     $('.checkboxGrid', '.' +this.id).unbind("click");
-    for(itemx in this.itemsObjs)
+    for(itemx in this.itemsObjs[nroRow])
 	{
-		var elemtType=this.itemsObjs[itemx].tipo;
+		var elemtType=this.itemsObjs[nroRow][itemx].tipo;
 		switch(elemtType)
 		{
 			case 'button':
 				var newClick=function(event,row,algo) {
 					
-					var tool=event.data.OBJ.parent;
+					var tool=event.data.column.parent;
 					var boton=event.data.button;
-					event.data.grid=event.data.OBJ.parent;
+					event.data.grid=event.data.column.parent;
 					event.data.OBJ=boton;
 					event.data.row=$(boton.divContainer).closest('tr');			
 					boton.clickFunction(event);
 					
 				};
-				this.itemsObjs[itemx].divContainer.unbind('click');
-				this.itemsObjs[itemx].divContainer.bind('click',{OBJ:this,button:this.itemsObjs[itemx]},newClick);
+				this.itemsObjs[nroRow][itemx].divContainer.unbind('click');
+				this.itemsObjs[nroRow][itemx].divContainer.bind('click',{column:this,button:this.itemsObjs[nroRow][itemx]},newClick);
 				break;
 		}
 	}
@@ -178,10 +188,17 @@ Components.ToolsColumn.prototype.destroyEditor = function() {
     this.editor.destroy();
 }
 //##############################################################################
-Components.ToolsColumn.prototype.drawData = function(row, contentField) {
+Components.ToolsColumn.prototype.drawData = function(row) {
+	/*dijunar el contenido de una celda, es llamado luego de 2 funciones que recorren filas y luego columnas en gridcontainer 
+	@row  		 :Fila identificador del DOM de la fina que esta en proceso de dibujado
+	*/
     row.append('<td class="'+this.id+'" align="center"><div class="'+this.config.id+'"></div></td>');        
-	this.drawItems(row);
-    this.setControls();
+	this.drawItems(row);		//al ser esta una columna de herramientas, se crearan componentes definidos en Items de esta columna
+    this.setControls(row);
+}
+Components.ToolsColumn.prototype.reDrawData = function(row) {
+	console.log('reDrawData ToolsColumn');
+	return this;
 }
 //##############################################################################
 //##############################################################################

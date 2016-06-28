@@ -61,6 +61,7 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
 			CodeHelper:	dataObj.parent,					
 			handler: function(e) {
 						var seleccion= e.data.OBJ.config.CodeHelper.getSelection();			//obtener el ítem seleccionado desde gridContainer
+						seleccion = seleccion[0].data('record');
 						if(seleccion.length ==0 || seleccion.length >1){
 							alert("Debe seleccionar 1 un registro")
 							return;
@@ -71,8 +72,8 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
 								$this.parent.OkButton.CodeHelper = 'update';
 								$this.parent.ventanaeditor.setTitle('Actualizar Registro')
 								}
-								e.data.OBJ.parent.itemSeleccionado = seleccion[0].position;				//almacenar la poscicion de el ítem seleccionado
-								Components.getComponentById($this.parent.formdef.id).setValues(seleccion[0]);	//colocar los valores de la grilla en el formulario							
+								e.data.OBJ.parent.itemSeleccionado = seleccion.position;				//almacenar la poscicion de el ítem seleccionado
+								Components.getComponentById($this.parent.formdef.id).setValues(seleccion);	//colocar los valores de la grilla en el formulario							
 								$this.parent.ventanaeditor.show();
 						}
 					}
@@ -98,6 +99,7 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
 					var str =  e.data.OBJ.config.CodeHelper.store;			//obtenemos el store de gridcontainer
 					var grd =  e.data.OBJ.config.CodeHelper;				//obtenermos gridcontainer
 					var selection = grd.getSelection();						//obtenemos el item seleccionado en la grilla (porque?)
+					selection = selection.data('record');
 					if(selection.length == 0){
 						if( tb != undefined){
 							tb.updateToolbar(tb.currentPage);
@@ -126,14 +128,15 @@ Components.GridContainerTitle.prototype.init = function(dataObj) {
 			CodeHelper:	dataObj.parent,				
 			handler: function(e) {
 					var grd =  e.data.OBJ.config.CodeHelper;
-					var selection = grd.getSelection();					
+					var seleccion = grd.getSelection();
+						selection = seleccion[0].data('record');
 					if(selection.length == 0){
 						alert("Debe seleccionar algun registro");
 						return;
 					}else if(selection.length == 1)										
-						grd.store.deleterecord(selection[0],selection[0].position);
+						grd.store.deleterecord(seleccion[0],selection.position);
 					 else if(selection.length > 1)	
-						grd.store.deletemultiplerecord(selection,false);
+						grd.store.deletemultiplerecord(seleccion,false);
 					
 				}
 			},				

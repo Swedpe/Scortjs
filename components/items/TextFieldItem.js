@@ -109,7 +109,8 @@ Components.TextField.prototype.init = function(dataObj) {
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 Components.TextField.prototype.create = function(setControls) {
-    this.divContainer = this.config.container
+    this.divContainer = $('<div></div>');//this.config.container
+	this.container.append(this.divContainer);
    	this.zoneInput = $('<span class="inputSpan"><input class="'+this.config.state+'" type="text" size="20"/></span>');
 	this.divContainer.append(this.zoneInput);
     this.divInput = $('input', this.zoneInput);
@@ -136,9 +137,10 @@ Components.TextField.prototype.create = function(setControls) {
         this.zoneInput.css("height", this.config.height);
     }
 	
-    if(this.config.allowBlank) {
+    /*if(this.config.allowBlank) {
         this.divInput.val(this.config.value);
-    }
+    }*/
+	this.divInput.val(this.config.value);
     if(this.config.name != "") {
         this.divInput.prop("name", this.config.name);
     }
@@ -158,6 +160,7 @@ Components.TextField.prototype.create = function(setControls) {
 	 }
 	return this; 
 }
+//--------------------------------------------------------------------------------------------------------------------------------
 //#############################################################################################################################################
 Components.TextField.prototype.createAddon= function(Addon){
 
