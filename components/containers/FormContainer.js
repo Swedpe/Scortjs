@@ -31,7 +31,8 @@ Components.Form.prototype.init = function(dataObj) {
         buttons: [],
         listeners: {
             afterrender: function(){}
-        }
+        },
+		baseHtml:false,						//si esta definido se buscara el formulario definido en el codigo html y se absorve todo el html
     };
     
     for(var i in dataObj) {
@@ -45,7 +46,8 @@ Components.Form.prototype.init = function(dataObj) {
                 this.config[i] = dataObj[i];
         }
     }
-    this.enabled = this.config.enabled;
+    this.baseHtml = this.config.baseHtml;
+	this.enabled = this.config.enabled;
 	this.countCols  = 0; 					//ayuda a ajustar la grilla de componentes para visualización
     this.id = this.config.id;
     this.container = this.config.container;
@@ -55,17 +57,24 @@ Components.Form.prototype.init = function(dataObj) {
     this.itemsObjs = [];
     this.inputObjs = [];
     this.buttonObjs = [];
-    
     this.posX = 10;
     this.posY = 10;
 }
 //##############################################################################
 Components.Form.prototype.create = function() {
     //Components.Component.prototype.create.call(this);
-	this.divContainer = $('<form></form>');
-	this.container.append(this.divContainer);
+	if(this.baseHtml){
+		this.divContainer = $('#'+this.id);
+		console.log(this.divContainer);
+		this.container.append(this.divContainer);
+		
+	}
+	else{
+		this.divContainer = $('<form></form>');	
+		this.container.append(this.divContainer);
+		this.divContainer.addClass('form-horizontal').addClass('formContainer').addClass(this.config.state);
+	}
 	//this.form.append(this.divContainer);
-	this.divContainer.addClass('form-horizontal').addClass('formContainer').addClass(this.config.state);
     this.setConfig();
     this.drawItems();
     this.drawButtons();
@@ -151,6 +160,7 @@ Components.Form.prototype.getValues = function() {
 			case 'TextField':
 			case 'NumberField':
 			case 'ComboBox':
+			case 'DatePicker':
 			values[this.inputObjs[i].name] = this.inputObjs[i].getValue();
 			break;
 			case 'InputField':
@@ -180,6 +190,7 @@ Components.Form.prototype.setValues = function(values) {
 			switch(this.inputObjs[i].type){											//controles basicos credos directamente
 				case 'TextField':
 				case 'NumberField':
+				case 'DatePicker':
 				case 'ComboBox':
 				case 'colorPicker':
 				if(this.inputObjs[i].config.name == name){

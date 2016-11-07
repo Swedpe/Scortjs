@@ -32,6 +32,7 @@ Components.DatePicker.prototype.init = function(dataObj) {
 		state:'default',
 		validar:'',
 		parent:'',							//el componente padre
+		baseHtml:false,	
         listeners: {
             specialKey: function(obj, event){},
             change: function(obj, newValue, oldValue){} //Fires just before the field blurs if the field value has changed.
@@ -59,7 +60,7 @@ Components.DatePicker.prototype.init = function(dataObj) {
 			this.enabled=true
 		}
 	};
-	
+	this.baseHtml = this.config.baseHtml;
 	this.id = this.config.id;
     this.TextField = '';
     this.name=this.config.name;
@@ -75,6 +76,10 @@ Components.DatePicker.prototype.init = function(dataObj) {
 Components.DatePicker.prototype.create = function() {
 	//creamos  un input [textfield con addon]
 	var  Place = new Date();
+	if(this.baseHtml){
+		this.config.container = $('#'+this.id);
+		console.log(this.config.container);
+	}
 	this.TextField = Components.create('TextField',{
 			placeholder:this.config.format,
 			container:this.config.container,

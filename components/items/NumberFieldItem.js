@@ -35,6 +35,7 @@ Components.NumberField.prototype.init = function(dataObj) {
 		step:1,
         hidden: false,
 		validar:'',
+		baseHtml:false,	
         listeners: {
             specialKey: function(obj, event){},
             change: function(event, newValue){} //Fires just before the field blurs if the field value has changed.
@@ -63,7 +64,8 @@ Components.NumberField.prototype.init = function(dataObj) {
 		}
 	};
 	console.log("NumberField: this.enabled "+this.enabled);
-	
+	this.baseHtml= this.config.baseHtml;	
+	this.id = this.config.id;
     this.config.id = "numberfield-"+ Math.round(Math.random() * 2000);
 	this.parent = this.config.parent;
     this.name = this.config.name;
@@ -74,6 +76,10 @@ Components.NumberField.prototype.init = function(dataObj) {
 }
 //##############################################################################
 Components.NumberField.prototype.create = function() {
+	if(this.baseHtml){
+		this.config.container = $('#'+this.id);
+		console.log(this.config.container);
+	}
     this.TextField = Components.create('TextField',{
 			placeholder:this.config.placeholder,
 			value:this.config.value,

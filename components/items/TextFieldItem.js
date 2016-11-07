@@ -32,6 +32,7 @@ Components.TextField.prototype.init = function(dataObj) {
         CodeHelper:'',
         hidden: false,
 		validar:'',
+		baseHtml:false,
 		icon: {
 				type:'none',		//tipos posibles fontawesome y image
 				image : '',
@@ -93,6 +94,7 @@ Components.TextField.prototype.init = function(dataObj) {
 	if (this.config.icon.type=='glipicon'){
 		this.config.icon.type = 'glyphicon';
 	}
+	this.baseHtml=this.config.baseHtml;
 	this.CodeHelper = this.config.CodeHelper;
     this.parent = this.config.parent;
 	this.id = this.config.id;
@@ -109,9 +111,15 @@ Components.TextField.prototype.init = function(dataObj) {
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 Components.TextField.prototype.create = function(setControls) {
-    this.divContainer = $('<div></div>');//this.config.container
-	this.container.append(this.divContainer);
-   	this.zoneInput = $('<span class="inputSpan"><input class="'+this.config.state+'" type="text" size="20"/></span>');
+    if(!this.baseHtml){
+		this.divContainer = $('<div></div>');//this.config.container
+		this.container.append(this.divContainer);
+   	}
+	else
+	{
+		this.divContainer = $('#'+this.id);
+	}
+	this.zoneInput = $('<span class="inputSpan"><input class="'+this.config.state+'" type="text" size="20"/></span>');
 	this.divContainer.append(this.zoneInput);
     this.divInput = $('input', this.zoneInput);
 	 this.divInput.css("width", '100%');

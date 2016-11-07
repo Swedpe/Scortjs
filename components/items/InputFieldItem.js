@@ -114,8 +114,9 @@ Components.InputField.prototype.create = function(setControls) {
     //si baseHtml es false todo el Html es creado por el componente en caso contrario se usa el Html Base
 	if(this.baseHtml){//si esta definido el html base, entonces tambien cada inputfield tiene que tener ID, sino no se puede alcanzar el elemento
 		this.divContainer = $('#InputField-'+this.id);
-		this.container.append(this.divContainer);
-		console.log(this.divContainer);
+		if(!this.config.parent.baseHtml){				//si el componente padre tambien es de html base entonces, no mover los contenedores html de lugar
+			this.container.append(this.divContainer);
+		}
 	}else{
 		//basandonos en bootstrap, los inputs controlan un maximo de 12 columnas
 		if ((this.config.autocalcCols)&&(this.config.cols)&&(this.config.countCols)&&((this.config.cols+this.config.countCols)<=12)){
