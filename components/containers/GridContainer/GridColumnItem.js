@@ -220,6 +220,8 @@ Components.GridColumn.prototype.render = function(value, metaData, record, rowIn
 		var Xd = $.datepicker.formatDate(this.config.dataConfig.format, new Date(value));
 		return Xd;
 		break;
+		case 'bool':
+		if(value==1){return 'true'}else{return 'false'};
 		case 'custom':
 		return this.renderer(value, metaData, record, rowIndex, colIndex, store, gridView);
 		break;

@@ -26,15 +26,16 @@ Components.InputField.prototype.init = function(dataObj) {
 		parent:'',							//se usa especialmente cuando es parte de un form
 		css:new Array(),
 		enabled:true,
-        container: $('body'),				//
-        label:{
+		baseHtml:false,						//si esta definido no se dibuja el contenedor exterior del componente, 
+	container: $('body'),				//donde se dibujara el elemento, si  esta activo baseHtml el formato [InputField-1512]
+        label:{								//con baseHtml activado se busca labelField
 			create:true,					//si create es false no se crea el label y solo se crea el input
 			html:"",
 			cols:2,
 			align:"left",	
 			css:new Array(),			
 		},
-		input:{
+		input:{								//con baseHtml activado se busca inputFieldInput
 			create:true,					//si create es false solo se crea el label y no se crea el input [no implementado aun]
 			type:'TextField',					//Por defecto se crea un TextField, con todos los parametros definidos aqui
 			state:'default',	
@@ -96,7 +97,8 @@ Components.InputField.prototype.init = function(dataObj) {
 	if (this.config.input.icon.type=='fontawesome'){
 		this.config.input.icon.type = 'fa';
 	}
-    this.id = this.config.id;
+    this.baseHtml = this.config.baseHtml;
+	this.id = this.config.id;
     this.container = this.config.container;
     this.listeners = this.config.listeners;
     this.name = this.config.name;
@@ -109,21 +111,36 @@ Components.InputField.prototype.init = function(dataObj) {
 }
 //##############################################################################
 Components.InputField.prototype.create = function(setControls) {
-    if ((this.config.autocalcCols)&&(this.config.cols)&&(this.config.countCols)&&((this.config.cols+this.config.countCols)<=12)){
-		this.divContainer=this.config.parent.itemsObjs[this.config.parent.itemsObjs.length-1].divContainer;
-		if(this.config.cols+this.config.countCols>=12){
-			this.config.parent.countCols = 0;
-		}	
+    //si baseHtml es false todo el Html es creado por el componente en caso contrario se usa el Html Base
+	if(this.baseHtml){//si esta definido el html base, entonces tambien cada inputfield tiene que tener ID, sino no se puede alcanzar el elemento
+		this.divContainer = $('#InputField-'+this.id);
+		this.container.append(this.divContainer);
+		console.log(this.divContainer);
 	}else{
-		Components.Component.prototype.create.call(this);	
-		this.divContainer.addClass('form-group');
+		//basandonos en bootstrap, los inputs controlan un maximo de 12 columnas
+		if ((this.config.autocalcCols)&&(this.config.cols)&&(this.config.countCols)&&((this.config.cols+this.config.countCols)<=12)){
+			this.divContainer=this.config.parent.itemsObjs[this.config.parent.itemsObjs.length-1].divContainer;
+			if(this.config.cols+this.config.countCols>=12){
+				this.config.parent.countCols = 0;
+			}	
+		}else{
+			//se crea un div inputField
+			Components.Component.prototype.create.call(this);	
+			this.divContainer.addClass('form-group');
+		}
 	}
     if(this.config.label.create==true){
-		this.zoneLabel = $('<div class="InputFieldLabel col-sm-'+this.config.label.cols+'"><span class="labelField">'+this.config.label.html+'</span></div>');
-		this.divContainer.append(this.zoneLabel);
+		if(this.baseHtml){
+			this.zoneLabel = $('.InputFieldLabel',this.divContainer);
+			this.zoneLabel.append('<span class="labelField">'+this.config.label.html+'</span>');
+		}else{
+			this.zoneLabel = $('<div class="InputFieldLabel col-sm-'+this.config.label.cols+'"><span class="labelField">'+this.config.label.html+'</span></div>');
+			this.divContainer.append(this.zoneLabel);
+		}
+		
 		this.divLabel = $('.labelField', this.zoneLabel);
 		if(this.config.label == "") {
-        this.divLabel.hide();
+			this.divLabel.hide();
 		}
 		if(this.config.labelWidth != -1) {
 			this.divLabel.css("width", this.config.labelWidth);
@@ -134,9 +151,13 @@ Components.InputField.prototype.create = function(setControls) {
 			this.zoneLabel=null;
 			this.divLabel=null;
 		}
+	if(this.baseHtml){
+		this.zoneInput = $('.inputFieldInput',this.divContainer);
+	}else{
+		this.zoneInput = $('<div class="inputFieldInput col-sm-'+this.config.input.cols+'"></div>');
+		this.divContainer.append(this.zoneInput);
+	}
 	
-	this.zoneInput = $('<div class="inputFieldInput col-sm-'+this.config.input.cols+'"></div>');
-	this.divContainer.append(this.zoneInput);
 	//preparando al componente textfield
 	this.config.input.container = this.zoneInput;
 	this.config.input.parent = this;

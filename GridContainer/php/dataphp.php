@@ -62,57 +62,57 @@ switch($_REQUEST['dataset'])
 				Apellido VARCHAR(30) 
 				);";
                         $sql3 ="TRUNCATE TABLE samplelivedataset";
-                        $sql2= "INSERT INTO `samplelivedataset` (`ID`, `Nombre`, `Apellido`) VALUES
-                                (1, 'Javier', 'Castro Miranda'),
-                                (2, 'William Edgar ', 'Uria Martinez'),
-                                (3, 'Leoncio C&eacute;sar', 'Pe&ntilde;a Villafuerte'),
-                                (4, 'Oscar ', 'Guzman Madariaga'),
-                                (11, 'Roberto Francisco', 'Salas Valverde'),
-                                (12, 'Cesar Hipolito', 'Machacuay Diaz'),
-                                (13, 'Jorge Antonio ', 'Cueva Garcia  '),
-                                (14, 'Julio Cesar ', 'Incio Quiroz '),
-                                (15, ' Edwin Walter ', 'Badillo Ochoa '),
-                                (16, 'Marcos Yovan', 'Mallqui Alcocer '),
-                                (17, 'David Fredelino ', 'Giraldo Chinchay '),
-                                (19, 'Eduardo ', 'Musayon Palma '),
-                                (20, 'Richard Domingo ', 'Curi Paco Contreras '),
-                                (21, 'Juan Luis ', 'Salazar Carhuachuco '),
-                                (22, 'Antidoro Abel ', 'Damian Villar '),
-                                (23, 'Jorge Augusto', 'Vargas Ch&aacute;vez '),
-                                (24, 'Daniel Eugenio ', 'Angulo P&eacute;rez '),
-                                (25, 'Jos&eacute; Luis ', 'Ordo&ntilde;ez Flores '),
-                                (26, 'Henry Peter ', 'Vega Ayala '),
-                                (27, 'Gerardo Gaudencio ', 'Coronado Godoy '),
-                                (28, 'H&eacute;ctor Santiago ', 'Rodr&iacute;guez Telada '),
-                                (29, 'Wilfredo Gerardo ', 'Cuervo De La Mata '),
-                                (30, 'Anibal Nazario', 'Durand Apaza'),
-                                (31, 'Oscar ', 'Trujillo Hermita&ntilde;o '),
-                                (32, 'Angel Ernesto Abelardo ', 'Quintanilla Paz Soldan'),
-                                (33, 'Cesar Vicente Pucuhuayla Carde', 'Pucuhuayla'),
-                                (34, 'Jordy Andres Pucuhuayla Carden', 'Pucuhuayla'),
-                                (35, 'Henry Cristian ', 'Rojas Olivares'),
-                                (36, 'Juan Alberto ', 'Neyra Ramirez'),
-                                (37, 'Rafael Julio Lucero Melgarejo', ''),
-                                (38, 'Jimmy Anthony', 'Garcia Pereda'),
-                                (39, 'Humberto ', 'R&iacute;os D&aacute;vila'),
-                                (40, 'Juan carlos ', 'Almanza Casaverde'),
-                                (41, 'Ervert ', 'Condori Valeriano'),
-                                (42, 'C&eacute;sar Augusto ', 'Vega Medina'),
-                                (43, 'Javier Enrique', 'Castro Miranda'),
-                                (44, 'Marco Antonio ', 'Herrera Chehin'),
-                                (45, 'Hugo Gustavo Torres Rodriguez', ''),
-                                (46, 'Neri Felipe Torres Gutierres', ''),
-                                (47, 'Jorge Luis', 'Acosta'),
-                                (49, 'Oscar Dongo', ''),
-                                (53, 'Luis Alfredo', 'Masias Cisneros'),
-                                (55, 'Ernesto Velarde Campos', ''),
-                                (56, 'Enrique Seminario Acosta', 'Acosta'),
-                                (57, 'Raquel Butron Cadillo', ''),
-                                (58, 'Rosio Vargas Fernandez', 'Fernandez'),
-                                (59, 'Pedro Due&ntilde;as Cabrera', 'Cabrera'),
-                                (60, 'Sonia Ruelas Cayo', ''),
-                                (61, 'Samuel Villavicencio Polo', ''),
-                                (62, 'Juan Bazan Abanto', '');";
+                        $sql2= "INSERT INTO `samplelivedataset` (`ID`, `Nombre`, `Apellido`,'Fecha') VALUES
+                                (1, 'Javier', 'Castro Miranda','06/01/2016'),
+                                (2, 'William Edgar ', 'Uria Martinez','06/01/2016'),
+                                (3, 'Leoncio C&eacute;sar', 'Pe&ntilde;a Villafuerte','06/01/2016'),
+                                (4, 'Oscar ', 'Guzman Madariaga','06/01/2016'),
+                                (11, 'Roberto Francisco', 'Salas Valverde','06/01/2016'),
+                                (12, 'Cesar Hipolito', 'Machacuay Diaz','06/01/2016'),
+                                (13, 'Jorge Antonio ', 'Cueva Garcia  ','06/01/2016'),
+                                (14, 'Julio Cesar ', 'Incio Quiroz ','06/01/2016'),
+                                (15, ' Edwin Walter ', 'Badillo Ochoa ','06/01/2016'),
+                                (16, 'Marcos Yovan', 'Mallqui Alcocer ','06/01/2016'),
+                                (17, 'David Fredelino ', 'Giraldo Chinchay ','06/01/2016'),
+                                (19, 'Eduardo ', 'Musayon Palma ','06/01/2016'),
+                                (20, 'Richard Domingo ', 'Curi Paco Contreras ','06/01/2016'),
+                                (21, 'Juan Luis ', 'Salazar Carhuachuco ','06/01/2016'),
+                                (22, 'Antidoro Abel ', 'Damian Villar ','06/01/2016'),
+                                (23, 'Jorge Augusto', 'Vargas Ch&aacute;vez ','06/01/2016'),
+                                (24, 'Daniel Eugenio ', 'Angulo P&eacute;rez ','06/01/2016'),
+                                (25, 'Jos&eacute; Luis ', 'Ordo&ntilde;ez Flores ','06/01/2016'),
+                                (26, 'Henry Peter ', 'Vega Ayala ','06/01/2016'),
+                                (27, 'Gerardo Gaudencio ', 'Coronado Godoy ','06/01/2016'),
+                                (28, 'H&eacute;ctor Santiago ', 'Rodr&iacute;guez Telada ','06/01/2016'),
+                                (29, 'Wilfredo Gerardo ', 'Cuervo De La Mata ','06/01/2016'),
+                                (30, 'Anibal Nazario', 'Durand Apaza','06/01/2016'),
+                                (31, 'Oscar ', 'Trujillo Hermita&ntilde;o ','06/01/2016'),
+                                (32, 'Angel Ernesto Abelardo ', 'Quintanilla Paz Soldan','06/01/2016'),
+                                (33, 'Cesar Vicente Pucuhuayla Carde', 'Pucuhuayla','06/01/2016'),
+                                (34, 'Jordy Andres Pucuhuayla Carden', 'Pucuhuayla','06/01/2016'),
+                                (35, 'Henry Cristian ', 'Rojas Olivares','06/01/2016'),
+                                (36, 'Juan Alberto ', 'Neyra Ramirez','06/01/2016'),
+                                (37, 'Rafael Julio Lucero Melgarejo', '','06/01/2016'),
+                                (38, 'Jimmy Anthony', 'Garcia Pereda','06/01/2016'),
+                                (39, 'Humberto ', 'R&iacute;os D&aacute;vila','06/01/2016'),
+                                (40, 'Juan carlos ', 'Almanza Casaverde','06/01/2016'),
+                                (41, 'Ervert ', 'Condori Valeriano','06/01/2016'),
+                                (42, 'C&eacute;sar Augusto ', 'Vega Medina','06/01/2016'),
+                                (43, 'Javier Enrique', 'Castro Miranda','06/01/2016'),
+                                (44, 'Marco Antonio ', 'Herrera Chehin','06/01/2016'),
+                                (45, 'Hugo Gustavo Torres Rodriguez', '','06/01/2016'),
+                                (46, 'Neri Felipe Torres Gutierres', '','06/01/2016'),
+                                (47, 'Jorge Luis', 'Acosta','06/01/2016'),
+                                (49, 'Oscar Dongo', '','06/01/2016'),
+                                (53, 'Luis Alfredo', 'Masias Cisneros','06/01/2016'),
+                                (55, 'Ernesto Velarde Campos', '','06/01/2016'),
+                                (56, 'Enrique Seminario Acosta', 'Acosta','06/01/2016'),
+                                (57, 'Raquel Butron Cadillo', '','06/01/2016'),
+                                (58, 'Rosio Vargas Fernandez', 'Fernandez','06/01/2016'),
+                                (59, 'Pedro Due&ntilde;as Cabrera', 'Cabrera','06/01/2016'),
+                                (60, 'Sonia Ruelas Cayo', '','06/01/2016'),
+                                (61, 'Samuel Villavicencio Polo', '','06/01/2016'),
+                                (62, 'Juan Bazan Abanto', '','06/01/2016');";
 						
                                 if ( $conn->query($sql)  === TRUE ) {
                                         $conn->query($sql3);
@@ -146,6 +146,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['Apellido']=$row['Apellido'];
 					//se formatea la fecha para ser compatible con el formato del ejemplo 
 					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
+					$itemarray['onoff']=$row['onoff'];
 					$items[]=$itemarray;
 			}
 		
@@ -175,6 +176,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
 					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
+					$itemarray['onoff']=$row['onoff'];
 					$items[]=$itemarray;
 			}
 		
@@ -199,6 +201,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
 					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
+					$itemarray['onoff']=$row['onoff'];
 					$items[]=$itemarray;
 			}
 		
@@ -216,7 +219,7 @@ switch($_REQUEST['dataset'])
 				$sql="INSERT INTO `samplelivedataset`( `Nombre`, `Apellido`) VALUES ('".escapeHTML($_REQUEST['Nombre'])."','".escapeHTML($_REQUEST['Apellido'])."')";
 			}
 			else{
-				$sql="INSERT INTO `samplelivedataset`(`ID`, `Nombre`, `Apellido`) VALUES ('".escapeHTML($_REQUEST['ID'])."','".escapeHTML($_REQUEST['Nombre'])."','".escapeHTML($_REQUEST['Apellido'])."')";
+				$sql="INSERT INTO `samplelivedataset`(`ID`, `Nombre`, `Apellido`,`Fecha`,`onoff`) VALUES ('".escapeHTML($_REQUEST['ID'])."','".escapeHTML($_REQUEST['Nombre'])."','".escapeHTML($_REQUEST['Apellido'])."')";
 			}
 			$response = $conn->query($sql);
 			$sql="Select * from samplelivedataset where `ID` = ".mysqli_insert_id($conn);
@@ -229,6 +232,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
 					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
+					$itemarray['onoff']=$row['onoff'];
 					//$items[]=$itemarray;
 			}
 			$respuesta['conteo'] = $rowcount;
@@ -241,7 +245,7 @@ switch($_REQUEST['dataset'])
 			if ($conn->connect_error) 
 				die("Connection failed: " . $conn->connect_error);
 			$FechaFormato = date('Y-m-d', strtotime($_REQUEST['Fecha']));
-			$sql = "UPDATE `samplelivedataset` SET `Fecha` = '".escapeHTML($FechaFormato)."',`Nombre` = '".escapeHTML($_REQUEST['Nombre'])."',`Apellido`='".escapeHTML($_REQUEST['Apellido'])."'  WHERE  ID = '".$_REQUEST['ID']."'";			
+			$sql = "UPDATE `samplelivedataset` SET `onoff` = ".$_REQUEST['onoff'].",`Fecha` = '".escapeHTML($FechaFormato)."',`Nombre` = '".escapeHTML($_REQUEST['Nombre'])."',`Apellido`='".escapeHTML($_REQUEST['Apellido'])."'  WHERE  ID = '".$_REQUEST['ID']."'";			
 			$response = $conn->query($sql);
 			$sql="Select * from samplelivedataset where `ID` = ".$_REQUEST['ID'];
 			$response2 = $conn->query($sql);
@@ -253,6 +257,7 @@ switch($_REQUEST['dataset'])
 					$itemarray['Nombre']=$row['Nombre'];
 					$itemarray['Apellido']=$row['Apellido'];
 					$itemarray['Fecha']=date('m/d/y', strtotime($row['Fecha']));
+					$itemarray['onoff']=$row['onoff'];
 			}
 			$respuesta['conteo'] = $rowcount;
 			$respuesta['Item'] = $itemarray;		

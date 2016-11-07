@@ -24,11 +24,11 @@ Components.onoffswitch.prototype.init = function(dataObj) {
 		scale:'minier',
 		enabled: null,					//controlar el atributo  disabled/enabled del text input
 		readOnly:null,
-		checked: false,			// State of the switch
-		show_labels: true,			// Should we show the on and off labels?
-		labels_placement: "both", 	// Position of the labels: "both", "left" or "right"
-		on_label: "ON",				// Text to be displayed when checked
-		off_label: "OFF",			// Text to be displayed when unchecked
+		checked: false,				// State of the switch
+		show_labels: true,			// mostrar etiquetas? Por defecto true
+		labels_placement: "both", 	// poscicionamiento de las etiquetas: "both", "left" or "right"
+		on_label: "ON",				// Texto que sera mostrado para prendido
+		off_label: "OFF",			// Texto que sera mostrado para apagado
 		width: -1,					// Width of the button in pixels
 		height: -1,					// Height of the button in pixels
 		button_width: -1,			// Width of the sliding part in pixels
@@ -87,7 +87,7 @@ Components.onoffswitch.prototype.init = function(dataObj) {
 		// }
 	// }
 	// console.log(this.readOnly);
-	
+	this.checked = this.config.checked;
 	switch(this.config.scale){
 		           case 'minier':
 					this.config.width = 27,
@@ -124,13 +124,21 @@ Components.onoffswitch.prototype.create = function() {
 	
     
      
-	 // Create our objects: two labels and the button
+	 // Crear los objetos: dos etiquetas y el boton
             this.off_label = $("<span>").addClass("switch-button-label");
             this.on_label = $("<span>").addClass("switch-button-label");
 
-            this.button_bg = $("<div>").addClass("switch-button-background");
-            this.button = $("<div>").addClass("switch-button-button");
-
+            this.button_bg = $("<div></div>").addClass("switch-button-background");
+            this.textXd = $("<div></div>")
+			if (this.checked){
+				 this.textXd.html('ON').addClass("switch-button-ON");
+			}
+			else{
+				 this.textXd.html('OFF').addClass("switch-button-OFF");
+			}
+			this.button_bg.append(this.textXd);
+			this.button = $("<div>").addClass("switch-button-button");
+			//this.button.html('<span>1</span>');
             // Insert the objects into the DOM
             this.off_label.insertAfter(this.element);
             this.button_bg.insertAfter(this.off_label);
@@ -173,8 +181,6 @@ Components.onoffswitch.prototype.create = function() {
     if(this.config.name != "") {
         this.divInput.prop("name", this.config.name);
     }
-    // this.setReadOnly(this.readOnly);
-	//si mas de 2 input comparten el contenedor por autocalcCols, entonces cada uno agregara algo de css, no repetir.
      if(this.config.hidden){
 		this.zoneLabel.hide();
 		this.zoneInput.hide();
@@ -196,7 +202,7 @@ Components.onoffswitch.prototype.refresh = function() {
                 this.on_label.hide();
             }
 
-            // Move labels around depending on labels_placement option
+            // Mover las etiquetas segun 
             switch(this.config.labels_placement) {
                 case "both":
                 {
@@ -269,11 +275,13 @@ Components.onoffswitch.prototype.refresh = function() {
 Components.onoffswitch.prototype.toggleSwitch = function() {
            if(this.enabled){
            // if(!this.readOnly){
-		   this.config.checked = !this.config.checked;
+		   this.checked = !this.checked;
             var newLeft = "";
-            if (this.config.checked) {
+            if (this.checked) {
                 // Update the underlying checkbox state
                 this.element.prop("checked", true);
+				this.textXd.html('ON').removeClass("switch-button-OFF").addClass("switch-button-ON");
+				
                 this.element.change();
 				
 			   var dLeft = this.config.width - this.config.button_width;
@@ -300,6 +308,7 @@ Components.onoffswitch.prototype.toggleSwitch = function() {
             else {
                 // Update the underlying checkbox state
                 this.element.prop("checked", false);
+				this.textXd.html('OFF').removeClass("switch-button-ON").addClass("switch-button-OFF");
                 this.element.change();
                 newLeft = "-1px";
 
