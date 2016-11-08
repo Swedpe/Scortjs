@@ -22,10 +22,12 @@ Components.Tab.prototype.init = function(dataObj) {
         title: "",
         state:'',
 		html: "",
+		ajaxLoad:false,						//cargar directamente otro archivo en el tab		
+		ajaxUrl:'',							//url del archivo que se cargara si ajaxLoad es true. 
         hidden: false,
         autoScroll: false,
 		icon: {
-				type:'none',		//tipos posibles fontawesome y image
+				type:'none',				//tipos posibles fontawesome y image
 				image : '',
 				class:'',
 				color:'default',
@@ -33,8 +35,9 @@ Components.Tab.prototype.init = function(dataObj) {
 			},
         items: [],
         listeners: {
-            activate: function(){},
-            render: function(){}
+            activate: function(){},			//se lanza esta peticion desde tabcontainer, 
+            render: function(){},			//se llama a este listener cuando el contenido del tab ya esta dibujado
+			preRender:function(){}			//se llama a este listener antes de comenzar a dibujar los items del tab
         }
     };
     
@@ -76,7 +79,12 @@ Components.Tab.prototype.create = function() {
 	if (this.config.state==''){			//si no se definio un estate en un tabitem, entonces tomamos el estate del tabcontainer
 		this.config.state = this.parent.config.state;
 	}
-   this.tabHeader = $('<li class='+this.config.state+' id="header_'+this.id+'"><a href="#'+this.id+'"><span>'+this.title+'</span></a></li>'); 
+	if(this.config.ajaxLoad){
+		this.tabHeader = $('<li class='+this.config.state+' id="header_'+this.id+'"><a href="'+this.config.ajaxUrl+'"><span>'+this.title+'</span></a></li>'); 
+	}
+	else{
+		this.tabHeader = $('<li class='+this.config.state+' id="header_'+this.id+'"><a href="#'+this.id+'"><span>'+this.title+'</span></a></li>'); 
+	}
    if(this.config.icon.type != 'none'){   //si el tab tiene icono en el header, crearlo
         switch(this.config.icon.type){
 		case 'fa':
@@ -102,7 +110,7 @@ Components.Tab.prototype.create = function() {
 	Components.Component.prototype.create.call(this);
     
     this.headerTab = $('#header_' + this.id, this.config.headerContainer);
-    
+    this.listeners.preRender();
     this.drawItems();
     
     if(this.config.html != "") {

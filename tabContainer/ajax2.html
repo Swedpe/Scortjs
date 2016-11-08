@@ -58,25 +58,8 @@ body {
 </style>	
 <script id="customscript">
 	$( document ).ready(function(){
-	Components.create('Window',{
-		id:'prueba', 
-		behavior:'window',
-		title: "Demo Window", 
-		x:713,
-		y:33,
-		height:200, 
-		state:'active', 
-		width:310,
- }).show();
-Components.create('Window', {
-		title: 'Ejemplo Form Window',
-		height: 340,
-		width: 600,
-		minimizable: false,
-		id: 'window',
-		state:'active',
-		items: [{
-			type: 'Form',
+
+	Components.create('Form', {
 			baseHtml:true,
 			id: 'Form1',
 			border: false,
@@ -99,28 +82,8 @@ Components.create('Window', {
 					id:2,
 					label: {html:'<b>&nbsp; Apellidos :</b>',},
 					input:{name:'apellido',width: 100,},
-				},{
-					type: 'ComboBox',
-					baseHtml:true,
-					label: 'Tipo Variable',
-					width:150,
-					id:'Combox1',
-					state:'active',
-					name:'ComboNumber',
-					displayField: 'TipoVariable',
-					valueField: 'TipoVariable',
-					store: {
-						id: 'DataTypes',
-						fields: ['IdTipoVariable','TipoVariable'],
-						data: [
-							{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
-							{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
-							{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
-							{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
-						]
-					}
-
 				},
+				
 				{type: 'InputField',
 					baseHtml:true,
 					id:3,
@@ -305,8 +268,8 @@ Components.create('Window', {
 			} 
 		}
 	]
-  }]
- }).show();
+  });
+  
 });  
 </script>	
 </head>
@@ -325,17 +288,18 @@ Components.create('Window', {
 	<div class="col-sm-3" id='DatePicker2'></div>
 </div>
 <div class="inputField form-group">
-	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Para mishell1:</b></span></div>
-	<div class="col-sm-3" id='Combox1'></div>
-	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Para mishell2:</b></span></div>
-	<div class="col-sm-3" id='Combox2'></div>
-</div>
-<div class="inputField form-group">
 	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Canciones Cristianas</b></span></div>
 	<div class="col-sm-3" id='Cancion1'></div>
 	<div class="col-sm-3" id='Cancion2'></div>
 	<div class="col-sm-3" id='Cancion3'></div>
 </div>
+<div class="inputField form-group">
+	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Para mishell1:</b></span></div>
+	<div class="col-sm-3" id='Combox1'></div>
+	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Para mishell2:</b></span></div>
+	<div class="col-sm-3" id='Combox2'></div>
+</div>
+
 <div class="inputField form-group">
 	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Fecha nacimiento:</b></span></div>
 	<div class="col-sm-3" id='NumberAnno'></div>

@@ -33,6 +33,7 @@ Components.ComboBox.prototype.init = function(dataObj) {
 		styleLabel:'',
 		validar:'',
 		ico:false,
+		baseHtml:false,	
 		InputCss:new Array(),
         listeners: {
             select: function(combo, record, index){}
@@ -56,7 +57,10 @@ Components.ComboBox.prototype.init = function(dataObj) {
 	}
     this.id = this.config.id;
 	this.name = this.config.name;					//lo usan los formContainer
-    this.container = this.config.container;
+    if(this.config.baseHtml){
+		this.config.container = $('#'+this.id);
+	}
+	this.container = this.config.container;
     this.className = "comboBoxField";
     this.store = null;
     this.listeners = this.config.listeners;
@@ -67,6 +71,7 @@ Components.ComboBox.prototype.init = function(dataObj) {
 }
 //##############################################################################
 Components.ComboBox.prototype.create = function() {
+	console.log('combosaparron');
     this.divContainer = $('<span class="inputSpan"></span>');
 	this.container.append(this.divContainer);
 	//Components.Component.prototype.create.call(this);
