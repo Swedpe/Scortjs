@@ -618,7 +618,13 @@ ProcessIco=this.config.icon;				//ProcessIco es el icono que se va procesar.
 Components.TextField.prototype.setValue = function(value) {
     this.config.value = value;
     this.divInput.val(value);
-	this.Validar();
+	//la funcion validar se desencadena con el evento de keypress, cuando el valor se llena directamente, 
+	//no hay evento, pero los disparadores de eventos de validacion requieren un objeto con el que trabajar posteriormente
+	//inventaremos un objeto evento solo con lo nesesario
+	var Event = [];
+		Event.data = [];
+		Event.data.OBJ = this;
+	this.Validar(Event);
 }
 //##############################################################################
 Components.TextField.prototype.getValue = function() {

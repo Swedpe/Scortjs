@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Validacion ejemplo3</title>
+  <title>Validacion ejemplo 4</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" id="theme">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -21,6 +21,7 @@
 		<script src="../components/items/InputFieldItem.js"></script>
 		<script src="../components/items/TextFieldItem.js"></script>
 		<script src="../components/items/ToolBarItem.js"></script>
+		<script src="../components/items/FreeDivItem.js"></script>
 		
 		
 		
@@ -56,8 +57,8 @@
 	$( document ).ready(function(){
 Components.create('Window',{
 	title: "Validaciones y Mas validaciones",		
-	height:340, 
-	width:550,
+	height:440, 
+	width:650,
 	state:'info',
 	items: [
 	{
@@ -133,6 +134,7 @@ Components.create('Window',{
 			},
 			input:{cols:8,
 					width: '100%',
+					name:'campo1',
 					placeholder:'De 3 a 4 caracteres [Alert]',
 					state:'error',
 					icon:{
@@ -164,6 +166,7 @@ Components.create('Window',{
 					cols:4},
 			input:{cols:8,
 				width: '100%',
+				name:'campo2',
 				placeholder:'8 numeros exacto [setLabel()]',
 				state:'highlight',
 				icon:{
@@ -196,6 +199,7 @@ Components.create('Window',{
 					cols:4},
 			input:{cols:8,
 				width: '100%',
+				name:'campo3',
 				placeholder:'Solo Texto Mínimo 6 caracteres[changeInputState()]',
 				state:'active',
 				icon:{
@@ -231,6 +235,7 @@ Components.create('Window',{
 						cols:4},
 				input:{cols:8,
 					width: '100%',
+					name:'campo4',
 					placeholder:'Valida Email Efecto[changeIcon position]',
 					state:'warning',
 					icon:{
@@ -264,6 +269,7 @@ Components.create('Window',{
 					cols:4},
 			input:{cols:8,
 				width: '100%',
+				name:'campo5',
 				placeholder:'Valida Email Efecto[changeIcon class]',
 				state:'info',
 				icon:{
@@ -300,6 +306,7 @@ Components.create('Window',{
 					cols:4},
 			input:{cols:8,
 				width: '100%',
+				name:'campo6',
 				placeholder:'http://www.google.com.pe',
 				icon:{
 					type:'fontawesome',
@@ -331,6 +338,7 @@ Components.create('Window',{
 			label: {html:'<b>Validar Direccion Ip</b>',
 					cols:4},
 			input:{cols:8,
+			name:'campo7',
 				width: '100%',
 				state:'error',
 				placeholder:'192.168.0.1',
@@ -357,8 +365,37 @@ Components.create('Window',{
 							}
                         },
 			},	
+			},
+			{
+			type:'FreeDiv',	
+			freeHtml:true,
+			html:'<div class="row" id="SelectData">'+
+			'<div class="col-sm-6"><h2>Datos1:</h2><br>'+
+			'[1234,40485548,textolargo,williamuriamartinez@hotmail.com,williamuriamartinez@gmail.com,http://google.com.pe,192.168.69.1]'+
+			'</h2></div>'+
+			'<div class=" col-sm-4">',
+			},
+			{
+			type:'Button',	
+			scale: 'medium',
+			state:'active',
+			text:'Cargar Data 1',
+			icon:{
+				type:'fontawesome',
+				class:'fa-repeat',
+				color:'white',
+				position:'left'
+			},
+			tooltip:'Tamaño Personalizado',
+			css:{'margin-left': '130px'},	
+			handler: function() {	
+				datos = {'campo1':'William','campo2':'Uria','campo3':'Arequipa','campo4':'1993-02-10','campo5':45,'campo6':48,'campo7':'false'};
+				var Form1 = Components.getComponentById('TestForm');
+				console.log('prueba si o no');
+				Form1.setValues(datos);	
+			  }  
 			}
-		
+	
 	   ]
 	}
 ]	
