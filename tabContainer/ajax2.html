@@ -168,31 +168,37 @@
 					css:{'padding-top': '10px'
 					},
 				  },
+				  {		
+					type:'Button',
+					baseHtml:true,
+					id:'Boton1',			//para el boton no es mas que el container, forzado 
+					state:'active',		//estado 1 
+					State2:'active',		//estado 2 
+					scale: 'normal',
+					tooltip:'mini Toggle',
+					text:'Actualizar',
+					enableToggle:true,
+					handler: function() {
+							 console.log("mini togle");
+					}    
+												
+					},
+					 {		
+					type:'Button',
+					baseHtml:true,			//para el boton no es mas que el container, forzado
+					id:'Boton2',
+					state:'error',		//estado 1 
+					State2:'active',		//estado 2 
+					scale: 'normal',
+					tooltip:'yala',
+					text:'Guardar',
+					enableToggle:true,
+					handler: function() {
+							 console.log("mini togle");
+					}    
+												
+					}
 			],
-	buttons: [
-		{ 
-			text: 'Show Data',			
-			x: 30,
-			handler: function() {
-			   console.log(Components.getComponentById('Form1').getValues());
-				var grid = Components.getComponentById('Form1');
-				var infoindow =Components.getComponentById('prueba');
-				var Seleccionados = syntaxHighlight(JSON.stringify(grid.getValues(), undefined, 7));	
-				infoindow.setHtml('los valores ingresados son:<br><pre>'+Seleccionados+'</pre>');
-			}	
-		},
-		{ 
-			text: 'Set Datos' ,
-			x: 190,
-			handler: function() {
-				datos = {'nombre':'William','apellido':'Uria','direccion':'Arequipa','fecha':'1993-02-10','valorProgress':45,'edad':48,'on-off':false
-			  }
-				var set1 = Components.getComponentById('Form1');
-				var set2 =Components.getComponentById('prueba');
-				set1.setValues(datos);	
-			} 
-		}
-	]
   });
   
 });  
@@ -231,7 +237,7 @@
 	<div class="col-sm-3" id='NumberMes'></div>
 	<div class="col-sm-3" id='NumberDia'></div>
 </div>
-
+<div class="row"><div class="col-sm-2"></div><div class="col-sm-4" id='Boton1'></div><div class=" col-sm-4" id='Boton2'></div><div class="col-sm-2"></div></div>
 
 </form>
 

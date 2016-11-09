@@ -23,6 +23,7 @@ Components.Button.prototype.init = function(dataObj){
 		setIcon: '',
 		css:new Array(),
 		state:'default',			//este es el estilo por defecto de jquery ui css, 
+		baseHtml:false,
         icon: {
 				type:'none',		//tipos posibles fontawesome y image
 				image : '',
@@ -67,8 +68,13 @@ Components.Button.prototype.init = function(dataObj){
 	this.parent = this.config.parent;
 	this.CodeHelper = this.config.CodeHelper;
     this.id = this.config.id;
-    this.container = this.config.container;
-    this.className = "buttonItem";
+	console.log('boton basehtml')
+	if(this.config.baseHtml){
+		this.container = $('#'+this.id);
+	}else{
+		this.container = this.config.container;
+    }
+	this.className = "buttonItem";
     this.pressed = false;
     this.handler = this.config.handler;
     this.listeners = this.config.listeners;
