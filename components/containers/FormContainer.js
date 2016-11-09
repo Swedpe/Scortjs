@@ -66,8 +66,10 @@ Components.Form.prototype.create = function() {
 	if(this.baseHtml){
 		this.divContainer = $('#'+this.id);
 		console.log(this.divContainer);
-		this.container.append(this.divContainer);
-		
+		//si tiene un componente padre hay que mover el form hacia el padre
+		if(this.parent){
+			this.container.append(this.divContainer);	
+		}	
 	}
 	else{
 		this.divContainer = $('<form></form>');	
