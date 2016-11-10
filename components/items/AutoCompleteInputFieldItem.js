@@ -70,7 +70,7 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
     this.divContainer.addClass('AutoCompleteInputField');
 	this.AutoCompleteCache= {};	
 	this.InputField = Components.create('TextField', {
-			container: this.container,
+			container: this.divContainer,
 			x:this.config.x,
 			y: this.config.y,
 			label: this.config.imputoptions.label,			
