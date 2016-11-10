@@ -473,7 +473,7 @@ Components.Window.prototype.resizeBody = function() {
  * Esta funcion crea todos los items internos de este componenter
  */
 Components.Window.prototype.drawItems = function() {
-    for(var i in this.items) {
+    for(var i in this.items) {		
         this.drawItem(this.items[i]);
     }
 }
@@ -491,6 +491,7 @@ Components.Window.prototype.drawItem = function(item) {
         item.container = this.regions["center"];		//si pasan cosas extrañas antes estaba en middle
     
     item.parent = this;
+	console.log('set parent');
     var newItem = Components.create(item.type, item);
     this.itemsObjs.push(newItem);
     //this.resizeBody();

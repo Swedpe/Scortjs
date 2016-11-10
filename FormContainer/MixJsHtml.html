@@ -35,6 +35,7 @@
 <script src="../components/items/HtmlScreenGrid.js"></script>
 <script src="../components/items/colorPicker/tinycolor.js"></script>
 <script src="../components/items/colorPicker/colorPicker.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
 <!--------------------------CSS	------------------------------------------->
 <link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
 <link rel="stylesheet" href="../css_components/fontawesomegrid.css"/>
@@ -290,8 +291,29 @@ Components.create('Window', {
 				 console.log("mini togle");
 		}    
 									
-		}
-				
+		},
+		{
+                    type:'AutoCompleteInputField',
+                    id: 'AutocompleteX',
+					baseHtml:true,
+                    imputoptions: {
+                        label: '<b>&nbsp;Select List :</b>',
+                        id: 'AutocompleteInput',
+                        width: 128,
+                        readOnly: false
+                    },
+                    sourcefunction: function(request, response) {
+                        $.ajax({
+							type:'post',
+                            url: 'php/dataphp.php',
+                            data: {dataset:'sampledata2',term: request.term},
+                            dataType: "json",
+                            success: function(dato) {
+                                response(dato);
+                            }
+                        });
+                    }
+                }
 				
 			],
 	buttons: [
@@ -350,11 +372,17 @@ Components.create('Window', {
 	<div class="col-sm-3" id='Cancion3'></div>
 </div>
 <div class="inputField form-group">
+	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>autocomplete:</b></span></div>
+	<div class="col-sm-3" id='AutocompleteX'></div>	
+	<div class="col-sm-6" id='Autorambeo'></div>
+</div>
+<div class="inputField form-group">
 	<div class="InputFieldLabel col-sm-3"><span class="labelField"><b>Fecha nacimiento:</b></span></div>
 	<div class="col-sm-3" id='NumberAnno'></div>
 	<div class="col-sm-3" id='NumberMes'></div>
 	<div class="col-sm-3" id='NumberDia'></div>
 </div>
+
 
 
 </form>

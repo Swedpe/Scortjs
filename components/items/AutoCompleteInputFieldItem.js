@@ -24,7 +24,8 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
 		imputselectedId:'',
 		imputselectedValue:'',	
 		sourcefunction:'',
-		source:'',		
+		source:'',
+		baseHtml:false,
         listeners: {
             specialKey: function(obj, event){},
             change: function(obj, newValue, oldValue){}, //Fires just before the field blurs if the field value has changed.
@@ -42,7 +43,10 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
                 this.config[i] = dataObj[i];
         }
     }
-	
+	if(dataObj.parent){
+		this.parent = dataObj.parent;
+	}
+	this.baseHtml = this.config.baseHtml;
 	this.id = this.config.id;
 	this.imputselectedId = this.config.imputselectedId;
 	this.imputselectedValue = this.config.imputselectedValue;
@@ -53,7 +57,15 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
 }
 //##############################################################################
 Components.AutoCompleteInputField.prototype.create = function(setControls) {
-    Components.Component.prototype.create.call(this);
+    if(this.baseHtml){//si esta definido el html base, entonces tambien cada inputfield tiene que tener ID, sino no se puede alcanzar el elemento
+		this.divContainer = $('#'+this.id);
+		if(!this.parent.baseHtml){				//si el componente padre tambien es de html base entonces, no mover los contenedores html de lugar
+			this.container.append(this.divContainer);
+		}
+	}
+	else{
+		Components.Component.prototype.create.call(this);
+	}
 	var $this=this;	
     this.divContainer.addClass('AutoCompleteInputField');
 	this.AutoCompleteCache= {};	

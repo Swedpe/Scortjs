@@ -46,6 +46,9 @@ Components.Form.prototype.init = function(dataObj) {
                 this.config[i] = dataObj[i];
         }
     }
+	if(dataObj.parent){
+		this.parent = dataObj.parent;
+	}
     this.baseHtml = this.config.baseHtml;
 	this.enabled = this.config.enabled;
 	this.countCols  = 0; 					//ayuda a ajustar la grilla de componentes para visualización
