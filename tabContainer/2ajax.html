@@ -12,8 +12,6 @@
 	
 		<script src="../jqfu/vendor/jquery.ui.widget.js"></script>
 		<script src="../components/Components.js"></script>	
-			
-		
         <script src="../components/containers/WindowContainer.js"></script>
 		<script src="../components/containers/TabContainer.js"></script>
 		<script src="../components/containers/MenuContainer.js"></script>
@@ -61,7 +59,7 @@ Components.create('Window',{
 		  title: "Tab01",  
 		  state:'info',
 		  ajaxLoad:true,						//cargar directamente otro archivo en el tab		
-		  ajaxUrl:'2ajax2.html',	
+		  ajaxUrl:'1ajax2.html',
 		  icon: {
 				type:'fa',		//tipos posibles fontawesome y image
 				class:'fa-info',
@@ -72,8 +70,8 @@ Components.create('Window',{
 		  type: "Tab",
 		  title: "Tab02",  
 		 state:'info',
-			ajaxLoad:true,						//cargar directamente otro archivo en el tab		
-			ajaxUrl:'2ajax2.html',	
+		 ajaxLoad:true,						//cargar directamente otro archivo en el tab		
+		  ajaxUrl:'2ajax2.html',	
 		 icon: {
 				type:'fa',		//tipos posibles fontawesome y image
 				class:'fa-whatsapp',
@@ -83,8 +81,8 @@ Components.create('Window',{
 		  type: "Tab",
 		  title: "Tab03",  
 		  state:'info',
-		html:'<div><h2>Ejemplo de Tab03 con HTML</h2><br>-Este es un texto HTML correspondiente a Tab03<br>'+
-						'-Este texto HTML puede ser agregado a cualquier tab.</div>',
+		  ajaxLoad:true,						//cargar directamente otro archivo en el tab		
+		  ajaxUrl:'3ajax2.html',	
 		 icon: {
 				type:'fa',		//tipos posibles fontawesome y image
 				class:'fa-whatsapp',

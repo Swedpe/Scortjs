@@ -80,7 +80,7 @@ Components.Tab.prototype.create = function() {
 		this.config.state = this.parent.config.state;
 	}
 	if(this.config.ajaxLoad){
-		this.tabHeader = $('<li class='+this.config.state+' id="header_'+this.id+'"><a href="'+this.config.ajaxUrl+'"><span>'+this.title+'</span></a></li>'); 
+		this.tabHeader = $('<li class='+this.config.state+' aria-controls="'+this.id+'" id="header_'+this.id+'"><a href="'+this.config.ajaxUrl+'"><span>'+this.title+'</span></a></li>'); 
 	}
 	else{
 		this.tabHeader = $('<li class='+this.config.state+' id="header_'+this.id+'"><a href="#'+this.id+'"><span>'+this.title+'</span></a></li>'); 

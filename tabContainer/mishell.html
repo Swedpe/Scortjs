@@ -193,14 +193,25 @@ container: $('#ejemplo2'),
 	  activeTab: 0,
 	  items: [					
 	  {
-		  type: "Tab",
-		  title: "Tab con Hijos",
-		  icon: {
+		type: "Tab",
+		title: "Tab con Hijos",
+		icon: {
 				type:'fa',		//tipos posibles fontawesome y image
 				class:'fa-info',
 			},
-		  items: [
-			  {
+		ajaxLoad:true,						//cargar directamente otro archivo en el tab		
+		ajaxUrl:'ajax1.html',	
+	  },
+	  {		
+		  type: "Tab",
+		  title: "Tab con mas altura",  
+		  icon: {
+				type:'fa',		//tipos posibles fontawesome y image
+				class:'fa-whatsapp',
+				//fa fa-whatsapp
+			},
+			 items: [
+								  {
 				type: "TabPanel",
 				state:'warning',
 				items: [
@@ -626,79 +637,7 @@ container: $('#ejemplo2'),
 						 items: []
 					},
 				]
-			  }
-		  ]
-	  },
-	  {		
-		  type: "Tab",
-		  title: "Tab con mas altura",  
-		  icon: {
-				type:'fa',		//tipos posibles fontawesome y image
-				class:'fa-whatsapp',
-				//fa fa-whatsapp
-			},
-			 items: [
-					{
-						type: 'ToolBar',
-						id: 'ChartProyectoWindowsToolBar',
-						region: 'top',
-						items: [
-						   {
-								type: 'Button',
-								id : 'izquierdaBtn',
-								shape:'box',
-								scale:'minier',
-								icon:{
-											type:'fontawesome',
-											class:'fa-bicycle',
-											color:'#000099',
-											position:'left',
-								},
-								tooltip:'flecha',
-							},
-							{
-								type: 'Button',
-								id : 'derechaBtn',        
-								shape:'box',
-								scale:'minier',
-								icon:{
-											type:'fontawesome',
-											class:'fa-bug',
-											color:'blue',
-											position:'left',
-								},
-								tooltip:'Flecha',
-							},
-							{
-								type: 'Button',
-								id : 'arribaBtn',        
-								shape:'box',
-								scale:'minier',
-								icon:{
-											type:'fontawesome',
-											class:'fa-train',
-											color:'red',
-											position:'left',
-								},
-								tooltip:'Flecha',
-							
-							},
-							{
-								type: 'Button',
-								id : 'abajoBtn',        
-								shape:'box',
-								scale:'minier',
-								icon:{
-											type:'fontawesome',
-											class:'fa-tasks',
-											color:'green',
-											position:'left',
-								},
-								tooltip:'Flecha',
-								
-							}
-						]
-					},
+			  },
 					{
 						type: 'Form',
 						id: 'TestForm',

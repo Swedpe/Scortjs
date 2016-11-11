@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Tabs - Content via Ajax</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( ".headerTabs" ).tabs();
+  } );
+  </script>
+</head>
+<body>
+ 
+<div class="headerTabs" style="left:0px;">
+	<div id="btnAnt" class="controlButtons"><i style="color:black;" class="fa fa-angle-double-left"></i></div>
+	<div class="containerTabs">
+	<ul class="info">
+		<li aria-controls="tabitem1309" class="info"><a href="2ajax2.html"><span><i class="fa fa-info" style="color:default;"></i>Tab01</span></a></li>
+		<li aria-controls="tabitem1509" class="info"><a href="3ajax2.html"><span><i class="fa fa-whatsapp" style="color:default;"></i>Tab02</span></a></li>
+		<li class="info"><a href="#tabitem1827"><span><i class="fa fa-whatsapp" style="color:default;"></i>Tab03</span></a></li>
+	</ul>
+	</div>
+	<div id="btnNext" class="controlButtons"><i style="color:black;" class="fa fa-angle-double-right"></i></div>
+<div class="bodyTabs">
+	<div class="tabItem" id="tabitem1309"></div>
+	<div class="tabItem" id="tabitem1509"></div>
+	<div class="tabItem" id="tabitem1827">
+		<div>
+		<h2>eh aqui un problema de divs</h2><br>-Este es un texto HTML correspondiente a Tab03<br>-Este texto HTML puede ser agregado a cualquier tab.
+		</div>
+	</div>
+</div>
+	
+</div>
+
+ 
+ 
+</body>
+</html>

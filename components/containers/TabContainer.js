@@ -111,9 +111,12 @@ Components.TabPanel.prototype.drawItems = function() {
         var element = Components.create(item.type, item);
         this.itemsObjs.push(element);
     }
-    
-    this.divContainer.tabs();  //jquery ui function predefined
-	 this.divContainer.addClass(this.config.state);
+    console.log(this.divContainer.html());
+	
+	this.divContainer.tabs();  //jquery ui function predefined
+	
+	return;
+	this.divContainer.addClass(this.config.state);
     $('.tabItem', this.divContainer).css("padding", 0);
     if(this.config.clsStyle != '') {
         this.divContainer.addClass(this.config.clsStyle);
@@ -271,7 +274,7 @@ Components.TabPanel.prototype.resizeBody = function() {
 	//console.log(this.parent.tipo);
 	if((this.parent.tipo)&&(this.parent.tipo=='Window')&&(this.parent.config.behavior=='window')){
 		this.divBodyTabs.css("height", this.divContainer.height() - this.divContainerTabs.height());
-		if(this.getActiveTab().itemsObjs[0].className=='toolBar')
+		if(this.getActiveTab().itemsObjs[0]&&(this.getActiveTab().itemsObjs[0].className=='toolBar'))
 		{
 			this.divBodyTabs.css("height",this.divBodyTabs.height()-this.getActiveTab().itemsObjs[0].divContainer.height()-14);
 		}
