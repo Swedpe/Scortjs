@@ -5,10 +5,10 @@
  ___) | (_| (_) | |  | |_  | |_| |___) |
 |____/ \___\___/|_|   \__|  \___/|____/ 
                                         
-	WindowContainer v 1.0 - a jQuery Ui extension
-	Licences: MIT & GPL
-	modificado y adaptado por el equipo: Scort Js  http://swedpe.com/scortjs/
-	* Programadores:
+    WindowContainer v 1.0 - a jQuery Ui extension
+    Licences: MIT & GPL
+    modificado y adaptado por el equipo: Scort Js  http://swedpe.com/scortjs/
+    * Programadores:
     * William Uria Martinez[Williamuriamartinez@hotmail.com], Angela Mayhua[], Cesar Cardenas[ccardenashq@gmail.com].
 */
 Components.TabPanel.prototype.init = function(dataObj) {
@@ -21,9 +21,9 @@ Components.TabPanel.prototype.init = function(dataObj) {
         headerPosX: 0,
         width: -1,
         state:'default',
-		height: -1,
+        height: -1,
         items: [],
-		parent :'',								//El componente que contiene el TabPanel
+        parent :'',                             //El componente que contiene el TabPanel
         listeners: {
             tabchange: function(){}
         }
@@ -61,7 +61,7 @@ Components.TabPanel.prototype.create = function() {
     Components.Component.prototype.create.call(this);
     
     this.constructHeader();
-	this.divContainer.append('<div class="bodyTabs"></div>');
+    this.divContainer.append('<div class="bodyTabs"></div>');
     this.divBodyTabs = $('.bodyTabs', this.divContainer);
     
     this.setControls();
@@ -72,7 +72,7 @@ Components.TabPanel.prototype.create = function() {
         this.setConfigTab();
         this.divContainer.addClass(this.id);
     }
-	return this ;
+    return this ;
 }
 //##############################################################################
 Components.TabPanel.prototype.setConfig = function() {
@@ -101,42 +101,59 @@ Components.TabPanel.prototype.constructHeader = function() {
 //##############################################################################
 Components.TabPanel.prototype.drawItems = function() {
     this.divContainerTabs.append('<ul class='+this.config.state+'></ul>');
-	
+    
     
     for(var i in this.items) {
         var item = this.items[i];
-		item.parent = this;
+        item.parent = this;
         item.container = this.divBodyTabs;
         item.headerContainer = this.divContainerTabs;
         var element = Components.create(item.type, item);
         this.itemsObjs.push(element);
     }
-    console.log(this.divContainer.html());
-	
-	this.divContainer.tabs();  //jquery ui function predefined
-	
-	return;
-	this.divContainer.addClass(this.config.state);
+    //console.log(this.divContainer.html());
+    
+    this.divContainer.tabs({
+            beforeLoad: function (event, ui) {
+                if (ui.tab.data("loaded")) {
+                    console.log('ya esta cargado');
+                    event.preventDefault();
+                    return;
+                }
+                ui.ajaxSettings.cache = false,
+                ui.panel.html('<img src="images/prettyPhoto/dark_square/loader.gif" width="24" height="24" style="vertical-align:middle;"> Loading...'),
+                ui.jqXHR.success(function() {
+                    ui.tab.data( "loaded", true );
+                }),
+                ui.jqXHR.error(function () {
+                    ui.panel.html(
+                    "Couldn't load Data. Plz Reload Page or Try Again Later.");
+                });
+            }
+        });  //jquery ui function predefined
+
+    return;
+    this.divContainer.addClass(this.config.state);
     $('.tabItem', this.divContainer).css("padding", 0);
     if(this.config.clsStyle != '') {
         this.divContainer.addClass(this.config.clsStyle);
-		 this.divContainer.addClass(this.config.state);
+         this.divContainer.addClass(this.config.state);
     }
 }
 //###########################################################
 Components.TabPanel.prototype.add = function(component) {
-	//añadir mas tabs en tiempo de ejecucion, se asigna como padre el componente tabcontainer.
-	component.parent = this;
-	Components.Component.prototype.add.call(this,component);
-	this.resizeBody();
+    //añadir mas tabs en tiempo de ejecucion, se asigna como padre el componente tabcontainer.
+    component.parent = this;
+    Components.Component.prototype.add.call(this,component);
+    this.resizeBody();
 }
 //####################################################################################################################################
 Components.TabPanel.prototype.drawItem = function(item) {
-	item.container = this.divBodyTabs;
-	item.headerContainer = this.divContainerTabs;
-	var element = Components.create(item.type, item);
-	this.itemsObjs.push(element);
-	this.divContainer.tabs( "refresh" );
+    item.container = this.divBodyTabs;
+    item.headerContainer = this.divContainerTabs;
+    var element = Components.create(item.type, item);
+    this.itemsObjs.push(element);
+    this.divContainer.tabs( "refresh" );
 }
 //###################################################################################################################################
 Components.TabPanel.prototype.setControls = function() {
@@ -249,12 +266,12 @@ Components.TabPanel.prototype.show = function() {
     this.resizeBody();
     this.setActiveTab(this.tabActive);
     this.itemsObjs[this.tabActive].listeners.activate();
-	  return this;
+      return this;
 }
 //##############################################################################
 Components.TabPanel.prototype.resizeBody = function() {
-	//esta funciones la encargada de la visivilidad de los 2 botones que hacen scroll a la 
-	//cabecera de los tabcontainers, y de ajustar el ancho del tabcontainer a su contenedor,
+    //esta funciones la encargada de la visivilidad de los 2 botones que hacen scroll a la 
+    //cabecera de los tabcontainers, y de ajustar el ancho del tabcontainer a su contenedor,
     this.divHeaderTabs.width(this.divBodyTabs.width() - this.config.headerPosX);
     
     this.widthHeaderTabs = $("ul", this.divContainerTabs)[0].scrollWidth;
@@ -270,15 +287,15 @@ Components.TabPanel.prototype.resizeBody = function() {
         $("ul", this.divContainerTabs).css("left","0");
     }
     //si el tabcontainer es contenido por un window-window regular la altura
-	//si el tabcontainer es contenido por un window-panel, la altura no deve ser regulada
-	//console.log(this.parent.tipo);
-	if((this.parent.tipo)&&(this.parent.tipo=='Window')&&(this.parent.config.behavior=='window')){
-		this.divBodyTabs.css("height", this.divContainer.height() - this.divContainerTabs.height());
-		if(this.getActiveTab().itemsObjs[0]&&(this.getActiveTab().itemsObjs[0].className=='toolBar'))
-		{
-			this.divBodyTabs.css("height",this.divBodyTabs.height()-this.getActiveTab().itemsObjs[0].divContainer.height()-14);
-		}
-	}
+    //si el tabcontainer es contenido por un window-panel, la altura no deve ser regulada
+    //console.log(this.parent.tipo);
+    if((this.parent.tipo)&&(this.parent.tipo=='Window')&&(this.parent.config.behavior=='window')){
+        this.divBodyTabs.css("height", this.divContainer.height() - this.divContainerTabs.height());
+        if(this.getActiveTab().itemsObjs[0]&&(this.getActiveTab().itemsObjs[0].className=='toolBar'))
+        {
+            this.divBodyTabs.css("height",this.divBodyTabs.height()-this.getActiveTab().itemsObjs[0].divContainer.height()-14);
+        }
+    }
     
     for(var i in this.itemsObjs) {
         this.itemsObjs[i].resizeBody();

@@ -134,7 +134,19 @@ Components.AutoCompleteInputField.prototype.setSource = function(source) {
 	}	
 	$(this.InputField.divInput).autocomplete("option", { source: this.source});	
 }
+Components.AutoCompleteInputField.prototype.getValue = function() {
+	if (typeof(this.config.sourcefunction)=="function"){
+		return this.InputField.getValue();
+	}
+}
+
 Components.AutoCompleteInputField.prototype.setValue = function(value) {
+	//si los datos son de una fuente fija tiene que estar seteado source para que se pueda dar un valor.
+	//si los datos son de una fuente dinamica AJAX entonces se aceptara el valor directamente, validar el valor va por parte de el usuario.
+	if (typeof(this.config.sourcefunction)=="function"){
+		this.InputField.setValue(value);
+		return true;
+	}
 	for(var item in this.source){	
 		if(this.source[item].id == value){
 			this.imputselectedId = this.source[item].id;
