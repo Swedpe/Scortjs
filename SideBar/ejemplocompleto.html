@@ -220,6 +220,9 @@ $( document ).ready(function(){
 /////////////////////////////////////windows DE COLORES ///////////////////////////////////
 Components.create('Sidebar',{  
 	id: 'mainSidebar',	
+	creaTopDiv:true,
+	creaCenterDiv:true,
+	creaBottomDiv:true,
 	listeners: {
              resize: function() {
 				//alert("Change");
@@ -1590,6 +1593,10 @@ Components.create('Sidebar',{
 		}
 	],                                       
 }).show();
+$('.page-content-top',Components.getComponentById('mainSidebar').page).html('aqui dar formato a una cabecera y el titulo de las tablas y inventar css para este div tambien');
+$('.page-content-center',Components.getComponentById('mainSidebar').page).html('aqui en este div tiene que ir la tabla con todos sus datos, cambiar en todas las vistas');
+$('.page-content-bottom',Components.getComponentById('mainSidebar').page).html('aqui en este div tiene que ir la parte inferior del sistema, podria ser contenido estatico cargado con load desde otra vista blade');
+
 Components.create('FreeDiv',{
 freeHtml:true,
 html:'<div  id="parte2"  style="margin-left: 190px;"></div>',

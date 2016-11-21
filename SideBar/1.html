@@ -80,6 +80,9 @@ html:'<div><div class="row"><div  id="parte1" class="col-sm-3"></div><div  id="p
 Components.create('Sidebar',{  
 	id: 'SidebarTest',	
 	container: $('#parte1'),
+	creaTopDiv:true,
+	creaCenterDiv:true,
+	creaBottomDiv:true,
 	listeners: {
              resize: function() {
 				alert("Change");
@@ -753,6 +756,10 @@ Components.create('Sidebar',{
 		}
 	],                                       
 }).show();
+$('.page-content-top',Components.getComponentById('SidebarTest').page).html('aqui dar formato a una cabecera y el titulo de las tablas y inventar css para este div tambien');
+$('.page-content-center',Components.getComponentById('SidebarTest').page).html('aqui en este div tiene que ir la tabla con todos sus datos, cambiar en todas las vistas');
+$('.page-content-bottom',Components.getComponentById('SidebarTest').page).html('aqui en este div tiene que ir la parte inferior del sistema, podria ser contenido estatico cargado con load desde otra vista blade');
+
 }); 
 </script>	
 </script>

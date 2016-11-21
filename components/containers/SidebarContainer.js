@@ -20,6 +20,9 @@ Components.Sidebar.prototype.init = function(dataObj) {
 		hidden: false,
         items: [],													//sidebaritems
 		Scale:'full',												//full y mini	
+		creaTopDiv:false,
+		creaCenterDiv:false,
+		creaBottomDiv:false,
 		listeners: {
             resize: function(){}									//cuando se cambia de tamaño mini/full
         },
@@ -62,7 +65,17 @@ Components.Sidebar.prototype.create = function() {
 	this.divContainer.append(this.mainContent);
 	this.drawItems();  	
 	this.divsidevar.append(this.divsidevarControl);
-	this.page = $('.page-content',this.divContainer); 
+	this.page = $('.page-content',this.divContainer);
+	console.log('aqui');
+	if(this.config.creaTopDiv){
+		this.page.append('<div class="page-content-top"></div>');
+	}
+	if(this.config.creaCenterDiv){
+		this.page.append('<div class="page-content-center"></div>');
+	}
+	if(this.config.creaBottomDiv){
+		this.page.append('<div class="page-content-bottom"></div>');
+	}
 	this.setControls();
 	return this ;
 }

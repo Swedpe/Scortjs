@@ -22,13 +22,16 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
         CodeHelper:'',
 		imputoptions:{},
 		imputselectedId:'',
-		imputselectedValue:'',	
+		imputselectedValue:'',
+		minLength:2,
 		sourcefunction:'',
 		source:'',
 		baseHtml:false,
         listeners: {
             specialKey: function(obj, event){},
-            change: function(obj, newValue, oldValue){}, //Fires just before the field blurs if the field value has changed.
+            change: function(obj, newValue, oldValue){
+				console.log('onchange');
+			}, //Fires just before the field blurs if the field value has changed.
 			render: function(ul, item){} 
         }
     };
@@ -89,10 +92,9 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
       this.source = $this.config.imputoptions.source; 	
       this.autocomplete = $(this.InputField.divInput).autocomplete({
         source: $.isEmptyObject($this.source)?this.config.sourcefunction:$this.source,	 
-        minLength: 2,
+        minLength: this.config.minLength,
         appendTo: $this.container  
       }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-					
 					var renderresult = $this.listeners.render(ul, item );
 					return (!renderresult)?$( "<li>" )
 					.append( "<a>" + item.label+ "</a>" )										
@@ -102,7 +104,8 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
     };
 	
       $(this.InputField.divInput).on( "autocompletechange",{OBJ:this}, function( event, ui ) {
-          $this.InputField.setValue($this.imputselectedValue);
+          //se genera un problema aqui, ya que no permite valores que no esten en las listas.
+		  //$this.InputField.setValue($this.imputselectedValue);
 		if($this.config.listeners["change"] != undefined)
 			$this.config.listeners["change"]( event, ui);
       } );   
@@ -140,7 +143,8 @@ Components.AutoCompleteInputField.prototype.getValue = function() {
 	}
 }
 
-Components.AutoCompleteInputField.prototype.setValue = function(value) {
+Components.
+InputField.prototype.setValue = function(value) {
 	//si los datos son de una fuente fija tiene que estar seteado source para que se pueda dar un valor.
 	//si los datos son de una fuente dinamica AJAX entonces se aceptara el valor directamente, validar el valor va por parte de el usuario.
 	if (typeof(this.config.sourcefunction)=="function"){
