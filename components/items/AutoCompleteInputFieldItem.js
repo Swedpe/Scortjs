@@ -20,6 +20,7 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
         x: -1,
         y: -1,
         CodeHelper:'',
+		name:'',
 		imputoptions:{},
 		imputselectedId:'',
 		imputselectedValue:'',
@@ -56,6 +57,7 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
 	this.className = 'AutoCompleteInputField';
     this.container = this.config.container;
     this.listeners = this.config.listeners; 
+	this.name = this.config.name;
 	this.source = {};		
 }
 //##############################################################################
