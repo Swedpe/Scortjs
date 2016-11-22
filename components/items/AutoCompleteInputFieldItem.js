@@ -143,8 +143,7 @@ Components.AutoCompleteInputField.prototype.getValue = function() {
 	}
 }
 
-Components.
-InputField.prototype.setValue = function(value) {
+Components.AutoCompleteInputField.prototype.setValue = function(value) {
 	//si los datos son de una fuente fija tiene que estar seteado source para que se pueda dar un valor.
 	//si los datos son de una fuente dinamica AJAX entonces se aceptara el valor directamente, validar el valor va por parte de el usuario.
 	if (typeof(this.config.sourcefunction)=="function"){
@@ -163,3 +162,16 @@ InputField.prototype.setValue = function(value) {
 	return false;
 }
 //##############################################################################
+Components.AutoCompleteInputField.prototype.disable = function() {
+	//change input state to disable, el componente ya no sera editable
+	this.enabled=false;
+	this.InputField.disable();
+	//console.log("funcion disable "+this.enabled);
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+Components.AutoCompleteInputField.prototype.enable = function() {
+	//change input state to enable, el componente sera editable
+	this.enabled=true;
+	this.InputField.enable();
+	//console.log("funcion enable "+this.enabled);
+}
