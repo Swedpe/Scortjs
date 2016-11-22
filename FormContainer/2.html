@@ -35,6 +35,7 @@
 <script src="../components/items/HtmlScreenGrid.js"></script>
 <script src="../components/items/colorPicker/tinycolor.js"></script>
 <script src="../components/items/colorPicker/colorPicker.js"></script>
+<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
 <!--------------------------CSS	------------------------------------------->
 <link rel="stylesheet" href="../css_components/css_ProgressBarItem.css" />
 <link rel="stylesheet" href="../css_components/fontawesomegrid.css"/>
@@ -184,8 +185,27 @@ Components.create('Window', {
 				},
 		 css:{'padding-top': '10px'},
 		},
-				
-				
+		 {type:'AutoCompleteInputField',
+		 name:'autocomplete',
+		id: 'MiAutocomplete',
+				imputoptions: {
+					label: '<b>&nbsp;Select List :</b>',
+					id: 'AutocompleteInput',
+					width: 128,
+					readOnly: false
+				},
+				sourcefunction: function(request, response) {
+					$.ajax({
+						type:'post',
+						url: 'php/dataphp.php',
+						data: {dataset:'sampledata2',term: request.term},
+						dataType: "json",
+						success: function(dato) {
+							response(dato);
+						}
+					});
+				}
+                }		
 			],
 	buttons: [
 		{ 
@@ -203,7 +223,7 @@ Components.create('Window', {
 			text: 'Set Datos' ,
 			x: 190,
 			handler: function() {
-				datos = {'nombre':'William','apellido':'Uria','direccion':'Arequipa','fecha':'1993-02-10','valorProgress':45,'edad':48,'on-off':false
+				datos = {'autocomplete':'rambucha','nombre':'William','apellido':'Uria','direccion':'Arequipa','fecha':'1993-02-10','valorProgress':45,'edad':48,'on-off':false
 			  }
 				var set1 = Components.getComponentById('uno');
 				var set2 =Components.getComponentById('prueba');

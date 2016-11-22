@@ -12,7 +12,8 @@
     * William Uria Martinez[Williamuriamartinez@hotmail.com], Angela Mayhua[], Cesar Cardenas[ccardenashq@gmail.com].
 */
 Components.AutoCompleteInputField.prototype.init = function(dataObj) {
-    this.config = {
+     this.type = 'AutoCompleteInputField';
+	this.config = {
         container: $('body'),      
         align: "left",
         id: "name-" + Math.round(Math.random() * 2000),
