@@ -166,6 +166,7 @@ Components.Form.prototype.getValues = function() {
 			case 'NumberField':
 			case 'ComboBox':
 			case 'DatePicker':
+			case 'AutoCompleteInputField':
 			values[this.inputObjs[i].name] = this.inputObjs[i].getValue();
 			break;
 			case 'InputField':
@@ -179,7 +180,8 @@ Components.Form.prototype.getValues = function() {
 					case 'TextArea':
 					case 'colorPicker':
 					case 'timePicker':
-						console.log(this.inputObjs[i].ChildComponent.type);
+					case 'AutoCompleteInputField':
+						
 						values[this.inputObjs[i].ChildComponent.name] = this.inputObjs[i].ChildComponent.getValue();
 					break;	
 					}
@@ -198,6 +200,7 @@ Components.Form.prototype.setValues = function(values) {
 				case 'DatePicker':
 				case 'ComboBox':
 				case 'colorPicker':
+				case 'AutoCompleteInputField':
 				if(this.inputObjs[i].config.name == name){
 					this.inputObjs[i].setValue(unescapeHTML(values[this.inputObjs[i].name]));
 				}
@@ -210,7 +213,8 @@ Components.Form.prototype.setValues = function(values) {
 					case 'timePicker':
 					case 'NumberField':
 					case 'ComboBox':
-					case 'colorPicker':					
+					case 'colorPicker':	
+					case 'AutoCompleteInputField':
 					if(this.inputObjs[i].ChildComponent.config.name == name){
 						this.inputObjs[i].ChildComponent.setValue(unescapeHTML(values[this.inputObjs[i].ChildComponent.name]));}
 					break;	
