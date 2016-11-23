@@ -117,9 +117,13 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
 			$this.InputField.divInput.css('border','1px solid rgb(18, 94, 177)');
 			ui.parent = $this;
 			if($this.config.listeners["select"] != undefined)	
-				$this.config.listeners["select"]( event, ui);
+			$this.config.listeners["select"]( event, ui);
 			$this.imputselectedId = ui.item.id;
-			$this.imputselectedValue = ui.item.label;	
+			$this.imputselectedValue = ui.item.label;
+			if($this.InputField.config.validar!=''){
+				$this.InputField.Validar(event);		
+			}
+			
 		
       });    
 	

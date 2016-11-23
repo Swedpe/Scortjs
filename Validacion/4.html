@@ -175,12 +175,26 @@ Components.create('Window',{
 				}				   
 			},
 			 listeners: {
-					onValidateSucess: function() {
-					console.log("validado");
+					onValidateSucess: function(event) {
+					//dependiendo de donde es que sucedio el evento en un autocomplete aqui hay un comportamiento especial
+						if(event.data.OBJ.type=='TextField'){
+							console.log('el evento es del textfield contenido por el autocomplete');
+							console.log(event.data.OBJ);
+						}
+						if(event.data.OBJ.type=='AutoCompleteInputField'){
+							console.log('el evento es del autocomplete, osea cuando se selecciona un valor para acceder al textfield contenido usar:');
+							console.log(event.data.OBJ.InputField);
+						}
 					},
 					onValidateFail: function(event) {
-						console.log("No validado");
-						console.log(event.data.OBJ.parent);
+						if(event.data.OBJ.type=='TextField'){
+							console.log('el evento es del textfield contenido por el autocomplete');
+							console.log(event.data.OBJ);
+						}
+						if(event.data.OBJ.type=='AutoCompleteInputField'){
+							console.log('el evento es del autocomplete, osea cuando se selecciona un valor para acceder al textfield contenido usar:');
+							console.log(event.data.OBJ.InputField);
+						}
 					}
                 },
 				sourcefunction: function(request, response) {
