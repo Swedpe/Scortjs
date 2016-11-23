@@ -27,7 +27,7 @@
 		
 		<script src="../components/data/DataProxy.js"></script>
 		<script src="../components/data/StoreContainer.js"></script>
-		
+		<script src="../components/items/AutoCompleteInputFieldItem.js"></script>
 		
 	<link rel="stylesheet" href="../fonts/font-awesome-4.3.0/css/font-awesome.min.css" id="fontAwesome">
 	<link rel="stylesheet" href="../fonts/Glypsicons/css/Glyphicons-Halflings.css" id="glip">
@@ -159,6 +159,42 @@ Components.create('Window',{
 			
 			
 			},
+			{type:'AutoCompleteInputField',
+			name:'autocomplete',
+			id: 'MiAutocomplete',
+				imputoptions: {
+					label: '<b>&nbsp;Select List :</b>',
+					id: 'AutocompleteInput',
+					width: 128,
+					readOnly: false
+				},
+			validar:{											
+				'longitud':{
+				'min':3,
+				'max':4			
+				}				   
+			},
+			 listeners: {
+					onValidateSucess: function() {
+					console.log("validado");
+					},
+					onValidateFail: function(event) {
+						console.log("No validado");
+						console.log(event.data.OBJ.parent);
+					}
+                },
+				sourcefunction: function(request, response) {
+					$.ajax({
+						type:'post',
+						url: 'php/dataphp.php',
+						data: {dataset:'sampledata2',term: request.term},
+						dataType: "json",
+						success: function(dato) {
+							response(dato);
+						}
+					});
+				}
+                },
 			
 			
 			{type: 'InputField',

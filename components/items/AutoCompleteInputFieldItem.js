@@ -28,6 +28,7 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
 		minLength:2,
 		sourcefunction:'',
 		source:'',
+		validar:'',
 		baseHtml:false,
         listeners: {
             specialKey: function(obj, event){},
@@ -77,9 +78,6 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
 	this.AutoCompleteCache= {};	
 	this.InputField = Components.create('TextField', {
 			container: this.divContainer,
-			x:this.config.x,
-			y: this.config.y,
-			label: this.config.imputoptions.label,			
 			id: "TXA"+this.id,
 			width: this.config.imputoptions.width,
 			alignLabel: "left",
@@ -89,7 +87,9 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
 			InputCss:this.config.imputoptions.InputCss,
 			ico: (this.config.imputoptions.ico||false),
 			value:(this.config.imputoptions.value||''),
-                        CodeHelper:(this.config.CodeHelper.value||''),
+            CodeHelper:(this.config.CodeHelper.value||''),
+			validar: this.config.validar,
+			listeners:this.config.listeners,
 			
 		});
       this.source = $this.config.imputoptions.source; 	
