@@ -49,7 +49,9 @@ outline-color: red;
 	outline-color: red;
 	border-color: red;
 }
-
+select:disabled {
+    background: #EBEBE4;
+}
 .inputSpan select.error {
 background-color: rgb(252, 221, 221);
 }

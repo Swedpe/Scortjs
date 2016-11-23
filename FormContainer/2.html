@@ -56,6 +56,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 }
+
 </style>	
 <script id="customscript">
 	$( document ).ready(function(){
@@ -65,13 +66,13 @@ body {
 		title: "Demo Window", 
 		x:713,
 		y:33,
-		height:200, 
+		height:500, 
 		state:'active', 
 		width:310,
  }).show();
 Components.create('Window', {
 		title: 'Ejemplo Form Window',
-		height: 340,
+		height: 500,
 		width: 600,
 		minimizable: false,
 		id: 'window',
@@ -114,6 +115,7 @@ Components.create('Window', {
 							cols:4},
 					input:{
 						type:'DatePicker',
+						id:'desactivameDate',
 						name:'fecha',
 						cols:8,
 						state:'info',
@@ -127,6 +129,67 @@ Components.create('Window', {
 					},
 
 				},
+				{type: 'InputField',
+					label: {html:'<b>Combo Colorado</b>',
+							cols:4
+					},
+					input:{cols:8,
+							type: 'ComboBox',
+							id:'combocolorado',
+							label: 'Tipo Variable',
+							width:150,
+							state:'highlight',
+							name:'ComboNumber',
+							displayField: 'TipoVariable',
+							valueField: 'TipoVariable',
+							store: {
+								id: 'DataTypes',
+								fields: ['IdTipoVariable','TipoVariable'],
+								data: [
+									{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+									{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+									{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+									{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+								]
+							}
+
+					},
+					
+					css:{'padding-top': '10px'
+					},
+					
+					
+			},
+			{type: 'InputField',
+					label: {html:'<b>Combo Normal</b>',
+							cols:4
+					},
+					input:{cols:8,
+							type: 'ComboBox',
+							id:'combonormal',
+							label: 'Tipo Variable',
+							width:150,
+							name:'ComboNumber2',
+							displayField: 'TipoVariable',
+							valueField: 'TipoVariable',
+							store: {
+								id: 'DataTypes',
+								fields: ['IdTipoVariable','TipoVariable'],
+								data: [
+									{ 'IdTipoVariable': '1', "TipoVariable": "number"  },									
+									{ 'IdTipoVariable': '3', "TipoVariable": "string"  },
+									{ 'IdTipoVariable': '4', "TipoVariable": "date"  },
+									{ 'IdTipoVariable': '5', "TipoVariable": "boolean"  }
+								]
+							}
+
+					},
+					
+					css:{'padding-top': '10px'
+					},
+					
+					
+			},
 				{type: 'InputField',
 					label: {html:'<b>ProgressBar:</b>',
 							cols:4},
@@ -145,6 +208,7 @@ Components.create('Window', {
 						cols:4},
 				 input:{
 					type:'NumberField',
+					id:'desactivameNumber',
 					cols:8,
 					state:'error',
 					value:50,
@@ -221,7 +285,7 @@ Components.create('Window', {
 		},
 		{ 
 			text: 'Set Datos' ,
-			x: 190,
+			x: 70,
 			handler: function() {
 				datos = {'autocomplete':'rambucha','nombre':'William','apellido':'Uria','direccion':'Arequipa','fecha':'1993-02-10','valorProgress':45,'edad':48,'on-off':false
 			  }
@@ -229,7 +293,30 @@ Components.create('Window', {
 				var set2 =Components.getComponentById('prueba');
 				set1.setValues(datos);	
 			} 
-		}
+		},
+		{ 
+			text: 'Disable some Controls',			
+			x: 110,
+			handler: function() {
+			console.log('intentando desactivar un datepicker');
+			   Components.getComponentById('desactivameNumber').disable();
+			   Components.getComponentById('desactivameDate').disable();
+			   Components.getComponentById('combocolorado').disable();
+			   Components.getComponentById('combonormal').disable();
+				
+			}	
+		},
+		{ 
+			text: 'Enable some Controls',			
+			x: 150,
+			handler: function() {
+			console.log('intentando desactivar un datepicker');
+			   Components.getComponentById('desactivameNumber').enable();
+			   Components.getComponentById('desactivameDate').enable();
+			   Components.getComponentById('combocolorado').enable();
+			   Components.getComponentById('combonormal').enable();	
+			}	
+		},
 	]
   }]
  }).show();
