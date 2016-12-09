@@ -89,7 +89,10 @@ Components.Form.prototype.create = function() {
 	}
 	return this ;
 }
-Components.Form.prototype.destroy = function() {}
+Components.Form.prototype.destroy = function() {
+	Components.Component.prototype.destroy.call(this);
+	this.divContainer.remove();
+}
 //##############################################################################
 Components.Form.prototype.setConfig = function() {
     var cssGeneral = {};

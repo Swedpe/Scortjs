@@ -102,7 +102,7 @@ Components.TabPanel.prototype.constructHeader = function() {
 Components.TabPanel.prototype.drawItems = function() {
     this.divContainerTabs.append('<ul class='+this.config.state+'></ul>');
     
-    
+    var tabControlIndex = 0;
     for(var i in this.items) {
         var item = this.items[i];
         item.parent = this;
@@ -110,6 +110,9 @@ Components.TabPanel.prototype.drawItems = function() {
         item.headerContainer = this.divContainerTabs;
         var element = Components.create(item.type, item);
         this.itemsObjs.push(element);
+		//se asume que el unico componente que puede tener como hijo un tabcontainer son tabs
+		element.tabControlIndex = tabControlIndex;
+		tabControlIndex = tabControlIndex +1;
     }
     //console.log(this.divContainer.html());
     

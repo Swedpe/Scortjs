@@ -176,6 +176,14 @@ Components.Tab.prototype.hide = function() {
     this.headerTab.hide();
     this.divContainer.hide();
 }
+Components.Tab.prototype.disable = function() {
+    this.parent.divContainer.tabs("disable", this.tabControlIndex);
+    
+}
+Components.Tab.prototype.enable = function() {
+    this.parent.divContainer.tabs("enable", this.tabControlIndex);
+    
+}
 //##############################################################################
 Components.Tab.prototype.setVisible = function(visible) {
     this.config.hidden = !visible;
