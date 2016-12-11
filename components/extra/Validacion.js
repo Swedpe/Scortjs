@@ -36,6 +36,9 @@ Validador.prototype.Validar = function(value,condiciones) {
 			case 'hora':
 			resultado= this.ValidateHour(value)&&resultado;
 			break;
+            case 'fecha':
+            resultado= this.ValidarFecha(value,condiciones[indice])&&resultado;
+            break;
 		}
 		
 	}
@@ -235,38 +238,56 @@ Validador.prototype.ValidateHour = function (value){
 			}
 				return validaHoras&&validaMinutos;
 }
-Validador.prototype.ValidarFecha= function(date, $el, df) { //df formato de fecha pesronalizado  ejemplo df: YY/MM/dd  => 15/01/31 
-            var dateFormat = 'yyyy-mm-dd';
-            if($el.valAttr('format')) {
-                dateFormat = $el.valAttr('format');
-            }
-            else if( conf.dateFormat ) {
-                dateFormat = df;
-            }
-
+Validador.prototype.ValidarFecha= function(date, df) { 
+    //junto con date picker se personaliza el formato, lo cual complica esta logica
+//df formato de fecha pesronalizado  ejemplo df: yy/MM/dd  => 2015/01/31 
+            var dateFormat = 'yy-mm-dd';
+                dateFormat = df.format;
             return this.parseDate(date, dateFormat) !== false;
 } 
 Validador.prototype.parseDate =  function(val, dateFormat) {
+
             var divider = dateFormat.replace(/[a-zA-Z]/gi, '').substring(0,1),
                 regexp = '^',
                 formatParts = dateFormat.split(divider),
                 matches, day, month, year;
 
+            //en este punto tenemos el formato desarmado en 3 partes, date picker tiene una particularidad
+            //con los formatos, (y) = 2 digitos, y (yy) es 4 digitos
             $.each(formatParts, function(i, part) {
-               regexp += (i > 0 ? '\\'+divider:'') + '(\\d{'+part.length+'})';
+                if(part=='y'){
+                    regexp += (i > 0 ? '\\'+divider:'') + '(\\d{'+2+'})';
+                }
+                else if (part=='yy'){
+                    regexp += (i > 0 ? '\\'+divider:'') + '(\\d{'+4+'})';
+                }
+                else {
+                    regexp += (i > 0 ? '\\'+divider:'') + '(\\d{'+part.length+'})';
+                }
             });
 
             regexp += '$';
-            
             matches = val.match(new RegExp(regexp));
             if (matches === null) {
+                console.log('murio aqui');
                 return false;
             }
-        
+
+            function parseDateInt (val) {
+              if (val.indexOf('0') === 0) {
+                val = val.replace('0', '');
+              }
+              return parseInt(val, 10);
+            }
+            
+            function isShortMonth (m) {
+                return (m % 2 === 0 && m < 7) || (m % 2 !== 0 && m > 7);
+            }
+
             var findDateUnit = function(unit, formatParts, matches) {
                 for(var i=0; i < formatParts.length; i++) {
                     if(formatParts[i].substring(0,1) === unit) {
-                        return $.formUtils.parseDateInt(matches[i+1]);
+                        return parseDateInt(matches[i+1]);
                     }
                 }
                 return -1;
@@ -281,10 +302,10 @@ Validador.prototype.parseDate =  function(val, dateFormat) {
             	|| month > 12 || month === 0) {
                 return false;
             }
-            if ((this.isShortMonth(month) && day > 30) || (!this.isShortMonth(month) && day > 31) || day === 0) {
+            if ((isShortMonth(month) && day > 30) || (!isShortMonth(month) && day > 31) || day === 0) {
                 return false;
             }
-        
+            
             return [year, month, day];
 }
 Validador.prototype.ValidarRango = function(value, options) {			

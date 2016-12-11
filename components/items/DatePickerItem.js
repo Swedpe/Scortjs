@@ -15,7 +15,16 @@ Components.DatePicker.prototype.init = function(dataObj) {
     this.type = 'DatePicker';
 	this.config = {
 		id: "DatePicker-"+ Math.round(Math.random() * 2000),
-        container: $('body'),      
+        container: $('body'),
+		icon: {
+				type:'none',		//tipos posibles fontawesome y image
+				image : '',
+				position:'left',
+				class:'',
+				color:'default',
+				animate:false,
+				creado:false,		//una vez creado no hacerlo por segunda vez.
+		},
         value: "",
         alignText: "left",
 		format:'yy-mm-dd',    //formatos admitidos en: http://api.jqueryui.com/datepicker/#utility-formatDate
@@ -30,12 +39,14 @@ Components.DatePicker.prototype.init = function(dataObj) {
         CodeHelper:'',
         hidden: false,
 		state:'default',
-		validar:'',
+		validar:false,						//para este tipo de componente no se puede especificar otro validador mas que el de fecha
 		parent:'',							//el componente padre
 		baseHtml:false,	
         listeners: {
             specialKey: function(obj, event){},
-            change: function(obj, newValue, oldValue){} //Fires just before the field blurs if the field value has changed.
+            change: function(obj, newValue, oldValue){}, //Fires just before the field blurs if the field value has changed.
+			onValidateSucess: function(event){},		//si se define un validador, se ejecuta esta funcion
+			onValidateFail: function(event){},			//si se define validacion, se ejecuta esta funcion
         }
     };
 	 for(var i in dataObj) {
@@ -75,18 +86,27 @@ Components.DatePicker.prototype.init = function(dataObj) {
 //##############################################################################
 Components.DatePicker.prototype.create = function() {
 	//creamos  un input [textfield con addon]
+	var $this = this;
 	var  Place = new Date();
 	if(this.baseHtml){
 		this.config.container = $('#'+this.id);
-		console.log(this.config.container);
+		//console.log(this.config.container);
 	}
+	if (this.config.validar == true){
+		this.config.validar = {'fecha':{'format':$this.config.format}};
+	}
+	else{
+		this.config.validar = '';
+	}
+	
 	this.TextField = Components.create('TextField',{
 			placeholder:this.config.format,
 			container:this.config.container,
 			width: '100%',
 			parent:this,
 			state:this.config.state,
-			 listeners: {
+			icon:$this.config.icon,
+			listeners: {
 				click: function(event){
 				if(event.data.OBJ.parent.isVisiblePicker){
 						event.data.OBJ.divInput.datepicker('hide');
@@ -99,8 +119,15 @@ Components.DatePicker.prototype.create = function() {
 					event.data.OBJ.parent.isVisiblePicker =!event.data.OBJ.parent.isVisiblePicker ;
 					//this.config.state=""; inhabilitado no se para q sirve
 				//console.log("hola");
-				} //Fires just before the field blurs if the field value has changed.
+				}, //Fires just before the field blurs if the field value has changed.
+				  onValidateSucess: function(event) {
+				  event.data.OBJ.parent.config.listeners.onValidateSucess(event);
+				  },
+				  onValidateFail: function(event) {	  
+				   event.data.OBJ.parent.config.listeners.onValidateFail(event);
+				  }
 			},
+			validar:$this.config.validar,
 			addon:{
 				addonType: 'button',
 				state:this.config.state,
@@ -166,6 +193,15 @@ Components.DatePicker.prototype.Seleccionar=function(dateText,pickerObj)
 */
 {
 	$(pickerObj.input).data('DatePicker').isVisiblePicker =!$(pickerObj.input).data('DatePicker').isVisiblePicker ;
+	if($(pickerObj.input).data('DatePicker').config.validar!=''){
+		var Event = [];
+		Event.data = [];
+		Event.data.OBJx = this;
+		Event.data.OBJ = $(pickerObj.input).data('DatePicker').TextField;
+		Event.data.pickerObj = pickerObj;
+		Event.data.dateText = dateText;
+		$(pickerObj.input).data('DatePicker').TextField.Validar(Event);
+	}
 	console.log("seleccionar");
 }
 //##############################################################################
@@ -207,6 +243,7 @@ Components.DatePicker.prototype.setValue = function(value) {
 			this.dateCurrent = "";
 		}
 	}
+	return this;
 }
 //##############################################################################
 Components.DatePicker.prototype.getValue = function() {
@@ -251,7 +288,7 @@ Components.DatePicker.prototype.destroy=function(){
 this.TextField.divInput.datepicker( "destroy" );
 this.TextField.divInput.removeClass("hasDatepicker").removeAttr('id');
 this.TextField.destroy();
-Components.Component.prototype.destroy(this);	
+Components.Component.prototype.destroy.call(this);	
 }
 //enviando configuraciones personalizadas directamente al widget
 $.datepicker.regional['es'] = {

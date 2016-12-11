@@ -196,6 +196,9 @@ width:12px;
 span.input-icon {
   display: inline-block;
 }
+span.input-icon.input-group {
+  display: table;
+}
 .input-icon {
   width: 100%;
   position: relative;
