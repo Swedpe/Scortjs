@@ -321,7 +321,7 @@ Validador.prototype.ValidarRango = function(value, options) {
  
  Validador.prototype.ValidarTexto = function(value) {			
 			var respuesta = true;					
-			respuesta = value.match(/^([a-zÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+$/i, '') !== null  && respuesta; 
+			respuesta = value.match(/^([a-zÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõÑñöùúûüýÿ])+$/i, '') !== null  && respuesta; 
             return respuesta; 
  }
 Validador.prototype.ValidarLongitud = function(val, $el) {
