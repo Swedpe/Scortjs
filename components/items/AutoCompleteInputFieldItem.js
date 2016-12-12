@@ -28,6 +28,21 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
 		minLength:2,
 		sourcefunction:'',
 		source:'',
+		icon:{
+				type:'none',		//tipos posibles fontawesome y image
+				image : '',
+				position:'left',
+				class:'',
+				color:'default',
+				animate:false,
+				creado:false,		//una vez creado no hacerlo por segunda vez.
+		},
+		addon:{
+				addonType:'none',
+				position:'left',
+				class:'',
+				creado:false,		//una vez creado no hacerlo por segunda vez.
+		},
 		validar:'',
 		baseHtml:false,
         listeners: {
@@ -64,7 +79,8 @@ Components.AutoCompleteInputField.prototype.init = function(dataObj) {
 }
 //##############################################################################
 Components.AutoCompleteInputField.prototype.create = function(setControls) {
-    if(this.baseHtml){//si esta definido el html base, entonces tambien cada inputfield tiene que tener ID, sino no se puede alcanzar el elemento
+    var $this = this;
+	if(this.baseHtml){//si esta definido el html base, entonces tambien cada inputfield tiene que tener ID, sino no se puede alcanzar el elemento
 		this.divContainer = $('#'+this.id);
 		if(!this.parent.baseHtml){				//si el componente padre tambien es de html base entonces, no mover los contenedores html de lugar
 			this.container.append(this.divContainer);
@@ -76,7 +92,7 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
 	var $this=this;	
     this.divContainer.addClass('AutoCompleteInputField');
 	this.AutoCompleteCache= {};	
-	this.InputField = Components.create('TextField', {
+	var textParams = {
 			container: this.divContainer,
 			id: "TXA"+this.id,
 			width: this.config.imputoptions.width,
@@ -90,9 +106,20 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
             CodeHelper:(this.config.CodeHelper.value||''),
 			validar: this.config.validar,
 			listeners:this.config.listeners,
-			
-		});
-      this.source = $this.config.imputoptions.source; 	
+			icon:$this.config.icon,
+			addon:$this.config.addon,
+		}
+	if(this.config.addon){
+		textParams.addon  = $this.config.addon;
+	}
+	if(this.config.icon){
+		console.log('con icon');
+		textParams.icon  = $this.config.icon;
+	}
+	
+	this.InputField = Components.create('TextField', textParams );
+
+	this.source = $this.config.imputoptions.source; 	
       this.autocomplete = $(this.InputField.divInput).autocomplete({
         source: $.isEmptyObject($this.source)?this.config.sourcefunction:$this.source,	 
         minLength: this.config.minLength,
@@ -117,13 +144,9 @@ Components.AutoCompleteInputField.prototype.create = function(setControls) {
 			$this.InputField.divInput.css('border','1px solid rgb(18, 94, 177)');
 			ui.parent = $this;
 			if($this.config.listeners["select"] != undefined)	
-			$this.config.listeners["select"]( event, ui);
+				$this.config.listeners["select"]( event, ui);
 			$this.imputselectedId = ui.item.id;
-			$this.imputselectedValue = ui.item.label;
-			if($this.InputField.config.validar!=''){
-				$this.InputField.Validar(event);		
-			}
-			
+			$this.imputselectedValue = ui.item.label;	
 		
       });    
 	
@@ -148,6 +171,7 @@ Components.AutoCompleteInputField.prototype.getValue = function() {
 	if (typeof(this.config.sourcefunction)=="function"){
 		return this.InputField.getValue();
 	}
+	
 }
 
 Components.AutoCompleteInputField.prototype.setValue = function(value) {
@@ -155,7 +179,7 @@ Components.AutoCompleteInputField.prototype.setValue = function(value) {
 	//si los datos son de una fuente dinamica AJAX entonces se aceptara el valor directamente, validar el valor va por parte de el usuario.
 	if (typeof(this.config.sourcefunction)=="function"){
 		this.InputField.setValue(value);
-		return true;
+		return this;
 	}
 	for(var item in this.source){	
 		if(this.source[item].id == value){
@@ -163,7 +187,7 @@ Components.AutoCompleteInputField.prototype.setValue = function(value) {
 			this.imputselectedValue = this.source[item].label;	
 			this.InputField.setValue(this.source[item].label);															
 			this.InputField.divInput.css('border','1px solid rgb(18, 94, 177)');	
-			return this.source[item];
+			return this;
 		}
 	}
 	return false;
