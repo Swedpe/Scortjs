@@ -2,6 +2,7 @@
 //header("Location: http://www.swedpe.com/Intranet/index.php");
 error_reporting(E_ALL | E_STRICT);
 require('UploadHandler.php');
+print_r($_REQUEST);
 $options = array(
     // This option will disable creating thumbnail images and will not create that extra folder.
     // However, due to this, the images preview will not be displayed after upload

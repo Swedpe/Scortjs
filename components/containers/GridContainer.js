@@ -519,6 +519,7 @@ Components.GridContainer.prototype.resizeBody = function() {
 			this.config.resizable.subcontainer = this.TableBody;			
 		}else{
 			this.config.resizable.container = this.TableBody;}		//si la tabla no tiene vertical scroll solo se envia la cabecera que igualmente afectara toda la tabla
+			this.config.resizable.subcontainer = this.TableBody;			
 		if(this.resizecontrol == undefined){
 			this.config.resizable.parent = this;											//referencia directa al GridContainer
 			this.resizecontrol = Components.create('ResizableGrid', this.config.resizable);	
